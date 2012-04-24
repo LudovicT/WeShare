@@ -19,7 +19,7 @@ require_once(DIR_MODELS.DS."mainModels.php");
 
 /* traitement des informations */
 $user = getUser();
-if (isset($_GET["page"]) && $user == null)
+if (isset($_GET["page"]) && $user == null && !isset($_SESSION['User']))
 {
 	switch($_GET["page"])
 	{
@@ -44,6 +44,8 @@ if (isset($_GET["page"]) && $user == null)
 			disconnect();
 			$layout = "home.php";
 			break;
+		default:
+			$layout = "home.php";
 	}
 }
 elseif ($user == null)

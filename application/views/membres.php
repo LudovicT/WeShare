@@ -21,7 +21,7 @@
 			if($key['Status'] == null)
 			{
 			?>
-				<a href='/WeShare/Membres/AddFriend/<?php echo $key['IdUser'] ?>/'>
+				<a href='/WeShare/Membres/AddFriend/<?php echo $key['Pseudo'] ?>/'>
 					<img src='<?php echo DIR_PUBLICS; ?>/images/plusIcon.jpg'>
 				</a>
 			<?php

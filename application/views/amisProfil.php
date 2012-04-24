@@ -21,13 +21,13 @@
 			<td  class='TableAmisProfil'>
 				<center>
 				<a href='/WeShare/Membres/".$key['Pseudo']."/'>".$key['Pseudo']."</a>
-				</center
+				</center>
 			</td>
 			<td>
 				<center>
 				<a href='/WeShare/Profil/Amis/Retirer/" .
-				$key['IdUser'] . "/'><em>Supprimer</em></a><br />
-				</center
+				$key['Pseudo'] . "/'><em>Supprimer</em></a><br />
+				</center>
 			</td>
 			</tr>";
 		}
@@ -45,16 +45,37 @@
 	{
 	echo "	<p>
 				Vous avez une requête d'ami de la part de ces personnes :
-			</p>";
+			</p>
+			<table>";
 		foreach($friendRequest as $key2)
 		{
-			echo $key2['Pseudo'] . "&nbsp;&nbsp;&nbsp;&nbsp;<a href='/WeShare/Profil/Amis/Accepter/" .
-			$key2['IdUser'] . "/'><em>Accepter</em></a>&nbsp;&nbsp;
+			echo "<tr>
+			<td  class='TableAmisProfil'
+				<center>
+				<a href='/WeShare/Membres/".$key2['Pseudo']."/'>".$key2['Pseudo']."</a>
+				</center>
+			</td>
+			<td width=70px>
+				<center>
+				<a href='/WeShare/Profil/Amis/Accepter/" .
+			$key2['Pseudo'] . "/'><em>Accepter</em></a>
+				</center>
+			</td>
+			<td width=70px>
+				<center>
 			<a href='/WeShare/Profil/Amis/Refuser/" .
-			$key2['IdUser'] . "/'><em>Refuser</em></a>&nbsp;&nbsp;
+			$key2['Pseudo'] . "/'><em>Refuser</em></a>
+				</center>
+			</td>
+			<td width=70px>
+				<center>
 			<a href='/WeShare/Profil/Amis/Ignorer/" .
-			$key2['IdUser'] . "/'><em>Ignorer</em></a>  <br />";
+			$key2['Pseudo'] . "/'><em>Ignorer</em></a>  <br />
+				</center>
+			</td>
+			</tr>";
 		}
+		echo "</table>";
 	}
 	else
 	{

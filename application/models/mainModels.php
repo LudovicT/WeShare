@@ -23,9 +23,9 @@ function getUser()
 Cette fonction sert à se connecter à la base de donnée
 
 $error (S): int : 
-0 -< pas d'erreurs
-1 -< Connexion impossible à la bdd ;
-2 -< Selection impossible de la bdd ;
+0 -> pas d'erreurs
+1 -> Connexion impossible à la bdd ;
+2 -> Selection impossible de la bdd ;
 
 $link (S) : retourne le lien de mysql_connect()
 
@@ -77,11 +77,11 @@ $register_country,
 $register_phoneNumber
 
 $error[] (S): array 
-[0|1|2|3]=<0	: OK 
-  [0|1|2]=<1	: trop long ;
-      [3]=<1	: erreur requête invalide/problème avec la BDD;
-    [0|2]=<2	: pseudo/mail déjà utilisé;
-      [1]=<2	: mot de pass ne correspondent pas;
+[0|1|2|3]=>0	: OK 
+  [0|1|2]=>1	: trop long ;
+      [3]=>1	: erreur requête invalide/problème avec la BDD;
+    [0|2]=>2	: pseudo/mail déjà utilisé;
+      [1]=>2	: mot de pass ne correspondent pas;
 
 
 Auteur: Vincent Ricard
@@ -116,7 +116,7 @@ function register($register_pseudo,
 		echo "coucou1";
 	}
 	
-	if (count($register_pseudo) < 33)
+	if (strlen($register_pseudo) > 33)
 	{
 		$error[0] = 1;
 	}
@@ -126,7 +126,7 @@ function register($register_pseudo,
 	}
 	
 	//verif pass
-	if (count($register_password) < 61)
+	if (strlen($register_password) > 61)
 	{
 		$error[1] = 1;
 	}
@@ -145,7 +145,7 @@ function register($register_pseudo,
 		echo "coucou2";
 	}
 	
-	if (count($register_email) < 211)
+	if (strlen($register_email) > 211)
 	{
 		$error[2] = 1;
 	}
@@ -189,7 +189,7 @@ function register($register_pseudo,
 
 /* 
 Fonction qui permet de se connecter
-$error = 1; ---< Pseudo ou Mot de passe incorrect
+$error = 1; ---> Pseudo ou Mot de passe incorrect
 
 auteur : Alexandre Arnal.
 */
