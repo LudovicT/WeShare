@@ -2,44 +2,51 @@
 	<table border='1'>
 		<th> Pseudo </th><th> Date d'inscription </th><th> Ajouter un ami </th>
 	<?php
-	foreach($membres as $key)
-	{ ?>
-		<tr>
-			<td>
-				<a href='/WeShare/Membres/<?php echo $key['Pseudo']; ?>/'><?php echo $key['Pseudo'] ?></a>
-			</td>
-			<td>
-				<?php echo $key['RegisterDate'] ?>
-			</td>
-			<td>
-			<?php 	/* status : null : pas d'entré
-								0 : demande envoyé
-								1 : demande accepté
-								2 : demande refusé
-								3 : demande ignoré
-					*/
-			if($key['Status'] == null)
-			{
-			?>
-				<a href='/WeShare/Membres/AddFriend/<?php echo $key['Pseudo'] ?>/'>
-					<img src='<?php echo DIR_PUBLICS; ?>/images/plusIcon.jpg'>
-				</a>
-			<?php
-			}
-			elseif($key['Status'] == 0 || $key['Status'] == 2 || $key['Status'] == 3)
-			{
-				echo "Demande envoyé";
-			}
-			elseif($key['Status'] == 1)
-			{
-				echo "Déjà ami";
-			}
-			?>
-			
-			</td>
-		</tr>
-		<?php
+	if($membres[0] == null)
+	{
+		echo "Il n'y a pas de membres";
 	}
+	else
+	{
+		foreach($membres as $key)
+		{ ?>
+			<tr>
+				<td>
+					<a href='/WeShare/Membres/<?php echo $key['Pseudo']; ?>/'><?php echo $key['Pseudo'] ?></a>
+				</td>
+				<td>
+					<?php echo $key['RegisterDate'] ?>
+				</td>
+				<td>
+				<?php 	/* status : null : pas d'entré
+									0 : demande envoyé
+									1 : demande accepté
+									2 : demande refusé
+									3 : demande ignoré
+						*/
+				if($key['Status'] == null)
+				{
+				?>
+					<a href='/WeShare/Membres/AddFriend/<?php echo $key['Pseudo'] ?>/'>
+						<img src='<?php echo DIR_PUBLICS; ?>/images/plusIcon.jpg'>
+					</a>
+				<?php
+				}
+				elseif($key['Status'] == 0 || $key['Status'] == 2 || $key['Status'] == 3)
+				{
+					echo "Demande envoyé";
+				}
+				elseif($key['Status'] == 1)
+				{
+					echo "Déjà ami";
+				}
+				?>
+				
+				</td>
+			</tr>
+			<?php
+		}
+		}
 	?>
 	</table>
 	<!--End of home page-->
