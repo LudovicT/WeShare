@@ -12,6 +12,7 @@ RewriteRule   ^Membres/AddFriend/(.+)/$   /WeShare/index.php?page=membres.php&ad
 RewriteRule   ^Membres/(.+)/$   /WeShare/index.php?page=membres.php&profil=$1 [NC]
 RewriteRule   ^Membres/$   /WeShare/index.php?page=membres.php [NC]
 RewriteRule   ^Films/$   /WeShare/index.php?page=films.php [NC]
+RewriteRule   ^Films/addFilms/$   /WeShare/index.php?page=films.php&action=addFilms [NC]
 RewriteRule   ^Evenements/$   /WeShare/index.php?page=evenements.php [NC]
 RewriteRule   ^Deconnexion/$ /Weshare/index.php?page=deconnexion [NC]
 RewriteRule   ^Profil/$   /WeShare/index.php?page=profil.php [NC]
@@ -23,5 +24,6 @@ RewriteRule   ^Profil/Amis/Accepter/(.+)/$   /WeShare/index.php?page=profil.php&
 RewriteRule   ^Profil/Amis/Refuser/(.+)/$   /WeShare/index.php?page=profil.php&action=amis&no=$1 [NC]
 RewriteRule   ^Profil/Amis/Ignorer/(.+)/$   /WeShare/index.php?page=profil.php&action=amis&ignore=$1 [NC]
 RewriteRule   ^Profil/Films/$   /WeShare/index.php?page=profil.php&action=films [NC]
-RewriteRule   ^Profil/(.+)/$ /Weshare/index.php?page=profil.php&action=$1
+RewriteRule   ^Profil/(.+)/$ /Weshare/index.php?page=profil.php&action=$1 [NC]
+
 </IfModule>
