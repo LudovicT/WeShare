@@ -1,7 +1,7 @@
 	<!--Start of home page-->
 
 <div id="homePage" tabindex="99998">
-	<form id="homeSearch" class="" style="width: 500px; margin-left: -250px;">
+	<form id="homeSearch" class="" style="width: 500px; margin-left: -250px;" action="/WeShare/Search/" method="POST">
 	<div id="searchBar">
 	<div class="searchBar_left"></div>
 	<div class="searchBar_inner"></div>
@@ -11,7 +11,7 @@
 	<div class="searchBar_inner_right"></div>
 	</div>
 	<div id="searchBar_input">
-<input name="Mot" type="text" class="formulaireBoite" id="srchval" placeholder="Taper votre recherche ..." size="18">
+<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Taper votre recherche ..." size="18">
 	<span id="searchBar_precomplete" class="hint" style="display: inline;"></span>
 	</div>
 	<button id="searchButton" name="Submit" type="button"></button>

@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS Movies
 (IdMovie			INT 			NOT NULL	AUTO_INCREMENT,
 Name				VARCHAR(255)	NOT NULL,
 Synopsis			TEXT			NOT NULL,
-DateOfRecord		DATE			NOT NULL,
+DateOfRecord		YEAR			NOT NULL,
 Poster				LONGTEXT,
 PRIMARY KEY(IdMovie));
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS MoviesMarks
 (IdMovie			INT 			NOT NULL,
 IdUser				INT 			NOT NULL,
 Mark				DOUBLE			DEFAULT 0,
-UserComment			TEXT,
+UserComment			LONGTEXT,
 FOREIGN KEY (IdUser)
 	REFERENCES Users(IdUser),
 FOREIGN KEY (IdMovie)
