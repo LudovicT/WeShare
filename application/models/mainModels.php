@@ -233,6 +233,7 @@ function getMember($userPseudo)
 		(sert a savoir les liens d'amitié)*/
 
 	$userId = getId($userPseudo);
+	$membres = "";
 	
 	$S_query = ("SELECT U.IdUser, U.Pseudo, U.RegisterDate, F.Status 
 				FROM Users AS U 

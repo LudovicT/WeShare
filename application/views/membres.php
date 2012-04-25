@@ -2,7 +2,7 @@
 	<table border='1'>
 		<th> Pseudo </th><th> Date d'inscription </th><th> Ajouter un ami </th>
 	<?php
-	if($membres[0] == null)
+	if($membres == "")
 	{
 		echo "Il n'y a pas de membres";
 	}
