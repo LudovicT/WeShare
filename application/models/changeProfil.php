@@ -176,7 +176,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 	{
 		if (strlen($Phone) == 10)
 		{
-			$query = sprintf("UPDATE USERS SET $Phone = '%s' 
+			$query = sprintf("UPDATE USERS SET Phone = '%s' 
 							 WHERE IdUSer = %d",
 							 $Phone, $IdUser);
 			$result = mysql_query($query, dbConnect());
@@ -196,8 +196,8 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		 || stristr($Avatar, ".gif") || stristr($Avatar, ".png")
 		 || stristr($Avatar, ".bmp"))
 		{
-			$query = sprintf("UPDATE USERS SET $Avatar = '%s' 
-							 WHERE IdUSer = %d",
+			$query = sprintf("UPDATE USERS SET Avatar = '%s' 
+							 WHERE IdUSer = '%d'",
 							 $Avatar, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
