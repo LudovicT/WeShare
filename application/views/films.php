@@ -1,11 +1,40 @@
-<h3>Votre vidéothèque</h3>
-	<p>
-		#<em>Prénom Nom</em>, voici les films que vous avez ajouté à votre vidéothèque à ce jour :<br /></p>
-	<ul>
-		<!-- contiendra la/les requête/s SQL pour accéder aux films de l'utilisateur et les données liées tel que les formats et la disponibilité -->
-		<li> Titanic au/x format/s <br />#<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et la Communauté de l'Anneau <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et les Deux Tours <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et le Retour du Roi <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Ironclad <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-	</ul>
+<?php
+if (isset($search[0][0]['IdMovie']))
+		{
+			?>
+			<table border='1'>
+			<th> Jaquette </th><th> Titre </th><th> Synopsie </th><th> Date de sortie </th>
+			<?php
+			foreach($search[0] as $key)
+			{
+			?>
+				<tr>
+				<td>
+				<img id='PhotoProfil' src='<?php
+					if(!empty($key['Poster']))
+					{
+						echo $key['Poster'];
+					}
+					else
+					{
+						echo DIR_PUBLICS."/images/vide.gif"; 
+					}
+					?>'>
+				</td>
+					<td>
+						<a href='/WeShare/Film/<?php echo $key['Name']; ?>/'><?php echo $key['Name'] ?></a>
+					</td>
+					<td>
+						<?php echo $key['Synopsis'] ?>
+					</td>
+					<td>
+						<?php echo $key['DateOfRecord'] ?>
+					</td>
+				</tr>
+			<?php
+			}
+			?>
+		</table>
+			<?php
+		}
+?>
