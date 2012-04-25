@@ -33,7 +33,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($FirstName) < 20)
 		{
 			$query = sprintf("UPDATE USERS SET FirstName = '%s' 
-							 WHERE IdUSer = %d",
+							 WHERE IdUSer = '%d'",
 							 $FirstName, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -51,7 +51,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($LastName) < 20)
 		{
 			$query = sprintf("UPDATE USERS SET LastName = '%s' 
-							WHERE IdUSer = %d",
+							WHERE IdUSer = '%d'",
 							$LastName, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -75,7 +75,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			else
 			{
 				$query = sprintf("UPDATE USERS SET Password = '%s'
-								 WHERE IdUSer = %d",
+								 WHERE IdUSer = '%d'",
 								$Password, $IdUser);
 				$result = mysql_query($query, dbConnect());
 				if (!isset($result))
@@ -94,7 +94,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($Mail) < 211)
 		{
 			$query = sprintf("UPDATE USERS SET Mail = '%s' 
-							 WHERE IdUSer = %d",
+							 WHERE IdUSer = '%d'",
 							$Mail, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -110,7 +110,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 	if (!empty($BornDate))
 	{
 		$query = sprintf("UPDATE USERS SET BornDate = '%s' 
-						 WHERE IdUSer = %d",
+						 WHERE IdUSer = '%d'",
 						$BornDate, $IdUser);
 		$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -123,7 +123,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($address) < 211)
 		{
 			$query = sprintf("UPDATE USERS SET address = '%s' 
-							WHERE IdUSer = %d",
+							WHERE IdUSer = '%d'",
 							$address, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -141,7 +141,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($City) < 60) // voir http://fr.wikipedia.org/wiki/Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch
 		{
 			$query = sprintf("UPDATE USERS SET City = '%s' 
-							 WHERE IdUSer = %d",
+							 WHERE IdUSer = '%d'",
 							$City, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -159,7 +159,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($Country) < 31)
 		{
 			$query = sprintf("UPDATE USERS SET Country = '%s' 
-							 WHERE IdUSer = %d",
+							 WHERE IdUSer = '%d'",
 							$Country, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -177,7 +177,7 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		if (strlen($Phone) == 10)
 		{
 			$query = sprintf("UPDATE USERS SET Phone = '%s' 
-							 WHERE IdUSer = %d",
+							 WHERE IdUSer = '%d'",
 							 $Phone, $IdUser);
 			$result = mysql_query($query, dbConnect());
 			if (!isset($result))
@@ -212,3 +212,4 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 	}
 return ($error);
 }
+?>
