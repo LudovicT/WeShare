@@ -80,6 +80,13 @@ if (isset($_GET['page']))
 			$active[4]= "";
 			$active[5]= " class='active'";
 			break;
+		default:
+			$active[0]= " class='active'";
+			$active[1]= "";
+			$active[2]= "";
+			$active[3]= "";
+			$active[4]= "";
+			$active[5]= "";
 	}
 }
 elseif (!isset($_GET['page']))

@@ -417,51 +417,90 @@ function getFriendshipRequest($idUser)
 }
 /*
 
-$type (E) : type de la requete, 0 = tout les films, 
-								1 = tout le staff ,
-								2 = film en particulier, 
-								3 = staff en particulier
+$type (E) : type de la requete, 0 = tout,
+								1 = tout les films, 
+								2 = tout le staff ,
+								3 = film en particulier, 
+								4 = staff en particulier
 */
 function searchData($type, $recherche)
 {
 	switch($type)
 	{
 		case "0":
+			$S_query = ("SELECT * FROM Movies WHERE Name REGEXP '^.*".$recherche.".*$'");
+			$S_result = mysql_query($S_query, dbConnect());
+			if (!isset($S_result) || $S_result == false)
+			{
+				$S_data[0] = -1;
+			}
+			else
+			{
+				$S_nbRow = mysql_num_rows($S_result);
+				for ($i=0;$i< $S_nbRow;$i++)
+				{
+					$S_data[0][] = mysql_fetch_assoc($S_result);
+				}
+				if($S_nbRow == 0)
+				{
+					$S_data[1] = -1;
+				}
+			}
+			
+			$S_query = ("SELECT * FROM Staffs WHERE LastName REGEXP '^.*".$recherche.".*$' OR FirstName REGEXP '^.*".$recherche.".*$'");
+			$S_result = mysql_query($S_query, dbConnect());
+			if (!isset($S_result) || $S_result == false)
+			{
+				$S_data[2] = -1;
+			}
+			else
+			{
+			$S_nbRow = mysql_num_rows($S_result);
+				for ($i=0;$i< $S_nbRow;$i++)
+				{
+					$S_data[1][] = mysql_fetch_assoc($S_result);
+				}
+				if($S_nbRow == 0)
+				{
+					$S_data[3] = -1;
+				}
+			}
+			break;
+		case "1":
 			$S_query = ("SELECT * FROM Movies");
 			$S_result = mysql_query($S_query, dbConnect());
 			if (!isset($S_result) || $S_result == false)
 			{
 				return -1;
 			}
-			$S_data[] = mysql_fetch_assoc($S_result);
-			break;
-			
-		case "1":
-			$S_query = ("SELECT * FROM Staff");
-			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
-			{
-				return -1;
-			}
-			$S_data[] = mysql_fetch_assoc($S_result);
+			$S_data[0][] = mysql_fetch_assoc($S_result);
 			break;
 		case "2":
-			$S_query = ("SELECT * FROM Movies WHERE Name = '".$recherche."' REGEXP '^.*".$recherche.".*$'");
+			$S_query = ("SELECT * FROM Staffs");
 			$S_result = mysql_query($S_query, dbConnect());
 			if (!isset($S_result) || $S_result == false)
 			{
 				return -1;
 			}
-			$S_data[] = mysql_fetch_assoc($S_result);
+			$S_data[1][] = mysql_fetch_assoc($S_result);
 			break;
 		case "3":
-			$S_query = ("SELECT * FROM Staff WHERE Name = '".$recherche."' REGEXP '^.*".$recherche.".*$'");
+			$S_query = ("SELECT * FROM Movies WHERE Name REGEXP '^.*".$recherche.".*$'");
 			$S_result = mysql_query($S_query, dbConnect());
 			if (!isset($S_result) || $S_result == false)
 			{
 				return -1;
 			}
-			$S_data[] = mysql_fetch_assoc($S_result);
+			$S_data[0][] = mysql_fetch_assoc($S_result);
+			break;
+		case "4":
+			$S_query = ("SELECT * FROM Staffs WHERE Name REGEXP '^.*".$recherche.".*$'");
+			$S_result = mysql_query($S_query, dbConnect());
+			if (!isset($S_result) || $S_result == false)
+			{
+				return -1;
+			}
+			$S_data[1][] = mysql_fetch_assoc($S_result);
 			break;
 	}
 	return $S_data;
@@ -714,5 +753,32 @@ function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		}
 	}
 return ($error);
+}
+
+/*
+La fonction getEvents permet de récupérer l'ensemble du ou des événement(s) 
+créé(s) par l'utilisateur.
+$Events
+
+$Events (S): int
+-1	:	L'utilisateur a créé aucun événement
+-2	:	erreur requête invalide/problème avec la BDD;
+$Events (S): tableau associatif contenant tous les événements
+
+Auteur : Vincent Ricard
+*/
+
+function	getEvents($IdUser)
+{
+	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = %d",
+					 $IdOrganizer);
+	
+	$result = mysql_query($query, dbConnect());
+	if (!isset($result))
+	 {
+		return -1;
+	 }
+	$Events = mysql_fetch_assoc($result);
+	return ($Events);
 }
 ?>
