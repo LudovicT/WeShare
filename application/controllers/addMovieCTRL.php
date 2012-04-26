@@ -24,7 +24,7 @@ if (isset($_POST["name"]) && !empty($_POST["name"]) &&
 	$error_addMovie = addMovie($addMovie_name,
 								$addMovie_synopsis, 
 								$addMovie_DateOfRelease,
-								$addMovie_Poser,
+								$addMovie_Poster);
 	if ($error_addMovie[0] == 0 && $error_addMovie[1] == 0 && $error_addMovie[2] == 0 && $error_addMovie[3] == 0)
 	{
 		$layout = "editMovie.php";

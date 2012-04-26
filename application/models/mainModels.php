@@ -804,7 +804,7 @@ function	createEvent($IdUser, $Adress, $City, $PollEnding)
 					  $City,
 					  date("y-m-d"),
 					  /*$PollEnding,*/
-					  $IdOrganizer)
+					  $IdOrganizer);
 	
 	$result = mysql_query($query, dbConnect());
 	if (!isset($result))
