@@ -1,16 +1,16 @@
 <?php
 /*
-La fonction createEvent permet à l'utilisateur de créer un événement.
-$error
-
-$error (S): int
-1	:	erreur requête invalide/problème avec la BDD;
-0	:	OK
+Fonction de test permettant de vérifier si un événement a bien été créé.
 
 Auteur : Vincent Ricard
 */
 
-function	createEvent($IdUser, $Adress, $City, $PollEnding)
+include("../models/mainModels.php");
+define('DS', '/');
+define('ADDRESS', '/');
+include("../../config/config.php");
+
+function	createEvent($IdUser)
 {
 	$error = 0;
 	$query = sprintf("INSERT INTO Events 
