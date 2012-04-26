@@ -796,16 +796,15 @@ function	createEvent($IdUser, $Adress, $City, $PollEnding)
 {
 	$error = 0;
 	$query = sprintf("INSERT INTO Events 
-					  (DateOfEvent, Adress, City, CreationDate, 
-					  PollEnding, IdOrganizer) 
+					  (DateOfEvent, Adress, City, CreationDate, IdOrganizer) 
 					  VALUES ('%s', '%s', '%s', '%s', '%s') 
 					  WHERE IdOrganizer = %d",
 					  $DateOfEvent,
 					  $Adress,
 					  $City,
 					  date("y-m-d"),
-					  $PollEnding,
-					  $IdOrganizer);
+					  /*$PollEnding,*/
+					  $IdOrganizer)
 	
 	$result = mysql_query($query, dbConnect());
 	if (!isset($result))
