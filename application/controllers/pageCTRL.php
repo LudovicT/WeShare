@@ -10,6 +10,17 @@ if (isset($_GET["page"]))
 		case "accueil.php":
 			$layout = "accueil.php";
 			break;
+		case "search":
+			if(isset($_POST['mot']) && !empty($_POST['mot']))
+			{
+				$search = searchData(0,$_POST['mot']);
+			}
+			elseif(isset($_POST['mot']) && empty($_POST['mot']))
+			{
+				$search = searchData(0,"");
+			}
+			$layout = "search.php";
+			break;
 		case "films.php":
 			include_once("filmCTRL.php");
 			break;

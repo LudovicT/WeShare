@@ -1,11 +1,25 @@
-<h3>Votre vidéothèque</h3>
-	<p>
-		#<em>Prénom Nom</em>, voici les films que vous avez ajouté à votre vidéothèque à ce jour :<br /></p>
-	<ul>
-		<!-- contiendra la/les requête/s SQL pour accéder aux films de l'utilisateur et les données liées tel que les formats et la disponibilité -->
-		<li> Titanic au/x format/s <br />#<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et la Communauté de l'Anneau <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et les Deux Tours <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et le Retour du Roi <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Ironclad <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-	</ul>
+	<!--Start of home page-->
+	<table border='1'>
+		<th> Nom des Films </th>
+		<div class="add_films"><a href="/WeShare/Films/addFilms/">Ajouter un film</a></div>
+	<?php
+	if($films == NULL)
+	{
+		echo "Il n'y a pas de films";
+	}
+	else
+	{
+		foreach($films as $key)
+		{ ?>
+			<tr>
+				<td>
+					<a href='/WeShare/films/<?php echo $key['films']; ?>/'></a>
+				</td>
+			</tr>
+			<?php
+		}
+		}
+	?>
+	</table>
+	<!--End of home page-->
+	
