@@ -731,9 +731,8 @@ Auteur : Vincent Ricard
 
 function	getEvents($IdUser)
 {
-	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = %d",
-					 $IdOrganizer);
-	
+	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = '%d'",
+					 $IdUser);
 	$result = mysql_query($query, dbConnect());
 	if (!isset($result))
 	 {
