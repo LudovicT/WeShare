@@ -1,7 +1,7 @@
 <?php
 /*
 Fichier de controle pour la page des films
-Auteur : Ludovic Tresson
+Auteur : ARNAL Alexandre & Ludovic Tresson
 */
 if (isset($_GET["action"]))
 {
