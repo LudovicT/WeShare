@@ -10,25 +10,13 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-function	createEvent($IdUser)
+$error = createEvent(getId('Macko'), '16-03-2013', 'Odéon', 'Paris');
+if ($error == 0)
 {
-	$error = 0;
-	$query = sprintf("INSERT INTO Events 
-					  (DateOfEvent, Adress, City, CreationDate, IdOrganizer) 
-					  VALUES ('%s', '%s', '%s', '%s', '%s') 
-					  WHERE IdOrganizer = %d",
-					  $DateOfEvent,
-					  $Adress,
-					  $City,
-					  date("y-m-d"),
-					  /*$PollEnding,*/
-					  $IdOrganizer);
-	
-	$result = mysql_query($query, dbConnect());
-	if (!isset($result))
-	 {
-		$error = 1;
-	 }
-return ($error);
+echo ('OK');
+}
+else
+{
+	echo('<br />FAIL :{'.mysql_error().'}');
 }
 ?>
