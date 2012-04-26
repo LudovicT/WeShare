@@ -4,21 +4,19 @@ Fichier de controle qui traite et redirige l'ajout de films
 */
 if (isset($_POST["name"]) && !empty($_POST["name"]) &&
 	isset($_POST["synopsis"])&&  !empty($_POST["synopsis"]) &&
-	isset($_POST["DateOfRelease"]) && !empty($_POST["DateOfRelease"]) &&
-	isset($_POST["Poster"]) && !empty($_POST["Poster"]))
+	isset($_POST["DateOfRelease"]) && !empty($_POST["DateOfRelease"]))
 {
 	$addMovie_name = $_POST["name"];
 	$addMovie_synopsis = $_POST["synopsis"];
 	$addMovie_DateOfRelease = $_POST["DateOfRelease"];
-	$addMovie_Poster = $_POST["Poster"];
 	
-	if(isset($_POST["name"]) && !empty($_POST["name"]))
+	if(isset($_POST["poster"]) && !empty($_POST["poster"]))
 	{
-		$addMovie_name = $_POST["name"];
+		$addMovie_poster = $_POST["poster"];
 	}
 	else
 	{
-		$addMovie_name = null;
+		$addMovie_poster = null;
 	}
 	
 	$error_addMovie = addMovie($addMovie_name,
