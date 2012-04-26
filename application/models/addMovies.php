@@ -6,100 +6,84 @@
 	Dernière mise a jour : 26/04/2012
 */
 
-function enregistrerFilm()
+function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
+{
+	$error = 0;
+	if (!empty($name))
 	{
-		$erreurs = "";
-		$erreur = "";
-		
-		$titre = getValeur("titre","");
-		$resume = getValeur("resume","");
-		$image = getValeur("image","");
-		$duree = getValeur("duree","");
-		$date = getValeur("date","");
-		$support = getValeur("support","");
-		$categorie = getValeur("categorie",0);
-		
-		if(!empty($titre))
+		if (strlen($FirstName) < 55)
 		{
-			connectionBDD();
-			
-			$requete = "INSERT INTO films SET ";
-			$requete .= "titre='".addslashes($titre)."', ";
-			$requete .= "resume='".addslashes($resume)."', ";
-			$requete .= "duree='".$duree."', ";
-			$requete .= "annee='".$date."', ";
-			$requete .= "categorie='".$categorie."', ";
-			$requete .= "support='".addslashes($support)."' ";
-			
-			if(executerRequete($requete))
+			$query = sprintf("INSERT INTO Movies (name, synopsis, DateOfRelease, Poster)
+								VALUES ('%s'),
+							 $name");
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
 			{
-				$info[] = "ajout du film dans la base reussi";
-				
-				// on recupere l'id du film créé
-				$id = mysql_insert_id();
-				
-				// traitement de l'image disque
-				if($_FILES['imageUp']['size']>0)
-				{
-					list($erreurs,$illustration) = uploadImage($_FILES['imageUp'],$id);
-					if(!empty($illustration))
-					{
-						if(executerRequete("UPDATE films SET illustration='".$illustration."' WHERE id=".$id))
-						{
-							$info[] = "envoi de l'image réussi";
-						}
-						else $erreur[] = "erreur lors de la mise à jour de l'illustration dans la base";
-					}
-				}	
-				// traitement de l'image url
-				else if(!empty($image))
-				{					
-					$contenuImg = file_get_contents($image);
-					
-					// on recupere l'image distante if($contenuImg = getContenuURL($image,'img'))
-					if($contenuImg)
-					{
-						// on recupere l'extension
-						$tbTmp = explode(".",$image);
-						$extension = strtolower($tbTmp[count($tbTmp)-1]);
-						
-						$nomImg = $id.".".$extension;
-						
-						if($newImage = @fopen("../".REP_ILLUSTRATIONS.$nomImg,"w"))
-						{
-							if(@fputs($newImage,$contenuImg))
-							{
-								$illustration = $nomImg;
-								reduireImages('non');
-								if(executerRequete("UPDATE films SET illustration='".$illustration."' WHERE id=".$id))
-								{
-									$info[] = "envoi de l'image réussi";
-								}
-								else $erreur[] = "erreur lors de la mise à jour de l'illustration dans la base";
-							}
-							else $erreur[] = "impossible de copier le contenu de l'image distante dans l'image locale";
-							@fclose($newImage);
-						}
-						else $erreur[] = "impossible de créer une image dans le repertoire d'illustrations";
-					}
-					else $erreur[] = "impossible de récuperer l'image distante";
-				}	
+				$error = 2;
 			}
-			else $erreur[] = "pas d'image recue pour le film";
-			
-			deconnectionBDD();
 		}
 		else
 		{
-			$erreur[] = "aucun titre de film recu, enregistrement annulé";
+			$error = 1;
 		}
-		
-		if(!empty($erreur) && !empty($erreurs))
-		{
-			$erreur = array_merge($erreur,$erreurs);
-		}
-
-		include "gabarits/traitementFilm.html";
-		
 	}
+	if (isset($synopsis))
+	{
+		if ($strlen($synopsis) < 2500 )
+		{
+			$query = sprintf("UPDATE Movies SET synopsis = '%s' 
+							WHERE IdMovie = '%d'",
+							$synopsis, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
+			{
+				$error = 2;
+			}
+		}
+		else
+		{
+			$error = 1;
+		}
+	}
+	if (!empty($DateOfRelease))
+	{
+		if (strlen($DateOfRelease) < 12)
+		{
+			$query = sprintf("UPDATE Movies SET DateOfRelease = '%s' 
+							 WHERE IdMovie = '%d'",
+							$DateOfRelease, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
+			{
+				$error = 2;
+			}
+		}
+		else
+		{
+			$error = 1;
+		}
+	}
+	if (!empty($Poster))
+	{
+		if (stristr($Poster, ".jpg") || stristr($Poster, ".jpeg") 
+		 || stristr($Poster, ".gif") || stristr($Poster, ".png")
+		 || stristr($Poster, ".bmp"))
+		{
+			$query = sprintf("UPDATE Movies SET Poster = '%s' 
+							 WHERE IdMovie = '%d'",
+							 $Poster, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
+			{
+				$error = 2;
+			}
+		}
+		else
+		{
+			$error = 4;
+		}
+	}
+return ($error);
+}
+
 ?>

@@ -1,69 +1,97 @@
 <?php
-
-/*
-	Fonction qui permet d'éditer la fiche d'un film
-	Auteur : ARNAL Alexandre
-	Dernière mise a jour : 26/04/2012
+/* 
+La fonction editMovie sert à entrer le(s) modification(s) des films dans la base de donnée.
+$IdMovie,
+$name, 
+$synopsis, 
+$DateOfRelease, 
+$Poster,
+ 
+$error (S): int 
+				0	: OK 
+				1	: trop long ;
+				2	: erreur requête invalide/problème avec la BDD;
+				3	: erreur format image avatar invalide
+				Auteur: ARNAL Alexandre
 */
 
-function execModifierFilm()
+function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
+{
+	$error = 0;
+	if (!empty($name))
 	{
-		$erreurs = ;
-		$erreur = ;
-		
-		$id = getValeur(id,);
-		$titre = getValeur(titre,);
-		$resume = getValeur(resume,);
-		$duree = getValeur(duree,);
-		$date = getValeur(date,);
-		$support = getValeur(support,);
-		$categorie = getValeur(categorie,0);
-		
-		if(!empty($titre) && !empty($id))
+		if (strlen($FirstName) < 55)
 		{
-			connectionBDD();
-			
-			$requete = UPDATE films SET ;
-			$requete .= titre='.addslashes($titre).', ;
-			$requete .= resume='.addslashes($resume).', ;
-			$requete .= duree='.$duree.', ;
-			$requete .= annee='.$date.', ;
-			$requete .= categorie='.$categorie.', ;
-			$requete .= support='.addslashes($support).' ;
-			$requete .= WHERE id=.$id;
-			
-			if(executerRequete($requete))
+			$query = sprintf("UPDATE Movies SET name = '%s' 
+							 WHERE IdMovie = '%d'",
+							 $name, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
 			{
-				$info[] = modification du film dans la base reussie;
-				
-				// traitement de l'image disque
-				if($_FILES['imageUp']['size']0)
-				{
-					list($erreurs,$illustration) = uploadImage($_FILES['imageUp'],$id);
-					if(!empty($illustration))
-					{
-						if(executerRequete(UPDATE films SET illustration='.$illustration.' WHERE id=.$id))
-						{
-							$info[] = // envoi de l'image réussi;
-						}
-						else $erreur[] = // erreur lors de la mise à jour de l'illustration dans la base;
-					}
-				}
+				$error = 2;
 			}
-			else $erreur[] = impossible de mettre à jour le film;
-			
-			deconnectionBDD();
 		}
 		else
 		{
-			$erreur[] = aucun titre ou id de film recu, enregistrement annulé;
+			$error = 1;
 		}
-		
-		if(!empty($erreur) && !empty($erreurs))
+	}
+	if (isset($synopsis))
+	{
+		if ($strlen($synopsis) < 2500 )
 		{
-			$erreur = array_merge($erreur,$erreurs);
+			$query = sprintf("UPDATE Movies SET synopsis = '%s' 
+							WHERE IdMovie = '%d'",
+							$synopsis, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
+			{
+				$error = 2;
+			}
 		}
-		
-		include gabaritstraitementFilm.html;
-		
+		else
+		{
+			$error = 1;
+		}
+	}
+	if (!empty($DateOfRelease))
+	{
+		if (strlen($DateOfRelease) < 12)
+		{
+			$query = sprintf("UPDATE Movies SET DateOfRelease = '%s' 
+							 WHERE IdMovie = '%d'",
+							$DateOfRelease, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
+			{
+				$error = 2;
+			}
+		}
+		else
+		{
+			$error = 1;
+		}
+	}
+	if (!empty($Poster))
+	{
+		if (stristr($Poster, ".jpg") || stristr($Poster, ".jpeg") 
+		 || stristr($Poster, ".gif") || stristr($Poster, ".png")
+		 || stristr($Poster, ".bmp"))
+		{
+			$query = sprintf("UPDATE Movies SET Poster = '%s' 
+							 WHERE IdMovie = '%d'",
+							 $Poster, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if (!isset($result))
+			{
+				$error = 2;
+			}
+		}
+		else
+		{
+			$error = 4;
+		}
+	}
+return ($error);
+}
 ?>

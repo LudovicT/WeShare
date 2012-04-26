@@ -8,6 +8,7 @@ if (isset($_GET["action"]))
 	switch($_GET["action"])
 	{
 		case "addFilms":
+			include_once("addMovieCTRL.php");
 			$layout = "addfilms.php";
 			break;
 	}
