@@ -15,39 +15,7 @@ if (isset($_GET["action"]))
 }
 else
 {
-	if (isset($_POST["tri"]))
-	{
-		switch($_POST["tri"])
-		{
-			case "ans":
-				if (isset($_POST["id"]))
-				{
-					$moviesList = searchData(1,1,$_POST["id"]);
-				}
-				else
-				{
-					$moviesList = searchData(1,0);
-				}
-				break;
-			case "genre":
-				if (isset($_POST["id"]))
-				{
-					$moviesList = searchData(1,2,$_POST["id"]);
-				}
-				else
-				{
-					$moviesList = searchData(1,0);
-				}
-				break;
-			default:
-				$moviesList = searchData(1,0);
-			
-		}
-	}
-	else
-	{
-		searchdata(1,0);
-	}
-$layout = "films.php";
+	$search = searchData(0,"");
+	$layout = "films.php";
 }
 ?>

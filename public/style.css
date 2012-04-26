@@ -1,7 +1,7 @@
 /* TAGS */
 * {margin:0;padding:0}
 html {min-width:1000px} 
-body {background:url(images/tail-top.gif) repeat-x center 5px #f7f4ea;font-family:Arial,Helvetica,sans-serif;font-size:100%;line-height:1em;color:#000;min-width:1000px;border-top:5px solid #f2eddd}
+body {background:url(images/tail-top.gif) repeat-x center 0px #f7f4ea;font-family:Arial,Helvetica,sans-serif;font-size:100%;line-height:1em;color:#000;min-width:1000px}
 object {vertical-align:top;outline:none}
 input, textarea, select {font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;font-weight:normal}
 fieldset {border:0}
@@ -105,17 +105,18 @@ h4 {font-size:.86em;margin-bottom:5px}
 text-align: center;
 }
 #homeSearch {
-    height: 100px;
-    left: 50%;
-    margin-left: -250px;
-    margin-top: -65px;
-    position: absolute;
-    top: 50%;
-    width: 500px;
+    position: relative;
+	height: 100%;
+	padding-top: 50%;
     z-index: 500;
+	display: table-cell;
+	text-align: center; 
 }
 #searchBar {
+    width: 700px;
     position: relative;
+	vertical-align: middle;
+	text-align: left;
     z-index: 1;
 }
 #searchBar .searchBar_left {
@@ -140,6 +141,7 @@ text-align: center;
     left: 50px;
     position: absolute;
     right: 50px;
+    top: 0;
 }
 #searchBar_input {
     left: 40px;
