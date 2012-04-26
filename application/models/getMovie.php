@@ -1,4 +1,11 @@
 <?php 
+
+/*
+	Fonction qui permet d'afficher la liste des films
+	Auteur : ARNAL Alexandre
+	Dernière mise a jour : 26/04/2012
+*/
+
 function getMovie($films)
 {
 	$S_query = ("SELECT * 

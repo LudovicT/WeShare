@@ -15,7 +15,7 @@ Auteur : Vincent Ricard
 function	getEvents($IdUser)
 {
 	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = %d",
-					 $IdOrganizer);
+					 $IdUser);
 	
 	$result = mysql_query($query, dbConnect());
 	if (!isset($result))
@@ -25,5 +25,4 @@ function	getEvents($IdUser)
 	$Events = mysql_fetch_assoc($result);
 	return ($Events);
 }
-
 ?>
