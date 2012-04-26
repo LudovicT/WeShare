@@ -1,21 +1,27 @@
 	<!--Start of home page-->
-
-<div id="homePage" tabindex="99998">
-	<form id="homeSearch" class="" style="width: 500px; margin-left: -250px;" action="/WeShare/Search/" method="POST">
-	<div id="searchBar">
-	<div class="searchBar_left"></div>
-	<div class="searchBar_inner"></div>
-	<div class="searchBar_right"></div>
-	<div class="searchBar_inner_left"></div>
-	<div class="searchBar_inner_inner"></div>
-	<div class="searchBar_inner_right"></div>
+<div class="conteneur">
+	<div class="bloc">
+		<div id="homePage" tabindex="99998">
+		<center>
+			<form id="homeSearch" class="" action="/WeShare/Search/" method="POST">
+			<div id="searchBar">
+				<div class="searchBar_left"></div>
+				<div class="searchBar_inner"></div>
+				<div class="searchBar_right"></div>
+				<div class="searchBar_inner_left"></div>
+				<div class="searchBar_inner_inner"></div>
+				<div class="searchBar_inner_right"></div>
+				<div id="searchBar_input">
+					<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Taper votre recherche ..." size="18">
+					<span id="searchBar_precomplete" class="hint" style="display: inline;"></span>
+				</div>
+				<button id="searchButton" name="Submit" type="button"></button>
+			</div>
+			</form>
+			</center>
+		</div>
 	</div>
-	<div id="searchBar_input">
-<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Taper votre recherche ..." size="18">
-	<span id="searchBar_precomplete" class="hint" style="display: inline;"></span>
-	</div>
-	<button id="searchButton" name="Submit" type="button"></button>
-	</form>
+</div>
 	
  <script langage="text/javascript">
 function clearf(){
