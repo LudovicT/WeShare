@@ -106,8 +106,9 @@ text-align: center;
 }
 #homeSearch {
     position: relative;
+    width: 100%;
 	height: 100%;
-	padding-top: 50%;
+	padding-top: 35%;
     z-index: 500;
 	display: table-cell;
 	text-align: center; 

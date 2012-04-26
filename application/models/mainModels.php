@@ -768,7 +768,7 @@ $Events (S): tableau associatif contenant tous les événements
 Auteur : Vincent Ricard
 */
 
-function	getEvents($IdUser)
+function getEvents($IdUser)
 {
 	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = '%d'",
 					 $IdUser);
@@ -792,7 +792,7 @@ $error (S): int
 Auteur : Vincent Ricard
 */
 
-function	createEvent($IdUser, $DateOfEvent, $Adress, $City/*, $PollEnding*/)
+function createEvent($IdUser, $DateOfEvent, $Adress, $City)
 {
 	$error = 0;
 	var_dump($IdUser);
@@ -807,8 +807,6 @@ function	createEvent($IdUser, $DateOfEvent, $Adress, $City/*, $PollEnding*/)
 					  $City,
 					  date("y-m-d"),
 					  $IdUser);
-					  /*$PollEnding,*/
-					  $IdOrganizer);
 	
 	$result = mysql_query($query, dbConnect());
 	if (!isset($result))
