@@ -566,7 +566,7 @@ $error (S): int
 Auteur: Vincent Ricard avec l^heureuse participation partielle mais utile de Tresson. Merci à lui.
 */
 
-function	changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Mail, 
+function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Mail, 
 					   	 $BornDate, $address, $City, $Country, $Phone, $Avatar)
 {
 	$error = 0;
@@ -814,5 +814,83 @@ function createEvent($IdUser, $DateOfEvent, $Adress, $City)
 		$error = 1;
 	 }
 return ($error);
+}
+/*
+Permet de récuperer les infos d'un film. (général)
+$IdMovie (E) id du film
+$S_data (S) info du film
+
+Auteur : Ludovic Tresson
+*/
+function getMovie($idMovie)
+{
+	$S_query = ("SELECT * FROM Movies WHERE idMovie = '".$idMovie."'");
+	$S_result = mysql_query($S_query, dbConnect());
+	if (!isset($S_result) || $S_result == false)
+	{
+		return -1;
+	}
+	$S_data[] = mysql_fetch_assoc($S_result);
+	return $S_data;
+}
+/*
+Permet de récuperer les infos d'un film.(staff du film)
+$IdMovie (E) id du film
+$S_data (S) info du film
+
+Auteur : Ludovic Tresson
+*/
+function getMovieStaff($idMovie)
+{
+	$S_query = ("SELECT S.IdStaff, S.LastName, S.FirstName, M.StaffWork 
+				FROM MoviesStaffs AS M 
+				LEFT JOIN Staffs AS S
+				ON M.IdStaff = S.IdStaff
+				WHERE M.idMovie = '".$idMovie."'");
+	$S_result = mysql_query($S_query, dbConnect());
+	if (!isset($S_result) || $S_result == false)
+	{
+		return -1;
+	}
+	
+	//essaie d'une nouvelle methode fetch tout les résultats
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	
+	return $S_data;
+}
+/*
+Permet de récuperer les infos d'un film.(supports dispo)
+$IdMovie (E) id du film
+$S_data (S) info du film
+
+Auteur : Ludovic Tresson
+*/
+function getMovieSupport($idMovie)
+{
+	$S_query = ("SELECT Support, SUM(Available) AS Quantity
+				FROM UserMovies 
+				WHERE idMovie = '".$idMovie."'
+				GROUP BY Support");
+	$S_result = mysql_query($S_query, dbConnect());
+	if (!isset($S_result) || $S_result == false)
+	{
+		return -1;
+	}
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	return $S_data;
+}
+/*
+fonction générant des morceaux d'url correct a partir d'un string quelconque.
+
+Auteur : Ludovic Tresson
+*/
+function generateUrl ($url) {
+  //on convertie les caractères accentué
+  $from = explode (',', "ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û,å,e,i,ø,u,(,),[,],'");
+  $to = explode (',', 'c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u,a,e,i,o,u,,,,,,');
+  //on convertie tout le reste par des -
+  $url = preg_replace ('~[^\w\d]+~', '-', str_replace ($from, $to, trim ($url)));
+  //on enlève les - en trop et on met tout en minuscule
+  return strtolower (preg_replace ('/^-/', '', preg_replace ('/-$/', '', $url)));
 }
 ?>

@@ -28,7 +28,7 @@
 						?>'>
 					</td>
 					<td width="15%">
-						<a href='/WeShare/Film/<?php echo $key['Name']; ?>/'><?php echo $key['Name'] ?></a>
+						<a href='/WeShare/Film/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><?php echo $key['Name'] ?></a>
 					</td>
 					<td width="55%">
 						<?php echo $key['Synopsis'] ?>

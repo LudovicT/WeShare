@@ -19,10 +19,27 @@ if (isset($_GET["page"]))
 			{
 				$search = searchData(0,"");
 			}
+			else
+			{
+				$layout = "erreur.php";
+			}
 			$layout = "search.php";
 			break;
 		case "films.php":
 			include_once("filmCTRL.php");
+			break;
+		case "ficheFilm.php":
+			if(isset($_GET['idMovie']) && !empty($_GET['idMovie']))
+			{
+				$movieInfo = getMovie($_GET['idMovie']);
+				$movieStaff = getMovieStaff($_GET['idMovie']);
+				$movieSupport = getMovieSupport($_GET['idMovie']);
+				$layout = "ficheFilm.php";
+			}
+			else
+			{
+				$layout = "erreur.php";
+			}
 			break;
 		case "membres.php":
 			if(isset($_GET['profil']))
@@ -34,7 +51,6 @@ if (isset($_GET["page"]))
 			{
 				if(isset($_GET['addFriend']) && !empty($_GET['addFriend']))
 				{
-					@session_start();
 					requestFriendship($user, getId($_GET['addFriend']));
 				}
 				$membres = getMember($user);
