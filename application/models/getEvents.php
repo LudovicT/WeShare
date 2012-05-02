@@ -1,14 +1,15 @@
 <?php
 /*
 La fonction getEvents permet de récupérer le(s) événement(s) concernant
-un utilisateur, qu'il en soit le créateur ou qu'il y participe.
+l'utilisateur, qu'il en soit le créateur ou qu'il y soit invité.
 
 $Events
 
 $Events (S): int
--1	:	L'utilisateur a créé aucun événement
--2	:	erreur requête invalide/problème avec la BDD;
-$Events (S): tableau associatif contenant tous les événements
+-1	:	Il n'y a aucun événement concernant l'utilisateur
+-2	:	erreur requête invalide/problème avec la BDD
+$Events[2] (S): tableau contenant deux tableaux associatif contenant 
+tous les événements en question
 
 Auteur : Vincent Ricard
 */
@@ -19,11 +20,12 @@ function	getEvents($IdUser)
 					 $IdUser);
 	
 	$result = mysql_query($query, dbConnect());
-	if (!isset($result))
+	if ($result == false)
 	 {
-		return -1;
+		return -2;
 	 }
-	$Events = mysql_fetch_assoc($result);
+	while(($Events[] = mysql_fetch_assoc($result)) || array_pop($Events));
+	
 	return ($Events);
 }
 ?>
