@@ -3,20 +3,20 @@
 Fichier de controle qui traite et redirige l'ajout de films
 */
 if (isset($_POST["Name"]) && !empty($_POST["Name"]) &&
-	isset($_POST["synopsis"])&&  !empty($_POST["synopsis"]) &&
+	isset($_POST["Synopsis"])&&  !empty($_POST["Synopsis"]) &&
 	isset($_POST["DateOfRelease"]) && !empty($_POST["DateOfRelease"]))
 {
-	$addMovie_name = $_POST["name"];
-	$addMovie_synopsis = $_POST["synopsis"];
+	$addMovie_Name = $_POST["Name"];
+	$addMovie_Synopsis = $_POST["Synopsis"];
 	$addMovie_DateOfRelease = $_POST["DateOfRelease"];
-	echo "coucou";
-	if(isset($_POST["poster"]) && !empty($_POST["poster"]))
+	settype($addMovie_DateOfRelease, "integer");
+	if(isset($_POST["Poster"]) && !empty($_POST["Poster"]))
 	{
-		$addMovie_poster = $_POST["poster"];
+		$addMovie_Poster = $_POST["Poster"];
 	}
 	else
 	{
-		$addMovie_poster = null;
+		$addMovie_Poster = null;
 	}
 	
 	$error_addMovie = addMovie($addMovie_Name,
@@ -25,7 +25,8 @@ if (isset($_POST["Name"]) && !empty($_POST["Name"]) &&
 								$addMovie_Poster);
 	if ($error_addMovie[0] == 0 && $error_addMovie[1] == 0 && $error_addMovie[2] == 0 && $error_addMovie[3] == 0)
 	{
-		$layout = "editMovie.php";
+		$search = searchData(0,"");
+		$layout = "films.php";
 	}
 	else
 	{
@@ -34,6 +35,6 @@ if (isset($_POST["Name"]) && !empty($_POST["Name"]) &&
 }
 else
 {
-	$layout = "editMovie.php";
+	$layout = "addMovie.php";
 }
 ?>
