@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Events
 (IdEvent			INT				NOT NULL	AUTO_INCREMENT,
 IdOrganizer			INT 			NOT NULL,
 DateOfEvent			DATE 			NOT NULL,
-Adress				varchar(255)	NOT NULL,
+Address				varchar(255)	NOT NULL,
 City				varchar(255)	NOT NULL,
 CreationDate		DATE 			NOT NULL,
 PollEnding			DATE,
