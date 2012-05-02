@@ -75,7 +75,7 @@
 						}
 						?>
 						<b>Sortie :</b> <?php echo $movieInfo[0]['DateOfRecord']; ?> <br />
-						<b>Durée :</b> 3H <?php //echo $movieInfo[0]['Runtime']; ?> 
+						<b>Durée :</b> <?php echo $movieInfo[0]['Runtime']; ?> 
 						</p>
 					</td> 
 					<td width="50%">

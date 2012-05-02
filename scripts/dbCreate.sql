@@ -99,6 +99,7 @@ CREATE TABLE IF NOT EXISTS Movies
 Name				VARCHAR(255)	NOT NULL,
 Synopsis			TEXT			NOT NULL,
 DateOfRecord		YEAR			NOT NULL,
+Runtime				TIME			NOT NULL,
 Poster				LONGTEXT,
 PRIMARY KEY(IdMovie));
 
@@ -106,7 +107,7 @@ PRIMARY KEY(IdMovie));
 CREATE TABLE IF NOT EXISTS UserMovies
 (IdUser				INT 			NOT NULL,
 IdMovie				INT 			NOT NULL,
-Support				enum("cd","divx","blue-ray","dvd","fichier","VHS")	NOT NULL,
+Support				enum("cd","divx","blue-ray","dvd","mp3","mp4","avi","mkv","VHS")	NOT NULL,
 Available			INT				DEFAULT 1,
 FOREIGN KEY (IdUser)
 	REFERENCES Users(IdUser),
@@ -138,7 +139,7 @@ PRIMARY KEY(IdStaff));
 CREATE TABLE IF NOT EXISTS MoviesStaffs
 (IdMovie			INT 			NOT NULL,
 IdStaff				INT 			NOT NULL,
-StaffWork			enum("acteur","actrice","realisateur","realisatrice"),
+StaffWork			enum("acteur","realisateur"),
 FOREIGN KEY (IdStaff)
 	REFERENCES Staffs(IdStaff),
 FOREIGN KEY (IdMovie)
