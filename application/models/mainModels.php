@@ -803,7 +803,6 @@ function createEvent($IdUser, $DateOfEvent, $Adress, $City)
 					  $City,
 					  date("y-m-d"),
 					  $IdUser);
-	
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
