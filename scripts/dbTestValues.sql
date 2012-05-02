@@ -43,9 +43,9 @@ INSERT INTO `friends` (`IdUser`, `IdFriend`, `Status`) VALUES(1, 14, 1);
 -- Contenu de la table `movies`
 --
 
-INSERT INTO `movies` (`IdMovie`, `Name`, `Synopsis`, `Runtime`, `DateOfRecord`, `Poster`) VALUES(1, 'Transformers', 'des robots qui veulent détruirent le monde (enfin non mais bon c''est compliquer)', '01:50:00', 2007, 'http://upload.wikimedia.org/wikipedia/en/thumb/6/66/Transformers07.jpg/220px-Transformers07.jpg');
-INSERT INTO `movies` (`IdMovie`, `Name`, `Synopsis`, `Runtime`, `DateOfRecord`, `Poster`) VALUES(2, 'Avatar', 'Les Schtroumpfs en balade dans la galaxie', '02:20:00', 2009, 'http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1._SY317_CR0,0,214,317_.jpg');
-INSERT INTO `movies` (`IdMovie`, `Name`, `Synopsis`, `Runtime`, `DateOfRecord`, `Poster`) VALUES(3, 'Inception', 'Inception[Inception[Inception[Inception[Inception[Inception[Inception[Inception[]]]]]]]]', '01:40:00', 2010, 'http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1._SY317_.jpg');
+INSERT INTO `movies` (`IdMovie`, `Name`, `Synopsis`, `Runtime`, `DateOfRelease`, `Poster`) VALUES(1, 'Transformers', 'des robots qui veulent détruirent le monde (enfin non mais bon c''est compliquer)', '01:50:00', 2007, 'http://upload.wikimedia.org/wikipedia/en/thumb/6/66/Transformers07.jpg/220px-Transformers07.jpg');
+INSERT INTO `movies` (`IdMovie`, `Name`, `Synopsis`, `Runtime`, `DateOfRelease`, `Poster`) VALUES(2, 'Avatar', 'Les Schtroumpfs en balade dans la galaxie', '02:20:00', 2009, 'http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1._SY317_CR0,0,214,317_.jpg');
+INSERT INTO `movies` (`IdMovie`, `Name`, `Synopsis`, `Runtime`, `DateOfRelease`, `Poster`) VALUES(3, 'Inception', 'Inception[Inception[Inception[Inception[Inception[Inception[Inception[Inception[]]]]]]]]', '01:40:00', 2010, 'http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1._SY317_.jpg');
 
 
 --
