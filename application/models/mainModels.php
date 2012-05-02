@@ -888,4 +888,73 @@ function generateUrl ($url) {
   //on enlève les - en trop et on met tout en minuscule
   return strtolower (preg_replace ('/^-/', '', preg_replace ('/-$/', '', $url)));
 }
+
+
+/*
+	Fonction qui permet de rajouter un film
+	Auteur : ARNAL Alexandre + Ludo
+	Dernière mise a jour : 26/04/2012
+*/
+
+function addMovie($name, $synopsis, $DateOfRelease, $Poster)
+{
+
+	$error[0] = 0;
+	$error[1] = 0;
+	$error[2] = 0;
+	$error[3] = 0;
+	if (strlen ($name) > 81)
+	{
+		$error[0] = 1;
+	}
+	if (strlen ($synopsis) > 2500)
+	{
+		$error[1] = 1;
+	}
+	if ($DateOfRelease > 2500 || $DateOfRelease < 1700)
+	{
+		$error[2] = 1;
+	}
+	if (stristr($Poster, ".jpg") || stristr($Poster, ".jpeg") 
+		 || stristr($Poster, ".gif") || stristr($Poster, ".png")
+		 || stristr($Poster, ".bmp"))
+	{
+		$error[3] = 1;
+	
+	}
+	echo $DateOfRelease;
+	if ($error[0] == 0 && $error[1] == 0 && $error[2] == 0 && $error[3] == 0)
+	{
+			$query = sprintf("INSERT INTO Movies (Name, Synopsis, DateOfRelease, Poster)
+								VALUES ('%s','%s','%s','%s')",
+							 $name, $synopsis, $DateOfRelease, $Poster);
+			$result = mysql_query($query, dbConnect());
+			if ($result == false)
+			{
+				return ($error);
+			}
+	}
+	else
+	{
+		return ($error);
+	}
+}
+
+/*
+	Fonction qui permet de supprimer un film du site
+	Auteur : ARNAL Alexandre
+	Dernière mise a jour : 02/05/2012
+*/
+
+function deleteMovie($MovieId)
+{
+	$S_query = ("DELETE FROM Movies
+				WHERE IdMovie ='".$MovieId."'");
+	$S_result = mysql_query($S_query, dbConnect());
+	var_dump($S_result);
+	if (!isset($S_result))
+	{
+		return 1;
+	}
+}
 ?>

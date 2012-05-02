@@ -9,7 +9,11 @@ if (isset($_GET["action"]))
 	{
 		case "addFilms":
 			include_once("addMovieCTRL.php");
-			$layout = "addfilms.php";
+			break;
+		case "deleteMovie":
+			deleteMovie($_GET['idMovie']);
+			$search = searchData(0,"");
+			$layout = "films.php";
 			break;
 	}
 }
