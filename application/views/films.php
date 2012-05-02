@@ -9,7 +9,7 @@
 		{
 			?>
 			<table border='1' width="100%">
-			<th> Jaquette </th><th> Titre </th><th> Synopsie </th><th> Date de sortie </th>
+			<th> Jaquette </th><th> Titre </th><th> Synopsie </th><th> Date de sortie </th> <th> Supprimer </th>
 			<?php
 			foreach($search[0] as $key)
 			{
@@ -35,6 +35,9 @@
 					</td>
 					<td width="15%">
 						<?php echo $key['DateOfRelease'] ?>
+					</td>
+					<td width="10%">
+					<a href='/WeShare/Films/Suppression/<?php echo ($key['IdMovie']); ?>/'><em>Supprimer</em></a><br />
 					</td>
 				</tr>
 			<?php
