@@ -11,14 +11,14 @@ $error (S): int
 Auteur : Vincent Ricard
 */
 
-function createEvent($IdUser, $DateOfEvent, $Adress, $City)
+function createEvent($IdUser, $DateOfEvent, $Address, $City)
 {
 	$error = 0;
 	$query = sprintf("INSERT INTO Events 
-					  (DateOfEvent, Adress, City, CreationDate, IdOrganizer) 
+					  (DateOfEvent, Address, City, CreationDate, IdOrganizer) 
 					  VALUES ('%s', '%s', '%s', '%s', '%d')",
 					  $DateOfEvent,
-					  $Adress,
+					  $Address,
 					  $City,
 					  date("y-m-d"),
 					  $IdUser);
