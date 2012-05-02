@@ -1,7 +1,8 @@
 <?php
 /*
-La fonction getEvents permet de récupérer l'ensemble du ou des événement(s) 
-créé(s) par l'utilisateur.
+La fonction getEvents permet de récupérer le(s) événement(s) concernant
+un utilisateur, qu'il en soit le créateur ou qu'il y participe.
+
 $Events
 
 $Events (S): int

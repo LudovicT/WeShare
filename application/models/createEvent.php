@@ -1,6 +1,7 @@
 <?php
 /*
 La fonction createEvent permet à l'utilisateur de créer un événement.
+
 $error
 
 $error (S): int
