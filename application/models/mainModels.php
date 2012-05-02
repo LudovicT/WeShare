@@ -795,13 +795,9 @@ Auteur : Vincent Ricard
 function createEvent($IdUser, $DateOfEvent, $Adress, $City)
 {
 	$error = 0;
-	var_dump($IdUser);
-	var_dump($DateOfEvent);
-	var_dump($Adress);
-	var_dump($City);
 	$query = sprintf("INSERT INTO Events 
 					  (DateOfEvent, Adress, City, CreationDate, IdOrganizer) 
-					  VALUES ('%s', '%s', '%s', '%d')",
+					  VALUES ('%s', '%s', '%s', '%s', '%d')",
 					  $DateOfEvent,
 					  $Adress,
 					  $City,
@@ -809,7 +805,7 @@ function createEvent($IdUser, $DateOfEvent, $Adress, $City)
 					  $IdUser);
 	
 	$result = mysql_query($query, dbConnect());
-	if (!isset($result))
+	if ($result == false)
 	 {
 		$error = 1;
 	 }
