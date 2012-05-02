@@ -802,7 +802,7 @@ function createEvent($IdUser, $DateOfEvent, $Address, $City)
 					  (DateOfEvent, Address, City, CreationDate, IdOrganizer) 
 					  VALUES ('%s', '%s', '%s', '%s', '%d')",
 					  $DateOfEvent,
-					  $Adress,
+					  $Address,
 					  $City,
 					  date("y-m-d"),
 					  $IdUser);
