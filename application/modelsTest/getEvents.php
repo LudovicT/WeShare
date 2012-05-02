@@ -11,15 +11,18 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-echo ('Liste des films pour l\'utilisateur \'Macko\' <br />');
+echo ('Liste des événements pour l\'utilisateur \'Dacove\' <br />');
 
-$events = getEvents(getId('Macko'));
-if ($events == FALSE)
+$events = getEvents(getId('Dacove'));
+if ($events == -2)
 {
 	echo('Erreur : <br />'.mysql_error());
 }
 else
 {
-	echo ('OK');
+	foreach($events[0] as $key)
+	{
+		var_dump($key);
+	}
 }
 ?>

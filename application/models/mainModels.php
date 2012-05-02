@@ -757,28 +757,30 @@ return ($error);
 
 /*
 La fonction getEvents permet de récupérer le(s) événement(s) concernant
-un utilisateur, qu'il en soit le créateur ou qu'il y participe.
+l'utilisateur, qu'il en soit le créateur ou qu'il y soit invité.
 
 $Events
 
 $Events (S): int
--1	:	L'utilisateur a créé aucun événement
--2	:	erreur requête invalide/problème avec la BDD;
-$Events (S): tableau associatif contenant tous les événements
+-1	:	Il n'y a aucun événement concernant l'utilisateur
+-2	:	erreur requête invalide/problème avec la BDD
+$Events[2] (S): tableau contenant deux tableaux associatifs contenant 
+tous les événements en question
 
 Auteur : Vincent Ricard
 */
 
-function getEvents($IdUser)
+function	getEvents($IdUser)
 {
-	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = '%d'",
+	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = %d",
 					 $IdUser);
+	
 	$result = mysql_query($query, dbConnect());
-	if (!isset($result))
+	if ($result == false)
 	 {
-		return -1;
+		return -2;
 	 }
-	$Events = mysql_fetch_assoc($result);
+	while(($Events[0][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
 	return ($Events);
 }
 
@@ -793,11 +795,11 @@ $error (S): int
 Auteur : Vincent Ricard
 */
 
-function createEvent($IdUser, $DateOfEvent, $Adress, $City)
+function createEvent($IdUser, $DateOfEvent, $Address, $City)
 {
 	$error = 0;
 	$query = sprintf("INSERT INTO Events 
-					  (DateOfEvent, Adress, City, CreationDate, IdOrganizer) 
+					  (DateOfEvent, Address, City, CreationDate, IdOrganizer) 
 					  VALUES ('%s', '%s', '%s', '%s', '%d')",
 					  $DateOfEvent,
 					  $Adress,
