@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS Movies
 (IdMovie			INT 			NOT NULL	AUTO_INCREMENT,
 Name				VARCHAR(255)	NOT NULL,
 Synopsis			TEXT			NOT NULL,
-DateOfRecord		YEAR			NOT NULL,
+DateOfRelease		YEAR			NOT NULL,
 Runtime				TIME			NOT NULL,
 Poster				LONGTEXT,
 PRIMARY KEY(IdMovie));

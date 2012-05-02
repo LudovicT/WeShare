@@ -39,7 +39,7 @@
 						<?php echo $key['Synopsis'] ?>
 					</td>
 					<td width="15%">
-						<?php echo $key['DateOfRecord'] ?>
+						<?php echo $key['DateOfRelease'] ?>
 					</td>
 				</tr>
 			<?php
