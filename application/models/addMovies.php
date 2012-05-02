@@ -33,7 +33,7 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 	}
 	if ($error == 0)
 	{
-			$query = sprintf("INSERT INTO Movies (name, synopsis, DateOfRelease, Poster)
+			$query = sprintf("INSERT INTO Movies (Name, Synopsis, DateOfRelease, Poster)
 								VALUES ('%s','%s','%s','%s')",
 							 $name, $synopsis, $DateOfRelease, $Poster);
 			$result = mysql_query($query, dbConnect());
