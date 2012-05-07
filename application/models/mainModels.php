@@ -828,7 +828,7 @@ function getMovie($idMovie)
 	{
 		return -1;
 	}
-	$S_data[] = mysql_fetch_assoc($S_result);
+	$S_data = mysql_fetch_assoc($S_result);
 	return $S_data;
 }
 /*
@@ -925,11 +925,10 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 		$error[3] = 1;
 	
 	}
-	echo $DateOfRelease;
 	if ($error[0] == 0 && $error[1] == 0 && $error[2] == 0 && $error[3] == 0)
 	{
 			$query = sprintf("INSERT INTO Movies (Name, Synopsis, DateOfRelease, Poster)
-								VALUES ('%s','%s','%s','%s')",
+								VALUES ('%s','%s','%d','%s')",
 							 $name, $synopsis, $DateOfRelease, $Poster);
 			$result = mysql_query($query, dbConnect());
 			if ($result == false)
@@ -954,7 +953,6 @@ function deleteMovie($MovieId)
 	$S_query = ("DELETE FROM Movies
 				WHERE IdMovie ='".$MovieId."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	var_dump($S_result);
 	if (!isset($S_result))
 	{
 		return 1;
@@ -963,7 +961,6 @@ function deleteMovie($MovieId)
 
 /* 
 La fonction editMovie sert à entrer le(s) modification(s) des films dans la base de donnée.
-$IdMovie,
 $name, 
 $synopsis, 
 $DateOfRelease, 
@@ -980,9 +977,9 @@ $error (S): int
 function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 {
 	$error = 0;
-	if (!empty($name))
+	if (!empty($Name))
 	{
-		if (strlen($FirstName) < 55)
+		if (strlen($Name) < 55)
 		{
 			$query = sprintf("UPDATE Movies SET name = '%s' 
 							 WHERE IdMovie = '%d'",
@@ -1000,7 +997,7 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 	}
 	if (isset($synopsis))
 	{
-		if ($strlen($synopsis) < 2500 )
+		if (!empty ($Synopsis))
 		{
 			$query = sprintf("UPDATE Movies SET synopsis = '%s' 
 							WHERE IdMovie = '%d'",
@@ -1020,7 +1017,7 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 	{
 		if ($DateOfRelease > 2500 || $DateOfRelease < 1700)
 		{
-			$query = sprintf("UPDATE Movies SET DateOfRelease = '%s' 
+			$query = sprintf("UPDATE Movies SET DateOfRelease = '%d' 
 							 WHERE IdMovie = '%d'",
 							$DateOfRelease, $IdMovie);
 			$result = mysql_query($query, dbConnect());

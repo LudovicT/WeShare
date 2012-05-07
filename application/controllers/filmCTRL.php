@@ -15,10 +15,20 @@ if (isset($_GET["action"]))
 			$search = searchData(0,"");
 			$layout = "films.php";
 			break;
+		case "editMovie.php":
+			if(!empty($_GET['idMovie']))
+			{
+				$layout = "editMovie.php";
+				$infoMovie = getMovie($_GET['idMovie']);
+			}
+			else
+			{
+				$search = searchData(0,"");
+				$layout = "films.php";
+			}
+			break;
 		case "editMovie":
-			editMovie($_GET['idMovie']);
-			$search = searchData(0,"");
-			$layout = "editMovie.php";
+			include_once("editMovieCTRL.php");
 			break;
 	}
 }

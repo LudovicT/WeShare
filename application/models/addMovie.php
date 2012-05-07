@@ -17,7 +17,7 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 	{
 		$error[0] = 1;
 	}
-	if (strlen ($synopsis) > 2500)
+	if ($DateOfRelease > 2500 || $DateOfRelease < 1700)
 	{
 		$error[1] = 1;
 	}
