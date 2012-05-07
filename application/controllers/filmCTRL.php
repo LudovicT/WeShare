@@ -18,8 +18,8 @@ if (isset($_GET["action"]))
 		case "editMovie.php":
 			if(!empty($_GET['idMovie']))
 			{
-				$layout = "editMovie.php";
 				$infoMovie = getMovie($_GET['idMovie']);
+				$layout = "editMovie.php";
 			}
 			else
 			{
