@@ -578,7 +578,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							 $FirstName, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -596,7 +596,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							WHERE IdUSer = %d",
 							$LastName, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -620,7 +620,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 								 WHERE IdUSer = %d",
 								$Password, $IdUser);
 				$result = mysql_query($query, dbConnect());
-				if (!isset($result))
+				if ($result == false)
 				{
 					$error = 2;
 				}
@@ -639,7 +639,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							$Mail, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -655,7 +655,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 						 WHERE IdUSer = %d",
 						$BornDate, $IdUser);
 		$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 1;
 			}
@@ -668,7 +668,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							WHERE IdUSer = %d",
 							$address, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -686,7 +686,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							$City, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -704,7 +704,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							$Country, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -722,7 +722,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							 $Phone, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -742,7 +742,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							 $Avatar, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -941,7 +941,7 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 	$error[0] = 0;
 	$error[1] = 0;
 	$error[2] = 0;
-	$error[3] = 0;
+	$error[3] = 1;
 	if (strlen ($name) > 81)
 	{
 		$error[0] = 1;
@@ -958,7 +958,7 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 		 || stristr($Poster, ".gif") || stristr($Poster, ".png")
 		 || stristr($Poster, ".bmp"))
 	{
-		$error[3] = 1;
+		$error[3] = 0;
 	
 	}
 	if ($error[0] == 0 && $error[1] == 0 && $error[2] == 0 && $error[3] == 0)
@@ -1010,20 +1010,20 @@ $error (S): int
 				Auteur: ARNAL Alexandre
 */
 
-function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
+function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster)
 {
 	$error = 0;
 	if (!empty($Name))
 	{
 		if (strlen($Name) < 55)
 		{
-			$query = sprintf("UPDATE Movies SET name = '%s' 
+			$query = sprintf("UPDATE Movies SET Name = '%s' 
 							 WHERE IdMovie = '%d'",
-							 $name, $IdMovie);
+							 $Name, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
@@ -1033,38 +1033,57 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 	}
 	if (isset($synopsis))
 	{
-		if (!empty ($Synopsis))
+		if (!empty ($synopsis))
 		{
-			$query = sprintf("UPDATE Movies SET synopsis = '%s' 
+			$query = sprintf("UPDATE Movies SET Synopsis = '%s' 
 							WHERE IdMovie = '%d'",
 							$synopsis, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
 		{
-			$error = 1;
+			$error = 2;
 		}
 	}
 	if (!empty($DateOfRelease))
 	{
-		if ($DateOfRelease > 2500 || $DateOfRelease < 1700)
+		if ($DateOfRelease < 2156 || $DateOfRelease > 1900)
 		{
 			$query = sprintf("UPDATE Movies SET DateOfRelease = '%d' 
 							 WHERE IdMovie = '%d'",
 							$DateOfRelease, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
 		{
-			$error = 1;
+			$error = 3;
+		}
+		echo $DateOfRelease;
+	}
+	if (!empty($Runtime))
+	{
+		if (strlen($Runtime) != 0)
+		{
+			$query = sprintf("UPDATE Movies SET Runtime = '%s' 
+							 WHERE IdMovie = '%d'",
+							 $Runtime, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if ($result == false)
+			{
+				$error = -1;
+			}
+		}
+		else
+		{
+			$error = 4;
 		}
 	}
 	if (!empty($Poster))
@@ -1077,16 +1096,17 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 							 WHERE IdMovie = '%d'",
 							 $Poster, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
 		{
-			$error = 4;
+			$error = 5;
 		}
 	}
+var_dump ($error);
 return ($error);
 }
 
