@@ -43,6 +43,11 @@ if ($result == false)
 $query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
 				  VALUES ('%d', '%d', '%d')", 
 				  $IdEvent, $IdUser, $Statuts);
+$result = mysql_query($query, dbConnect());
+if ($result == false)
+ {
+	$error = 1;
+ }
 return ($error);
 }
 ?>
