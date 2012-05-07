@@ -784,7 +784,7 @@ function	getEvents($IdUser)
 	while(($Events[0][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
 
 // Requête pour récupérer les évenements auxquelles participe l'utilisateur 	
-	$query = sprintf("SELECT * FROM Eventsinvitations WHERE IdUser = '%d'", 
+	$query = sprintf("SELECT * FROM EventsInvitations WHERE IdUser = '%d'", 
 					  $IdUser);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
@@ -797,6 +797,7 @@ return ($Events);
 
 /*
 La fonction createEvent permet à l'utilisateur de créer un événement.
+
 $error
 
 $error (S): int
@@ -824,6 +825,7 @@ function createEvent($IdUser, $DateOfEvent, $Address, $City)
 	 }
 return ($error);
 }
+
 /*
 Permet de récuperer les infos d'un film. (général)
 $IdMovie (E) id du film
@@ -1084,4 +1086,31 @@ function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster
 var_dump ($error);
 return ($error);
 }
+
+/*
+La fonction deleteEvent permet à l'utilisateur de supprimer un événement
+qu'il a créé et donc dont il est l'organisateur.
+
+$error
+
+$error (S): int
+1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+
+Auteur : Vincent Ricard
+*/
+
+function deleteEvent($IdUser, $IdEvent)
+{
+	$error = 0;
+	$query = sprintf("DELETE FROM Events WHERE idOrganizer = '%d'
+					  AND IdEvent = '%d'", $IdUser, $IdEvent);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		$error = 1;
+	 }
+return ($error);
+}
+
 ?>

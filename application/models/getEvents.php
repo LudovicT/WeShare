@@ -28,14 +28,14 @@ function	getEvents($IdUser)
 	while(($Events[0][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
 
 // Requête pour récupérer les évenements auxquelles participe l'utilisateur 	
-	$query = sprintf("SELECT * FROM Eventsinvitation WHERE IdUser = '%d'", 
+	$query = sprintf("SELECT * FROM EventsInvitations WHERE IdUser = '%d'", 
 					  $IdUser);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
 		return -2;
 	 }
-	while(($Events[1][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
+	while(($Events[1][] = mysql_fetch_assoc($result)) || array_pop($Events[1]));
 return ($Events);
 }
 ?>
