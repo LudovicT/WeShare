@@ -827,14 +827,7 @@ if ($result == false)
  }
  
 // Requête qui récupère l'IdEvent de l'événement qui vient d'être créé
-$query = sprintf("SELECT IdEvent FROM Events WHERE IdOrganizer = '%d' 
-			      AND DateOfEvent = '%s', AND City = '%s', 
-			      AND CreationDate = '%s' AND Address = '%s'", 
-			      $IdUser,
-			      $DateOfEvent,
-			      $City,
-			      date("y-m-d"),
-			      $Address);
+$query = sprintf("SELECT LAST_INSERT_ID()");
 $result = mysql_query($query, dbConnect());
 if ($result == false)
  {
