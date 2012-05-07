@@ -38,7 +38,7 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 	}
 	if (isset($synopsis))
 	{
-		if ($strlen($synopsis) < 2500 )
+		if ($DateOfRelease > 2500 || $DateOfRelease < 1700)
 		{
 			$query = sprintf("UPDATE Movies SET synopsis = '%s' 
 							WHERE IdMovie = '%d'",
@@ -56,9 +56,9 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 	}
 	if (!empty($DateOfRelease))
 	{
-		if (strlen($DateOfRelease) < 12)
+		if ($DateOfRelease > 2500 || $DateOfRelease < 1900)
 		{
-			$query = sprintf("UPDATE Movies SET DateOfRelease = '%s' 
+			$query = sprintf("UPDATE Movies SET DateOfRelease = '%d' 
 							 WHERE IdMovie = '%d'",
 							$DateOfRelease, $IdMovie);
 			$result = mysql_query($query, dbConnect());
