@@ -784,7 +784,7 @@ function	getEvents($IdUser)
 	while(($Events[0][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
 
 // Requête pour récupérer les évenements auxquelles participe l'utilisateur 	
-	$query = sprintf("SELECT * FROM Eventsinvitations WHERE IdUser = '%d'", 
+	$query = sprintf("SELECT * FROM EventsInvitations WHERE IdUser = '%d'", 
 					  $IdUser);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
@@ -797,6 +797,7 @@ return ($Events);
 
 /*
 La fonction createEvent permet à l'utilisateur de créer un événement.
+
 $error
 
 $error (S): int
@@ -824,6 +825,7 @@ function createEvent($IdUser, $DateOfEvent, $Address, $City)
 	 }
 return ($error);
 }
+
 /*
 Permet de récuperer les infos d'un film. (général)
 $IdMovie (E) id du film
