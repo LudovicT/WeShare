@@ -13,14 +13,19 @@ include("../../config/config.php");
 
 echo ('Liste des événements pour l\'utilisateur \'Dacove\' <br />');
 
-$events = getEvents(getId('Dacove'));
+$events[0] = getEvents(getId('Dacove'));
+$events[1] = getEvents(getId('Froutch'));
 if ($events == -2)
 {
 	echo('Erreur : <br />'.mysql_error());
 }
 else
 {
-	foreach($events[0] as $key)
+	foreach($events[0][0] as $key)
+	{
+		var_dump($key);
+	}
+	foreach($events[1][0] as $key)
 	{
 		var_dump($key);
 	}
