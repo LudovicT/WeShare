@@ -1051,6 +1051,21 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 			$error = 4;
 		}
 	}
-return ($error);
+	return ($error);
+}
+
+function createGroup($IdUser, $groupName)
+{
+	$query = sprintf("INSERT INTO Groups 
+					  (Name, IdCreator) 
+					  VALUES ('%s', '%d')",
+					  $IdUser,
+					  $groupName);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		$error = 1;
+	 }
+	return ($error);
 }
 ?>

@@ -43,42 +43,90 @@
 	<?php
 	if($friendRequest != -1)
 	{
-	echo "	<p>
-				Vous avez une requête d'ami de la part de ces personnes :
-			</p>
-			<table>";
+		?>
+		<p>
+			Voici vos groupes d'amis :
+		</p>
+		<table>
+		<?php
 		foreach($friendRequest as $key2)
-		{
-			echo "<tr>
-			<td  class='TableAmisProfil'
+		{?>
+			<tr>
+			<td  class='TableAmisProfil'>
 				<center>
-				<a href='/WeShare/Membres/".$key2['Pseudo']."/'>".$key2['Pseudo']."</a>
+				<a href='/WeShare/Membres/<?php echo $key2['Pseudo']?>/'><?php echo $key2['Pseudo']?></a>
 				</center>
 			</td>
 			<td width=70px>
 				<center>
-				<a href='/WeShare/Profil/Amis/Accepter/" .
-			$key2['Pseudo'] . "/'><em>Accepter</em></a>
+				<a href='/WeShare/Profil/Amis/Accepter/<?php echo $key2['Pseudo']?>/'><em>Accepter</em></a>
 				</center>
 			</td>
 			<td width=70px>
 				<center>
-			<a href='/WeShare/Profil/Amis/Refuser/" .
-			$key2['Pseudo'] . "/'><em>Refuser</em></a>
+				<a href='/WeShare/Profil/Amis/Refuser/<?php echo $key2['Pseudo']?>/'><em>Refuser</em></a>
 				</center>
 			</td>
 			<td width=70px>
 				<center>
-			<a href='/WeShare/Profil/Amis/Ignorer/" .
-			$key2['Pseudo'] . "/'><em>Ignorer</em></a>  <br />
+				<a href='/WeShare/Profil/Amis/Ignorer/<?php echo $key2['Pseudo'] ?>/'><em>Ignorer</em></a>  <br />
 				</center>
 			</td>
-			</tr>";
+			</tr><?php
 		}
-		echo "</table>";
+		?></table>
+	<?php
 	}
 	else
 	{
-		echo "Vous n'avez pas encore de demande d'amis. Ou vous avez déjà répondu à toute les demandes.<br /><br /><br /><br />\n";
+		?>
+		Vous n'avez pas encore de demande d'amis. Ou vous avez déjà répondu à toute les demandes.<br /><br /><br /><br />
+		<?php
+	}
+	?>
+	<br /><br /><br /><br />
+	<h3>Mes groupes d'amis</h3>	
+	<?php
+	if($friendRequest != -1)
+	{
+		?>
+		<p>
+			Voici vos groupes d'amis :
+		</p>
+		<table>
+		<?php
+		foreach($friendRequest as $key3)
+		{?>
+			<tr>
+			<td  class='TableAmisProfil'>
+				<center>
+				<a href='/WeShare/Membres/<?php echo $key3['Pseudo']?>/'><?php echo $key3['Pseudo']?></a>
+				</center>
+			</td>
+			<td width=70px>
+				<center>
+				<a href='/WeShare/Profil/Amis/Accepter/<?php echo $key3['Pseudo']?>/'><em>Accepter</em></a>
+				</center>
+			</td>
+			<td width=70px>
+				<center>
+				<a href='/WeShare/Profil/Amis/Refuser/<?php echo $key3['Pseudo']?>/'><em>Refuser</em></a>
+				</center>
+			</td>
+			<td width=70px>
+				<center>
+				<a href='/WeShare/Profil/Amis/Ignorer/<?php echo $key3['Pseudo'] ?>/'><em>Ignorer</em></a>  <br />
+				</center>
+			</td>
+			</tr><?php
+		}
+		?></table>
+	<?php
+	}
+	else
+	{
+		?>
+		Vous n'avez pas encore de groupe d'amis. Ou vous avez été expulsé comme un gros raté.<br /><br /><br /><br />
+		<?php
 	}
 	?>
