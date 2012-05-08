@@ -1,6 +1,6 @@
 <?php
 /*
-Fonction pour tester getEvents et donc de voir si les films ont bien été
+Fonction pour tester getEvents et donc de voir si les événements ont bien été
 récupérés
 
 Auteur : Vincent Ricard
@@ -11,15 +11,20 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-echo ('Liste des films pour l\'utilisateur \'Macko\' <br />');
+echo ('Liste des événements pour l\'utilisateur \'Dacove\' <br />');
 
-$events = getEvents(getId('Macko'));
-if ($events == FALSE)
+$events = getEvents(getId('Dacove'));
+
+if ($events[0] == -2)
+{
+	echo('Erreur : <br />'.mysql_error());
+}
+else if ($events[1] == -2)
 {
 	echo('Erreur : <br />'.mysql_error());
 }
 else
 {
-	echo ('OK');
+	var_dump($events);
 }
 ?>

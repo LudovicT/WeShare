@@ -37,7 +37,7 @@
 						<?php echo $key['DateOfRelease'] ?>
 					</td>
 					<td width="10%">
-					<a href='/WeShare/Films/Editer/<?php echo ($key['IdMovie']); ?>/'><em>Editer</em></a><br />
+					<a href='/WeShare/Films/EditerFilm/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><em>Editer</em></a><br />
 					</td>
 					<td width="10%">
 					<a href='/WeShare/Films/Suppression/<?php echo ($key['IdMovie']); ?>/'><em>Supprimer</em></a><br />

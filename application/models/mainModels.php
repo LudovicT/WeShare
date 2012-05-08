@@ -578,7 +578,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							 $FirstName, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -596,7 +596,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							WHERE IdUSer = %d",
 							$LastName, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -620,7 +620,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 								 WHERE IdUSer = %d",
 								$Password, $IdUser);
 				$result = mysql_query($query, dbConnect());
-				if (!isset($result))
+				if ($result == false)
 				{
 					$error = 2;
 				}
@@ -639,7 +639,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							$Mail, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -655,7 +655,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 						 WHERE IdUSer = %d",
 						$BornDate, $IdUser);
 		$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 1;
 			}
@@ -668,7 +668,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							WHERE IdUSer = %d",
 							$address, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -686,7 +686,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							$City, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -704,7 +704,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							$Country, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -722,7 +722,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							 $Phone, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -742,7 +742,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 							 WHERE IdUSer = %d",
 							 $Avatar, $IdUser);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
 				$error = 2;
 			}
@@ -756,33 +756,48 @@ return ($error);
 }
 
 /*
-La fonction getEvents permet de récupérer l'ensemble du ou des événement(s) 
-créé(s) par l'utilisateur.
+La fonction getEvents permet de récupérer le(s) événement(s) concernant
+l'utilisateur, qu'il en soit le créateur ou qu'il y soit invité.
+
 $Events
 
 $Events (S): int
--1	:	L'utilisateur a créé aucun événement
--2	:	erreur requête invalide/problème avec la BDD;
-$Events (S): tableau associatif contenant tous les événements
+-1	:	Il n'y a aucun événement concernant l'utilisateur
+-2	:	erreur requête invalide/problème avec la BDD
+$Events[2] (S): tableau contenant deux tableaux associatif contenant 
+tous les événements en question
 
 Auteur : Vincent Ricard
 */
 
-function getEvents($IdUser)
+function	getEvents($IdUser)
 {
+// Requête pour récupérer les évenements que l'utilisateur a créé
 	$query = sprintf("SELECT * FROM Events WHERE IdOrganizer = '%d'",
 					 $IdUser);
+	
 	$result = mysql_query($query, dbConnect());
-	if (!isset($result))
+	if ($result == false)
 	 {
-		return -1;
+		return -2;
 	 }
-	$Events = mysql_fetch_assoc($result);
-	return ($Events);
+	while(($Events[0][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
+
+// Requête pour récupérer les évenements auxquelles participe l'utilisateur 	
+	$query = sprintf("SELECT * FROM EventsInvitations WHERE IdUser = '%d'", 
+					  $IdUser);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return -2;
+	 }
+	while(($Events[1][] = mysql_fetch_assoc($result)) || array_pop($Events[1]));
+return ($Events);
 }
 
 /*
 La fonction createEvent permet à l'utilisateur de créer un événement.
+
 $error
 
 $error (S): int
@@ -792,24 +807,46 @@ $error (S): int
 Auteur : Vincent Ricard
 */
 
-function createEvent($IdUser, $DateOfEvent, $Adress, $City)
+function createEvent($IdUser, $DateOfEvent, $Address, $City, $Status)
 {
-	$error = 0;
-	$query = sprintf("INSERT INTO Events 
-					  (DateOfEvent, Adress, City, CreationDate, IdOrganizer) 
-					  VALUES ('%s', '%s', '%s', '%s', '%d')",
-					  $DateOfEvent,
-					  $Adress,
-					  $City,
-					  date("y-m-d"),
-					  $IdUser);
-	$result = mysql_query($query, dbConnect());
-	if ($result == false)
-	 {
-		$error = 1;
-	 }
+$error = 0;
+
+// Requête qui ajoute un événement et qui met l'utilisateur en tant que créateur
+$query = sprintf("INSERT INTO Events 
+				  (DateOfEvent, Address, City, CreationDate, IdOrganizer) 
+				  VALUES ('%s', '%s', '%s', '%s', '%d')",
+				  $DateOfEvent,
+				  $Address,
+				  $City,
+				  date("y-m-d"),
+				  $IdUser);
+$result = mysql_query($query, dbConnect());
+if ($result == false)
+ {
+	$error = 1;
+ }
+ 
+// Requête qui récupère l'IdEvent de l'événement qui vient d'être créé
+$query = sprintf("SELECT LAST_INSERT_ID()");
+$result = mysql_query($query, dbConnect());
+if ($result == false)
+ {
+	$error = 1;
+ }
+ $IdEvent = mysql_fetch_row($result);
+
+// Requête qui ajoute l'utilisateur, par défaut, à la liste des participants
+$query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
+				  VALUES ('%d', '%d', '%d')", 
+				  $IdEvent, $IdUser, $Status);
+$result = mysql_query($query, dbConnect());
+if ($result == false)
+ {
+	$error = 1;
+ }
 return ($error);
 }
+
 /*
 Permet de récuperer les infos d'un film. (général)
 $IdMovie (E) id du film
@@ -825,7 +862,7 @@ function getMovie($idMovie)
 	{
 		return -1;
 	}
-	$S_data[] = mysql_fetch_assoc($S_result);
+	$S_data = mysql_fetch_assoc($S_result);
 	return $S_data;
 }
 /*
@@ -902,7 +939,7 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 	$error[0] = 0;
 	$error[1] = 0;
 	$error[2] = 0;
-	$error[3] = 0;
+	$error[3] = 1;
 	if (strlen ($name) > 81)
 	{
 		$error[0] = 1;
@@ -919,14 +956,13 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 		 || stristr($Poster, ".gif") || stristr($Poster, ".png")
 		 || stristr($Poster, ".bmp"))
 	{
-		$error[3] = 1;
+		$error[3] = 0;
 	
 	}
-	echo $DateOfRelease;
 	if ($error[0] == 0 && $error[1] == 0 && $error[2] == 0 && $error[3] == 0)
 	{
 			$query = sprintf("INSERT INTO Movies (Name, Synopsis, DateOfRelease, Poster)
-								VALUES ('%s','%s','%s','%s')",
+								VALUES ('%s','%s','%d','%s')",
 							 $name, $synopsis, $DateOfRelease, $Poster);
 			$result = mysql_query($query, dbConnect());
 			if ($result == false)
@@ -951,7 +987,6 @@ function deleteMovie($MovieId)
 	$S_query = ("DELETE FROM Movies
 				WHERE IdMovie ='".$MovieId."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	var_dump($S_result);
 	if (!isset($S_result))
 	{
 		return 1;
@@ -960,7 +995,6 @@ function deleteMovie($MovieId)
 
 /* 
 La fonction editMovie sert à entrer le(s) modification(s) des films dans la base de donnée.
-$IdMovie,
 $name, 
 $synopsis, 
 $DateOfRelease, 
@@ -974,20 +1008,20 @@ $error (S): int
 				Auteur: ARNAL Alexandre
 */
 
-function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
+function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster)
 {
 	$error = 0;
-	if (!empty($name))
+	if (!empty($Name))
 	{
-		if (strlen($FirstName) < 55)
+		if (strlen($Name) < 55)
 		{
-			$query = sprintf("UPDATE Movies SET name = '%s' 
+			$query = sprintf("UPDATE Movies SET Name = '%s' 
 							 WHERE IdMovie = '%d'",
-							 $name, $IdMovie);
+							 $Name, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
@@ -997,38 +1031,57 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 	}
 	if (isset($synopsis))
 	{
-		if ($strlen($synopsis) < 2500 )
+		if (!empty ($synopsis))
 		{
-			$query = sprintf("UPDATE Movies SET synopsis = '%s' 
+			$query = sprintf("UPDATE Movies SET Synopsis = '%s' 
 							WHERE IdMovie = '%d'",
 							$synopsis, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
 		{
-			$error = 1;
+			$error = 2;
 		}
 	}
 	if (!empty($DateOfRelease))
 	{
-		if ($DateOfRelease > 2500 || $DateOfRelease < 1700)
+		if ($DateOfRelease < 2156 || $DateOfRelease > 1900)
 		{
-			$query = sprintf("UPDATE Movies SET DateOfRelease = '%s' 
+			$query = sprintf("UPDATE Movies SET DateOfRelease = '%d' 
 							 WHERE IdMovie = '%d'",
 							$DateOfRelease, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
 		{
-			$error = 1;
+			$error = 3;
+		}
+		echo $DateOfRelease;
+	}
+	if (!empty($Runtime))
+	{
+		if (strlen($Runtime) != 0)
+		{
+			$query = sprintf("UPDATE Movies SET Runtime = '%s' 
+							 WHERE IdMovie = '%d'",
+							 $Runtime, $IdMovie);
+			$result = mysql_query($query, dbConnect());
+			if ($result == false)
+			{
+				$error = -1;
+			}
+		}
+		else
+		{
+			$error = 4;
 		}
 	}
 	if (!empty($Poster))
@@ -1041,14 +1094,14 @@ function editMovie($IdMovie, $name, $synopsis, $DateOfRelease, $Poster)
 							 WHERE IdMovie = '%d'",
 							 $Poster, $IdMovie);
 			$result = mysql_query($query, dbConnect());
-			if (!isset($result))
+			if ($result == false)
 			{
-				$error = 2;
+				$error = -1;
 			}
 		}
 		else
 		{
-			$error = 4;
+			$error = 5;
 		}
 	}
 	return ($error);
@@ -1068,4 +1121,32 @@ function createGroup($IdUser, $groupName)
 	 }
 	return ($error);
 }
+
+
+/*
+La fonction deleteEvent permet à l'utilisateur de supprimer un événement
+qu'il a créé et donc dont il est l'organisateur.
+
+$error
+
+$error (S): int
+1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+
+Auteur : Vincent Ricard
+*/
+
+function deleteEvent($IdUser, $IdEvent)
+{
+	$error = 0;
+	$query = sprintf("DELETE FROM Events WHERE idOrganizer = '%d'
+					  AND IdEvent = '%d'", $IdUser, $IdEvent);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		$error = 1;
+	 }
+return ($error);
+}
+
 ?>

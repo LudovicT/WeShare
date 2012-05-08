@@ -2,11 +2,11 @@
 	<div>
 		<br />
 		<span style="font-family:'georgia';font-size:2.5em;color:#113E6B">
-		<b> <?php echo $movieInfo[0]['Name']; ?> </b>
+		<b> <?php echo $movieInfo['Name']; ?> </b>
 		</span><br /><br />
 	</div>
 	<div> <!-- css affiche film -->
-		<img src="<?php echo $movieInfo[0]['Poster']; ?>" width="300" height="400" />
+		<img src="<?php echo $movieInfo['Poster']; ?>" width="300" height="400" />
 		<br /><br />
 	</div>
 		<div id="tab_infos">
@@ -15,7 +15,7 @@
 					<td width="50%">
 						<!-- requêtes SQL sur les infos du films (titre original, date sortie etc... -->
 						<p> 
-						<b>Titre original :</b> <?php echo $movieInfo[0]['Name']; ?> <br />
+						<b>Titre original :</b> <?php echo $movieInfo['Name']; ?> <br />
 						<b>Réalisateur : </b>
 						<?php
 						if($movieStaff != false)
@@ -74,8 +74,8 @@
 							echo "<br />";
 						}
 						?>
-						<b>Sortie :</b> <?php echo $movieInfo[0]['DateOfRelease']; ?> <br />
-						<b>Durée :</b> <?php echo $movieInfo[0]['Runtime']; ?> 
+						<b>Sortie :</b> <?php echo $movieInfo['DateOfRelease']; ?> <br />
+						<b>Durée :</b> <?php echo $movieInfo['Runtime']; ?> 
 						</p>
 					</td> 
 					<td width="50%">
@@ -101,7 +101,7 @@
 			</table>
 		</div>
 		<br /><br />
-			<?php echo $movieInfo[0]['Synopsis']; ?>
+			<?php echo $movieInfo['Synopsis']; ?>
 		<br /><br />
 		<div id='blogvision' style='width:540px; height:360px'>
 			<object width='100%' height='100%'>
