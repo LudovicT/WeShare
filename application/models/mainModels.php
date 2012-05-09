@@ -1124,7 +1124,7 @@ function deleteEvent($IdUser, $IdEvent)
 {
 	$error = 0;
 	$S_query = sprintf("DELETE FROM Events WHERE idOrganizer = '%d'
-					  AND IdEvent = '%d'", $IdUser, $IdEvent);
+						AND IdEvent = '%d'", $IdUser, $IdEvent);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
 	{
@@ -1143,10 +1143,10 @@ function createGroup($IdUser, $groupName)
 {
 	$error = 0;
 	$S_query = sprintf("INSERT INTO Groups 
-					  (Name, IdCreator) 
-					  VALUES ('%s', '%d')",
-					  $groupName,
-					  $IdUser);
+						(Name, IdCreator) 
+						VALUES ('%s', '%d')",
+						$groupName,
+						$IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
 	{
@@ -1164,9 +1164,9 @@ function deleteGroup($IdUser, $groupName)
 {
 	$error = 0;
 	$S_query = sprintf("DELETE FROM Groups 
-					  WHERE Name ='%s' AND IdCreator = '%d' ",
-					  $groupName,
-					  $IdUser);
+						WHERE Name ='%s' AND IdCreator = '%d' ",
+						$groupName,
+						$IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
 	{
@@ -1176,20 +1176,22 @@ function deleteGroup($IdUser, $groupName)
 }
 
 /*
-Fonction permettant de trouver tout les groupes
+Fonction permettant de trouver tout les groupes de l'utilisateurs (les groupes sont privés)
 
 Auteur : Ludovic Tresson
 */
-function getGroups()
+function getGroups($IdUser)
 {
 	$error = 0;
-	$S_query = sprintf("SELECT * FROM Groups");
+	$S_query = sprintf("SELECT * FROM Groups
+						WHERE IdCreator = '%s'",
+						$IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
 	{
 		return -1;
 	}
-	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_result));
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
 }
 
@@ -1210,7 +1212,7 @@ function getGroup($IdGroup)
 	{
 		return -1;
 	}
-	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_result));
+	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
 }
 
@@ -1235,7 +1237,38 @@ function getGroupUser($IdGroup)
 	{
 		return -1;
 	}
-	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_result));
+	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
+}
+
+function addMemberToGroup($IdGroup, $IdUser)
+{
+	$error = 0;
+	$S_query = sprintf("INSERT INTO UserGroups 
+						(IdUser, IdGroup) 
+						VALUES ('%d', '%d')",
+						$IdUser,
+						$IdGroup);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	{
+		$error = 1;
+	}
+	return ($error);
+}
+
+function deleteMemberFromGroup($IdGroup, $IdUser)
+{
+	$error = 0;
+	$S_query = sprintf("DELETE FROM UserGroups 
+						WHERE IdUser = '%d' AND IdGroup = '%d'",
+						$IdUser,
+						$IdGroup);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	{
+		$error = 1;
+	}
+	return ($error);
 }
 ?>

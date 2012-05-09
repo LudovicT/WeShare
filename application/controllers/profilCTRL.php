@@ -29,8 +29,7 @@ if(isset($_GET['action'])){
 			}
 			break;
 		case "amis":
-			$user = $_SESSION['User'];
-			$userId = getId($user);
+			$userId = getId($_SESSION['User']);
 			//gestion des ajouts d'amis
 			if(isset($_GET['suppr']) && !empty($_GET['suppr']))
 			{
@@ -51,6 +50,7 @@ if(isset($_GET['action'])){
 			
 			$friend = getFriends($userId);
 			$friendRequest = getFriendshipRequest($userId);
+			$group = getGroups($userId);
 			$layout="amisProfil.php";
 			$layoutAdd = 2;
 			break;

@@ -87,7 +87,7 @@
 	<br /><br /><br /><br />
 	<h3>Mes groupes d'amis</h3>	
 	<?php
-	if($friendRequest != -1)
+	if(!empty($group))
 	{
 		?>
 		<p>
@@ -95,27 +95,12 @@
 		</p>
 		<table>
 		<?php
-		foreach($friendRequest as $key3)
+		foreach($group as $key3)
 		{?>
 			<tr>
 			<td  class='TableAmisProfil'>
 				<center>
-				<a href='/WeShare/Membres/<?php echo $key3['Pseudo']?>/'><?php echo $key3['Pseudo']?></a>
-				</center>
-			</td>
-			<td width=70px>
-				<center>
-				<a href='/WeShare/Profil/Amis/Accepter/<?php echo $key3['Pseudo']?>/'><em>Accepter</em></a>
-				</center>
-			</td>
-			<td width=70px>
-				<center>
-				<a href='/WeShare/Profil/Amis/Refuser/<?php echo $key3['Pseudo']?>/'><em>Refuser</em></a>
-				</center>
-			</td>
-			<td width=70px>
-				<center>
-				<a href='/WeShare/Profil/Amis/Ignorer/<?php echo $key3['Pseudo'] ?>/'><em>Ignorer</em></a>  <br />
+				<a href='/WeShare/Groupe/<?php echo generateUrl($key3['Name'])."/".$key3['IdGroup']?>/'><?php echo $key3['Name']?></a>
 				</center>
 			</td>
 			</tr><?php
@@ -126,7 +111,7 @@
 	else
 	{
 		?>
-		Vous n'avez pas encore de groupe d'amis. Ou vous avez été expulsé comme un gros raté.<br /><br /><br /><br />
+		Vous n'avez pas encore de groupe d'amis.<br /><br /><br /><br />
 		<?php
 	}
 	?>
