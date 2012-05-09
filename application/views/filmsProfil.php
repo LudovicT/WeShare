@@ -1,11 +1,51 @@
-<h3>Votre vidéothèque</h3>
-	<p>
-		#<em>Prénom Nom</em>, voici les films que vous avez ajouté à votre vidéothèque à ce jour :<br /></p>
-	<ul>
-		<!-- contiendra la/les requête/s SQL pour accéder aux films de l'utilisateur et les données liées tel que les formats et la disponibilité -->
-		<li> Titanic au/x format/s <br />#<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et la Communauté de l'Anneau <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et les Deux Tours <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Le Seigneur des Anneaux et le Retour du Roi <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-		<li> Ironclad <br />au/x format/s #<em>format/s</em> et ils vous en reste #<em>nbr restant</em></li>
-	</ul>
+		<div class="add_films"><a href="/WeShare/Profil/Films/">Ajouter un film</a></div>
+	<?php
+	if(isset($search[1]) && $search[1] == -1)
+	{
+		echo "Il n'y a pas de films";
+	}
+	elseif (isset($search[0][0]['IdMovie']))
+		{
+			?>
+			<table border='1' width="100%">
+			<th> Jaquette </th><th> Titre </th><th> Synopsis </th><th> Date de sortie </th> <th> Editer </th> <th> Supprimer </th> 
+			<?php
+			foreach($search[0] as $key)
+			{
+			?>
+				<tr>
+					<td width="15%">
+					<img id='PhotoProfil' src='<?php
+						if(!empty($key['Poster']))
+						{
+							echo $key['Poster'];
+						}
+						else
+						{
+							echo DIR_PUBLICS."/images/vide.gif"; 
+						}
+						?>'>
+					</td>
+					<td width="15%">
+						<a href='/WeShare/Film/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><?php echo $key['Name'] ?></a>
+					</td>
+					<td width="40%">
+						<?php echo $key['Synopsis'] ?>
+					</td>
+					<td width="10%">
+						<?php echo $key['DateOfRelease'] ?>
+					</td>
+					<td width="10%">
+					<a href='/WeShare/Profil/Films/EditerFilm/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><em>Editer</em></a><br />
+					</td>
+					<td width="10%">
+					<a href='/WeShare/Profil/Films/Suppression/<?php echo ($key['IdMovie']); ?>/'><em>Supprimer</em></a><br />
+					</td>
+				</tr>
+			<?php
+			}
+			?>
+		</table>
+			<?php
+		}
+	?>
