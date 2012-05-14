@@ -14,6 +14,7 @@ RewriteRule   ^Membres/([a-z0-9\-]+)([./.]*)$   /WeShare/index.php?page=membres.
 RewriteRule   ^Membres([./.]*)$   /WeShare/index.php?page=membres.php [NC]
 RewriteRule   ^Groupe/Ajouter/([0-9]+)([./.]*)$   /WeShare/index.php?page=group.php&action=add&group=$1 [NC]
 RewriteRule   ^Groupe/Retirer/([0-9]+)([./.]*)$   /WeShare/index.php?page=group.php&action=delete&group=$1 [NC]
+RewriteRule   ^Groupe/Creer([./.]*)$   /WeShare/index.php?page=group.php&action=createGroup [NC]
 RewriteRule   ^Groupe/([a-z0-9]+)/([0-9]+)([./.]*)$   /WeShare/index.php?page=group.php&group=$2&redirect=$1 [NC]
 RewriteRule   ^Film/([a-z0-9]+)/([0-9]+)([./.]*)$   /WeShare/index.php?page=ficheFilm.php&idMovie=$2&redirect=$1 [NC]
 RewriteRule   ^Films([./.]*)$   /WeShare/index.php?page=films.php [NC]

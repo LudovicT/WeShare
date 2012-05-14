@@ -76,28 +76,46 @@ if (isset($_GET["page"]))
 			break;
 		case "group.php":
 			$userId = getId($user);
-			$group = getGroup($_GET['group']);
-			if($group['IdCreator'] == $userId)
+			if(isset($_POST['Nom']) && !empty($_POST['Nom']))
 			{
-			if(isset($_GET['action']) && isset($_POST['membre']))
-			{
-				switch($_GET['action'])
+				$error = createGroup($userId,$_POST['Nom']);
+				if($error ==0)
 				{
-					case "add":
-						addMemberToGroup($_GET['group'],$_POST['membre']);
-						break;
-					case "delete":
-						deleteMemberFromGroup($_GET['group'],$_POST['membre']);
-						break;
+					header('Location: /WeShare/Groupe/'.generateUrl($_POST['Nom']).'/'.(lastSqlAutoInc("Groups")-1).'/');
 				}
 			}
-			$groupUser = getGroupUser($_GET['group']);
-			$membres = getMember($user);
-			$layout = "group.php";
+			if(isset($_GET['action']) && $_GET['action'] == "createGroup")
+			{
+				$layout = "createGroup.php";
 			}
 			else
 			{
-				header('Location: /WeShare/Profil/Amis/');
+				$group = getGroup($_GET['group']);
+				if($group['IdCreator'] == $userId)
+				{
+					$groupUser = getGroupUser($_GET['group']);
+					$membres = getMember($user);
+					$layout = "group.php";
+					
+					if(isset($_GET['action']) && isset($_POST['membre']))
+					{
+						switch($_GET['action'])
+						{
+							case "add":
+								addMemberToGroup($_GET['group'],$_POST['membre']);
+								break;
+							case "delete":
+								deleteMemberFromGroup($_GET['group'],$_POST['membre']);
+								break;
+							default:
+								$layout = "group.php";
+						}
+					}
+				}
+				else
+				{
+					header('Location: /WeShare/Profil/Amis/');
+				}
 			}
 			break;
 		default:
