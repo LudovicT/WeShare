@@ -47,6 +47,7 @@
 						   <option value="chine">Chine</option>
 						   <option value="japon">Japon</option>
 					   </select>
+					   <br /><br />
 					<div class="field"><label>N° de Téléphone :</label><input type="text" name="phoneNumber" value=""/></div><br />
 					<div class="field"><label>Adresse mail :</label><input type="text" value=""/></div><br />
 					<div class="field"><label>Mot de Passe :</label><input type="text" name="password" type="password" value=""/></div><br />
