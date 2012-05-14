@@ -237,8 +237,10 @@ function getMember($userPseudo)
 	
 	$S_query = ("SELECT U.IdUser, U.Pseudo, U.RegisterDate, F.Status 
 				FROM Users AS U 
-				LEFT JOIN Friends AS F ON (U.IdUser = F.IdFriend AND F.IdUser = '".$userId."')
-				WHERE U.IdUser != '".$userId."'");
+				LEFT JOIN Friends AS F
+				ON (U.IdUser = F.IdFriend AND F.IdUser = '".$userId."')
+				WHERE U.IdUser != '".$userId."'
+				ORDER BY U.Pseudo");
 	$S_result = mysql_query($S_query, dbConnect());
 	if (!isset($S_result))
 	{
@@ -1244,15 +1246,30 @@ function getGroupUser($IdGroup)
 function addMemberToGroup($IdGroup, $IdUser)
 {
 	$error = 0;
-	$S_query = sprintf("INSERT INTO UserGroups 
-						(IdUser, IdGroup) 
-						VALUES ('%d', '%d')",
+	// verif déjà existant ?
+	$S_query = sprintf("SELECT IdUser, IdGroup
+						FROM UserGroups
+						WHERE IdUser ='%d' AND IdGroup ='%d'",
 						$IdUser,
 						$IdGroup);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
 	{
 		$error = 1;
+	}
+
+	if(mysql_fetch_assoc($S_result) == false)
+	{
+		$S_query = sprintf("INSERT INTO UserGroups
+							(IdUser, IdGroup)
+							VALUES ('%d', '%d')",
+							$IdUser,
+							$IdGroup);
+		$S_result = mysql_query($S_query, dbConnect());
+		if ($S_result == false)
+		{
+			$error = 1;
+		}
 	}
 	return ($error);
 }
