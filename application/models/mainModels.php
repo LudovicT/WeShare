@@ -1123,13 +1123,13 @@ Auteur : Vincent Ricard
 function deleteEvent($IdUser, $IdEvent)
 {
 	$error = 0;
-	$S_query = sprintf("DELETE FROM Events WHERE idOrganizer = '%d'
-						AND IdEvent = '%d'", $IdUser, $IdEvent);
-	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
-	{
+	$query = sprintf("DELETE FROM Events WHERE idOrganizer = '%d'
+					  AND IdEvent = '%d'", $IdUser, $IdEvent);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
 		$error = 1;
-	}
+	 }
 return ($error);
 }
 

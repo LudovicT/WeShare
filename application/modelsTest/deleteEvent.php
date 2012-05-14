@@ -11,9 +11,9 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$error = createEvent(getId('Dacove'), '2013-03-19', '21 rue saint-honoré', 'Orléan');
-if ($error == 0)
+$error = deleteEvent(getId('Dacove'), '1');
 {
+if ($error == 0)
 	echo ('OK');
 }
 else
