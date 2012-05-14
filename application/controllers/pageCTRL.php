@@ -29,12 +29,21 @@ if (isset($_GET["page"]))
 			include_once("filmCTRL.php");
 			break;
 		case "ficheFilm.php":
+		
 			if(isset($_GET['idMovie']) && !empty($_GET['idMovie']))
 			{
 				$movieInfo = getMovie($_GET['idMovie']);
-				$movieStaff = getMovieStaff($_GET['idMovie']);
-				$movieSupport = getMovieSupport($_GET['idMovie']);
-				$layout = "ficheFilm.php";
+				if(generateUrl($movieInfo['Name'])== $_GET['redirect'])
+				{
+					$movieStaff = getMovieStaff($_GET['idMovie']);
+					$movieSupport = getMovieSupport($_GET['idMovie']);
+					$layout = "ficheFilm.php";
+				}
+				else
+				{
+					$location = generateUrl($movieInfo['Name']);
+					header('Location: /WeShare/Film/'.$location.'/'.$_GET['idMovie'].'/');
+				}
 			}
 			else
 			{
@@ -63,6 +72,32 @@ if (isset($_GET["page"]))
 		case "deconnexion":
 			disconnect();
 			$layout = "home.php";
+			break;
+		case "group.php":
+			$userId = getId($user);
+			$group = getGroup($_GET['group']);
+			if($group['IdCreator'] == $userId)
+			{
+			if(isset($_GET['action']) && isset($_POST['membre']))
+			{
+				switch($_GET['action'])
+				{
+					case "add":
+						addMemberToGroup($_GET['group'],$_POST['membre']);
+						break;
+					case "delete":
+						deleteMemberFromGroup($_GET['group'],$_POST['membre']);
+						break;
+				}
+			}
+			$groupUser = getGroupUser($_GET['group']);
+			$membres = getMember($user);
+			$layout = "group.php";
+			}
+			else
+			{
+				header('Location: /WeShare/Profil/Amis/');
+			}
 			break;
 		default:
 			$layout = "erreur.php";
