@@ -1212,7 +1212,7 @@ function getGroup($IdGroup)
 	{
 		return -1;
 	}
-	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	$S_data = mysql_fetch_assoc($S_result);
 	return ($S_data);
 }
 
@@ -1237,7 +1237,7 @@ function getGroupUser($IdGroup)
 	{
 		return -1;
 	}
-	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
 }
 
