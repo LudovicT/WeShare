@@ -60,7 +60,8 @@ if (isset($_GET["page"]))
 			{
 				if(isset($_GET['addFriend']) && !empty($_GET['addFriend']))
 				{
-					requestFriendship($user, getId($_GET['addFriend']));
+					$userId = getId($user);
+					requestFriendship($userId, getId($_GET['addFriend']));
 				}
 				$membres = getMember($user);
 				$layout = "membres.php";

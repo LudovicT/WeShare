@@ -297,10 +297,8 @@ retourne :	0 si ok
 			2 si déjà existant
 auteur : Ludovic Tresson
 */
-function requestFriendship($userPseudo, $newFriend)
+function requestFriendship($userId, $newFriend)
 {
-	$userId = getId($userPseudo);
-	
 	//on cherche si l'amis n'est pas déjà rentrer
 	$S_query = ("SELECT U.IdUser, F.Status
 			FROM Users AS U
