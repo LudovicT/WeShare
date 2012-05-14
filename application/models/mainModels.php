@@ -1286,4 +1286,14 @@ function deleteMemberFromGroup($IdGroup, $IdUser)
 	}
 	return ($error);
 }
+
+function lastSqlAutoInc($table)
+{
+	$result = mysql_query("SHOW TABLE STATUS LIKE '$table'", dbConnect());
+	$row = mysql_fetch_array($result);
+	$nextId = $row['Auto_increment'];
+	mysql_free_result($result);
+	
+	return $nextId;
+}
 ?>
