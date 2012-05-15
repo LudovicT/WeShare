@@ -55,9 +55,8 @@ if(isset($_GET['action'])){
 			$layoutAdd = 2;
 			break;
 		case "films":
-			$layout="filmsProfil.php";
+			include_once("ProfilAddMovieCTRL.php");
 			$layoutAdd = 3;
-			$search = searchData(1,"");
 			break;
 		default:
 			$layout="profil.php";
