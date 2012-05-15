@@ -23,7 +23,7 @@
 	</tr>
 </table>
 <form id="edit-profile-form" method="post" action="/WeShare/Evenements/">
-<input type="hidden" value=<?php echo $event['IdEvent'] ?>>
+<input type="hidden" name="SuppEvent" value="<?php echo $event['IdEvent'] ?>">
 <input type="submit" value="Supprimer cet événement">
 </form>
 <!--<a href='/WeShare/Evenements/Supprimer/<?php echo $event['IdEvent'] ?>/' > Supprimer cet événement</a>-->
