@@ -436,15 +436,7 @@ function searchData($type, $recherche)
 			}
 			else
 			{
-				$S_nbRow = mysql_num_rows($S_result);
-				for ($i=0;$i< $S_nbRow;$i++)
-				{
-					$S_data[0][] = mysql_fetch_assoc($S_result);
-				}
-				if($S_nbRow == 0)
-				{
-					$S_data[1] = -1;
-				}
+				while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			}
 			
 			$S_query = ("SELECT * FROM Staffs WHERE LastName REGEXP '^.*".$recherche.".*$' OR FirstName REGEXP '^.*".$recherche.".*$'");
@@ -455,15 +447,7 @@ function searchData($type, $recherche)
 			}
 			else
 			{
-			$S_nbRow = mysql_num_rows($S_result);
-				for ($i=0;$i< $S_nbRow;$i++)
-				{
-					$S_data[1][] = mysql_fetch_assoc($S_result);
-				}
-				if($S_nbRow == 0)
-				{
-					$S_data[3] = -1;
-				}
+				while(($S_data[1][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[1]));
 			}
 			break;
 		case "1":
@@ -473,7 +457,7 @@ function searchData($type, $recherche)
 			{
 				return -1;
 			}
-			$S_data[0][] = mysql_fetch_assoc($S_result);
+			while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			break;
 		case "2":
 			$S_query = ("SELECT * FROM Staffs");
@@ -482,7 +466,7 @@ function searchData($type, $recherche)
 			{
 				return -1;
 			}
-			$S_data[1][] = mysql_fetch_assoc($S_result);
+			while(($S_data[1][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[1]));
 			break;
 		case "3":
 			$S_query = ("SELECT * FROM Movies WHERE Name REGEXP '^.*".$recherche.".*$'");
@@ -491,7 +475,7 @@ function searchData($type, $recherche)
 			{
 				return -1;
 			}
-			$S_data[0][] = mysql_fetch_assoc($S_result);
+			while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			break;
 		case "4":
 			$S_query = ("SELECT * FROM Staffs WHERE Name REGEXP '^.*".$recherche.".*$'");
@@ -500,7 +484,7 @@ function searchData($type, $recherche)
 			{
 				return -1;
 			}
-			$S_data[1][] = mysql_fetch_assoc($S_result);
+			while(($S_data[1][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[1]));
 			break;
 	}
 	return $S_data;

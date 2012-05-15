@@ -5,7 +5,7 @@
 					<div class="field"><label>Nom :</label><input type="text" name="lastName" id="lastName" value=""/></div><br />
 					<div class="field"><label>Prénom :</label><input type="text" name="firstName" id="firstName" value=""/></div><br />
 					<!--<div class="field"><label>Date de Naissace:</label><input type="text" value=""/></div><br />-->
-					<div class="field"><label>Date de Naissace:</label>
+					<div class="field"><label>Date de Naissance:</label>
 						<select name="day">
 							<?php
 								for($i=1;$i<32;$i++)

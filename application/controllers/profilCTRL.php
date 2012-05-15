@@ -57,6 +57,7 @@ if(isset($_GET['action'])){
 		case "films":
 			$layout="filmsProfil.php";
 			$layoutAdd = 3;
+			$search = searchData(1,"");
 			break;
 		default:
 			$layout="profil.php";
