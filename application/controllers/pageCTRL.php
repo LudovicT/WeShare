@@ -71,7 +71,11 @@ if (isset($_GET["page"]))
 						$layout = "newEvent.php";
 						break;
 					case "removeEvent":
-						$layout = "removeEvent.php";
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$event = getEvent($_GET['idEvent']);
+							$layout = "removeEvent.php";
+						}
 						break;
 					//case "editEvent":
 					default:

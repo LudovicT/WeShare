@@ -1,7 +1,15 @@
 <?php
 /*
-Fonction pour tester getEvents et donc de voir si les événements ont bien été
-récupérés
+La fonction getEvents permet de récupérer le(s) événement(s) concernant
+l'utilisateur, qu'il en soit le créateur ou qu'il y soit invité.
+
+$Events
+
+$Events (S): int
+-1	:	Il n'y a aucun événement concernant l'utilisateur
+-2	:	erreur requête invalide/problème avec la BDD
+$Events[2] (S): tableau contenant deux tableaux associatif contenant 
+tous les événements en question
 
 Auteur : Vincent Ricard
 */

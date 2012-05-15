@@ -10,7 +10,7 @@
 	<table border='1'>
 	<p>  Événements dont vous êtes l'organisateur : </p>
 	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
-	<th> Ville </th><th> Date de création </th>
+	<th> Ville </th><th> Date de création </th><th> Action </th>
 <?php
 	foreach($events[0] as $key)
 	{ 
@@ -34,6 +34,9 @@
 		<td>
 <?php echo($key['CreationDate']); ?>	
 		</td>
+		<td>	
+		<a href='/WeShare/Evenements/Supprimer/<?php echo $key['IdEvent'] ?>/' > Supprimer l'événement</a>
+		</td>
 	</tr>
 <?php
 	} ?>
@@ -42,7 +45,7 @@
 	<table border='1'> <br />
 	<p>  Événements auxquels vous participez : </p>
 	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
-	<th> Ville </th><th> Date de création </th><th> Status </th>
+	<th> Ville </th><th> Date de création </th><th> Status </th><th> Action </th>
 <?php
 	foreach($events[1] as $key1)
 	{
@@ -80,7 +83,9 @@
 	}
 		?>
 		</td>
-
+		<td>
+		<a href='/WeShare/Evenements/RefuserInvitation/' > Refuser l'invitation </a>
+		</td>
 	</tr>
 <?php
 		}
