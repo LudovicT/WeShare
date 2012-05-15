@@ -10,7 +10,7 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$error = createEvent(getId('Dacove'), '2013-03-19', '21 rue saint-honoré', 
+$error = createEvent(getId('Mackovich'), '2013-03-19', '21 rue saint-honoré', 
 					 'Orléan', 0);
 if ($error == 0)
 {
