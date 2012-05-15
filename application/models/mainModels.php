@@ -1160,12 +1160,12 @@ Fonction permettant de supprimer un groupe
 
 Auteur : Ludovic Tresson
 */
-function deleteGroup($IdUser, $groupName)
+function deleteGroup($IdUser, $groupId)
 {
 	$error = 0;
 	$S_query = sprintf("DELETE FROM Groups 
-						WHERE Name ='%s' AND IdCreator = '%d' ",
-						$groupName,
+						WHERE IdGroup ='%d' AND IdCreator = '%d' ",
+						$groupId,
 						$IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
