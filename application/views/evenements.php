@@ -51,43 +51,46 @@
 	{
 		foreach($events[0] as $key0)
 		{
+			if ($key0['IdEvent'] == $key1['IdEvent'])
+			{
 ?>
-	<tr>
-		<!-- <td>
-			<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
-		</td> -->
-		<td>
-<?php echo $key1['IdEvent']; ?>
-		</td>
-		<td>
-<?php echo $key0['DateOfEvent'];?>	
-		</td>
-		<td>
-<?php echo $key0['Address'] ?>
-		</td>
-		<td>
-<?php echo $key0['City'] ?>
-		</td>
-		<td>
-<?php echo $key0['CreationDate'] ?>
-		</td>
-		<td>
-<?php 
-	if ($key1['Status'] == '1')
-	{
-		echo ("Vous y participez");
-	}
-	else
-	{
-		echo ("Vous n'y participez pas");
-	}
-		?>
-		</td>
-		<td>
-		<a href='/WeShare/Evenements/RefuserInvitation/' > Refuser l'invitation </a>
-		</td>
-	</tr>
-<?php
+		<tr>
+			<!-- <td>
+				<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
+			</td> -->
+			<td>
+	<?php echo $key1['IdEvent']; ?>
+			</td>
+			<td>
+	<?php echo $key0['DateOfEvent'];?>	
+			</td>
+			<td>
+	<?php echo $key0['Address'] ?>
+			</td>
+			<td>
+	<?php echo $key0['City'] ?>
+			</td>
+			<td>
+	<?php echo $key0['CreationDate'] ?>
+			</td>
+			<td>
+	<?php 
+		if ($key1['Status'] == '1')
+		{
+			echo ("Vous y participez");
+		}
+		else
+		{
+			echo ("Vous n'y participez pas");
+		}
+			?>
+			</td>
+			<td>
+			<a href='/WeShare/Evenements/RefuserInvitation/' > Refuser l'invitation </a>
+			</td>
+		</tr>
+	<?php
+			}
 		}
 	}
 ?>

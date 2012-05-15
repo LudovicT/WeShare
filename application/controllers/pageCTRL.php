@@ -62,7 +62,7 @@ if (isset($_GET["page"]))
 			}
 			if (isset($_POST['SuppEvent']) && !empty($_POST['SuppEvent']))
 			{
-				deleteEvent($IdEvent);
+				deleteEvent($_POST['SuppEvent']);
 			}
 			$events = getEvents(getId($user));
 			$layout = "evenements.php";
