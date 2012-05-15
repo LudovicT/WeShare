@@ -24,7 +24,7 @@
 	foreach($membres as $key)
 	{ foreach($groupUser as $key2)
 		{
-			if ($key['Pseudo'] == $key2['Pseudo'])
+			if (isset($key) && $key['Pseudo'] == $key2['Pseudo'])
 			{
 				unset($key);
 			}

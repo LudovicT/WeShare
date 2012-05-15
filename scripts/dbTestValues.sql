@@ -88,6 +88,24 @@ INSERT INTO `usermovies` (`IdUser`, `IdMovie`, `Support`, `Available`) VALUES(11
 INSERT INTO `usermovies` (`IdUser`, `IdMovie`, `Support`, `Available`) VALUES(13, 1, 'cd', 1);
 INSERT INTO `usermovies` (`IdUser`, `IdMovie`, `Support`, `Available`) VALUES(14, 2, 'blue-ray', 1);
 
+--
+-- Contenu de la table `groups`
+--
+
+INSERT INTO `groups` (`IdGroup`, `Name`, `IdCreator`) VALUES (1, 'blablateurs', 1);
+
+--
+-- Contenu de la table `moviesmarks`
+--
+
+INSERT INTO `moviesmarks` (`IdMovie`, `IdUser`, `Mark`, `UserComment`) VALUES (1, 1, 3, 'C''est cool'), (2, 10, 0, 'm''ok'), (3, 11, 5, NULL);
+
+--
+-- Contenu de la table `usergroups`
+--
+
+INSERT INTO `usergroups` (`IdUser`, `IdGroup`) VALUES (1, 1), (10, 1);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

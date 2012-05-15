@@ -30,7 +30,7 @@ CreationDate		DATE 			NOT NULL,
 PollEnding			DATE,
 PRIMARY KEY(IdEvent),
 FOREIGN KEY (IdOrganizer)
-	REFERENCES Users(IdUser));
+	REFERENCES Users(IdUser) ON DELETE CASCADE);
 
 /* table EventsSelections */
 CREATE TABLE IF NOT EXISTS EventsSelections
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS EventsSelections
 IdMovie				INT 			NOT NULL,
 NumberOfVote		INT				DEFAULT 0,
 FOREIGN KEY (IdEvent)
-	REFERENCES Events(IdEvent));
+	REFERENCES Events(IdEvent) ON DELETE CASCADE);
 
 /* table EventsInvitations */
 CREATE TABLE IF NOT EXISTS EventsInvitations
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS EventsInvitations
 IdUser				INT 			NOT NULL,
 Status				INT				DEFAULT 0,
 FOREIGN KEY (IdEvent)
-	REFERENCES Events(IdEvent));
+	REFERENCES Events(IdEvent) ON DELETE CASCADE);
 
 /* table Friends */
 CREATE TABLE IF NOT EXISTS Friends
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Friends
 IdFriend			INT 			NOT NULL,
 Status				INT				DEFAULT 0,
 FOREIGN KEY (IdUser)
-	REFERENCES Users(IdUser));
+	REFERENCES Users(IdUser) ON DELETE CASCADE);
 
 /* table Groups */
 CREATE TABLE IF NOT EXISTS Groups
@@ -69,9 +69,9 @@ CREATE TABLE IF NOT EXISTS UserGroups
 (IdUser				INT 			NOT NULL,
 IdGroup				INT 			NOT NULL,
 FOREIGN KEY (IdUser)
-	REFERENCES Users(IdUser),
+	REFERENCES Users(IdUser) ON DELETE CASCADE,
 FOREIGN KEY (IdGroup)
-	REFERENCES Groups(IdGroup));
+	REFERENCES Groups(IdGroup) ON DELETE CASCADE);
 	
 	
 /* table PMs */
@@ -89,9 +89,9 @@ CREATE TABLE IF NOT EXISTS UserPMs
 IdPM				INT 			NOT NULL,
 ReadStatus			INT				DEFAULT 0,
 FOREIGN KEY (IdUser)
-	REFERENCES Users(IdUser),
+	REFERENCES Users(IdUser) ON DELETE CASCADE,
 FOREIGN KEY (IdPM)
-	REFERENCES PMs(IdPM));
+	REFERENCES PMs(IdPM) ON DELETE CASCADE);
 	
 /* table Movies */
 CREATE TABLE IF NOT EXISTS Movies
@@ -110,9 +110,9 @@ IdMovie				INT 			NOT NULL,
 Support				enum("cd","divx","blue-ray","dvd","mp3","mp4","avi","mkv","VHS")	NOT NULL,
 Available			INT				DEFAULT 1,
 FOREIGN KEY (IdUser)
-	REFERENCES Users(IdUser),
+	REFERENCES Users(IdUser) ON DELETE CASCADE,
 FOREIGN KEY (IdMovie)
-	REFERENCES Movies(IdMovie));
+	REFERENCES Movies(IdMovie) ON DELETE CASCADE);
 	
 /* table MoviesMarks */
 CREATE TABLE IF NOT EXISTS MoviesMarks
@@ -121,9 +121,9 @@ IdUser				INT 			NOT NULL,
 Mark				DOUBLE			DEFAULT 0,
 UserComment			LONGTEXT,
 FOREIGN KEY (IdUser)
-	REFERENCES Users(IdUser),
+	REFERENCES Users(IdUser) ON DELETE CASCADE,
 FOREIGN KEY (IdMovie)
-	REFERENCES Movies(IdMovie));
+	REFERENCES Movies(IdMovie) ON DELETE CASCADE);
 
 /* table Staffs */
 CREATE TABLE IF NOT EXISTS Staffs
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS MoviesStaffs
 IdStaff				INT 			NOT NULL,
 StaffWork			enum("acteur","realisateur"),
 FOREIGN KEY (IdStaff)
-	REFERENCES Staffs(IdStaff),
+	REFERENCES Staffs(IdStaff) ON DELETE CASCADE,
 FOREIGN KEY (IdMovie)
-	REFERENCES Movies(IdMovie));
+	REFERENCES Movies(IdMovie) ON DELETE CASCADE);
 

@@ -29,7 +29,6 @@ if (isset($_GET["page"]))
 			include_once("filmCTRL.php");
 			break;
 		case "ficheFilm.php":
-		
 			if(isset($_GET['idMovie']) && !empty($_GET['idMovie']))
 			{
 				$movieInfo = getMovie($_GET['idMovie']);
@@ -128,6 +127,10 @@ if (isset($_GET["page"]))
 			}
 			else
 			{
+				if(isset($_GET['action']) && $_GET['action'] == "supprimer")
+				{
+					deleteGroup($userId, $_GET['group']);
+				}
 				$group = getGroup($_GET['group']);
 				if($group['IdCreator'] == $userId)
 				{
