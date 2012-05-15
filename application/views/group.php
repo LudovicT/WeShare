@@ -1,5 +1,5 @@
 	<!--Start of home page-->
-	Identifiant du groupe : <?php var_dump($_GET);var_dump($_POST); echo $group['IdGroup'];?><br />
+	Identifiant du groupe : <?php echo $group['IdGroup'];?><br />
 	Nom du groupe : <?php echo $group['Name'];?><br />
 	Membres du groupe :
 	<table>
@@ -24,7 +24,7 @@
 	foreach($membres as $key)
 	{ foreach($groupUser as $key2)
 		{
-			if ($key['Pseudo'] == $key2['Pseudo'])
+			if (isset($key) && $key['Pseudo'] == $key2['Pseudo'])
 			{
 				unset($key);
 			}
