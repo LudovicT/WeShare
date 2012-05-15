@@ -818,11 +818,10 @@ if ($S_result == false)
 	$error = 1;
  }
  $IdEvent = mysql_fetch_row($S_result);
-
 // Requête qui ajoute l'utilisateur, par défaut, à la liste des participants
 $S_query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
 				  VALUES ('%d', '%d', '%d')", 
-				  $IdEvent, $IdUser, $Status);
+				  $IdEvent[0], $IdUser, $Status);
 $S_result = mysql_query($S_query, dbConnect());
 if ($S_result == false)
  {
