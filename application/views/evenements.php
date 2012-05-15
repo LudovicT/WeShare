@@ -86,7 +86,7 @@
 			?>
 			</td>
 			<td>
-			<a href='/WeShare/Evenements/RefuserInvitation/' > Refuser l'invitation </a>
+			<a href='/WeShare/Evenements/Refuser/<?php echo $key['IdEvent'] ?>/' > Refuser l'invitation </a>
 			</td>
 		</tr>
 	<?php
