@@ -44,26 +44,46 @@
 	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
 	<th> Ville </th><th> Date de création </th><th> Status </th>
 <?php
-	foreach($events[1] as $key)
+	foreach($events[1] as $key1)
 	{
+		foreach($events[0] as $key0)
+		{
 ?>
 	<tr>
 		<!-- <td>
 			<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
 		</td> -->
 		<td>
-<?php echo $key['IdEvent'] ?>
+<?php echo $key1['IdEvent']; ?>
+		</td>
+		<td>
+<?php echo $key0['DateOfEvent'];?>	
+		</td>
+		<td>
+<?php echo $key0['Address'] ?>
+		</td>
+		<td>
+<?php echo $key0['City'] ?>
+		</td>
+		<td>
+<?php echo $key0['CreationDate'] ?>
 		</td>
 		<td>
 <?php 
-	echo($key['DateOfEvent']);
-?>	
+	if ($key1['Status'] == '1')
+	{
+		echo ("Vous y participez");
+	}
+	else
+	{
+		echo ("Vous n'y participez pas");
+	}
+		?>
 		</td>
-		<td>
-<?php echo $key['Address'] ?>
-		</td>
+
 	</tr>
 <?php
+		}
 	}
 ?>
 	</table> <br> <br />
