@@ -41,6 +41,10 @@ if (isset($_GET["page"]))
 				$layout = "erreur.php";
 			}
 			break;
+		case "evenements.php":
+			$events = getEvents(getId($user));
+			$layout = "evenements.php";
+			break;
 		case "membres.php":
 			if(isset($_GET['profil']))
 			{
