@@ -49,6 +49,39 @@ if (isset($_GET["page"]))
 				$layout = "erreur.php";
 			}
 			break;
+		case "evenements.php":
+			if (isset($_POST['create_DateOfEvent']) && !empty($_POST['create_DateOfEvent']) &&
+				isset($_POST['create_Address']) && !empty($_POST['create_Address']) &&
+				isset($_POST['create_City']) && !empty($_POST['create_City']))
+			{
+				createEvent(getId($user),
+							$_POST['create_DateOfEvent'], 
+							$_POST['create_Address'],
+							$_POST['create_City'],
+							1);
+			}
+			$events = getEvents(getId($user));
+			$layout = "evenements.php";
+			if (isset($_GET['action']) && !empty($_GET['action']))
+			{
+				switch ($_GET['action'])
+				{
+					case "newEvent":
+						$layout = "newEvent.php";
+						break;
+					case "removeEvent":
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$event = getEvent($_GET['idEvent']);
+							$layout = "removeEvent.php";
+						}
+						break;
+					//case "editEvent":
+					default:
+					$layout = "erreur.php"; 
+				}
+			}
+			break;
 		case "membres.php":
 			if(isset($_GET['profil']))
 			{

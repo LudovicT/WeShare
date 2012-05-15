@@ -42,7 +42,7 @@ if ($result == false)
  // Requête qui ajoute l'utilisateur, par défaut, à la liste des participants
 $query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
 				  VALUES ('%d', '%d', '%d')", 
-				  $IdEvent, $IdUser, $Statuts);
+				  $IdEvent, $IdUser, $Status);
 $result = mysql_query($query, dbConnect());
 if ($result == false)
  {
