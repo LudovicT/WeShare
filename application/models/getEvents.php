@@ -28,7 +28,11 @@ function	getEvents($IdUser)
 	while(($Events[0][] = mysql_fetch_assoc($result)) || array_pop($Events[0]));
 
 // Requête pour récupérer les évenements auxquelles participe l'utilisateur 	
-	$query = sprintf("SELECT * FROM EventsInvitations WHERE IdUser = '%d'", 
+	$query = sprintf("SELECT EI.IdEvent, EI.IdUser, EI.Status, E.IdOrganizer 
+					  E.Dateofevent, E.Address, E.City
+					  FROM EventsInvitations AS EI
+					  LEFT JOIN Events AS E ON E.IdEvent = EI.IdEvent
+					  WHERE IdUser = '%d'", 
 					  $IdUser);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)

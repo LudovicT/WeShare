@@ -768,7 +768,11 @@ function	getEvents($IdUser)
 	while(($Events[0][] = mysql_fetch_assoc($S_result)) || array_pop($Events[0]));
 
 // Requête pour récupérer les évenements auxquelles participe l'utilisateur 	
-	$S_query = sprintf("SELECT * FROM EventsInvitations WHERE IdUser = '%d'", 
+	$S_query = sprintf("SELECT EI.IdEvent, EI.IdUser, EI.Status, E.IdOrganizer, 
+					  E.DateOfEvent, E.Address, E.City
+					  FROM EventsInvitations AS EI
+					  LEFT JOIN Events AS E ON E.IdEvent = EI.IdEvent
+					  WHERE IdUser = '%d'", 
 					  $IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
@@ -1324,26 +1328,13 @@ $error (S): int
 Auteur : Vincent Ricard
 */
 
-function leaveEvent($IdEvent, $IdUser)
+function changeStatusEvent($IdEvent, $IdUser, $Status)
 {
 	$error = 0;
 
-	// Requête qui vérifie si l'utilisateur a créé l'événement qu'il veut quitter
-	$query = sprintf("SELECT IdOrganizer FROM Events WHERE IdEvent = '%d'", 
-					  $IdEvent);
-	$result = mysql_query($query, dbConnect());
-	if ($result == false)
-	{
-		return (1);
-	}
-	$IdOrganizer = mysql_fetch_assoc($result);
-	if ($IdUser == $IdOrganizer['IdOrganizer']);
-	{
-		return (-1);
-	}
 	// Requête qui change le status de participation de l'utilisateur
 	$query = sprintf("UPDATE EventsInvitations 
-					  Set Status '-1' WHERE IdEvent = '%d'", $IdEvent);
+					  SET Status '%d' WHERE IdEvent = '%d'", $IdEvent, $Status);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {

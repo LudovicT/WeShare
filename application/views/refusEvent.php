@@ -1,5 +1,5 @@
-<h3>Refuser une invitation</h3>
-<p>Veuillez confirmer que vous ne voulez plus participer à cet événement : </p>
+<h3>Accepter ou Refuser une invitation</h3>
+<p>Veuillez confirmer si oui ou non vous voulez participer à cet événement : </p>
 
 <table border='1'>
 	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
@@ -22,8 +22,20 @@
 		</td>
 	</tr>
 </table>
-<form id="edit-profile-form" method="post" action="/WeShare/Evenements/">
-<input type="hidden" name="RefusEvent" value="<?php echo $event['IdEvent'] ?>">
-<input type="submit" value="Refuser l'invitation">
-</form>
+<table>
+	<tr>
+		<td>
+			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/">
+			<input type="hidden" name="RefusEvent" value="<?php echo $event['IdEvent'] ?>">
+			<input type="submit" value="Refuser l'invitation">
+			</form>
+		</td>
+		<td>
+			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/">
+			<input type="hidden" name="AcceptEvent" value="<?php echo $event['IdEvent'] ?>">
+			<input type="submit" value="Accepter l'invitation">
+			</form>
+		</td>
+	</tr>
+</table>
 <!--<a href='/WeShare/Evenements/Supprimer/<?php echo $event['IdEvent'] ?>/' > Supprimer cet événement</a>-->

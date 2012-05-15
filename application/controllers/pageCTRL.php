@@ -58,11 +58,11 @@ if (isset($_GET["page"]))
 							$_POST['create_DateOfEvent'], 
 							$_POST['create_Address'],
 							$_POST['create_City'],
-							1);
+							2);
 			}
 			if (isset($_POST['RefusEvent']) && !empty($_POST['RefusEvent']))
 			{
-				$result = leaveEvent(getId($user), $_POST['RefusEvent']);
+				changeStatusEvent(getId($user), $_POST['RefusEvent']);
 			}
 			if (isset($_POST['SuppEvent']) && !empty($_POST['SuppEvent']))
 			{
