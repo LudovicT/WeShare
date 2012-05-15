@@ -793,10 +793,10 @@ Auteur : Vincent Ricard
 
 function createEvent($IdUser, $DateOfEvent, $Address, $City, $Status)
 {
-$error = 0;
+	$error = 0;
 
-// Requête qui ajoute un événement et qui met l'utilisateur en tant que créateur
-$S_query = sprintf("INSERT INTO Events 
+	// Requête qui ajoute un événement et qui met l'utilisateur en tant que créateur
+	$S_query = sprintf("INSERT INTO Events 
 				  (DateOfEvent, Address, City, CreationDate, IdOrganizer) 
 				  VALUES ('%s', '%s', '%s', '%s', '%d')",
 				  $DateOfEvent,
@@ -804,30 +804,30 @@ $S_query = sprintf("INSERT INTO Events
 				  $City,
 				  date("y-m-d"),
 				  $IdUser);
-$S_result = mysql_query($S_query, dbConnect());
-if ($S_result == false)
- {
-	$error = 1;
- }
- 
-// Requête qui récupère l'IdEvent de l'événement qui vient d'être créé
-$S_query = sprintf("SELECT LAST_INSERT_ID()");
-$S_result = mysql_query($S_query, dbConnect());
-if ($S_result == false)
- {
-	$error = 1;
- }
- $IdEvent = mysql_fetch_row($S_result);
-// Requête qui ajoute l'utilisateur, par défaut, à la liste des participants
-$S_query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
-				  VALUES ('%d', '%d', '%d')", 
-				  $IdEvent[0], $IdUser, $Status);
-$S_result = mysql_query($S_query, dbConnect());
-if ($S_result == false)
- {
-	$error = 1;
- }
-return ($error);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	 {
+		$error = 1;
+	 }
+	 
+	// Requête qui récupère l'IdEvent de l'événement qui vient d'être créé
+	$S_query = sprintf("SELECT LAST_INSERT_ID()");
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	 {
+		$error = 1;
+	 }
+	 $IdEvent = mysql_fetch_row($S_result);
+	// Requête qui ajoute l'utilisateur, par défaut, à la liste des participants
+	$S_query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
+					  VALUES ('%d', '%d', '%d')", 
+					  $IdEvent[0], $IdUser, $Status);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	 {
+		$error = 1;
+	 }
+	return ($error);
 }
 
 /*
@@ -1106,15 +1106,6 @@ Auteur : Vincent Ricard
 function deleteEvent($IdEvent)
 {
 	$error = 0;
-	
-// Requête qui supprime d'abord l'événement dans la table "EventsInvitations"
-	$query = sprintf("DELETE FROM EventsInvitations WHERE IdEvent = '%d'", 
-					  $IdEvent);	
-	$result = mysql_query($query, dbConnect());
-	if ($result == false)
-	 {
-		$error = 1;
-	 }
 
 // Requête qui supprime enfin l'événement dans la table "Events"
 	$query = sprintf("DELETE FROM Events WHERE IdEvent = '%d'", $IdEvent);
