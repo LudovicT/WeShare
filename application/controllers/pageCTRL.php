@@ -61,6 +61,10 @@ if (isset($_GET["page"]))
 							$_POST['create_City'],
 							1);
 			}
+			if (isset($_POST['SuppEvent']) && !empty($_POST['SuppEvent']))
+			{
+				deleteEvent($IdEvent);
+			}
 			$events = getEvents(getId($user));
 			$layout = "evenements.php";
 			if (isset($_GET['action']) && !empty($_GET['action']))
@@ -73,7 +77,8 @@ if (isset($_GET["page"]))
 					case "removeEvent":
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{
-							$event = getEvent($_GET['idEvent']);
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
 							$layout = "removeEvent.php";
 						}
 						break;
