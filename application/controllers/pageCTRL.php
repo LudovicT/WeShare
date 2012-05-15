@@ -29,12 +29,21 @@ if (isset($_GET["page"]))
 			include_once("filmCTRL.php");
 			break;
 		case "ficheFilm.php":
+		
 			if(isset($_GET['idMovie']) && !empty($_GET['idMovie']))
 			{
 				$movieInfo = getMovie($_GET['idMovie']);
-				$movieStaff = getMovieStaff($_GET['idMovie']);
-				$movieSupport = getMovieSupport($_GET['idMovie']);
-				$layout = "ficheFilm.php";
+				if(generateUrl($movieInfo['Name'])== $_GET['redirect'])
+				{
+					$movieStaff = getMovieStaff($_GET['idMovie']);
+					$movieSupport = getMovieSupport($_GET['idMovie']);
+					$layout = "ficheFilm.php";
+				}
+				else
+				{
+					$location = generateUrl($movieInfo['Name']);
+					header('Location: /WeShare/Film/'.$location.'/'.$_GET['idMovie'].'/');
+				}
 			}
 			else
 			{
@@ -55,7 +64,8 @@ if (isset($_GET["page"]))
 			{
 				if(isset($_GET['addFriend']) && !empty($_GET['addFriend']))
 				{
-					requestFriendship($user, getId($_GET['addFriend']));
+					$userId = getId($user);
+					requestFriendship($userId, getId($_GET['addFriend']));
 				}
 				$membres = getMember($user);
 				$layout = "membres.php";
@@ -67,6 +77,50 @@ if (isset($_GET["page"]))
 		case "deconnexion":
 			disconnect();
 			$layout = "home.php";
+			break;
+		case "group.php":
+			$userId = getId($user);
+			if(isset($_POST['Nom']) && !empty($_POST['Nom']))
+			{
+				$error = createGroup($userId,$_POST['Nom']);
+				if($error ==0)
+				{
+					header('Location: /WeShare/Groupe/'.generateUrl($_POST['Nom']).'/'.(lastSqlAutoInc("Groups")-1).'/');
+				}
+			}
+			if(isset($_GET['action']) && $_GET['action'] == "createGroup")
+			{
+				$layout = "createGroup.php";
+			}
+			else
+			{
+				$group = getGroup($_GET['group']);
+				if($group['IdCreator'] == $userId)
+				{
+					$groupUser = getGroupUser($_GET['group']);
+					$membres = getMember($user);
+					$layout = "group.php";
+					
+					if(isset($_GET['action']) && isset($_POST['membre']))
+					{
+						switch($_GET['action'])
+						{
+							case "add":
+								addMemberToGroup($_GET['group'],$_POST['membre']);
+								break;
+							case "delete":
+								deleteMemberFromGroup($_GET['group'],$_POST['membre']);
+								break;
+							default:
+								$layout = "group.php";
+						}
+					}
+				}
+				else
+				{
+					header('Location: /WeShare/Profil/Amis/');
+				}
+			}
 			break;
 		default:
 			$layout = "erreur.php";

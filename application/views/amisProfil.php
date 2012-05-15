@@ -45,7 +45,7 @@
 	{
 		?>
 		<p>
-			Voici vos groupes d'amis :
+			Voici vos demandes d'amis :
 		</p>
 		<table>
 		<?php
@@ -106,12 +106,15 @@
 			</tr><?php
 		}
 		?></table>
+		<br /> <br />
+		<a href='/WeShare/Groupe/Creer/'><button>Crer un groupe</button></a>
 	<?php
 	}
 	else
 	{
 		?>
-		Vous n'avez pas encore de groupe d'amis.<br /><br /><br /><br />
+		Vous n'avez pas encore de groupe d'amis.<br /><br />
+		<a href='/WeShare/Groupe/Creer/'><button>Crer un groupe</button></a>
 		<?php
 	}
 	?>

@@ -237,8 +237,10 @@ function getMember($userPseudo)
 	
 	$S_query = ("SELECT U.IdUser, U.Pseudo, U.RegisterDate, F.Status 
 				FROM Users AS U 
-				LEFT JOIN Friends AS F ON (U.IdUser = F.IdFriend AND F.IdUser = '".$userId."')
-				WHERE U.IdUser != '".$userId."'");
+				LEFT JOIN Friends AS F
+				ON (U.IdUser = F.IdFriend AND F.IdUser = '".$userId."')
+				WHERE U.IdUser != '".$userId."'
+				ORDER BY U.Pseudo");
 	$S_result = mysql_query($S_query, dbConnect());
 	if (!isset($S_result))
 	{
@@ -295,10 +297,8 @@ retourne :	0 si ok
 			2 si déjà existant
 auteur : Ludovic Tresson
 */
-function requestFriendship($userPseudo, $newFriend)
+function requestFriendship($userId, $newFriend)
 {
-	$userId = getId($userPseudo);
-	
 	//on cherche si l'amis n'est pas déjà rentrer
 	$S_query = ("SELECT U.IdUser, F.Status
 			FROM Users AS U
@@ -1212,7 +1212,7 @@ function getGroup($IdGroup)
 	{
 		return -1;
 	}
-	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	$S_data = mysql_fetch_assoc($S_result);
 	return ($S_data);
 }
 
@@ -1237,22 +1237,37 @@ function getGroupUser($IdGroup)
 	{
 		return -1;
 	}
-	while(($S_data = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
 }
 
 function addMemberToGroup($IdGroup, $IdUser)
 {
 	$error = 0;
-	$S_query = sprintf("INSERT INTO UserGroups 
-						(IdUser, IdGroup) 
-						VALUES ('%d', '%d')",
+	// verif déjà existant ?
+	$S_query = sprintf("SELECT IdUser, IdGroup
+						FROM UserGroups
+						WHERE IdUser ='%d' AND IdGroup ='%d'",
 						$IdUser,
 						$IdGroup);
 	$S_result = mysql_query($S_query, dbConnect());
 	if ($S_result == false)
 	{
 		$error = 1;
+	}
+
+	if(mysql_fetch_assoc($S_result) == false)
+	{
+		$S_query = sprintf("INSERT INTO UserGroups
+							(IdUser, IdGroup)
+							VALUES ('%d', '%d')",
+							$IdUser,
+							$IdGroup);
+		$S_result = mysql_query($S_query, dbConnect());
+		if ($S_result == false)
+		{
+			$error = 1;
+		}
 	}
 	return ($error);
 }
@@ -1270,5 +1285,15 @@ function deleteMemberFromGroup($IdGroup, $IdUser)
 		$error = 1;
 	}
 	return ($error);
+}
+
+function lastSqlAutoInc($table)
+{
+	$result = mysql_query("SHOW TABLE STATUS LIKE '$table'", dbConnect());
+	$row = mysql_fetch_array($result);
+	$nextId = $row['Auto_increment'];
+	mysql_free_result($result);
+	
+	return $nextId;
 }
 ?>

@@ -57,7 +57,7 @@ else
 	include_once("pageCTRL.php");
 }
 /* affichage */
-if ($layout == "register.php" || $layout == "login.php" || $layout == "home.php")
+if($layout == "register.php" || $layout == "login.php" || $layout == "home.php")
 {
 	include_once(DIR_VIEWS."/smallHeader.php");
 }

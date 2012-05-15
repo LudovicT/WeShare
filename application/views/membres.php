@@ -14,7 +14,7 @@
 		{ ?>
 			<tr>
 				<td>
-					<a href='/WeShare/Membres/<?php echo $key['Pseudo']; ?>/'><?php echo $key['Pseudo'] ?></a>
+					<a href='/WeShare/Membres/<?php echo generateUrl($key['Pseudo']); ?>/'><?php echo $key['Pseudo'] ?></a>
 				</td>
 				<td>
 					<?php echo $key['RegisterDate'] ?>
@@ -29,7 +29,7 @@
 				if($key['Status'] == null)
 				{
 				?>
-					<a href='/WeShare/Membres/AddFriend/<?php echo $key['Pseudo'] ?>/'>
+					<a href='/WeShare/Membres/AddFriend/<?php echo generateUrl($key['Pseudo']) ?>/'>
 						<img src='<?php echo DIR_PUBLICS; ?>/images/plusIcon.jpg'>
 					</a>
 				<?php
