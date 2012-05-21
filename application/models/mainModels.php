@@ -1340,6 +1340,5 @@ function changeStatusEvent($IdEvent, $IdUser, $Status)
 	 {
 		return (1);
 	 }
-	return ($error);
 }
 ?>
