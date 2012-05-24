@@ -119,6 +119,9 @@ if (isset($_GET["page"]))
 		case "profil.php":
 			include_once("profilCTRL.php");
 			break;
+		case "filmsProfil.php":
+			include_once("ProfilAddMovieCTRL.php");
+			break;
 		case "deconnexion":
 			disconnect();
 			$layout = "home.php";

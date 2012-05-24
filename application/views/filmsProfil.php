@@ -1,4 +1,5 @@
 Films : 
+<form method="post" action="/WeShare/Profil/Films/Ajouter/<?php echo $movies['IdMovie']?>/">
 <SELECT name='Movie' onchange='this.form.submit()'>
 <?php
 	foreach($movies as $key2)
@@ -27,3 +28,4 @@ Support :
 <br />
 
 <input type='submit' value='Ajouter'>
+</form>
