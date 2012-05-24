@@ -1,17 +1,19 @@
 Films : 
+<SELECT name='Movie' onchange='this.form.submit()'>
 <?php
-	foreach($movie as $key)
+	foreach($movies as $key2)
 	{
-		if(isset($key))
+		if(isset($key2))
 		{
 		?>
 			<option value='<?php echo $key['IdMovie'];?>'>
-			<?php echo $key['Films'];?>
+			<?php echo $key['Name'];?>
 			</option>
 		<?php 
 		}
 	} ?>
 <br />
+</SELECT>
 
 
 Support : 
