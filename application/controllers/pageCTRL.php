@@ -60,11 +60,18 @@ if (isset($_GET["page"]))
 							$_POST['create_City'],
 							2);
 			}
-			if (isset($_POST['changeStatusEvent']) && 
-				!empty($_POST['changeStatusEvent']))
+			if (isset($_POST['RefusEvent']) && !empty($_POST['RefusEvent']))
 			{
-				changeStatusEvent(getId($user), $_POST['RefusEvent']);
+				changeStatusEvent($_POST['RefusEvent'], getId($user), '-1');
 			}
+			if (isset($_POST['AcceptEvent']) && !empty($_POST['AcceptEvent']))
+			{
+				changeStatusEvent($_POST['AcceptEvent'], getId($user), '1');
+			}
+				if (isset($_POST['IsNotSure']) && !empty($_POST['IsNotSure']))
+			{
+				changeStatusEvent($_POST['IsNotSure'], getId($user), '0');
+			}		
 			if (isset($_POST['SuppEvent']) && !empty($_POST['SuppEvent']))
 			{
 				deleteEvent($_POST['SuppEvent']);
@@ -93,6 +100,7 @@ if (isset($_GET["page"]))
 							$event = getEvent($IdEvent);
 							$layout = "changeStatusEvent.php";
 						}
+						break;
 					case "viewEvent":
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{

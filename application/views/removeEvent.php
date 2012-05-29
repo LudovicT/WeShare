@@ -1,4 +1,4 @@
-<h3>Supprimer un événement</h3>
+<h3>Supprimer l'événement N°<?php echo $event['IdEvent'] ?></h3>
 <p>Veuillez confirmer la suppression de l'événement : </p>
 
 <table border='1'>

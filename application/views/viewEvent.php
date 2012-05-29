@@ -1,5 +1,5 @@
-<h3>Détail sur l'événement N° <?php echo $evemt['idEvent'] ?></h3>
-<p>Veuillez confirmer la suppression de l'événement : </p>
+<h3>Détail sur l'événement N° <?php echo $event['IdEvent'] ?></h3>
+<p>Ici vous pouvez ajouter un ou plusieurs films et de même pour vos amis</p>
 
 <table border='1'>
 	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
@@ -22,8 +22,7 @@
 		</td>
 	</tr>
 </table>
-<form id="edit-profile-form" method="post" action="/WeShare/Evenements/">
-<input type="hidden" name="SuppEvent" value="<?php echo $event['IdEvent'] ?>">
-<input type="submit" value="Supprimer cet événement">
-</form>
+
+<br /><p>Liste des vos amis qui participent à cet événement :</p>
+
 <!--<a href='/WeShare/Evenements/Supprimer/<?php echo $event['IdEvent'] ?>/' > Supprimer cet événement</a>-->

@@ -1,18 +1,13 @@
 <?php
 /*
-La fonction changeStatusEvent permet à l'utilisateur de son status
-sur un événement donné. Ainsi, il peut choisir entre
-- refuser d'y participer
-- accepter l'invitation
-- se décider plus tard.
-
-Cela concerne bien évidemment que les événements où il est invité
-et non dont il serait l'organisateur.
+La fonction getFriendsEvent permet à l'organisateur d'un événement de
+récupérer la liste de ses amis qui participent à cet événement.
 
 $error
 
 $error (S): int
--1	:	erreur requête invalide/problème avec la BDD;
+-1	:	l'utilisateur tente de quitter un événement qu'il a créé
+1	:	erreur requête invalide/problème avec la BDD;
 0	:	OK
 
 Auteur : Vincent Ricard

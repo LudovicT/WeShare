@@ -11,7 +11,7 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$error = leaveEvent(getId('Mackovich'), '3');
+$error = changeStatusEvent( '7', '18', '1');
 if ($error == 0)
 {
 	echo ('OK');
