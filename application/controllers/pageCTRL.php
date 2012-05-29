@@ -134,9 +134,6 @@ if (isset($_GET["page"]))
 				$group = getGroup($_GET['group']);
 				if($group['IdCreator'] == $userId)
 				{
-					$groupUser = getGroupUser($_GET['group']);
-					$membres = getMember($user);
-					$layout = "group.php";
 					
 					if(isset($_GET['action']) && isset($_POST['membre']))
 					{
@@ -152,6 +149,9 @@ if (isset($_GET["page"]))
 								$layout = "group.php";
 						}
 					}
+					$groupUser = getGroupUser($_GET['group']);
+					$membres = getMember($user);
+					$layout = "group.php";
 				}
 				else
 				{

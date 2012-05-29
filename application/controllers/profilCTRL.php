@@ -7,7 +7,6 @@ if(isset($_GET['action'])){
 	switch ($_GET['action'])
 	{
 		case "profil":
-			$user = $_SESSION['User'];
 			$layout="profil.php";
 			$layoutAdd = 0;
 			break;
@@ -17,7 +16,7 @@ if(isset($_GET['action'])){
 				switch ($_GET['subaction'])
 				{
 				case "changeprofil":
-					$IdUser = getId($_SESSION['User']);
+					$IdUser = getId($user);
 					include_once("changeProfilCTRL.php");
 					break;
 				}
@@ -29,7 +28,7 @@ if(isset($_GET['action'])){
 			}
 			break;
 		case "amis":
-			$userId = getId($_SESSION['User']);
+			$userId = getId($user);
 			//gestion des ajouts d'amis
 			if(isset($_GET['suppr']) && !empty($_GET['suppr']))
 			{
@@ -57,6 +56,11 @@ if(isset($_GET['action'])){
 		case "films":
 			include_once("ProfilAddMovieCTRL.php");
 			$layoutAdd = 3;
+			break;
+		case "mp":
+			include_once("mpCTRL.php");
+			$layout="mp.php";
+			$layoutAdd = 4;
 			break;
 		default:
 			$layout="profil.php";

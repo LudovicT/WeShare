@@ -64,7 +64,7 @@
 	</form>
 	<br />
 	<form method="post" action="/WeShare/Groupe/Supprimer/<?php echo $group['IdGroup']?>/">
-	<input type='submit' value='Suprimer le groupe'> Attention, cette action est définitive !
+	<input type='submit' value='Supprimer le groupe'> Attention, cette action est définitive !
 	</form>
 	<!--End of home page-->
 	
