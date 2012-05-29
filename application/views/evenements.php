@@ -36,6 +36,8 @@
 		</td>
 		<td>	
 		<a href='/WeShare/Evenements/Supprimer/<?php echo $key['IdEvent'] ?>/' > Supprimer l'événement</a>
+		 ou 
+		<a href='/WeShare/Evenements/View/<?php echo $key['IdEvent'] ?>/' > Voir plus de détails</a>
 		</td>
 	</tr>
 <?php
@@ -45,52 +47,64 @@
 	<table border='1'> <br />
 	<p>  Événements auxquels vous participez : </p>
 	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
-	<th> Ville </th><th> Date de création </th><th> Status </th><th> Action </th>
+	<th> Ville </th><th> Status </th><th> Action </th>
 <?php
-	foreach($events[1] as $key1)
+	foreach($events[1] as $key)
 	{
-		foreach($events[0] as $key0)
-		{
-			if ($key0['IdEvent'] == $key1['IdEvent'])
-			{
 ?>
 		<tr>
 			<!-- <td>
 				<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
 			</td> -->
 			<td>
-	<?php echo $key1['IdEvent']; ?>
+	<?php echo $key['IdEvent']; ?>
 			</td>
 			<td>
-	<?php echo $key0['DateOfEvent'];?>	
+	<?php echo $key['DateOfEvent'];?>	
 			</td>
 			<td>
-	<?php echo $key0['Address'] ?>
+	<?php echo $key['Address'] ?>
 			</td>
 			<td>
-	<?php echo $key0['City'] ?>
-			</td>
-			<td>
-	<?php echo $key0['CreationDate'] ?>
+	<?php echo $key['City'] ?>
 			</td>
 			<td>
 	<?php 
-		if ($key1['Status'] == '1')
+		if ($key['Status'] == '1')
 		{
 			echo ("Vous y participez");
 		}
-		else
+		else if ($key['Status'] == '0')
 		{
-			echo ("Vous n'y participez pas");
+			echo ("Vous n'avez pas encore décidé");
 		}
-			?>
+		else if ($key['Status'] == '2')
+		{
+			echo ("Vous avez créé cet événement");
+		}
+		else if ($key['Status'] == '-1')
+		{
+			echo ("Vous avez refusé d'y participer");
+		}
+		if ($key['Status'] != '2')
+		{
+		?>
 			</td>
 			<td>
-			<a href='/WeShare/Evenements/RefuserInvitation/' > Refuser l'invitation </a>
+			<a href='/WeShare/Evenements/Status/<?php echo $key['IdEvent'] ?>/' > Changer mon status </a>
 			</td>
 		</tr>
-	<?php
-			}
+		<?php
+		}
+		else
+		{
+		?>
+			</td>
+			<td>
+			Vous êtes l'organisateur
+			</td>
+		</tr>
+		<?php
 		}
 	}
 ?>

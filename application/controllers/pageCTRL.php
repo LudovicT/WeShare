@@ -58,8 +58,20 @@ if (isset($_GET["page"]))
 							$_POST['create_DateOfEvent'], 
 							$_POST['create_Address'],
 							$_POST['create_City'],
-							1);
+							2);
 			}
+			if (isset($_POST['RefusEvent']) && !empty($_POST['RefusEvent']))
+			{
+				changeStatusEvent($_POST['RefusEvent'], getId($user), '-1');
+			}
+			if (isset($_POST['AcceptEvent']) && !empty($_POST['AcceptEvent']))
+			{
+				changeStatusEvent($_POST['AcceptEvent'], getId($user), '1');
+			}
+				if (isset($_POST['IsNotSure']) && !empty($_POST['IsNotSure']))
+			{
+				changeStatusEvent($_POST['IsNotSure'], getId($user), '0');
+			}		
 			if (isset($_POST['SuppEvent']) && !empty($_POST['SuppEvent']))
 			{
 				deleteEvent($_POST['SuppEvent']);
@@ -79,6 +91,22 @@ if (isset($_GET["page"]))
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
 							$layout = "removeEvent.php";
+						}
+						break;
+					case "changeStatusEvent":
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$layout = "changeStatusEvent.php";
+						}
+						break;
+					case "viewEvent":
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$layout = "viewEvent.php";
 						}
 						break;
 					//case "editEvent":
@@ -106,6 +134,9 @@ if (isset($_GET["page"]))
 			break;
 		case "profil.php":
 			include_once("profilCTRL.php");
+			break;
+		case "filmsProfil.php":
+			include_once("ProfilAddMovieCTRL.php");
 			break;
 		case "deconnexion":
 			disconnect();
