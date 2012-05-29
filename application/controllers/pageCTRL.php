@@ -60,7 +60,8 @@ if (isset($_GET["page"]))
 							$_POST['create_City'],
 							2);
 			}
-			if (isset($_POST['RefusEvent']) && !empty($_POST['RefusEvent']))
+			if (isset($_POST['changeStatusEvent']) && 
+				!empty($_POST['changeStatusEvent']))
 			{
 				changeStatusEvent(getId($user), $_POST['RefusEvent']);
 			}
@@ -85,12 +86,19 @@ if (isset($_GET["page"]))
 							$layout = "removeEvent.php";
 						}
 						break;
-					case "refusEvent":
+					case "changeStatusEvent":
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
-							$layout = "refusEvent.php";
+							$layout = "changeStatusEvent.php";
+						}
+					case "viewEvent":
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$layout = "viewEvent.php";
 						}
 						break;
 					//case "editEvent":

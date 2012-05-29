@@ -16,10 +16,6 @@ if ($error == 0)
 {
 	echo ('OK');
 }
-else if ($error == -1)
-{
-	echo ("haha, bien tenté l'ami.");
-}
 else
 {
 	echo('<br />FAIL :{'.mysql_error().'}');
