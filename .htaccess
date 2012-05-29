@@ -25,7 +25,7 @@ RewriteRule   ^Films/EditerFilm/.*/([0-9]+)([./.]*)$   /WeShare/index.php?page=f
 RewriteRule   ^Films/Suppression/([0-9]+)([./.]*)$   /WeShare/index.php?page=films.php&action=deleteMovie&idMovie=$1 [NC]
 RewriteRule   ^Evenements/Ajouter([./.]*)$   /WeShare/index.php?page=evenements.php&action=newEvent [NC]
 RewriteRule   ^Evenements/Supprimer/([0-9]+)([./.]*)$   /WeShare/index.php?page=evenements.php&action=removeEvent&idEvent=$1 [NC]
-RewriteRule   ^Evenements/Refuser/([0-9]+)([./.]*)$   /WeShare/index.php?page=evenements.php&action=refusEvent&idEvent=$1 [NC]
+RewriteRule   ^Evenements/Status/([0-9]+)([./.]*)$   /WeShare/index.php?page=evenements.php&action=changeStatusEvent&idEvent=$1 [NC]
 RewriteRule   ^Evenements([./.]*)$   /WeShare/index.php?page=evenements.php [NC]
 RewriteRule   ^Deconnexion([./.]*)$ /Weshare/index.php?page=deconnexion [NC]
 RewriteRule   ^Profil([./.]*)$   /WeShare/index.php?page=profil.php [NC]
