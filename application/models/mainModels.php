@@ -1470,7 +1470,7 @@ $error
 $error (S): int
 -1	:	erreur requête invalide/problème avec la BDD;
 0
-
+*/
 function changeStatusEvent($IdEvent, $IdUser, $Status)
 {
 	$error = 0;
