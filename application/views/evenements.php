@@ -36,6 +36,8 @@
 		</td>
 		<td>	
 		<a href='/WeShare/Evenements/Supprimer/<?php echo $key['IdEvent'] ?>/' > Supprimer l'événement</a>
+		 ou 
+		<a href='/WeShare/Evenements/View/<?php echo $key['IdEvent'] ?>/' > Voir plus de détails</a>
 		</td>
 	</tr>
 <?php
@@ -74,7 +76,7 @@
 		}
 		else if ($key['Status'] == '0')
 		{
-			echo ("Vous n'avez pas répondu");
+			echo ("Vous n'avez pas encore décidé");
 		}
 		else if ($key['Status'] == '2')
 		{
@@ -89,7 +91,7 @@
 		?>
 			</td>
 			<td>
-			<a href='/WeShare/Evenements/Refuser/<?php echo $key['IdEvent'] ?>/' > Changer mon status </a>
+			<a href='/WeShare/Evenements/Status/<?php echo $key['IdEvent'] ?>/' > Changer mon status </a>
 			</td>
 		</tr>
 		<?php

@@ -36,6 +36,12 @@
 			<input type="submit" value="Accepter l'invitation">
 			</form>
 		</td>
+		<td>
+			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/">
+			<input type="hidden" name="IsNotSure" value="<?php echo $event['IdEvent'] ?>">
+			<input type="submit" value="Décider plus tard">
+			</form>
+		</td>
 	</tr>
 </table>
 <!--<a href='/WeShare/Evenements/Supprimer/<?php echo $event['IdEvent'] ?>/' > Supprimer cet événement</a>-->

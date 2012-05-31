@@ -110,7 +110,7 @@ function register($register_pseudo,
 	$S_result = mysql_query("SELECT Pseudo FROM Users
 						WHERE Pseudo='" . $register_pseudo . "'", dbConnect());
 	$S_isPseudoInUse = mysql_num_rows($S_result);
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		$error[3] = 1;
 		echo "coucou1";
@@ -139,7 +139,7 @@ function register($register_pseudo,
 	$S_result = mysql_query("SELECT Mail FROM Users
 						WHERE Mail='" . $register_email . "'", dbConnect());
 	$S_isMailInUse = mysql_num_rows($S_result);
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		$error[3] = 1;
 		echo "coucou2";
@@ -177,7 +177,7 @@ function register($register_pseudo,
 						$register_country,
 -						$register_phoneNumber);
 		$S_result = mysql_query($S_query, dbConnect());
-		if (!isset($S_result))
+		if ($S_result == false)
 		{
 			$error[3] = 1;
 		echo "coucou3";
@@ -242,7 +242,7 @@ function getMember($userPseudo)
 				WHERE U.IdUser != '".$userId."'
 				ORDER BY U.Pseudo");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		return -1;
 	}
@@ -257,7 +257,7 @@ function getMember($userPseudo)
 }
 
 /*
-focntion qui transforme la date de yyyy-mm-dd a dd/mm/yyyy-mm-dd
+fonction qui transforme la date de yyyy-mm-dd a dd/mm/yyyy-mm-dd
 
 auteur : Ludovic Tresson
 */
@@ -267,6 +267,49 @@ function formateDate($date)
 	$newDate = $day."/".$month."/".$year;
 	
 	return $newDate;
+}
+
+/*
+fonction qui transforme l'heure en fonction d'un format
+$format :	0 -> HH/MM/SS
+			1 -> HH/MM
+			2 -> HHhMMmSSs
+			3 -> HHmMM
+
+auteur : Ludovic Tresson
+*/
+function formateHour($hour,$format)
+{
+	list($HH, $MM, $SS) = explode(':', $hour);
+	switch($format)
+	{
+		case "0":
+			$newtime = $HH."/".$MM."/".$SS;
+		break;
+		case "1":
+			$newtime = $HH."/".$MM;
+		break;
+		case "2":
+			$newtime = $HH."h".$MM."m".$SS."s";
+		break;
+		case "3":
+			$newtime = $HH."h".$MM;
+		break;
+	}
+	return $newtime;
+}
+/*
+fonction qui transforme la date de "yyyy-mm-dd HH:MM:SS" a "dd/mm/yyyy, HHhMM"
+
+auteur : Ludovic Tresson
+*/
+function formateDateTime($date)
+{
+	list($year,$hour) = explode(' ', $date);
+	$year = formateDate($year);
+	$hour = formateHour($hour,'3');
+	$time = $year.", ".$hour;
+	return $time;
 }
 
 /* 
@@ -305,7 +348,7 @@ function requestFriendship($userId, $newFriend)
 			LEFT JOIN Friends AS F ON (F.IdFriend = '".$newFriend."' AND F.IdUser = '".$userId."')
 			WHERE U.IdUser = '".$userId."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		return 1;
 	}
@@ -318,7 +361,7 @@ function requestFriendship($userId, $newFriend)
 		$S_query = ("INSERT INTO Friends (IdUser, IdFriend, Status)
 						VALUES ('".$userId."','".$newFriend."','0')");
 		$S_result = mysql_query($S_query, dbConnect());
-		if (!isset($S_result))
+		if ($S_result == false)
 		{
 			return 1;
 		}
@@ -337,7 +380,7 @@ function getProfil($user)
 				HAVING Pseudo = '".$user."'");
 				
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		return -1;
 	}
@@ -356,12 +399,25 @@ function getId($pseudo)
 	$S_query = ("SELECT * FROM Users HAVING Pseudo = '".$pseudo."'");
 				
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		return -1;
 	}
 	$S_user = mysql_fetch_assoc($S_result);
 	return $S_user['IdUser'];
+}
+
+function getPseudo($IdUser)
+{
+	$S_query = ("SELECT * FROM Users HAVING IdUser ='".$IdUser."'");
+				
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	{
+		return -1;
+	}
+	$S_user = mysql_fetch_assoc($S_result);
+	return $S_user['Pseudo'];
 }
 
 function getFriends($idUser)
@@ -372,7 +428,7 @@ function getFriends($idUser)
 					ON U.IdUser = F.IdFriend AND F.IdUser = '".$idUser."'
 					WHERE F.Status = 1");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result) || $S_result == false)
+	if ($S_result == false || $S_result == false)
 	{
 		return -1;
 	}
@@ -398,7 +454,7 @@ function getFriendshipRequest($idUser)
 					ON U.IdUser = F.IdUser AND F.IdFriend = '".$idUser."'
 					WHERE F.Status = 0");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result) || $S_result == false)
+	if ($S_result == false || $S_result == false)
 	{
 		return -1;
 	}
@@ -428,9 +484,9 @@ function searchData($type, $recherche)
 	switch($type)
 	{
 		case "0":
-			$S_query = ("SELECT * FROM Movies WHERE Name REGEXP '^.*".$recherche.".*$'");
+			$S_query = ("SELECT * FROM Movies WHERE Name LIKE '%".$recherche."%'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
+			if ($S_result == false || $S_result == false)
 			{
 				$S_data[0] = -1;
 			}
@@ -439,9 +495,9 @@ function searchData($type, $recherche)
 				while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			}
 			
-			$S_query = ("SELECT * FROM Staffs WHERE LastName REGEXP '^.*".$recherche.".*$' OR FirstName REGEXP '^.*".$recherche.".*$'");
+			$S_query = ("SELECT * FROM Staffs WHERE LastName LIKE '%".$recherche."%' OR FirstName LIKE 'LIKE".$recherche."LIKE'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
+			if ($S_result == false || $S_result == false)
 			{
 				$S_data[2] = -1;
 			}
@@ -453,7 +509,7 @@ function searchData($type, $recherche)
 		case "1":
 			$S_query = ("SELECT * FROM Movies");
 			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
+			if ($S_result == false || $S_result == false)
 			{
 				return -1;
 			}
@@ -462,25 +518,25 @@ function searchData($type, $recherche)
 		case "2":
 			$S_query = ("SELECT * FROM Staffs");
 			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
+			if ($S_result == false || $S_result == false)
 			{
 				return -1;
 			}
 			while(($S_data[1][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[1]));
 			break;
 		case "3":
-			$S_query = ("SELECT * FROM Movies WHERE Name REGEXP '^.*".$recherche.".*$'");
+			$S_query = ("SELECT * FROM Movies WHERE Name LIKE 'LIKE".$recherche."LIKE'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
+			if ($S_result == false || $S_result == false)
 			{
 				return -1;
 			}
 			while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			break;
 		case "4":
-			$S_query = ("SELECT * FROM Staffs WHERE Name REGEXP '^.*".$recherche.".*$'");
+			$S_query = ("SELECT * FROM Staffs WHERE Name LIKE 'LIKE".$recherche."LIKE'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if (!isset($S_result) || $S_result == false)
+			if ($S_result == false || $S_result == false)
 			{
 				return -1;
 			}
@@ -496,7 +552,7 @@ function replyToFriendship($userId, $friendId, $status)
 				SET Status = '".$status."'
 				WHERE IdUser ='".$friendId."' AND IdFriend = '".$userId."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		return 1;
 	}
@@ -507,7 +563,7 @@ function replyToFriendship($userId, $friendId, $status)
 		$S_query = ("INSERT INTO Friends (IdUser, IdFriend, Status)
 						VALUES ('".$userId."','".$friendId."','1')");
 		$S_result = mysql_query($S_query, dbConnect());
-		if (!isset($S_result))
+		if ($S_result == false)
 		{
 			return 1;
 		}
@@ -518,7 +574,7 @@ function replyToFriendship($userId, $friendId, $status)
 		$S_query = ("DELETE FROM Friends
 					WHERE IdUser ='".$userId."' AND IdFriend = '".$friendId."'");
 		$S_result = mysql_query($S_query, dbConnect());
-		if (!isset($S_result))
+		if ($S_result == false)
 		{
 			return 1;
 		}
@@ -845,7 +901,7 @@ function getMovie($idMovie)
 {
 	$S_query = ("SELECT * FROM Movies WHERE idMovie = '".$idMovie."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result) || $S_result == false)
+	if ($S_result == false || $S_result == false)
 	{
 		return -1;
 	}
@@ -867,7 +923,7 @@ function getMovieStaff($idMovie)
 				ON M.IdStaff = S.IdStaff
 				WHERE M.idMovie = '".$idMovie."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result) || $S_result == false)
+	if ($S_result == false || $S_result == false)
 	{
 		return -1;
 	}
@@ -891,7 +947,7 @@ function getMovieSupport($idMovie)
 				WHERE idMovie = '".$idMovie."'
 				GROUP BY Support");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result) || $S_result == false)
+	if ($S_result == false || $S_result == false)
 	{
 		return -1;
 	}
@@ -974,7 +1030,7 @@ function deleteMovie($MovieId)
 	$S_query = ("DELETE FROM Movies
 				WHERE IdMovie ='".$MovieId."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if (!isset($S_result))
+	if ($S_result == false)
 	{
 		return 1;
 	}
@@ -1299,7 +1355,7 @@ en question
 Auteur : Vincent Ricard
 */
 
-function	getEvent($IdEvent)
+function getEvent($IdEvent)
 {
 	$S_query = sprintf("SELECT * FROM Events HAVING IdEvent = '%d'",
 					 $IdEvent);
@@ -1309,24 +1365,111 @@ function	getEvent($IdEvent)
 	 {
 		return -2;
 	 }
-$Event = mysql_fetch_assoc($S_result);
-return ($Event);
+	$Event = mysql_fetch_assoc($S_result);
+	return ($Event);
 }
 
 /*
-La fonction leaveEvent permet à l'utilisateur de quitter un événement auquel
-il aura été préalablement invité.
-L'utilisateur ne peut pas quitter un événement dont il est l'organisateur.
+$folder : 0 pour les recu, 1 pour les envoie
+*/
+function getMp($folder,$userId)
+{
+	if($folder == 0)
+	{
+		$S_query = sprintf("SELECT * FROM UserPMs AS UPM
+							LEFT JOIN PMs AS PM
+							ON UPM.IdPM = PM.IdPM
+							WHERE IdUser = '%d'",
+							$userId);
+		$S_result = mysql_query($S_query, dbConnect());
+		if ($S_result == false)
+		{
+			return -1;
+		}
+		while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+		
+		$rowCount = mysql_num_rows($S_result);
+		if($rowCount != false)
+		{
+			for($i = 0;$i < $rowCount; $i++)
+			{
+				$S_data[$i]['mpUser'] = getPseudo($S_data[$i]['IdSender']);
+			}
+		}
+	}
+	elseif($folder == 1)
+	{
+		$S_query = sprintf("SELECT * FROM PMs WHERE IdSender='%d'",
+							$userId);
+		$S_result = mysql_query($S_query, dbConnect());
+		if ($S_result == false)
+		{
+			return -1;
+		}
+		while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+		
+		$rowCount = mysql_num_rows($S_result);
+		if($rowCount != false)
+		{
+			for($i = 0;$i < $rowCount; $i++)
+			{
+				$S_data[$i]['mpUser'] = getMPSendTo($S_data[$i]['IdPM']);
+			}
+		}
+	}
+	return($S_data);
+}
+
+function getMPSendTo($IdPM)
+{
+	$S_query = sprintf("SELECT Pseudo FROM UserPMs AS UPM 
+						LEFT JOIN Users AS U 
+						ON U.IdUser = UPM.IdUser 
+						WHERE UPM.IdPM = '%d'",
+						$IdPM);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	{
+		return -1;
+	}
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	return($S_data);
+}
+
+function readMp($IdPM,$IdUser)
+{
+	
+	$S_query = sprintf("SELECT * FROM PMs
+						WHERE IdPM='%d' AND IdSender='%d'
+						OR IdPM = (SELECT IdPM FROM UserPMs WHERE IdPM='%d' AND IdUser='%d')",
+						$IdPM,
+						$IdUser,
+						$IdPM,
+						$IdUser);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	{
+		return -1;
+	}
+	$S_data = mysql_fetch_assoc($S_result);
+	return($S_data);
+}
+
+/*
+La fonction changeStatusEvent permet à l'utilisateur de son status
+sur un événement donné. Ainsi, il peut choisir entre
+- refuser d'y participer
+- accepter l'invitation
+- se décider plus tard.
+
+Cela concerne bien évidemment que les événements où il est invité
+et non dont il serait l'organisateur.
 
 $error
 
 $error (S): int
--1	:	l'utilisateur tente de quitter un événement qu'il a créé
-1	:	erreur requête invalide/problème avec la BDD;
-0	:	OK
-
-Auteur : Vincent Ricard
-*/
+-1	:	erreur requête invalide/problème avec la BDD;
+0
 
 function changeStatusEvent($IdEvent, $IdUser, $Status)
 {
@@ -1334,11 +1477,14 @@ function changeStatusEvent($IdEvent, $IdUser, $Status)
 
 	// Requête qui change le status de participation de l'utilisateur
 	$query = sprintf("UPDATE EventsInvitations 
-					  SET Status '%d' WHERE IdEvent = '%d'", $IdEvent, $Status);
+					  SET Status = '%d' 
+					  WHERE IdEvent = '%d' AND IdUser = '%d'"
+					  ,$Status, $IdEvent, $IdUser);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
 		return (1);
 	 }
+	return ($error);
 }
 ?>

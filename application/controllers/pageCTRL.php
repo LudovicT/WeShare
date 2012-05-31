@@ -62,8 +62,16 @@ if (isset($_GET["page"]))
 			}
 			if (isset($_POST['RefusEvent']) && !empty($_POST['RefusEvent']))
 			{
-				changeStatusEvent(getId($user), $_POST['RefusEvent']);
+				changeStatusEvent($_POST['RefusEvent'], getId($user), '-1');
 			}
+			if (isset($_POST['AcceptEvent']) && !empty($_POST['AcceptEvent']))
+			{
+				changeStatusEvent($_POST['AcceptEvent'], getId($user), '1');
+			}
+				if (isset($_POST['IsNotSure']) && !empty($_POST['IsNotSure']))
+			{
+				changeStatusEvent($_POST['IsNotSure'], getId($user), '0');
+			}		
 			if (isset($_POST['SuppEvent']) && !empty($_POST['SuppEvent']))
 			{
 				deleteEvent($_POST['SuppEvent']);
@@ -85,12 +93,20 @@ if (isset($_GET["page"]))
 							$layout = "removeEvent.php";
 						}
 						break;
-					case "refusEvent":
+					case "changeStatusEvent":
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
-							$layout = "refusEvent.php";
+							$layout = "changeStatusEvent.php";
+						}
+						break;
+					case "viewEvent":
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$layout = "viewEvent.php";
 						}
 						break;
 					//case "editEvent":
@@ -146,9 +162,6 @@ if (isset($_GET["page"]))
 				$group = getGroup($_GET['group']);
 				if($group['IdCreator'] == $userId)
 				{
-					$groupUser = getGroupUser($_GET['group']);
-					$membres = getMember($user);
-					$layout = "group.php";
 					
 					if(isset($_GET['action']) && isset($_POST['membre']))
 					{
@@ -164,6 +177,9 @@ if (isset($_GET["page"]))
 								$layout = "group.php";
 						}
 					}
+					$groupUser = getGroupUser($_GET['group']);
+					$membres = getMember($user);
+					$layout = "group.php";
 				}
 				else
 				{
