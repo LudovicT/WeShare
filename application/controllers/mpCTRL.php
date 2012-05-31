@@ -49,9 +49,9 @@ elseif(isset($_GET['do']))
 		case "read":
 			if(isset($_GET['IdMP']) && is_numeric($_GET['IdMP']))
 			{
-				$mpSender = getPseudo($userId);
 				$mpUser = getMPSendTo($_GET['IdMP']);
 				$mp = readMp($_GET['IdMP'],$userId);
+				$mpSender = getPseudo($mp['IdSender']);
 				$mpInfo = -1;
 			}
 			else
