@@ -34,4 +34,10 @@ else
 	$movies = searchData(1,"");
 	$layout="filmsProfil.php";
 }
+switch($_GET['action'])
+{
+	case "add":
+	addFilmToProfil($_GET['film'],$_POST['Name']);
+	break;
+}
 ?>

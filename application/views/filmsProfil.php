@@ -27,6 +27,19 @@ Support :
     <OPTION>Blue-ray
     <OPTION>Dvd
 </SELECT>
+Nombre d'exemplaire :
+<SELECT name="exemplaire" size="1">
+    <OPTION>1
+    <OPTION>2
+    <OPTION>3
+    <OPTION>4
+    <OPTION>5
+	<OPTION>6
+	<OPTION>7
+	<OPTION>8
+	<OPTION>9
+	<OPTION>10
+</SELECT>
 <br />
 <br />
 
@@ -37,4 +50,16 @@ Support :
 <br />
 <table border='1' width="100%">
 <th> Jaquette </th><th> Titre </th><th> Support </th><th> Nombre d'exemplaire </th> <th> Supprimer </th>
+<?php
+	foreach($movies[0] as $name)
+	{
+	?>
+		<tr>
+			<td>
+				<a href='/WeShare/Profil/Films/<?php echo $name['IdMovie']?>/'><?php echo $name['IdMovie']?></a><br />
+			</td>
+		</tr>
+	<?php
+	}
+	?>
 </table>

@@ -37,6 +37,7 @@ RewriteRule   ^Profil/Amis/Retirer/([a-z0-9\-]+)([./.]*)$   /WeShare/index.php?p
 RewriteRule   ^Profil/Amis/Accepter/([a-z0-9\-]+)([./.]*)$   /WeShare/index.php?page=profil.php&action=amis&add=$1 [NC]
 RewriteRule   ^Profil/Amis/Refuser/([a-z0-9\-]+)([./.]*)$   /WeShare/index.php?page=profil.php&action=amis&no=$1 [NC]
 RewriteRule   ^Profil/Amis/Ignorer/([a-z0-9\-]+)([./.]*)$   /WeShare/index.php?page=profil.php&action=amis&ignore=$1 [NC]
+RewriteRule   ^Profil/Films/Ajouter([./.]*)$   /WeShare/index.php?page=profil.php&action=films&do=ajouter [NC]
 RewriteRule   ^Profil/Films([./.]*)$   /WeShare/index.php?page=profil.php&action=films [NC]
 RewriteRule   ^Profil/Messagerie/Lire/([0-9]+)([./.]*)$   /WeShare/index.php?page=profil.php&action=mp&do=read&IdMP=$1 [NC]
 RewriteRule   ^Profil/Messagerie/Nouveau([./.]*)$   /WeShare/index.php?page=profil.php&action=mp&do=newMp [NC]
