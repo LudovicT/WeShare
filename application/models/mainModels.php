@@ -901,12 +901,12 @@ function getMovie($idMovie)
 {
 	$S_query = ("SELECT * FROM Movies WHERE idMovie = '".$idMovie."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	return $S_data;
+	$S_data = mysql_fetch_assoc($S_result);
 	if ($S_data == false)
 	{
 		return -1;
 	}
-	$S_data = mysql_fetch_assoc($S_result);
+	return $S_data;
 }
 /*
 Permet de récuperer les infos d'un film.(staff du film)
