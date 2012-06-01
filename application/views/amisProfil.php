@@ -107,14 +107,14 @@
 		}
 		?></table>
 		<br /> <br />
-		<a href='/WeShare/Groupe/Creer/'><button>Crer un groupe</button></a>
+		<a href='/WeShare/Groupe/Creer/'><button>Creer un groupe</button></a>
 	<?php
 	}
 	else
 	{
 		?>
 		Vous n'avez pas encore de groupe d'amis.<br /><br />
-		<a href='/WeShare/Groupe/Creer/'><button>Crer un groupe</button></a>
+		<a href='/WeShare/Groupe/Creer/'><button>Creer un groupe</button></a>
 		<?php
 	}
 	?>
