@@ -1456,7 +1456,7 @@ function readMp($IdPM,$IdUser)
 }
 
 /*
-La fonction changeStatusEvent permet à l'utilisateur de son status
+La fonction changeStatusEvent permet à l'utilisateur de changer son status
 sur un événement donné. Ainsi, il peut choisir entre
 - refuser d'y participer
 - accepter l'invitation
