@@ -11,7 +11,7 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$result = AddMovieToEvent('1', '1');
+$result = AddMovieToEvent('6', '1');
 
 if ($result == -1)
 {
@@ -19,7 +19,7 @@ if ($result == -1)
 }
 else if ($result == 1)
 {
-	echo('<br />FILM déjà présent pour cet événement !');
+	echo('<br />Film déjà présent pour cet événement !');
 }
 else
 {
