@@ -4,20 +4,20 @@ Fichier de controle qui traite et les différentes fonctionnalitées de la message
 */
 
 $userId = getId($user);
+$mp = -1;
+$mpInfo = -1;
+$newMp = -1;
 if(isset($_GET['folder']))
 {
 	switch ($_GET['folder'])
 	{
 		case "0":
-			$mp = -1;
 			$mpInfo = getMp(0,$userId);
 			break;
 		case "1":
-			$mp = -1;
 			$mpInfo = getMp(1,$userId);
 			break;
 		default:
-			$mp = -1;
 			$mpInfo = getMp(0,$userId);
 	}
 }
@@ -39,11 +39,14 @@ elseif(isset($_GET['do']))
 				{
 					$mpData['titre'] = "Sans objet";
 				}
-				sendMp($mpData);
+				sendMp($mpData,$userId);
+			}
+			else
+			{
+				$newMp = 1;
 			}
 			break;
 		case "delMp":
-			$mp = -1;
 			$mpInfo = getMp(0,$userId);
 			break;
 		case "read":
@@ -52,7 +55,6 @@ elseif(isset($_GET['do']))
 				$mpUser = getMPSendTo($_GET['IdMP']);
 				$mp = readMp($_GET['IdMP'],$userId);
 				$mpSender = getPseudo($mp['IdSender']);
-				$mpInfo = -1;
 			}
 			else
 			{
@@ -61,13 +63,11 @@ elseif(isset($_GET['do']))
 			}
 			break;
 		default:
-			$mp = -1;
 			$mpInfo = getMp(0,$userId);
 	}
 }
 else
 {
-	$mp = -1;
 	$mpInfo = getMp(0,$userId);
 }
 ?>

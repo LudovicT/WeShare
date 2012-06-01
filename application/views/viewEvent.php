@@ -24,5 +24,3 @@
 </table>
 
 <br /><p>Liste des vos amis qui participent à cet événement :</p>
-
-<!--<a href='/WeShare/Evenements/Supprimer/<?php echo $event['IdEvent'] ?>/' > Supprimer cet événement</a>-->

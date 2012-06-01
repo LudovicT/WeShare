@@ -63,12 +63,54 @@
 			</table>
 			<?php
 			}
-			else
+			elseif(isset($newMp) && $newMp != -1)
 			{ ?>
+			<form method="post" action="/weshare/profil/messagerie/nouveau">
+			<table>
+			<!--Les erreurs suivantes sont survenues quand ce message a été envoyé
+
+    Les utilisateurs suivants n'ont pas été trouvés :
+
+-->
+			<tr>
+				<td>Destinataires:
+				</td>
+			</tr>
+			<tr>
+				<td><textarea name='users' rows='1' cols='80' class='textarea'></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Séparez chaque identifiant par un point-virgule « ; »<br /><br /><hr>
+				</td>
+			</tr>
+			<tr>
+				<td><br />Titre du message :
+				</td>
+			</tr>
+			<tr>
+				<td><textarea name='titre' rows='1' cols='80' class='textarea2'></textarea><br /><br /><hr>
+				</td>
+			</tr>
+			<tr>
+				<td><br />Message :
+				</td>
+			</tr>
+			<tr>
+				<td><textarea name='message' rows='5' cols='80' class='textarea3'></textarea><br /><br />
+				</td>
+			</tr>
+			<tr>
+				<td><input type='submit' value='Envoyer le message'><br /><br /><hr>
+				</td>
+			</tr>
+			</table>
+			</form>
 			<?php 
 			} ?>
 		</td>
 	</tr>
 </table>
 <?php
+var_dump($_POST);
 ?>

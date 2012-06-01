@@ -5,15 +5,18 @@
 	<table>
 	<tr><th>Pseudo</th></tr>
 	<?php
-	foreach($groupUser as $user)
+	if(isset($groupUser) && $groupUser != -1)
 	{
-	?>
-		<tr>
-			<td>
-				<a href='/WeShare/Membres/<?php echo $user['Pseudo']?>/'><?php echo $user['Pseudo']?></a><br />
-			</td>
-		</tr>
-	<?php
+		foreach($groupUser as $user)
+		{
+		?>
+			<tr>
+				<td>
+					<a href='/WeShare/Membres/<?php echo $user['Pseudo']?>/'><?php echo $user['Pseudo']?></a><br />
+				</td>
+			</tr>
+		<?php
+		}
 	}
 	?>
 	</table><br />

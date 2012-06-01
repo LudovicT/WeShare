@@ -242,11 +242,11 @@ function getMember($userPseudo)
 				WHERE U.IdUser != '".$userId."'
 				ORDER BY U.Pseudo");
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	$S_nbRow = mysql_num_rows($S_result);
+	if ($S_nbRow == false)
 	{
 		return -1;
 	}
-	$S_nbRow = mysql_num_rows($S_result);
 	for ($i=0;$i< $S_nbRow;$i++)
 	{
 		$membres[] = mysql_fetch_assoc($S_result);
@@ -380,12 +380,12 @@ function getProfil($user)
 				HAVING Pseudo = '".$user."'");
 				
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+
+	$profil = mysql_fetch_assoc($S_result);
+	if ($profil == false)
 	{
 		return -1;
 	}
-
-	$profil = mysql_fetch_assoc($S_result);
 	$profil['RegisterDate'] = formateDate($profil['RegisterDate']);
 	$profil['BornDate'] = formateDate($profil['BornDate']);
 
@@ -399,11 +399,11 @@ function getId($pseudo)
 	$S_query = ("SELECT * FROM Users HAVING Pseudo = '".$pseudo."'");
 				
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	$S_user = mysql_fetch_assoc($S_result);
+	if ($S_user == false)
 	{
 		return -1;
 	}
-	$S_user = mysql_fetch_assoc($S_result);
 	return $S_user['IdUser'];
 }
 
@@ -412,11 +412,11 @@ function getPseudo($IdUser)
 	$S_query = ("SELECT * FROM Users HAVING IdUser ='".$IdUser."'");
 				
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	$S_user = mysql_fetch_assoc($S_result);
+	if ($S_user == false)
 	{
 		return -1;
 	}
-	$S_user = mysql_fetch_assoc($S_result);
 	return $S_user['Pseudo'];
 }
 
@@ -428,12 +428,12 @@ function getFriends($idUser)
 					ON U.IdUser = F.IdFriend AND F.IdUser = '".$idUser."'
 					WHERE F.Status = 1");
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false || $S_result == false)
+	$S_nbRow = mysql_num_rows($S_result);
+	if ($S_nbRow == false)
 	{
 		return -1;
 	}
 	
-	$S_nbRow = mysql_num_rows($S_result);
 	for ($i=0;$i< $S_nbRow;$i++)
 	{
 		$S_friend[] = mysql_fetch_assoc($S_result);
@@ -454,11 +454,11 @@ function getFriendshipRequest($idUser)
 					ON U.IdUser = F.IdUser AND F.IdFriend = '".$idUser."'
 					WHERE F.Status = 0");
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false || $S_result == false)
+	$S_nbRow = mysql_num_rows($S_result);
+	if ($S_nbRow == false)
 	{
 		return -1;
 	}
-	$S_nbRow = mysql_num_rows($S_result);
 	for ($i=0;$i< $S_nbRow;$i++)
 	{
 		$S_friendRequest[] = mysql_fetch_assoc($S_result);
@@ -486,7 +486,7 @@ function searchData($type, $recherche)
 		case "0":
 			$S_query = ("SELECT * FROM Movies WHERE Name LIKE '%".$recherche."%'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if ($S_result == false || $S_result == false)
+			if ($S_result== false)
 			{
 				$S_data[0] = -1;
 			}
@@ -497,7 +497,7 @@ function searchData($type, $recherche)
 			
 			$S_query = ("SELECT * FROM Staffs WHERE LastName LIKE '%".$recherche."%' OR FirstName LIKE 'LIKE".$recherche."LIKE'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if ($S_result == false || $S_result == false)
+			if ($S_result== false)
 			{
 				$S_data[2] = -1;
 			}
@@ -509,7 +509,7 @@ function searchData($type, $recherche)
 		case "1":
 			$S_query = ("SELECT * FROM Movies");
 			$S_result = mysql_query($S_query, dbConnect());
-			if ($S_result == false || $S_result == false)
+			if ($S_result== false)
 			{
 				return -1;
 			}
@@ -518,7 +518,7 @@ function searchData($type, $recherche)
 		case "2":
 			$S_query = ("SELECT * FROM Staffs");
 			$S_result = mysql_query($S_query, dbConnect());
-			if ($S_result == false || $S_result == false)
+			if ($S_result== false)
 			{
 				return -1;
 			}
@@ -527,7 +527,7 @@ function searchData($type, $recherche)
 		case "3":
 			$S_query = ("SELECT * FROM Movies WHERE Name LIKE 'LIKE".$recherche."LIKE'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if ($S_result == false || $S_result == false)
+			if ($S_result== false)
 			{
 				return -1;
 			}
@@ -536,7 +536,7 @@ function searchData($type, $recherche)
 		case "4":
 			$S_query = ("SELECT * FROM Staffs WHERE Name LIKE 'LIKE".$recherche."LIKE'");
 			$S_result = mysql_query($S_query, dbConnect());
-			if ($S_result == false || $S_result == false)
+			if ($S_result== false)
 			{
 				return -1;
 			}
@@ -901,11 +901,11 @@ function getMovie($idMovie)
 {
 	$S_query = ("SELECT * FROM Movies WHERE idMovie = '".$idMovie."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false || $S_result == false)
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
 	{
 		return -1;
 	}
-	$S_data = mysql_fetch_assoc($S_result);
 	return $S_data;
 }
 /*
@@ -923,13 +923,13 @@ function getMovieStaff($idMovie)
 				ON M.IdStaff = S.IdStaff
 				WHERE M.idMovie = '".$idMovie."'");
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false || $S_result == false)
-	{
-		return -1;
-	}
 	
 	//essaie d'une nouvelle methode fetch tout les résultats
 	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	if ($S_data == false)
+	{
+		return -1;
+	}
 	
 	return $S_data;
 }
@@ -947,11 +947,11 @@ function getMovieSupport($idMovie)
 				WHERE idMovie = '".$idMovie."'
 				GROUP BY Support");
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false || $S_result == false)
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	if ($S_result== false)
 	{
 		return -1;
 	}
-	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return $S_data;
 }
 /*
@@ -1231,11 +1231,11 @@ function getGroups($IdUser)
 						WHERE IdCreator = '%s'",
 						$IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	if ($S_data == false)
 	{
 		return -1;
 	}
-	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
 }
 
@@ -1252,11 +1252,11 @@ function getGroup($IdGroup)
 						WHERE IdGroup = '%d'",
 						$IdGroup);
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
 	{
 		return -1;
 	}
-	$S_data = mysql_fetch_assoc($S_result);
 	return ($S_data);
 }
 
@@ -1277,11 +1277,11 @@ function getGroupUser($IdGroup)
 						WHERE UG.IdGroup = '%d'",
 						$IdGroup);
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	if ($S_data == false)
 	{
 		return -1;
 	}
-	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return ($S_data);
 }
 
@@ -1428,11 +1428,11 @@ function getMPSendTo($IdPM)
 						WHERE UPM.IdPM = '%d'",
 						$IdPM);
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
+	if ($S_data == false)
 	{
 		return -1;
 	}
-	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	return($S_data);
 }
 
@@ -1447,16 +1447,16 @@ function readMp($IdPM,$IdUser)
 						$IdPM,
 						$IdUser);
 	$S_result = mysql_query($S_query, dbConnect());
-	if ($S_result == false)
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
 	{
 		return -1;
 	}
-	$S_data = mysql_fetch_assoc($S_result);
 	return($S_data);
 }
 
 /*
-La fonction changeStatusEvent permet à l'utilisateur de son status
+La fonction changeStatusEvent permet à l'utilisateur de changer son status
 sur un événement donné. Ainsi, il peut choisir entre
 - refuser d'y participer
 - accepter l'invitation
@@ -1484,6 +1484,82 @@ function changeStatusEvent($IdEvent, $IdUser, $Status)
 	if ($result == false)
 	 {
 		return (1);
+	 }
+	return ($error);
+}
+
+function sendMp($data,$IdSender)
+{
+	$rawUsers = explode(';',$data['users']);
+	foreach($rawUsers as $key)
+	{
+		$userId = getId(trim($key));
+		if(!empty($key) && $userId != -1)
+		{
+			$users[] = trim($key);
+		}
+		else
+		{
+			$badUsers[] = $key;
+		}
+	}
+	if(isset($badUsers) && count($badUsers) > 0)
+	{
+		return $badUsers;
+	}
+	// foreach($users)
+	// $S_query = sprintf("SELECT * FROM PMs
+						// WHERE IdPM='%d' AND IdSender='%d'
+						// OR IdPM = (SELECT IdPM FROM UserPMs WHERE IdPM='%d' AND IdUser='%d')",
+						// $IdPM,
+						// $IdUser,
+						// $IdPM,
+						// $IdUser);
+	// $S_result = mysql_query($S_query, dbConnect());
+	// if ($S_result == false)
+	// {
+		// return -1;
+	// }
+	// $S_data = mysql_fetch_assoc($S_result);
+	// return($S_data);
+}
+
+/*
+La fonction AddMovieToEvent permet l'utilisateur d'ajouter des amis
+à un événement qu'il a créé.
+
+$error
+
+$error (S): int§
+-1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+1	:	l'utilisateur veut ajouter un film déjà ajouté
+Auteur : Vincent Ricard
+*/
+
+function AddMovieToEvent($IdEvent, $IdMovie)
+{
+	$error = 0;
+
+	// Requête permettant de voir si le film n'a pas déjà été ajouté
+	$query = sprintf ("SELECT IdMovie FROM EventsSelections 
+					   WHERE IdEvent = '%d' AND IdMovie = '%d'"
+					   ,$IdEvent, $IdMovie);
+	$result = mysql_query($query, dbConnect());
+	$check = mysql_fetch_assoc($result); 
+	if ($check != false)
+	{
+		return (1);
+	}
+	// Requête insérant un nouveau film à l'événement donné
+	$query = sprintf("INSERT INTO EventsSelections 
+					(IdEvent, IdMovie, NumberOfVote)   
+					  VALUES ('%d', '%d', '%d')" 
+					  ,$IdEvent, $IdMovie, '0');
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
 	 }
 	return ($error);
 }
