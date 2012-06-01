@@ -44,4 +44,3 @@
 		</td>
 	</tr>
 </table>
-<!--<a href='/WeShare/Evenements/Supprimer/<?php echo $event['IdEvent'] ?>/' > Supprimer cet événement</a>-->

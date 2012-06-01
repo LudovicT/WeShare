@@ -37,7 +37,7 @@
 		<td>	
 		<a href='/WeShare/Evenements/Supprimer/<?php echo $key['IdEvent'] ?>/' > Supprimer l'événement</a>
 		 ou 
-		<a href='/WeShare/Evenements/View/<?php echo $key['IdEvent'] ?>/' > Voir plus de détails</a>
+		<a href='/WeShare/Evenements/View/<?php echo $key['IdEvent'] ?>/' > Gérer l'événement</a>
 		</td>
 	</tr>
 <?php

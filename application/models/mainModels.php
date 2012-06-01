@@ -1456,7 +1456,7 @@ function readMp($IdPM,$IdUser)
 }
 
 /*
-La fonction changeStatusEvent permet à l'utilisateur de son status
+La fonction changeStatusEvent permet à l'utilisateur de changer son status
 sur un événement donné. Ainsi, il peut choisir entre
 - refuser d'y participer
 - accepter l'invitation
@@ -1522,5 +1522,45 @@ function sendMp($data,$IdSender)
 	// }
 	// $S_data = mysql_fetch_assoc($S_result);
 	// return($S_data);
+}
+
+/*
+La fonction AddMovieToEvent permet l'utilisateur d'ajouter des amis
+à un événement qu'il a créé.
+
+$error
+
+$error (S): int§
+-1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+1	:	l'utilisateur veut ajouter un film déjà ajouté
+Auteur : Vincent Ricard
+*/
+
+function AddMovieToEvent($IdEvent, $IdMovie)
+{
+	$error = 0;
+
+	// Requête permettant de voir si le film n'a pas déjà été ajouté
+	$query = sprintf ("SELECT IdMovie FROM EventsSelections 
+					   WHERE IdEvent = '%d' AND IdMovie = '%d'"
+					   ,$IdEvent, $IdMovie);
+	$result = mysql_query($query, dbConnect());
+	$check = mysql_fetch_assoc($result); 
+	if ($check != false)
+	{
+		return (1);
+	}
+	// Requête insérant un nouveau film à l'événement donné
+	$query = sprintf("INSERT INTO EventsSelections 
+					(IdEvent, IdMovie, NumberOfVote)   
+					  VALUES ('%d', '%d', '%d')" 
+					  ,$IdEvent, $IdMovie, '0');
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
+	 }
+	return ($error);
 }
 ?>
