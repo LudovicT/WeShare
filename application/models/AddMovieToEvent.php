@@ -1,41 +1,31 @@
 <?php
 /*
-La fonction AddMovieToEvent permet l'utilisateur d'ajouter des films
-à un événement qu'il a créé.
+La fonction getMovieEvent permet de récupérer la liste du ou des films
+ayant été ajouté à un événement donné.
 
 $error
+$MovieEvent
 
-$error (S): int§
+$error (S): int
 -1	:	erreur requête invalide/problème avec la BDD;
-0	:	OK
-1	:	l'utilisateur veut ajouter un film déjà ajouté
+$MovieEvent (S) : tableau associatif de int
+
 Auteur : Vincent Ricard
 */
 
-function addMovieToEvent($IdEvent, $IdMovie)
+function getMovieEvent($IdEvent)
 {
 	$error = 0;
 
-	// Requête permettant de voir si le film n'a pas déjà été ajouté
-	$query = sprintf ("SELECT IdMovie FROM EventsSelections 
-					   WHERE IdEvent = '%d' AND IdMovie = '%d'"
-					   ,$IdEvent, $IdMovie);
-	$result = mysql_query($query, dbConnect());
-	$check = mysql_fetch_assoc($result); 
-	if ($check != false)
-	{
-		return (1);
-	}
 	// Requête insérant un nouveau film à l'événement donné
-	$query = sprintf("INSERT INTO EventsSelections 
-					(IdEvent, IdMovie, NumberOfVote)   
-					 VALUES ('%d', '%d', '%d')" 
-					 ,$IdEvent, $IdMovie, '0');
+	$query = sprintf("SELECT IdMovie FROM EventsSelections WHERE IdEvent = '%d'" 
+					 ,$IdEvent);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
 		return (-1);
 	 }
-	return ($error);
-}
+	 $MovieEvent = mysql_fetch_assoc($result);
+	return ($MovieEvent);
+}	
 ?>
