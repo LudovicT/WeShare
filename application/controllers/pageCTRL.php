@@ -68,7 +68,7 @@ if (isset($_GET["page"]))
 			{
 				changeStatusEvent($_POST['AcceptEvent'], getId($user), '1');
 			}
-				if (isset($_POST['IsNotSure']) && !empty($_POST['IsNotSure']))
+			if (isset($_POST['IsNotSure']) && !empty($_POST['IsNotSure']))
 			{
 				changeStatusEvent($_POST['IsNotSure'], getId($user), '0');
 			}		
@@ -106,7 +106,22 @@ if (isset($_GET["page"]))
 						{
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
+							$movies = getMovieEvent($IdEvent);
 							$layout = "viewEvent.php";
+						}
+						if(isset($_POST['SuppMovie']) && !empty($_POST['SuppMovie']))
+						{
+							removeMovieFromEvent($_GET['IdMovie'], $_POST['SuppMovie']);
+						}
+						if (isset($_GET['do']) && $_GET['do'] == 'removeMovie')
+						{
+							if(isset($_GET['IdMovie']) && !empty($_GET['IdMovie']))
+							{
+								$IdMovie = $_GET['IdMovie'];
+								$IdEvent = $_GET['idEvent'];
+								$movie = getMovie($IdMovie);
+								$layout = "removeMovie.php";
+							}
 						}
 						break;
 					//case "editEvent":

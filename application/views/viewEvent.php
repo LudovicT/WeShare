@@ -23,9 +23,13 @@
 	</tr>
 </table>
 <table border='1'>
-	<th>Film(s)</th><th>Ami(s)</th>
+	<th>Film(s)</th><th>Action</th>
 	<tr>
 		<td>
+		<?php echo $movies['Name']; ?>
+		</td>
+		<td>
+		<a href='/WeShare/Evenements/View/<?php echo $event['IdEvent'] ?>/RetirerFilm/<?php echo $movies['IdMovie']; ?>/' > Retirer le film </a>
 		</td>
 	</tr>
 </table>

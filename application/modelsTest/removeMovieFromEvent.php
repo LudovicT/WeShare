@@ -1,7 +1,7 @@
 <?php
 /*
-Fonction de test permettant de voir si on récupére bien la liste du ou des films
-ajouté(s) à un événement donné.
+Fonction de test permettant de voir si on a bien supprimé un film donné
+pour un événement donné.
 
 Auteur : Vincent Ricard
 */
@@ -11,7 +11,7 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$result = getMovieEvent('6');
+$result = removeMovieFromEvent('6', '1');
 
 if ($result == -1)
 {
@@ -19,6 +19,6 @@ if ($result == -1)
 }
 else
 {
-	var_dump($result);
+	echo('OK');
 }
 ?>
