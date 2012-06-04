@@ -22,6 +22,8 @@
 		</td>
 	</tr>
 </table>
+<?php if (!($movies == -2))
+{ ?>
 <table border='1'>
 	<th>Film(s)</th><th>Action</th>
 	<tr>
@@ -33,4 +35,5 @@
 		</td>
 	</tr>
 </table>
+<?php } ?>
 <br /><p>Liste des vos amis qui participent à cet événement :</p>

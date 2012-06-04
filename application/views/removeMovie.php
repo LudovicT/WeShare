@@ -18,5 +18,6 @@
 </table>
 <form id="edit-profile-form" method="post" action="/WeShare/Evenements/View/<?php echo $IdEvent ?>/">
 <input type="hidden" name="SuppMovie" value="<?php echo $movie['IdMovie'] ?>">
+<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
 <input type="submit" value="Retirer le film">
 </form>

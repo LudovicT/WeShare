@@ -1573,6 +1573,7 @@ $MovieEvent
 
 $error (S): int
 -1	:	erreur requête invalide/problème avec la BDD;
+-2	:	il n'y aucun film
 $MovieEvent (S) : tableau associatif de int
 
 Auteur : Vincent Ricard
@@ -1591,13 +1592,16 @@ function getMovieEvent($IdEvent)
 	 {
 		return (-1);
 	 }
-	 $MovieListEvent = mysql_fetch_assoc($result);
-	 
-	 foreach ($MovieListEvent as $key)
-	 {
-		$MovieEvent = getMovie($key['IdMovie']);
-	 }
-	return ($MovieEvent);
+	$MovieListEvent = mysql_fetch_assoc($result);
+	if (isset ($MovieListEvent) and !empty($MovieListEvent))
+	{
+		foreach ($MovieListEvent as $key)
+		{
+			$MovieEvent = getMovie($key['IdMovie']);
+		}
+		return ($MovieEvent);
+	}
+	return (-2);
 }
 
 /*

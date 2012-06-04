@@ -102,6 +102,11 @@ if (isset($_GET["page"]))
 						}
 						break;
 					case "viewEvent":
+						if(isset($_POST['SuppMovie']) && !empty($_POST['SuppMovie']) &&
+							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
+						{
+							removeMovieFromEvent($_POST['IdEvent'], $_POST['SuppMovie']);
+						}
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{
 							$IdEvent = $_GET['idEvent'];
@@ -109,12 +114,9 @@ if (isset($_GET["page"]))
 							$movies = getMovieEvent($IdEvent);
 							$layout = "viewEvent.php";
 						}
-						if(isset($_POST['SuppMovie']) && !empty($_POST['SuppMovie']))
-						{
-							removeMovieFromEvent($_GET['IdMovie'], $_POST['SuppMovie']);
-						}
 						if (isset($_GET['do']) && $_GET['do'] == 'removeMovie')
 						{
+							var_dump($_POST);
 							if(isset($_GET['IdMovie']) && !empty($_GET['IdMovie']))
 							{
 								$IdMovie = $_GET['IdMovie'];
