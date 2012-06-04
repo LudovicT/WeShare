@@ -22,5 +22,11 @@
 		</td>
 	</tr>
 </table>
-
+<table border='1'>
+	<th>Film(s)</th><th>Ami(s)</th>
+	<tr>
+		<td>
+		</td>
+	</tr>
+</table>
 <br /><p>Liste des vos amis qui participent à cet événement :</p>

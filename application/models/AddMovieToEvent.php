@@ -1,6 +1,6 @@
 <?php
 /*
-La fonction AddMovieToEvent permet l'utilisateur d'ajouter des amis
+La fonction AddMovieToEvent permet l'utilisateur d'ajouter des films
 à un événement qu'il a créé.
 
 $error
@@ -12,7 +12,7 @@ $error (S): int§
 Auteur : Vincent Ricard
 */
 
-function AddMovieToEvent($IdEvent, $IdMovie)
+function addMovieToEvent($IdEvent, $IdMovie)
 {
 	$error = 0;
 
@@ -29,8 +29,8 @@ function AddMovieToEvent($IdEvent, $IdMovie)
 	// Requête insérant un nouveau film à l'événement donné
 	$query = sprintf("INSERT INTO EventsSelections 
 					(IdEvent, IdMovie, NumberOfVote)   
-					  VALUES ('%d', '%d', '%d')" 
-					  ,$IdEvent, $IdMovie, '0');
+					 VALUES ('%d', '%d', '%d')" 
+					 ,$IdEvent, $IdMovie, '0');
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {

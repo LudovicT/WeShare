@@ -11,7 +11,7 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$result = AddMovieToEvent('6', '1');
+$result = addMovieToEvent('6', '1');
 
 if ($result == -1)
 {
