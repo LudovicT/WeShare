@@ -20,7 +20,7 @@ if (isset($_POST["IdMovie"]) && !empty($_POST["IdMovie"]) &&
 								$addMovie_Support);
 	if ($error_addMovie[0] == 0 && $error_addMovie[1] == 0)
 	{
-		$search = searchData(1,"");
+		$movies = searchData(1,"");
 		$layout = "filmsProfil.php";
 	}
 	else
@@ -31,6 +31,13 @@ if (isset($_POST["IdMovie"]) && !empty($_POST["IdMovie"]) &&
 }
 else
 {
-			$layout="filmsProfil.php";
+	$movies = searchData(1,"");
+	$layout="filmsProfil.php";
+}
+switch($_GET['action'])
+{
+	case "add":
+	addFilmToProfil($_GET['film'],$_POST['Name']);
+	break;
 }
 ?>

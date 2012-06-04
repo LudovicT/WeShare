@@ -1,10 +1,12 @@
-Films : 
-<form method="post" action="/WeShare/Profil/Films/Ajouter/<?php echo $movies['IdMovie']?>/">
-<SELECT name='Movie' onchange='this.form.submit()'>
+<strong>Mes Films : </strong>
+</br>
+<br />
+<form method="post" action="/WeShare/Profil/Films/Ajouter/">
+<SELECT name='Movie'>
 <?php
-	foreach($movies as $key2)
+	foreach($movies[0] as $key)
 	{
-		if(isset($key2))
+		if(isset($key))
 		{
 		?>
 			<option value='<?php echo $key['IdMovie'];?>'>
@@ -13,7 +15,7 @@ Films :
 		<?php 
 		}
 	} ?>
-<br />
+<br /><br />
 </SELECT>
 
 
@@ -25,7 +27,39 @@ Support :
     <OPTION>Blue-ray
     <OPTION>Dvd
 </SELECT>
+Nombre d'exemplaire :
+<SELECT name="exemplaire" size="1">
+    <OPTION>1
+    <OPTION>2
+    <OPTION>3
+    <OPTION>4
+    <OPTION>5
+	<OPTION>6
+	<OPTION>7
+	<OPTION>8
+	<OPTION>9
+	<OPTION>10
+</SELECT>
+<br />
 <br />
 
-<input type='submit' value='Ajouter'>
+<input type='submit' value='Ajouter à mes films'>
 </form>
+
+<br />
+<br />
+<table border='1' width="100%">
+<th> Jaquette </th><th> Titre </th><th> Support </th><th> Nombre d'exemplaire </th> <th> Supprimer </th>
+<?php
+	foreach($movies[0] as $name)
+	{
+	?>
+		<tr>
+			<td>
+				<a href='/WeShare/Profil/Films/<?php echo $name['IdMovie']?>/'><?php echo $name['IdMovie']?></a><br />
+			</td>
+		</tr>
+	<?php
+	}
+	?>
+</table>
