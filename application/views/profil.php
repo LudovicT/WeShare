@@ -1,9 +1,9 @@
 	<!--Start of home page-->
 	<h3>Profil</h3>
 	<center>
-		<table id='TableProfil' border='0'>
+		<table id='TableProfil'>
 			<tr>
-				<td colspan='2' rowspan='8'><img id='PhotoProfil' src='<?php
+				<td rowspan='7'><img id='PhotoProfil' src='<?php
 				if(!empty($profil['Avatar']))
 				{
 					echo $profil['Avatar'];
@@ -136,7 +136,7 @@
 				}
 				?></td>
 			</tr>
-		<table>
+		</table>
 		</center>
 	<!--End of home page-->
 	

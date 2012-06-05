@@ -1441,7 +1441,7 @@ function readMp($IdPM,$IdUser)
 	
 	$S_query = sprintf("SELECT * FROM PMs
 						WHERE IdPM='%d' AND IdSender='%d'
-						OR IdPM = (SELECT IdPM FROM UserPMs WHERE IdPM='%d' AND IdUser='%d')",
+						OR IdPM = (SELECT IdPM FROM UserPMs WHERE IdPM='%d' AND IdUser='%d' GROUP BY IdPM)",
 						$IdPM,
 						$IdUser,
 						$IdPM,
@@ -1496,7 +1496,7 @@ function sendMp($data,$IdSender)
 		$userId = getId(trim($key));
 		if(!empty($key) && $userId != -1)
 		{
-			$users[] = trim($key);
+			$users[] = getId(trim($key));
 		}
 		else
 		{
@@ -1507,21 +1507,34 @@ function sendMp($data,$IdSender)
 	{
 		return $badUsers;
 	}
-	// foreach($users)
-	// $S_query = sprintf("SELECT * FROM PMs
-						// WHERE IdPM='%d' AND IdSender='%d'
-						// OR IdPM = (SELECT IdPM FROM UserPMs WHERE IdPM='%d' AND IdUser='%d')",
-						// $IdPM,
-						// $IdUser,
-						// $IdPM,
-						// $IdUser);
-	// $S_result = mysql_query($S_query, dbConnect());
-	// if ($S_result == false)
-	// {
-		// return -1;
-	// }
-	// $S_data = mysql_fetch_assoc($S_result);
-	// return($S_data);
+	$S_query = sprintf("INSERT INTO PMs
+						(IdSender, Titre, Message, MessageDate)
+						VALUES ('%d','%s','%s',NOW())",
+						$IdSender,
+						$data['titre'],
+						$data['message']);
+	$S_result = mysql_query($S_query, dbConnect());
+	if ($S_result == false)
+	{
+		return -1;
+	}
+	$insertId = mysql_insert_id();
+	foreach($users as $key)
+	{
+	var_dump($key);
+	var_dump($insertId);
+		$S_query = sprintf("INSERT INTO UserPMs
+							(IdUser, IdPM, ReadStatus)
+							VALUES ('%d','%d','0')",
+							$key,
+							$insertId);
+		$S_result = mysql_query($S_query, dbConnect());
+		if ($S_result == false)
+		{
+			return -2;
+		}
+	}
+	return 0;
 }
 
 /*

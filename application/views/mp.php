@@ -1,14 +1,21 @@
-<table border='1' width='100%'>
+<table border='0' rules='cols' width='100%'>
 	<tr>
-		<td width='15%'>
-			<ol>
-				<li><a href='/weshare/profil/messagerie/0'>Boîte de réception</a></li>
-				<li><a href='/weshare/profil/messagerie/1'>Éléments envoyés</a></li>
-				<br /><hr><br />
-				<li><a href='/weshare/profil/messagerie/nouveau'>Envoyer un message</a></li>
-			</ol>
-		</td width='85%'>
-		<td>
+		<td width='15%' valign='top'>
+		<table width='100%'>
+			<tr>
+				<td>
+					<ol>
+						<li><a href='/weshare/profil/messagerie/0'>Boîte de réception</a></li>
+						<li><a href='/weshare/profil/messagerie/1'>Éléments envoyés</a></li>
+						<br /><hr><br />
+						<li><a href='/weshare/profil/messagerie/nouveau'>Envoyer un message</a></li>
+					</ol>
+				</td>
+			</tr>
+		</table>
+		</td>
+		<td width='85%'>
+		<div class='padLeft'>
 			<?php
 			if(isset($mpInfo) && $mpInfo != -1)
 			{
@@ -66,22 +73,29 @@
 			elseif(isset($newMp) && $newMp != -1)
 			{ ?>
 			<form method="post" action="/weshare/profil/messagerie/nouveau">
-			<table>
-			<!--Les erreurs suivantes sont survenues quand ce message a été envoyé
-
-    Les utilisateurs suivants n'ont pas été trouvés :
-
--->
+			<table width='100%'>
+			<?php
+			if(isset($mpFlag) && $mpFlag == 1)
+			{?>
+			<tr>
+				<td>Destinataires:
+					Les erreurs suivantes sont survenues quand ce message a été envoyé <br /><br />
+					Les utilisateurs suivants n'ont pas été trouvés :
+				</td>
+			</tr>
+			<?php
+			}
+			?>
 			<tr>
 				<td>Destinataires:
 				</td>
 			</tr>
 			<tr>
-				<td><textarea name='users' rows='1' cols='80' class='textarea'></textarea>
+				<td><textarea name='users' rows='1' cols='80' class='textarea' wrap="hard"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td>Séparez chaque identifiant par un point-virgule « ; »<br /><br /><hr>
+				<td>Séparez chaque identifiant par un point-virgule « ; »<br /><br /><hr style="width:50%" >
 				</td>
 			</tr>
 			<tr>
@@ -89,7 +103,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><textarea name='titre' rows='1' cols='80' class='textarea2'></textarea><br /><br /><hr>
+				<td><textarea name='titre' rows='1' cols='80' class='textarea' wrap="hard"></textarea><br /><br /><hr>
 				</td>
 			</tr>
 			<tr>
@@ -97,17 +111,18 @@
 				</td>
 			</tr>
 			<tr>
-				<td><textarea name='message' rows='5' cols='80' class='textarea3'></textarea><br /><br />
+				<td><textarea name='message' rows='5' cols='80' class='textarea2' wrap="hard"></textarea><br /><br />
 				</td>
 			</tr>
 			<tr>
-				<td><input type='submit' value='Envoyer le message'><br /><br /><hr>
+				<td><input type='submit' value='Envoyer le message'>
 				</td>
 			</tr>
 			</table>
 			</form>
 			<?php 
 			} ?>
+			</div>
 		</td>
 	</tr>
 </table>

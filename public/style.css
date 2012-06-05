@@ -282,14 +282,14 @@ padding-top: 200px;
 #header .row-4 .fright ul li a em {display:block}
 #header .row-4 .fright ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
 #header .row-4 .fright ul li a:hover, #header .row-4 .fright ul li a.active {background-color:#d0e9f6}
-#PhotoProfil {max-width: 200px;height:50%; max-height: 400px}
-#TableProfil td {background-color:#f7dbb6}
+#PhotoProfil {max-width: 200px; max-height: 400px}
+#TableProfil td {background-color:#f7dbb6;}
 .TableAmisProfil {background-color:#f7dbb6}
 .Titre
 {background-color:#e0e0e0}
 .textarea
-{max-width: 800px; max-height: 200px;}
-.textarea2
 {max-width: 800px; max-height: 150px;}
 .textarea2
 {max-width: 800px; max-height: 300px;}
+.padLeft
+{padding-left: 10px}

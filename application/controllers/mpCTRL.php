@@ -29,7 +29,7 @@ elseif(isset($_GET['do']))
 			if(isset($_POST['message']) && !empty($_POST['message'])
 			&& isset($_POST['users']) && !empty($_POST['users']))
 			{
-				$mpData['message'] = $_POST['message'];
+				$mpData['message'] = nl2br($_POST['message']);
 				$mpData['users'] = $_POST['users'];
 				if(isset($_POST['titre']) && !empty($_POST['titre']))
 				{
@@ -39,7 +39,12 @@ elseif(isset($_GET['do']))
 				{
 					$mpData['titre'] = "Sans objet";
 				}
-				sendMp($mpData,$userId);
+				$mpError = sendMp($mpData,$userId);
+				var_dump($mpError);
+				if(is_array($mpError))
+				{
+					$mpFlag = 1;
+				}
 			}
 			else
 			{
