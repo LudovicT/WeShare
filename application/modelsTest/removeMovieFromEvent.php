@@ -1,7 +1,7 @@
 <?php
 /*
-Fonction de test permettant de voir si un film a bien été ajouté à
-un événement.
+Fonction de test permettant de voir si on a bien supprimé un film donné
+pour un événement donné.
 
 Auteur : Vincent Ricard
 */
@@ -11,15 +11,11 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$result = addMovieToEvent('6', '1');
+$result = removeMovieFromEvent('6', '1');
 
 if ($result == -1)
 {
 	echo('<br />FAIL :{'.mysql_error().'}');
-}
-else if ($result == 1)
-{
-	echo('<br />Film déjà présent pour cet événement !');
 }
 else
 {

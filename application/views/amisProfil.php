@@ -87,7 +87,7 @@
 	<br /><br /><br /><br />
 	<h3>Mes groupes d'amis</h3>	
 	<?php
-	if(isset($group) && !empty($group))
+	if(isset($group) && !empty($group) && $group != -1)
 	{
 		?>
 		<p>

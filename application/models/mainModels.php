@@ -1538,7 +1538,7 @@ function sendMp($data,$IdSender)
 }
 
 /*
-La fonction AddMovieToEvent permet l'utilisateur d'ajouter des amis
+La fonction AddMovieToEvent permet l'utilisateur d'ajouter des films
 à un événement qu'il a créé.
 
 $error
@@ -1550,7 +1550,7 @@ $error (S): int§
 Auteur : Vincent Ricard
 */
 
-function AddMovieToEvent($IdEvent, $IdMovie)
+function addMovieToEvent($IdEvent, $IdMovie)
 {
 	$error = 0;
 
@@ -1569,6 +1569,76 @@ function AddMovieToEvent($IdEvent, $IdMovie)
 					(IdEvent, IdMovie, NumberOfVote)   
 					  VALUES ('%d', '%d', '%d')" 
 					  ,$IdEvent, $IdMovie, '0');
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
+	 }
+	return ($error);
+}
+
+/*
+La fonction getMovieEvent permet de récupérer la liste du ou des films
+ayant été ajouté à un événement donné.
+
+$error
+$MovieEvent
+
+$error (S): int
+-1	:	erreur requête invalide/problème avec la BDD;
+-2	:	il n'y aucun film
+$MovieEvent (S) : tableau associatif de int
+
+Auteur : Vincent Ricard
+*/
+
+function getMovieEvent($IdEvent)
+{
+	$error = 0;
+	$MovieEvent;
+	
+	// Requête insérant un nouveau film à l'événement donné
+	$query = sprintf("SELECT IdMovie FROM EventsSelections WHERE IdEvent = '%d'" 
+					 ,$IdEvent);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
+	 }
+	$MovieListEvent = mysql_fetch_assoc($result);
+	if (isset ($MovieListEvent) and !empty($MovieListEvent))
+	{
+		foreach ($MovieListEvent as $key)
+		{
+			$MovieEvent = getMovie($key['IdMovie']);
+		}
+		return ($MovieEvent);
+	}
+	return (-2);
+}
+
+/*
+La fonction removeMovieFromEvent permet à l'utilisateur de retirer un film
+qu'il avait ajouté un événement dont il est l'organisateur.
+
+$error
+
+$error (S): int
+-1	:	erreur requête invalide/problème avec la BDD;
+0 	:	OK
+
+Auteur : Vincent Ricard
+*/
+
+function removeMovieFromEvent($IdEvent, $IdMovie)
+{
+	$error = 0;
+	$MovieEvent;
+	
+	// Requête retirant un film de l'événement donné
+	$query = sprintf("DELETE FROM EventsSelections 
+					  WHERE IdEvent = '%d' AND IdMovie = '%d'" 
+					 ,$IdEvent, $IdMovie);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
