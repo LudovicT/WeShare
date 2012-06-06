@@ -107,6 +107,11 @@ if (isset($_GET["page"]))
 						{
 							removeMovieFromEvent($_POST['IdEvent'], $_POST['SuppMovie']);
 						}
+						if(isset($_POST['AddMovie']) && !empty($_POST['AddMovie']) &&
+							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
+						{
+							addMovieToEvent($_POST['IdEvent'], $_POST['AddMovie']);
+						}
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{
 							$IdEvent = $_GET['idEvent'];
@@ -114,15 +119,23 @@ if (isset($_GET["page"]))
 							$movies = getMovieEvent($IdEvent);
 							$layout = "viewEvent.php";
 						}
-						if (isset($_GET['do']) && $_GET['do'] == 'removeMovie')
+						if (isset($_GET['do']) && $_GET['do'] == 'removeMovieFromEvent')
 						{
-							var_dump($_POST);
 							if(isset($_GET['IdMovie']) && !empty($_GET['IdMovie']))
 							{
 								$IdMovie = $_GET['IdMovie'];
 								$IdEvent = $_GET['idEvent'];
 								$movie = getMovie($IdMovie);
-								$layout = "removeMovie.php";
+								$layout = "removeMovieFromEvent.php";
+							}
+						}
+						if (isset($_GET['do']) && $_GET['do'] == 'addMovieToEvent')
+						{
+							if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+							{
+								$IdEvent = $_GET['idEvent'];
+								$UserMovies = getUserMovies(getId($user));
+								$layout = "addMovieToEvent.php";
 							}
 						}
 						break;
