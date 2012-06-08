@@ -1578,8 +1578,8 @@ function addMovieToEvent($IdEvent, $IdMovie)
 }
 
 /*
-La fonction getMovieEvent permet de récupérer la liste du ou des films
-ayant été ajouté à un événement donné.
+La fonction getMovieEvent permet de récupérer le ou les films
+ayant été ajouté(s) à un événement donné.
 
 $error
 $MovieEvent
@@ -1596,8 +1596,9 @@ function getMovieEvent($IdEvent)
 {
 	$error = 0;
 	$MovieEvent;
+	$iterator = 0;
 	
-	// Requête insérant un nouveau film à l'événement donné
+	// Requête récupérant la liste des événements
 	$query = sprintf("SELECT IdMovie FROM EventsSelections WHERE IdEvent = '%d'" 
 					 ,$IdEvent);
 	$result = mysql_query($query, dbConnect());
@@ -1605,12 +1606,17 @@ function getMovieEvent($IdEvent)
 	 {
 		return (-1);
 	 }
-	$MovieListEvent = mysql_fetch_assoc($result);
-	if (isset ($MovieListEvent) and !empty($MovieListEvent))
-	{
-		foreach ($MovieListEvent as $key)
+	 else
+	 {
+		while(($MovieListEvent[] = mysql_fetch_assoc($result)) || array_pop($MovieListEvent));
+		// while de parseur de récupéter toutes les données de chaque film par ID
+		while (isset($MovieListEvent[$iterator]) && !empty($MovieListEvent[$iterator]))
 		{
-			$MovieEvent = getMovie($key['IdMovie']);
+			 foreach ($MovieListEvent[$iterator] as $key)
+			 {
+				$MovieEvent[$iterator] = getMovie($key['IdMovie']);
+			 }
+			$iterator++;
 		}
 		return ($MovieEvent);
 	}
@@ -1659,5 +1665,46 @@ function deleteMP($IdPM,$IdSender)
 		return (-1);
 	}
 	return ($error);
+}
+/*
+La fonction getUserMovies permet de récupérer la liste des films appartenants
+à l'utilisateur.
+
+$error
+$UserMovies
+
+$error (S): int
+-1	:	erreur requête invalide/problème avec la BDD;
+$UserMovies (S) : tableau associatif contenant les films appartenants à
+l'utilisateur.
+
+Auteur : Vincent Ricard
+*/
+
+function getUserMovies($IdUser)
+{
+	$UserMovies;
+	$iterator = 0;
+	
+	// Requête récupérant les ID des films appartenants à l'utilisateur
+	$query = sprintf("SELECT IdMovie FROM UserMovies WHERE IdUser = '%d'" 
+					 ,$IdUser);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		$error = -1;
+		return ($error);
+	 }
+	while(($ListIDMovieUser[] = mysql_fetch_assoc($result)) || array_pop($ListIDMovieUser));
+	// while de parser permettant de récupéter toutes les données de chaque film
+	while (isset($ListIDMovieUser[$iterator]) && !empty($ListIDMovieUser[$iterator]))
+	{
+		 foreach ($ListIDMovieUser[$iterator] as $key)
+		 {
+			$UserMovies[$iterator] = getMovie($key['IdMovie']);
+		 }
+		$iterator++;
+	}
+	return ($UserMovies);
 }
 ?>

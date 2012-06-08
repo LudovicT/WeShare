@@ -1,14 +1,15 @@
 <?php
 /*
-La fonction getMovieEvent permet de récupérer la liste du ou des films
-ayant été ajouté à un événement donné.
+La fonction getMovieEvent permet de récupérer le ou les films
+ayant été ajouté(s) à un événement donné.
 
 $error
 $MovieEvent
 
 $error (S): int
 -1	:	erreur requête invalide/problème avec la BDD;
-$MovieEvent (S) : tableau associatif contenant les films et leurs infos
+-2	:	il n'y aucun film
+$MovieEvent (S) : tableau associatif de int
 
 Auteur : Vincent Ricard
 */
@@ -17,8 +18,9 @@ function getMovieEvent($IdEvent)
 {
 	$error = 0;
 	$MovieEvent;
+	$iterator = 0;
 	
-	// Requête insérant un nouveau film à l'événement donné
+	// Requête récupérant la liste des événements
 	$query = sprintf("SELECT IdMovie FROM EventsSelections WHERE IdEvent = '%d'" 
 					 ,$IdEvent);
 	$result = mysql_query($query, dbConnect());
@@ -26,12 +28,20 @@ function getMovieEvent($IdEvent)
 	 {
 		return (-1);
 	 }
-	 $MovieListEvent = mysql_fetch_assoc($result);
-	 
-	 foreach ($MovieListEvent as $key)
+	 else
 	 {
-		$MovieEvent = getMovie($key['IdMovie']);
-	 }
-	return ($MovieEvent);
+		while(($MovieListEvent[] = mysql_fetch_assoc($result)) || array_pop($MovieListEvent));
+		// while de parseur de récupéter toutes les données de chaque film par ID
+		while (isset($MovieListEvent[$iterator]) && !empty($MovieListEvent[$iterator]))
+		{
+			 foreach ($MovieListEvent[$iterator] as $key)
+			 {
+				$MovieEvent[$iterator] = getMovie($key['IdMovie']);
+			 }
+			$iterator++;
+		}
+		return ($MovieEvent);
+	}
+	return (-2);
 }
 ?>
