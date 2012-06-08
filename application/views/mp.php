@@ -20,6 +20,18 @@
 			if(isset($mpInfo) && $mpInfo != -1)
 			{
 			$i = 0;
+			if(isset($mpInfo[0]['mpUser'][0]['Pseudo'])) //detection boite réception ou boite envoie
+			{
+			?>
+				<h3>Boite d'envoie</h3>
+			<?php
+			}
+			else
+			{
+			?>
+				<h3>Boite de réception</h3>
+			<?php
+			}
 			foreach($mpInfo as $key)
 			{
 				if($i > 0)
@@ -29,12 +41,16 @@
 				$i++;
 				?>
 				<ol>
-					<div class='Titre'>
-					<li><a href='/weshare/profil/messagerie/lire/<?php echo $key['IdPM']?>'><?php echo $key['Titre']?></a></li>
-					</div>
-					<li><?php
+					<div class='Titre'>Objet :
+					<a href='/weshare/profil/messagerie/lire/<?php echo $key['IdPM']?>'><?php echo $key['Titre']?></a></div>
+					<div class='rightAlign'>
+					<a href='/weshare/profil/messagerie/supprimer/<?php echo $key['IdPM']?>'>Supprimer</a></div>
+					<br /><hr width='40%'>
+					<li>
+					<?php
 					if(isset($key['mpUser'][0]['Pseudo']))
 					{
+						echo "Envoyé à : ";
 						foreach($key['mpUser'] as $key2)
 						{
 							echo $key2['Pseudo']." ";
@@ -42,6 +58,7 @@
 					}
 					else
 					{
+						echo "Envoyé par : ";
 						echo $key['mpUser'];
 					}?>
 					</li>
@@ -95,7 +112,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Séparez chaque identifiant par un point-virgule « ; »<br /><br /><hr style="width:50%" >
+				<td>Séparez chaque identifiant par un point-virgule « ; »<br /><br /><hr>
 				</td>
 			</tr>
 			<tr>

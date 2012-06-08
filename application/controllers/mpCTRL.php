@@ -45,6 +45,10 @@ elseif(isset($_GET['do']))
 				{
 					$mpFlag = 1;
 				}
+				else
+				{
+					$mpInfo = getMp(0,$userId);
+				}
 			}
 			else
 			{
@@ -52,6 +56,10 @@ elseif(isset($_GET['do']))
 			}
 			break;
 		case "delMp":
+			if(isset($_GET['IdMP']) && !empty($_GET['IdMP']) && is_numeric($_GET['IdMP']))
+			{
+				deleteMP($_GET['IdMP'],$userId);
+			}
 			$mpInfo = getMp(0,$userId);
 			break;
 		case "read":

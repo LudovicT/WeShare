@@ -1633,7 +1633,6 @@ Auteur : Vincent Ricard
 function removeMovieFromEvent($IdEvent, $IdMovie)
 {
 	$error = 0;
-	$MovieEvent;
 	
 	// Requête retirant un film de l'événement donné
 	$query = sprintf("DELETE FROM EventsSelections 
@@ -1644,6 +1643,21 @@ function removeMovieFromEvent($IdEvent, $IdMovie)
 	 {
 		return (-1);
 	 }
+	return ($error);
+}
+
+function deleteMP($IdPM,$IdSender)
+{
+	$error = 0;
+	$query = sprintf("DELETE FROM PMs
+					WHERE IdPM = '%d' AND IdSender = '%d'",
+					$IdPM,
+					$IdSender);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	{
+		return (-1);
+	}
 	return ($error);
 }
 ?>

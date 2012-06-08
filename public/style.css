@@ -64,7 +64,7 @@ p {line-height:1.57em;margin-bottom:20px}
 /* TXT, LINKS, LINES, TITLES */
 a {color:#af3300;outline:none}
 a:hover {text-decoration:none}
-h3 {font-size:30px;line-height:1.2em;border-bottom:1px solid #dedbd3;margin:0 0 14px 0;padding:0 0 8px 19px;position:relative;left:-19px}
+h3 {font-size:30px;line-height:1.2em;border-bottom:1px solid #dedbd3;margin:0 0 14px 0;padding:0 0 8px 19px;position:relative;}
 h3 span, h3 b {color:#af3300}
 h3 b {font-weight:normal}
 h4 {font-size:.86em;margin-bottom:5px}
@@ -293,3 +293,7 @@ padding-top: 200px;
 {max-width: 800px; max-height: 300px;}
 .padLeft
 {padding-left: 10px}
+.leftAlign
+{text-align:right;}
+.rightAlign
+{text-align:right;}
