@@ -19,6 +19,7 @@ require_once(DIR_MODELS.DS."mainModels.php");
 
 /* traitement des informations */
 $user = getUser();
+$userId = getId($user);
 if (isset($_GET["page"]) && $user == null && !isset($_SESSION['User']))
 {
 	switch($_GET["page"])

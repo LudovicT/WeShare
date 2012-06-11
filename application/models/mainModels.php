@@ -1683,28 +1683,33 @@ Auteur : Vincent Ricard
 
 function getUserMovies($IdUser)
 {
-	$UserMovies;
 	$iterator = 0;
 	
 	// Requête récupérant les ID des films appartenants à l'utilisateur
-	$query = sprintf("SELECT IdMovie FROM UserMovies WHERE IdUser = '%d'" 
+	// $query = sprintf("SELECT IdMovie FROM UserMovies WHERE IdUser = '%d'" 
+					// ,$IdUser);
+	// $result = mysql_query($query, dbConnect());
+	$query = sprintf("SELECT UM.IdMovie, UM.Support, UM.Available, M.Name 
+						FROM UserMovies AS UM
+						LEFT JOIN Movies AS M
+						ON UM.IdMovie = M.IdMovie
+						WHERE UM.IdUser = '%d'" 
 					 ,$IdUser);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error()) ;
 	if ($result == false)
-	 {
-		$error = -1;
-		return ($error);
-	 }
-	while(($ListIDMovieUser[] = mysql_fetch_assoc($result)) || array_pop($ListIDMovieUser));
-	// while de parser permettant de récupéter toutes les données de chaque film
-	while (isset($ListIDMovieUser[$iterator]) && !empty($ListIDMovieUser[$iterator]))
 	{
-		 foreach ($ListIDMovieUser[$iterator] as $key)
-		 {
-			$UserMovies[$iterator] = getMovie($key['IdMovie']);
-		 }
-		$iterator++;
+		return -1;
 	}
+	while(($UserMovies[] = mysql_fetch_assoc($result)) || array_pop($UserMovies));
+	// // while de parser permettant de récupéter toutes les données de chaque film
+	// while (isset($ListIDMovieUser[$iterator]) && !empty($ListIDMovieUser[$iterator]))
+	// {
+		 // foreach ($ListIDMovieUser[$iterator] as $key)
+		 // {
+			// $UserMovies[$iterator] = getMovie($key['IdMovie']);
+		 // }
+		// $iterator++;
+	// }
 	return ($UserMovies);
 }
 ?>

@@ -3,7 +3,6 @@
 Fichier de controle qui traite et les différentes fonctionnalitées de la messagerie
 */
 
-$userId = getId($user);
 $mp = -1;
 $mpInfo = -1;
 $newMp = -1;
