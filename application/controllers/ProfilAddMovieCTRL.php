@@ -16,7 +16,7 @@ if (isset($_POST["IdMovie"]) && !empty($_POST["IdMovie"]) &&
 		$addMovie_Support = null;
 	}
 	
-	$error_addMovie = addMovie($addMovie_IdMovie,
+	$error_addMovie = getUserMovies($addMovie_IdMovie,
 								$addMovie_Support);
 	if ($error_addMovie[0] == 0 && $error_addMovie[1] == 0)
 	{
@@ -39,7 +39,7 @@ if(isset($_GET['do']))
 	switch($_GET['do'])
 	{
 		case "ajouter":
-		addFilmToProfil($_GET['film'],$_POST['Name']);
+		getUserMovies($_GET['film'],$_POST['Name']);
 		break;
 	}
 }
