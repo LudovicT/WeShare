@@ -134,7 +134,11 @@ if (isset($_GET["page"]))
 							if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 							{
 								$IdEvent = $_GET['idEvent'];
-								$UserMovies = getUserMovies(getId($user));
+								$rawUserMovies = getUserMovies(getId($user));
+								foreach ($rawUserMovies as $key)
+								{
+									$UserMovies[] = getMovie($key['IdMovie']);
+								}
 								$layout = "addMovieToEvent.php";
 							}
 						}

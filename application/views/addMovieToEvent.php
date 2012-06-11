@@ -6,14 +6,14 @@
 	{ 
 ?>
 <table border='1'>
-	<th> Nom du film </th><th> Date de sortie </th>
+	<th> Nom du film </th><th> Synopsis </th>
 	<th> Durée </th>
 	<tr>
 		<td>
 <?php echo ($key['Name']) ?>
 		</td>
 		<td>
-<?php echo($key['DateOfRelease']); ?>	
+<?php echo($key['Synopsis']); ?>	
 		</td>
 		<td>
 <?php echo($key['Runtime']); ?>	
