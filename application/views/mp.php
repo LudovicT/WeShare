@@ -144,5 +144,4 @@
 	</tr>
 </table>
 <?php
-var_dump($_POST);
 ?>
