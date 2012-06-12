@@ -1695,7 +1695,7 @@ function getUserMovies($IdUser)
 						ON UM.IdMovie = M.IdMovie
 						WHERE UM.IdUser = '%d'" 
 					 ,$IdUser);
-	$result = mysql_query($query, dbConnect()) or die(mysql_error()) ;
+	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	{
 		return -1;
