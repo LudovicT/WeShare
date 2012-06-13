@@ -2,7 +2,7 @@
 </br>
 <br />
 <form method="post" action="/WeShare/Profil/Films/Ajouter/">
-<SELECT name='Movie'>
+<SELECT name='IdMovie'>
     <OPTION value=''></option>
 <?php
 	foreach($movies[0] as $key)
@@ -21,7 +21,7 @@
 
 
 Support : 
-<SELECT name="Support" size="1">
+<SELECT name="support" size="1">
     <OPTION value=''></option>
     <OPTION value='fichier'>fichier</option>
     <OPTION value='cd'>cd</option>
@@ -32,7 +32,7 @@ Support :
     <OPTION value='VHS'>VHS</option>
 </SELECT>
 Nombre d'exemplaire :
-<input type='text' name='Available' value='1'>
+<input type='text' name='available' value='1'>
 <br />
 Les fichiers sont considérés comme étant tout le temps disponible.
 <br />
@@ -59,6 +59,14 @@ Les fichiers sont considérés comme étant tout le temps disponible.
 			</td>
 			<td>
 				<a href='/WeShare/Profil/Films/<?php echo $name['Name']?>/'><?php echo $name['Available']?></a>
+			</td>
+			<td>
+				<form method="post" action="/WeShare/Profil/Films/supprimer/">
+				<input type='hidden' name='IdMovie' value='<?php echo $name['IdMovie']?>'>
+				<input type='hidden' name='support' value='<?php echo $name['Support']?>'>
+				<input type='hidden' name='available' value='<?php echo $name['Available']?>'>
+				<input type='submit' value='Supprimer'>
+				</form>
 			</td>
 		</tr>
 	<?php

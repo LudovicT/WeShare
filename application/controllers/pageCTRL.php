@@ -7,6 +7,9 @@ if (isset($_GET["page"]))
 {
 	switch ($_GET["page"])
 	{
+		case "login":
+			include_once("loginCTRL.php");
+			break;
 		case "accueil.php":
 			$layout = "accueil.php";
 			break;

@@ -108,7 +108,7 @@ function register($register_pseudo,
 	
 	//verif pseudo
 	$S_result = mysql_query("SELECT Pseudo FROM Users
-						WHERE Pseudo='" . $register_pseudo . "'", dbConnect());
+						WHERE Pseudo='" . $register_pseudo . "'", dbConnect()) or die(mysql_error());
 	$S_isPseudoInUse = mysql_num_rows($S_result);
 	if ($S_result == false)
 	{
@@ -137,7 +137,7 @@ function register($register_pseudo,
 	
 	//verif mail
 	$S_result = mysql_query("SELECT Mail FROM Users
-						WHERE Mail='" . $register_email . "'", dbConnect());
+						WHERE Mail='" . $register_email . "'", dbConnect()) or die(mysql_error());
 	$S_isMailInUse = mysql_num_rows($S_result);
 	if ($S_result == false)
 	{
@@ -176,7 +176,7 @@ function register($register_pseudo,
 						$register_city,
 						$register_country,
 -						$register_phoneNumber);
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			$error[3] = 1;
@@ -241,7 +241,7 @@ function getMember($userPseudo)
 				ON (U.IdUser = F.IdFriend AND F.IdUser = '".$userId."')
 				WHERE U.IdUser != '".$userId."'
 				ORDER BY U.Pseudo");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_nbRow = mysql_num_rows($S_result);
 	if ($S_nbRow == false)
 	{
@@ -347,7 +347,7 @@ function requestFriendship($userId, $newFriend)
 			FROM Users AS U
 			LEFT JOIN Friends AS F ON (F.IdFriend = '".$newFriend."' AND F.IdUser = '".$userId."')
 			WHERE U.IdUser = '".$userId."'");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		return 1;
@@ -360,7 +360,7 @@ function requestFriendship($userId, $newFriend)
 	{
 		$S_query = ("INSERT INTO Friends (IdUser, IdFriend, Status)
 						VALUES ('".$userId."','".$newFriend."','0')");
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			return 1;
@@ -379,7 +379,7 @@ function getProfil($user)
 				FROM Users
 				HAVING Pseudo = '".$user."'");
 				
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 
 	$profil = mysql_fetch_assoc($S_result);
 	if ($profil == false)
@@ -398,7 +398,7 @@ function getId($pseudo)
 {
 	$S_query = ("SELECT * FROM Users HAVING Pseudo = '".$pseudo."'");
 				
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_user = mysql_fetch_assoc($S_result);
 	if ($S_user == false)
 	{
@@ -411,7 +411,7 @@ function getPseudo($IdUser)
 {
 	$S_query = ("SELECT * FROM Users HAVING IdUser ='".$IdUser."'");
 				
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_user = mysql_fetch_assoc($S_result);
 	if ($S_user == false)
 	{
@@ -427,7 +427,7 @@ function getFriends($idUser)
 					LEFT JOIN Friends AS F
 					ON U.IdUser = F.IdFriend AND F.IdUser = '".$idUser."'
 					WHERE F.Status = 1");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_nbRow = mysql_num_rows($S_result);
 	if ($S_nbRow == false)
 	{
@@ -453,7 +453,7 @@ function getFriendshipRequest($idUser)
 					LEFT JOIN Friends AS F
 					ON U.IdUser = F.IdUser AND F.IdFriend = '".$idUser."'
 					WHERE F.Status = 0");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_nbRow = mysql_num_rows($S_result);
 	if ($S_nbRow == false)
 	{
@@ -485,7 +485,7 @@ function searchData($type, $recherche)
 	{
 		case "0":
 			$S_query = ("SELECT * FROM Movies WHERE Name LIKE '%".$recherche."%'");
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
 				$S_data[0] = -1;
@@ -496,7 +496,7 @@ function searchData($type, $recherche)
 			}
 			
 			$S_query = ("SELECT * FROM Staffs WHERE LastName LIKE '%".$recherche."%' OR FirstName LIKE 'LIKE".$recherche."LIKE'");
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
 				$S_data[2] = -1;
@@ -508,7 +508,7 @@ function searchData($type, $recherche)
 			break;
 		case "1":
 			$S_query = ("SELECT * FROM Movies");
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
 				return -1;
@@ -517,7 +517,7 @@ function searchData($type, $recherche)
 			break;
 		case "2":
 			$S_query = ("SELECT * FROM Staffs");
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
 				return -1;
@@ -526,7 +526,7 @@ function searchData($type, $recherche)
 			break;
 		case "3":
 			$S_query = ("SELECT * FROM Movies WHERE Name LIKE 'LIKE".$recherche."LIKE'");
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
 				return -1;
@@ -535,7 +535,7 @@ function searchData($type, $recherche)
 			break;
 		case "4":
 			$S_query = ("SELECT * FROM Staffs WHERE Name LIKE 'LIKE".$recherche."LIKE'");
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
 				return -1;
@@ -551,7 +551,7 @@ function replyToFriendship($userId, $friendId, $status)
 	$S_query = ("UPDATE Friends
 				SET Status = '".$status."'
 				WHERE IdUser ='".$friendId."' AND IdFriend = '".$userId."'");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		return 1;
@@ -562,7 +562,7 @@ function replyToFriendship($userId, $friendId, $status)
 	{
 		$S_query = ("INSERT INTO Friends (IdUser, IdFriend, Status)
 						VALUES ('".$userId."','".$friendId."','1')");
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			return 1;
@@ -573,7 +573,7 @@ function replyToFriendship($userId, $friendId, $status)
 	{
 		$S_query = ("DELETE FROM Friends
 					WHERE IdUser ='".$userId."' AND IdFriend = '".$friendId."'");
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			return 1;
@@ -617,7 +617,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET FirstName = '%s' 
 							 WHERE IdUser = %d",
 							 $FirstName, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -635,7 +635,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET LastName = '%s' 
 							WHERE IdUser = %d",
 							$LastName, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -659,7 +659,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 				$S_query = sprintf("UPDATE USERS SET Password = '%s'
 								 WHERE IdUser = %d",
 								$Password, $IdUser);
-				$S_result = mysql_query($S_query, dbConnect());
+				$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 				if ($S_result == false)
 				{
 					$error = 2;
@@ -678,7 +678,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET Mail = '%s' 
 							 WHERE IdUser = %d",
 							$Mail, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -694,7 +694,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 		$S_query = sprintf("UPDATE USERS SET BornDate = '%s' 
 						 WHERE IdUser = %d",
 						$BornDate, $IdUser);
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 1;
@@ -707,7 +707,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET address = '%s' 
 							WHERE IdUser = %d",
 							$address, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -725,7 +725,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET City = '%s' 
 							 WHERE IdUser = %d",
 							$City, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -743,7 +743,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET Country = '%s' 
 							 WHERE IdUser = %d",
 							$Country, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -761,7 +761,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET Phone = '%s' 
 							 WHERE IdUser = %d",
 							 $Phone, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -781,7 +781,7 @@ function changeProfil($IdUser, $FirstName, $LastName, $Password, $RetypePwd, $Ma
 			$S_query = sprintf("UPDATE USERS SET Avatar = '%s' 
 							 WHERE IdUser = %d",
 							 $Avatar, $IdUser);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = 2;
@@ -816,7 +816,7 @@ function	getEvents($IdUser)
 	$S_query = sprintf("SELECT * FROM Events WHERE IdOrganizer = '%d'",
 					 $IdUser);
 	
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	 {
 		return -2;
@@ -830,7 +830,7 @@ function	getEvents($IdUser)
 					  LEFT JOIN Events AS E ON E.IdEvent = EI.IdEvent
 					  WHERE IdUser = '%d'", 
 					  $IdUser);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	 {
 		return -2;
@@ -864,7 +864,7 @@ function createEvent($IdUser, $DateOfEvent, $Address, $City, $Status)
 				  $City,
 				  date("y-m-d"),
 				  $IdUser);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	 {
 		$error = 1;
@@ -872,7 +872,7 @@ function createEvent($IdUser, $DateOfEvent, $Address, $City, $Status)
 	 
 	// Requête qui récupère l'IdEvent de l'événement qui vient d'être créé
 	$S_query = sprintf("SELECT LAST_INSERT_ID()");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	 {
 		$error = 1;
@@ -882,7 +882,7 @@ function createEvent($IdUser, $DateOfEvent, $Address, $City, $Status)
 	$S_query = sprintf("INSERT INTO EventsInvitations (IdEvent, IdUser, Status) 
 					  VALUES ('%d', '%d', '%d')", 
 					  $IdEvent[0], $IdUser, $Status);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	 {
 		$error = 1;
@@ -900,7 +900,7 @@ Auteur : Ludovic Tresson
 function getMovie($idMovie)
 {
 	$S_query = ("SELECT * FROM Movies WHERE idMovie = '".$idMovie."'");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_data = mysql_fetch_assoc($S_result);
 	if ($S_data == false)
 	{
@@ -922,7 +922,7 @@ function getMovieStaff($idMovie)
 				LEFT JOIN Staffs AS S
 				ON M.IdStaff = S.IdStaff
 				WHERE M.idMovie = '".$idMovie."'");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	
 	//essaie d'une nouvelle methode fetch tout les résultats
 	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
@@ -946,7 +946,7 @@ function getMovieSupport($idMovie)
 				FROM UserMovies 
 				WHERE idMovie = '".$idMovie."'
 				GROUP BY Support");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	if ($S_result== false)
 	{
@@ -1007,7 +1007,7 @@ function addMovie($name, $synopsis, $DateOfRelease, $Poster)
 			$S_query = sprintf("INSERT INTO Movies (Name, Synopsis, DateOfRelease, Poster)
 								VALUES ('%s','%s','%d','%s')",
 							 $name, $synopsis, $DateOfRelease, $Poster);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				return ($error);
@@ -1029,7 +1029,7 @@ function deleteMovie($MovieId)
 {
 	$S_query = ("DELETE FROM Movies
 				WHERE IdMovie ='".$MovieId."'");
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		return 1;
@@ -1061,7 +1061,7 @@ function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster
 			$S_query = sprintf("UPDATE Movies SET Name = '%s' 
 							 WHERE IdMovie = '%d'",
 							 $Name, $IdMovie);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = -1;
@@ -1079,7 +1079,7 @@ function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster
 			$S_query = sprintf("UPDATE Movies SET Synopsis = '%s' 
 							WHERE IdMovie = '%d'",
 							$synopsis, $IdMovie);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = -1;
@@ -1097,7 +1097,7 @@ function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster
 			$S_query = sprintf("UPDATE Movies SET DateOfRelease = '%d' 
 							 WHERE IdMovie = '%d'",
 							$DateOfRelease, $IdMovie);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = -1;
@@ -1116,7 +1116,7 @@ function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster
 			$S_query = sprintf("UPDATE Movies SET Runtime = '%s' 
 							 WHERE IdMovie = '%d'",
 							 $Runtime, $IdMovie);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = -1;
@@ -1136,7 +1136,7 @@ function editMovie($IdMovie, $Name, $synopsis, $DateOfRelease, $Runtime, $Poster
 			$S_query = sprintf("UPDATE Movies SET Poster = '%s' 
 							 WHERE IdMovie = '%d'",
 							 $Poster, $IdMovie);
-			$S_result = mysql_query($S_query, dbConnect());
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result == false)
 			{
 				$error = -1;
@@ -1169,7 +1169,7 @@ function deleteEvent($IdEvent)
 
 // Requête qui supprime enfin l'événement dans la table "Events"
 	$query = sprintf("DELETE FROM Events WHERE IdEvent = '%d'", $IdEvent);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	 {
 		$error = 1;
@@ -1191,7 +1191,7 @@ function createGroup($IdUser, $groupName)
 						VALUES ('%s', '%d')",
 						$groupName,
 						$IdUser);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		$error = 1;
@@ -1211,7 +1211,7 @@ function deleteGroup($IdUser, $groupId)
 						WHERE IdGroup ='%d' AND IdCreator = '%d' ",
 						$groupId,
 						$IdUser);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		$error = 1;
@@ -1230,7 +1230,7 @@ function getGroups($IdUser)
 	$S_query = sprintf("SELECT * FROM Groups
 						WHERE IdCreator = '%s'",
 						$IdUser);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	if ($S_data == false)
 	{
@@ -1251,7 +1251,7 @@ function getGroup($IdGroup)
 						FROM Groups
 						WHERE IdGroup = '%d'",
 						$IdGroup);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_data = mysql_fetch_assoc($S_result);
 	if ($S_data == false)
 	{
@@ -1276,7 +1276,7 @@ function getGroupUser($IdGroup)
 							ON UG.IdUser = U.IdUser
 						WHERE UG.IdGroup = '%d'",
 						$IdGroup);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	if ($S_data == false)
 	{
@@ -1294,7 +1294,7 @@ function addMemberToGroup($IdGroup, $IdUser)
 						WHERE IdUser ='%d' AND IdGroup ='%d'",
 						$IdUser,
 						$IdGroup);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		$error = 1;
@@ -1307,7 +1307,7 @@ function addMemberToGroup($IdGroup, $IdUser)
 							VALUES ('%d', '%d')",
 							$IdUser,
 							$IdGroup);
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			$error = 1;
@@ -1323,7 +1323,7 @@ function deleteMemberFromGroup($IdGroup, $IdUser)
 						WHERE IdUser = '%d' AND IdGroup = '%d'",
 						$IdUser,
 						$IdGroup);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		$error = 1;
@@ -1333,7 +1333,7 @@ function deleteMemberFromGroup($IdGroup, $IdUser)
 
 function lastSqlAutoInc($table)
 {
-	$result = mysql_query("SHOW TABLE STATUS LIKE '$table'", dbConnect());
+	$result = mysql_query("SHOW TABLE STATUS LIKE '$table'", dbConnect()) or die(mysql_error());
 	$row = mysql_fetch_array($result);
 	$nextId = $row['Auto_increment'];
 	mysql_free_result($result);
@@ -1360,7 +1360,7 @@ function getEvent($IdEvent)
 	$S_query = sprintf("SELECT * FROM Events HAVING IdEvent = '%d'",
 					 $IdEvent);
 	
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	 {
 		return -2;
@@ -1381,7 +1381,7 @@ function getMp($folder,$userId)
 							ON UPM.IdPM = PM.IdPM
 							WHERE IdUser = '%d'",
 							$userId);
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			return -1;
@@ -1401,7 +1401,7 @@ function getMp($folder,$userId)
 	{
 		$S_query = sprintf("SELECT * FROM PMs WHERE IdSender='%d'",
 							$userId);
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			return -1;
@@ -1427,7 +1427,7 @@ function getMPSendTo($IdPM)
 						ON U.IdUser = UPM.IdUser 
 						WHERE UPM.IdPM = '%d'",
 						$IdPM);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	while(($S_data[] = mysql_fetch_assoc($S_result)) || array_pop($S_data));
 	if ($S_data == false)
 	{
@@ -1446,7 +1446,7 @@ function readMp($IdPM,$IdUser)
 						$IdUser,
 						$IdPM,
 						$IdUser);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	$S_data = mysql_fetch_assoc($S_result);
 	if ($S_data == false)
 	{
@@ -1480,7 +1480,7 @@ function changeStatusEvent($IdEvent, $IdUser, $Status)
 					  SET Status = '%d' 
 					  WHERE IdEvent = '%d' AND IdUser = '%d'"
 					  ,$Status, $IdEvent, $IdUser);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	 {
 		return (1);
@@ -1513,7 +1513,7 @@ function sendMp($data,$IdSender)
 						$IdSender,
 						$data['titre'],
 						$data['message']);
-	$S_result = mysql_query($S_query, dbConnect());
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		return -1;
@@ -1528,7 +1528,7 @@ function sendMp($data,$IdSender)
 							VALUES ('%d','%d','0')",
 							$key,
 							$insertId);
-		$S_result = mysql_query($S_query, dbConnect());
+		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
 		{
 			return -2;
@@ -1558,7 +1558,7 @@ function addMovieToEvent($IdEvent, $IdMovie)
 	$query = sprintf ("SELECT IdMovie FROM EventsSelections 
 					   WHERE IdEvent = '%d' AND IdMovie = '%d'"
 					   ,$IdEvent, $IdMovie);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	$check = mysql_fetch_assoc($result); 
 	if ($check != false)
 	{
@@ -1569,7 +1569,7 @@ function addMovieToEvent($IdEvent, $IdMovie)
 					(IdEvent, IdMovie, NumberOfVote)   
 					  VALUES ('%d', '%d', '%d')" 
 					  ,$IdEvent, $IdMovie, '0');
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	 {
 		return (-1);
@@ -1601,7 +1601,7 @@ function getMovieEvent($IdEvent)
 	// Requête récupérant la liste des événements
 	$query = sprintf("SELECT IdMovie FROM EventsSelections WHERE IdEvent = '%d'" 
 					 ,$IdEvent);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	 {
 		return (-1);
@@ -1644,7 +1644,7 @@ function removeMovieFromEvent($IdEvent, $IdMovie)
 	$query = sprintf("DELETE FROM EventsSelections 
 					  WHERE IdEvent = '%d' AND IdMovie = '%d'" 
 					 ,$IdEvent, $IdMovie);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	 {
 		return (-1);
@@ -1659,7 +1659,7 @@ function deleteMP($IdPM,$IdSender)
 					WHERE IdPM = '%d' AND IdSender = '%d'",
 					$IdPM,
 					$IdSender);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	{
 		return (-1);
@@ -1688,14 +1688,14 @@ function getUserMovies($IdUser)
 	// Requête récupérant les ID des films appartenants à l'utilisateur
 	// $query = sprintf("SELECT IdMovie FROM UserMovies WHERE IdUser = '%d'" 
 					// ,$IdUser);
-	// $result = mysql_query($query, dbConnect());
+	// $result = mysql_query($query, dbConnect()) or die(mysql_error());
 	$query = sprintf("SELECT UM.IdMovie, UM.Support, UM.Available, M.Name 
 						FROM UserMovies AS UM
 						LEFT JOIN Movies AS M
 						ON UM.IdMovie = M.IdMovie
 						WHERE UM.IdUser = '%d'" 
 					 ,$IdUser);
-	$result = mysql_query($query, dbConnect());
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	{
 		return -1;
@@ -1711,5 +1711,39 @@ function getUserMovies($IdUser)
 		// $iterator++;
 	// }
 	return ($UserMovies);
+}
+
+function addUserMovie($userId, $IdMovie, $support, $available)
+{
+	if($support == 'fichier')
+	{
+		$available = -1;
+	}
+	$query = sprintf("INSERT INTO UserMovies
+					(IdUser, IdMovie, Support, Available)
+					VALUES ('%d', '%d', '%s', '%d')"
+					,$userId, $IdMovie, $support, $available);
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
+	if ($result == false)
+	{
+		return -1;
+	}
+}
+
+function deleteUserMovie($userId, $IdMovie, $support, $available)
+{
+	if($support == 'fichier')
+	{
+		$available = -1;
+	}
+	$query = sprintf("DELETE FROM usermovies
+						WHERE IdUser = '%d' AND IdMovie = '%d'
+						AND Support = '%s' AND Available = '%d' LIMIT 1"
+						,$userId, $IdMovie, $support, $available);
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
+	if ($result == false)
+	{
+		return -1;
+	}
 }
 ?>
