@@ -82,6 +82,7 @@
 		</style>
 	</head>
 <body id="page1">
+<div id='contenu'>
 <div class="tail-bottom">
 	<!--<div id="header-inscription"> -->
 	<div id="header">

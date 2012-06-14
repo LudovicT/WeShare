@@ -7,7 +7,7 @@
 	else
 	{
 	?>
-		<table border='1'>
+		<table cellspacing='7'>
 		<th> Pseudo </th><th> Date d'inscription </th><th> Ajouter un ami </th>
 		<?php
 		foreach($membres as $key)
