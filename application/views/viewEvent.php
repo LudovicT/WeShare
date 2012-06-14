@@ -25,7 +25,7 @@ le ou les films proposés</p>
 	</tr>
 </table>
 <br />
-<?php if (!($movies == -2))
+<?php if ($movies != -2)
 { ?>
 Voici la liste des films proposés pour cet événement : <br /><br />
 <?php
@@ -49,7 +49,14 @@ Voici la liste des films proposés pour cet événement : <br /><br />
 <?php echo($key['NbVote']); ?>	
 		</td>
 		<td>
+<?php if ($key['CheckVote'] == 0)
+{?>
 		<a href='/WeShare/Evenements/Voir/<?php echo $event['IdEvent'] ?>/VoterFilm/<?php echo $key['IdMovie']; ?>/' > voter </a>
+<?php }
+	  else
+	  {?>
+	  A voté
+	  <?php }?>
 		</td>
 	</tr>
 </table>

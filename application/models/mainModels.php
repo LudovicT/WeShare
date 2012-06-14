@@ -2014,4 +2014,74 @@ function getPollMovieEvent($IdEvent, $IdMovie)
 	return ($NbVote['NumberOfVote']);
 }
 
+/*
+La fonction checkVoteMovieEvent permet de voir si l'utilisateur n'a pas déjà
+voté pour un film donné d'un événement donné.
+
+$error
+
+$error (S): int
+1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+-1	:	l'utilisateur a déjà voté.
+
+Auteur : Vincent Ricard
+*/
+
+function checkVoteMovieEvent($IdEvent, $IdMovie, $IdUser)
+{
+	$error = 0;
+
+	$query = sprintf("SELECT IdMovie FROM EventsVote
+					  WHERE IdMovie = '%d' AND IdEvent = '%d' AND IdUser = '%d'",
+					  $IdMovie, $IdEvent, $IdUser);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (1);
+	 }
+	$check = mysql_fetch_assoc($result);
+	if (is_array($check))
+	{
+		return (-1);
+	}
+	return ($error);
+}
+
+/*
+La fonction addVoteMovieEvent ajoute le vote (+1 ou -1) sur un film donné
+de l'utilisateur participant à un événement donné.
+
+$error
+
+$error (S): int
+1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+
+Auteur : Vincent Ricard
+*/
+
+function addVoteMovieEvent($IdEvent, $IdMovie, $IdUser, $Vote)
+{
+	$error = 0;
+
+	$query = sprintf("UPDATE EventsSelections
+					  SET NumberOfVote = (NumberOfVote + '%d')
+					  WHERE IdMovie = '%d' AND IdEvent = '%d'",
+					  $Vote, $IdMovie, $IdEvent);
+	$result = mysql_query($query, dbConnect()) or die (mysql_error());
+	if ($result == false)
+	 {
+		return (1);
+	 }
+	 $query = sprintf("INSERT INTO EventsVote (IdEvent, IdMovie, IdUser)
+					  VALUES ('%d', '%d', '%d')",
+					  $IdEvent, $IdMovie, $IdUser);
+	$result = mysql_query($query, dbConnect()) or die (mysql_error());
+	if ($result == false)
+	 {
+		return (1);
+	 }
+	return ($error);
+}
 ?>

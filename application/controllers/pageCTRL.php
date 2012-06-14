@@ -209,6 +209,14 @@ if (isset($_GET["page"]))
 						}
 						break;
 						case "viewEvent":
+						if (isset($_POST['For']) && !empty($_POST['For']))
+						{
+							addVoteMovieEvent($_POST['IdEvent'], $_POST['For'], $userId, 1);
+						}
+						if (isset($_POST['Against']) && !empty($_POST['Against']))
+						{
+							addVoteMovieEvent($_POST['IdEvent'], $_POST['Against'], $userId, -1);
+						}
 						if (isset($_GET['do']) && $_GET['do'] == 'voteFilmEvent')
 						{
 							if(isset($_GET['IdMovie']) && !empty($_GET['IdMovie']))
@@ -225,10 +233,14 @@ if (isset($_GET["page"]))
 							$event = getEvent($IdEvent);
 							$movies = getMovieEvent($IdEvent);
 							$i = 0;
-							foreach($movies as $key)
+							if ($movies != -2)
 							{
-								$movies[$i]['NbVote'] = getPollMovieEvent($IdEvent, $key['IdMovie']);
-								$i++;
+								foreach($movies as $key)
+								{
+									$movies[$i]['NbVote'] = getPollMovieEvent($IdEvent, $key['IdMovie']);
+									$movies[$i]['CheckVote'] = checkVoteMovieEvent($IdEvent, $key['IdMovie'], $userId);
+									$i++;
+								}
 							}
 							$friends = getFriendsEvent($IdEvent);
 							$layout = "viewEvent.php";
