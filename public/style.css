@@ -315,21 +315,8 @@ padding-top: 200px;
 }
 #home
 {
-	font-size: 30px;
+	font-size: 1.3em;
 	font-weight: bold;
 	text-align:center;
-	padding: 65px 10px 10px 10px;
-	width:500px;
-	height:80px;
-	background-color:#ededed;
-}
-#home1
-{
-	font-size: 30px;
-	font-weight: bold;
-	text-align:center;
-	padding: 65px 10px 10px 10px;
-	width:500px;
-	height:80px;
-	background-color:#ededed;
+	padding: 120px 10px 10px 10px;
 }

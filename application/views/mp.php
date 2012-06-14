@@ -23,13 +23,13 @@
 			if(isset($mpInfo[0]['mpUser'][0]['Pseudo'])) //detection boite réception ou boite envoie
 			{
 			?>
-				<h3>Boite d'envoie</h3>
+				<h3>Boîte d'envoi</h3>
 			<?php
 			}
 			else
 			{
 			?>
-				<h3>Boite de réception</h3>
+				<h3>Boîte de réception</h3>
 			<?php
 			}
 			foreach($mpInfo as $key)
