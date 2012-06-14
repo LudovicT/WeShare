@@ -57,8 +57,10 @@ else
 {
 	include_once("pageCTRL.php");
 }
+
+require_once("notifCTRL.php");
 /* affichage */
-if($layout == "register.php" || $layout == "login.php" || $layout == "home.php")
+if(($layout == "register.php" || $layout == "login.php" || $layout == "home.php") && !isset($_SESSION['User']))
 {
 	include_once(DIR_VIEWS."/smallHeader.php");
 }
@@ -66,6 +68,7 @@ else
 {
 	include_once(DIR_VIEWS."/header.php");
 }
+
 if(isset($layoutAdd))
 {
 	include_once(DIR_VIEWS."/profilHeader.php");

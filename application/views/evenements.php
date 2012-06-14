@@ -16,9 +16,6 @@
 	{ 
 ?>
 	<tr>
-		<!-- <td>
-			<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
-		</td> -->
 		<td>
 <?php echo $key['IdEvent'] ?>
 		</td>
@@ -37,7 +34,7 @@
 		<td>	
 		<a href='/WeShare/Evenements/Supprimer/<?php echo $key['IdEvent'] ?>/' > Supprimer l'événement</a>
 		 ou 
-		<a href='/WeShare/Evenements/View/<?php echo $key['IdEvent'] ?>/' > Gérer l'événement</a>
+		<a href='/WeShare/Evenements/Manage/<?php echo $key['IdEvent'] ?>/' > Gérer l'événement</a>
 		</td>
 	</tr>
 <?php
@@ -53,11 +50,8 @@
 	{
 ?>
 		<tr>
-			<!-- <td>
-				<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
-			</td> -->
 			<td>
-	<?php echo $key['IdEvent']; ?>
+	<a href='/WeShare/Evenements/Voir/<?php echo $key['IdEvent'] ?>/' ><?php echo $key['IdEvent'] ?></a>
 			</td>
 			<td>
 	<?php echo $key['DateOfEvent'];?>	

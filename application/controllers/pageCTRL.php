@@ -3,10 +3,14 @@
 Fichier qui redirige sur les différentes pages
 Auteur : Ludovic Tresson
 */
+
 if (isset($_GET["page"]))
 {
 	switch ($_GET["page"])
 	{
+		case "login":
+			include_once("loginCTRL.php");
+			break;
 		case "accueil.php":
 			$layout = "accueil.php";
 			break;
@@ -27,6 +31,25 @@ if (isset($_GET["page"]))
 			break;
 		case "films.php":
 			include_once("filmCTRL.php");
+			break;
+		case "ficheStaff.php":
+			if(isset($_GET['idStaff']) && !empty($_GET['idStaff']))
+			{
+				$staffInfo = getStaff($_GET['idStaff']);
+				if(generateUrl($staffInfo['FirstName']." ".$staffInfo['LastName'])== $_GET['redirect'])
+				{
+					$layout = "ficheStaff.php";
+				}
+				else
+				{
+					$location = generateUrl($staffInfo['FirstName']." ".$staffInfo['LastName']);
+					header('Location: /WeShare/personne/'.$location.'/'.$_GET['idStaff'].'/');
+				}
+			}
+			else
+			{
+				$layout = "erreur.php";
+			}
 			break;
 		case "ficheFilm.php":
 			if(isset($_GET['idMovie']) && !empty($_GET['idMovie']))
@@ -101,8 +124,22 @@ if (isset($_GET["page"]))
 							$layout = "changeStatusEvent.php";
 						}
 						break;
-					case "viewEvent":
-						if(isset($_POST['SuppMovie']) && !empty($_POST['SuppMovie']) &&
+					case "manageEvent":
+						if(isset($_POST['EditEvent']) && !empty($_POST['EditEvent']))
+						{
+							editEvent($_POST['EditEvent'], $_POST['modifiy_DateOfEvent'], $_POST['modify_Address'], $_POST['modify_City']);
+						}
+						if(isset($_POST['InviteFriend']) && !empty($_POST['InviteFriend']) &&
+							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
+						{
+							inviteFriendToEvent($_POST['IdEvent'], $_POST['InviteFriend']);
+						}
+						if(isset($_POST['UninviteFriend']) && !empty($_POST['UninviteFriend']) &&
+							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
+						{
+							uninviteFriendFromEvent($_POST['IdEvent'], $_POST['UninviteFriend']);
+						}
+								if(isset($_POST['SuppMovie']) && !empty($_POST['SuppMovie']) &&
 							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
 						{
 							removeMovieFromEvent($_POST['IdEvent'], $_POST['SuppMovie']);
@@ -117,7 +154,27 @@ if (isset($_GET["page"]))
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
 							$movies = getMovieEvent($IdEvent);
-							$layout = "viewEvent.php";
+							$friends = getFriendsEvent($IdEvent);
+							$layout = "manageEvent.php";
+						}
+						if (isset($_GET['do']) && $_GET['do'] == 'inviteFriendToEvent')
+						{
+							if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+							{
+								$IdEvent = $_GET['idEvent'];
+								$UserFriends = getFriends(getId($user));
+								$layout = "inviteFriendToEvent.php";
+							}
+						}
+						if (isset($_GET['do']) && $_GET['do'] == 'uninviteFriendFromEvent')
+						{
+							if(isset($_GET['IdUser']) && !empty($_GET['IdUser']))
+							{
+								$IdUser = $_GET['IdUser'];
+								$IdEvent = $_GET['idEvent'];
+								$pseudo = getPseudo($IdUser);
+								$layout = "uninviteFriendFromEvent.php";
+							}
 						}
 						if (isset($_GET['do']) && $_GET['do'] == 'removeMovieFromEvent')
 						{
@@ -134,12 +191,49 @@ if (isset($_GET["page"]))
 							if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 							{
 								$IdEvent = $_GET['idEvent'];
-								$UserMovies = getUserMovies(getId($user));
+								$rawUserMovies = getUserMovies(getId($user));
+								foreach ($rawUserMovies as $key)
+								{
+									$UserMovies[] = getMovie($key['IdMovie']);
+								}
 								$layout = "addMovieToEvent.php";
 							}
 						}
 						break;
-					//case "editEvent":
+						case "editEvent":
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$layout = "editEvent.php";
+						}
+						break;
+						case "viewEvent":
+						if (isset($_GET['do']) && $_GET['do'] == 'voteFilmEvent')
+						{
+							if(isset($_GET['IdMovie']) && !empty($_GET['IdMovie']))
+							{
+								$IdMovie = $_GET['IdMovie'];
+								$IdEvent = $_GET['idEvent'];
+								$movie = getMovie($IdMovie);
+								$layout = "voteFilmEvent.php";
+							}
+						}
+						elseif(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$movies = getMovieEvent($IdEvent);
+							$i = 0;
+							foreach($movies as $key)
+							{
+								$movies[$i]['NbVote'] = getPollMovieEvent($IdEvent, $key['IdMovie']);
+								$i++;
+							}
+							$friends = getFriendsEvent($IdEvent);
+							$layout = "viewEvent.php";
+						}
+						break;
 					default:
 					$layout = "erreur.php"; 
 				}
@@ -226,4 +320,5 @@ else
 {
 	$layout = "accueil.php";
 }
+
 ?>

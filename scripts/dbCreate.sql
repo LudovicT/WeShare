@@ -48,6 +48,12 @@ Status				INT				DEFAULT 0,
 FOREIGN KEY (IdEvent)
 	REFERENCES Events(IdEvent) ON DELETE CASCADE);
 
+/* table EventsVote */
+CREATE TABLE IF NOT EXISTS EventsVote
+(IdEvent			INT				NOT NULL,
+IdMovie				INT 			NOT NULL,
+IdUser				INT				NOT NULL)
+	
 /* table Friends */
 CREATE TABLE IF NOT EXISTS Friends
 (IdUser				INT 			NOT NULL,

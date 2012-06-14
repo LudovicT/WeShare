@@ -1,6 +1,5 @@
 <h3>Détails sur l'événement N° <?php echo $event['IdEvent'] ?></h3>
-<p>Ici vous pourrez découvrir qui participent à cet événement et voter pour
-le ou les films proposés</p>
+<p>Ici vous pouvez ajouter un ou plusieurs films et de même pour vos amis</p>
 <br />
 
 <table border='1'>
@@ -24,17 +23,21 @@ le ou les films proposés</p>
 		</td>
 	</tr>
 </table>
-<br />
-<?php if (!($movies == -2))
+<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Edit/<?php echo $IdEvent ?>/">
+	<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
+	<input type="submit" value="Modifier l'événement">
+</form>
+<br /> 
+<?php if ($movies != -2)
 { ?>
-Voici la liste des films proposés pour cet événement : <br /><br />
+Voici la liste des films que vous avez ajoutés à cet événement : <br /><br />
 <?php
 	foreach($movies as $key)
 	{ 
 ?>
 <table border='1'>
 	<th> Nom du film </th><th> Date de sortie </th>
-	<th> Durée </th><th>Vote</th><th>Action</th>
+	<th> Durée </th><th>Action</th>
 	<tr>
 		<td>
 <?php echo ($key['Name']) ?>
@@ -46,10 +49,7 @@ Voici la liste des films proposés pour cet événement : <br /><br />
 <?php echo($key['Runtime']); ?>	
 		</td>
 		<td>
-<?php echo($key['NbVote']); ?>	
-		</td>
-		<td>
-		<a href='/WeShare/Evenements/Voir/<?php echo $event['IdEvent'] ?>/VoterFilm/<?php echo $key['IdMovie']; ?>/' > voter </a>
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/RetirerFilm/<?php echo $key['IdMovie']; ?>/' > Retirer le film </a>
 		</td>
 	</tr>
 </table>
@@ -57,20 +57,22 @@ Voici la liste des films proposés pour cet événement : <br /><br />
  } 
 	else
 	{
-		echo ("<br />Aucun film n'a été prévu pour cet événement.");
+		echo "<br />Vous n'avez prévu aucun film pour cet événement.<br />";
 	}?>
+		<br />
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/AjouterFilm/' > Ajouter un film </a>
 <br />
 <?php
 if ($friends != -1 && $friends != -2)
 {
 ?>
-<br /><br /><p>Liste des membres participants à cet événement :</p>
+<br /><br /><p>Liste des vos amis qui participent à cet événement :</p>
 <?php 
 	foreach ($friends as $key)
 	{
 	?>
 <table border='1'>
-	<th> Pseudo </th><th>Status</th>
+	<th> Pseudo </th><th>Status</th><th>Action</th>
 	<tr>
 		<td>
 <?php echo ($key['Pseudo'])?>
@@ -90,11 +92,15 @@ if ($friends != -1 && $friends != -2)
 		}
 ?>
 		</td>
+		<td>
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/UninviteFriend/<?php echo $key['IdUser']; ?>/' > Désinviter </a>
+		</td>
 	</tr>
 </table>
 <?php } 
 }
 else
 {?>
-<br /><br/>Personne d'autre que vous participe à cet événement.<br />
+<br /><br/>Vous n'avez invité aucun ami à cet événement.<br />
 <?php } ?>
+<br /> <a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/InviteFriend/' > Inviter un ami </a>
