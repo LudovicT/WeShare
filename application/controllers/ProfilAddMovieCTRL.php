@@ -4,13 +4,13 @@ Fichier de controle qui traite et redirige l'ajout de films
 */
 $movies = searchData(1,"");
 $layout="filmsProfil.php";
-$userMovie = getUserMovies($userId);
+$userMovie = getUserMovies($IdUser);
 if(isset($_GET['do']))
 {
 	switch($_GET['do'])
 	{
 		case "ajouter":
-		getUserMovies($_GET['film'],$_POST['Name']);
+		getUserMovies($IdUser);
 		break;
 	}
 }
