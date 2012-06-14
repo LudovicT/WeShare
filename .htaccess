@@ -20,6 +20,7 @@ RewriteRule   ^Groupe/([a-z0-9\-]+)/([0-9]+)([./.]*)$   /WeShare/index.php?page=
 RewriteRule   ^Personne/([a-z0-9\-]+)/([0-9]+)([./.]*)$   /WeShare/index.php?page=ficheStaff.php&idStaff=$2&redirect=$1 [NC]
 RewriteRule   ^Film/([a-z0-9\-]+)/([0-9]+)([./.]*)$   /WeShare/index.php?page=ficheFilm.php&idMovie=$2&redirect=$1 [NC]
 RewriteRule   ^Films([./.]*)$   /WeShare/index.php?page=films.php [NC]
+RewriteRule   ^Films/addStaff([./.]*)$   /WeShare/index.php?page=films.php&action=addStaff [NC]
 RewriteRule   ^Films/addFilms([./.]*)$   /WeShare/index.php?page=films.php&action=addFilms [NC]
 RewriteRule   ^Films/Editer/.*/([0-9]+)([./.]*)$   /WeShare/index.php?page=films.php&action=editMovie&idMovie=$1 [NC]
 RewriteRule   ^Films/EditerFilm/.*/([0-9]+)([./.]*)$   /WeShare/index.php?page=films.php&action=editMovie.php&idMovie=$1 [NC]

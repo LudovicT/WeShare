@@ -54,6 +54,7 @@ if(isset($_GET['action'])){
 			$layoutAdd = 2;
 			break;
 		case "films":
+			$IdUser = getId($user);
 			include_once("ProfilAddMovieCTRL.php");
 			$layoutAdd = 3;
 			break;
@@ -73,4 +74,5 @@ else
 	$layoutAdd = 0;
 }
 $profil = getProfil($user);
+list($day,$mounth,$year) = explode('/',$profil['BornDate']);
 ?>

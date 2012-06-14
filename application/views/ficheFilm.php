@@ -18,7 +18,7 @@
 						<b>Titre original :</b> <?php echo $movieInfo['Name']; ?> <br />
 						<b>Réalisateur : </b>
 						<?php
-						if($movieStaff != false)
+						if($movieStaff != false && $movieStaff != -1)
 						{
 							$i = 0;
 							$espaceo = "";
@@ -49,7 +49,7 @@
 						?>
 						<b>Acteurs : </b>
 						<?php
-						if($movieStaff != false)
+						if($movieStaff != false && $movieStaff != -1)
 						{
 							$i = 0;
 							$espaceo = "";
@@ -87,7 +87,15 @@
 						{
 							foreach($movieSupport as $key)
 							{
-								echo $key['Support']." (".$key['Quantity'].")<br />";
+								if($key['Quantity'] == -1)
+								{
+									$quantity = "illimité";
+								}
+								else
+								{
+									$quantity = $key['Quantity'];
+								}
+								echo $key['Support']." (".$quantity.")<br />";
 							}
 						}
 						else
