@@ -15,7 +15,6 @@ Auteur : Vincent Ricard
 function removeMovieFromEvent($IdEvent, $IdMovie)
 {
 	$error = 0;
-	$MovieEvent;
 	
 	// Requête retirant un film de l'événement donné
 	$query = sprintf("DELETE FROM EventsSelections 

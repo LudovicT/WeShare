@@ -1,11 +1,11 @@
 <?php
 /*
-La fonction AddMovieToEvent permet l'utilisateur d'ajouter des films
+La fonction AddMovieToEvent permet  àl'utilisateur d'ajouter des films
 à un événement qu'il a créé.
 
 $error
 
-$error (S): int§
+$error (S): int
 -1	:	erreur requête invalide/problème avec la BDD;
 0	:	OK
 1	:	l'utilisateur veut ajouter un film déjà ajouté

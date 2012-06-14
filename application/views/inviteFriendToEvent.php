@@ -1,22 +1,15 @@
-<h3>Ajouter un film à l'événement N°<?php echo $IdEvent ?></h3>
-<p>Voici la liste des films que vous possédez : </p>
+<h3>Inviter des amis à l'événement N°<?php echo $IdEvent ?></h3>
+<p>Voici la liste de vos amis que vous pouvez inviter : </p>
 
 <?php
-	foreach($UserMovies as $key)
+	foreach($UserFriends as $key)
 	{ 
 ?>
 <table border='1'>
-	<th> Nom du film </th><th> Synopsis </th>
-	<th> Durée </th>
+	<th> Pseudo </th>
 	<tr>
 		<td>
-<?php echo ($key['Name']) ?>
-		</td>
-		<td>
-<?php echo($key['Synopsis']); ?>	
-		</td>
-		<td>
-<?php echo($key['Runtime']); ?>	
+<?php echo ($key['Pseudo']) ?>
 		</td>
 	</tr>
 </table>
@@ -24,9 +17,9 @@
 	<tr>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>/">
-				<input type="hidden" name="AddMovie" value="<?php echo $key['IdMovie'] ?>">
+				<input type="hidden" name="InviteFriend" value="<?php echo $key['IdUser'] ?>">
 				<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-				<input type="submit" value="Ajouter le film">
+				<input type="submit" value="Inviter l'ami">
 			</form>
 		</td>
 		<td>

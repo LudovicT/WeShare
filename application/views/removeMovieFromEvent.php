@@ -19,15 +19,14 @@
 <table>
 	<tr>
 		<td>
-			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/View/<?php echo $IdEvent ?>/">
+			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>/">
 				<input type="hidden" name="SuppMovie" value="<?php echo $movie['IdMovie'] ?>">
 				<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
 				<input type="submit" value="Retirer le film">
 			</form>
 		</td>
 		<td>
-			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/View/<?php echo $IdEvent ?>">
-				<input type="hidden" name="Cancel" value="<?php echo $event['IdEvent'] ?>">
+			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
 				<input type="submit" value="Annuler">
 			</form>
 		</td>
