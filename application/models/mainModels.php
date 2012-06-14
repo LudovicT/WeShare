@@ -1618,6 +1618,10 @@ function getMovieEvent($IdEvent)
 	 else
 	 {
 		while(($MovieListEvent[] = mysql_fetch_assoc($result)) || array_pop($MovieListEvent));
+	if (empty($MovieListEvent))
+	 {
+		return (-2);
+	 }
 		// while de parseur de récupéter toutes les données de chaque film par ID
 		while (isset($MovieListEvent[$iterator]) && !empty($MovieListEvent[$iterator]))
 		{
@@ -1629,7 +1633,6 @@ function getMovieEvent($IdEvent)
 		}
 		return ($MovieEvent);
 	}
-	return (-2);
 }
 
 /*
@@ -1976,4 +1979,39 @@ function editEvent($IdEvent, $DateOfEvent, $Address, $City)
 	 }
 return ($error);
 }
+
+/*
+La fonction getPollMovieEvent permet de récupérer l'état du vote
+pour un film donné.
+
+$error
+$NbVote
+
+$error (S): int
+1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+
+$NbVote (S): int
+Contient la nombre de vote(s).
+
+Auteur : Vincent Ricard
+*/
+
+function getPollMovieEvent($IdEvent, $IdMovie)
+{
+	$error = 0;
+
+	// Requête qui modifie un événement préalablement créé
+	$query = sprintf("SELECT NumberOfVote FROM EventsSelections
+					  WHERE IdMovie = '%d' and IdEvent = '%d'",
+					  $IdMovie, $IdEvent);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (1);
+	 }
+	 $NbVote = mysql_fetch_assoc($result);
+	return ($NbVote['NumberOfVote']);
+}
+
 ?>

@@ -16,9 +16,6 @@
 	{ 
 ?>
 	<tr>
-		<!-- <td>
-			<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
-		</td> -->
 		<td>
 <?php echo $key['IdEvent'] ?>
 		</td>
@@ -53,11 +50,8 @@
 	{
 ?>
 		<tr>
-			<!-- <td>
-				<a href='/WeShare/Membres/<?php //echo $key['Pseudo']; ?>/'><?php //echo $key['Pseudo'] ?></a>
-			</td> -->
 			<td>
-	<?php echo $key['IdEvent']; ?>
+	<a href='/WeShare/Evenements/Voir/<?php echo $key['IdEvent'] ?>/' ><?php echo $key['IdEvent'] ?></a>
 			</td>
 			<td>
 	<?php echo $key['DateOfEvent'];?>	
