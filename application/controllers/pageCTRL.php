@@ -3,6 +3,7 @@
 Fichier qui redirige sur les différentes pages
 Auteur : Ludovic Tresson
 */
+
 if (isset($_GET["page"]))
 {
 	switch ($_GET["page"])
@@ -30,6 +31,25 @@ if (isset($_GET["page"]))
 			break;
 		case "films.php":
 			include_once("filmCTRL.php");
+			break;
+		case "ficheStaff.php":
+			if(isset($_GET['idStaff']) && !empty($_GET['idStaff']))
+			{
+				$staffInfo = getStaff($_GET['idStaff']);
+				if(generateUrl($staffInfo['FirstName']." ".$staffInfo['LastName'])== $_GET['redirect'])
+				{
+					$layout = "ficheStaff.php";
+				}
+				else
+				{
+					$location = generateUrl($staffInfo['FirstName']." ".$staffInfo['LastName']);
+					header('Location: /WeShare/personne/'.$location.'/'.$_GET['idStaff'].'/');
+				}
+			}
+			else
+			{
+				$layout = "erreur.php";
+			}
 			break;
 		case "ficheFilm.php":
 			if(isset($_GET['idMovie']) && !empty($_GET['idMovie']))
@@ -233,4 +253,5 @@ else
 {
 	$layout = "accueil.php";
 }
+
 ?>

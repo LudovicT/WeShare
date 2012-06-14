@@ -103,11 +103,5 @@
 		<br /><br />
 			<?php echo $movieInfo['Synopsis']; ?>
 		<br /><br />
-		<div id='blogvision' style='width:540px; height:360px'>
-			<object width='100%' height='100%'>
-				<param name='movie' value='http://www.allocine.fr/blogvision/19263225'></param>
-				<param name='allowFullScreen' value='true'></param><param name='allowScriptAccess' value='always'></param>
-				<embed src='http://www.allocine.fr/blogvision/19263225' type='application/x-shockwave-flash' width='100%' height='100%' allowFullScreen='true' allowScriptAccess='always'/>
-			</object></div>
 		</div>
 	<br />

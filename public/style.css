@@ -297,3 +297,16 @@ padding-top: 200px;
 {text-align:right;}
 .rightAlign
 {text-align:right;}
+.NewMessage
+{
+	font-size: 20px;
+	font-weight: bold;
+	position:relative;
+	padding: 10px 10px 10px 10px;
+}
+.Message
+{
+	font-size: 20px;
+	position:relative;
+	padding: 10px 10px 10px 10px;
+}

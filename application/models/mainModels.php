@@ -343,20 +343,19 @@ auteur : Ludovic Tresson
 function requestFriendship($userId, $newFriend)
 {
 	//on cherche si l'amis n'est pas déjà rentrer
-	$S_query = ("SELECT U.IdUser, F.Status
-			FROM Users AS U
-			LEFT JOIN Friends AS F ON (F.IdFriend = '".$newFriend."' AND F.IdUser = '".$userId."')
-			WHERE U.IdUser = '".$userId."'");
+	$S_query = ("SELECT *
+			FROM Friends AS F WHERE (F.IdFriend = '".$newFriend."' AND F.IdUser = '".$userId."')
+									OR (F.IdFriend = '".$userId."' AND F.IdUser = '".$newFriend."')");
 	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	if ($S_result == false)
 	{
 		return 1;
 	}
-	$S_exist[] = mysql_fetch_assoc($S_result);
-	
+	$S_exist = mysql_fetch_assoc($S_result);
+	var_dump($S_exist);
 	//si il existe deja alors $S_exist[0] existe 
 							//mais $S_exist[0]['Status'] n'existe pas
-	if((isset($S_exist[0]) && $S_exist[0]['Status'] == null))
+	if((isset($S_exist) && $S_exist['Status'] == null))
 	{
 		$S_query = ("INSERT INTO Friends (IdUser, IdFriend, Status)
 						VALUES ('".$userId."','".$newFriend."','0')");
@@ -365,6 +364,10 @@ function requestFriendship($userId, $newFriend)
 		{
 			return 1;
 		}
+	}
+	elseif($S_exist['Status'] == 0)
+	{
+		replyToFriendship($S_exist['IdUser'], $S_exist['IdFriend'], 1);
 	}
 	else
 	{
@@ -1452,6 +1455,12 @@ function readMp($IdPM,$IdUser)
 	{
 		return -1;
 	}
+	$S_query = sprintf("UPDATE UserPMs
+						SET ReadStatus = '1'
+						WHERE IdPM='%d' AND IdUser='%d'",
+						$IdPM,
+						$IdUser);
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 	return($S_data);
 }
 
@@ -1719,14 +1728,39 @@ function addUserMovie($userId, $IdMovie, $support, $available)
 	{
 		$available = -1;
 	}
-	$query = sprintf("INSERT INTO UserMovies
-					(IdUser, IdMovie, Support, Available)
-					VALUES ('%d', '%d', '%s', '%d')"
-					,$userId, $IdMovie, $support, $available);
+	
+	$query = sprintf("SELECT * FROM UserMovies
+					WHERE IdUser = '%d' AND IdMovie = '%d' AND Support = '%s'"
+					,$userId, $IdMovie, $support);
 	$result = mysql_query($query, dbConnect()) or die(mysql_error());
 	if ($result == false)
 	{
 		return -1;
+	}
+	$UserMovies = mysql_fetch_assoc($result);
+	if ($UserMovies == false)
+	{
+		$query = sprintf("INSERT INTO UserMovies
+						(IdUser, IdMovie, Support, Available)
+						VALUES ('%d', '%d', '%s', '%d')"
+						,$userId, $IdMovie, $support, $available);
+		$result = mysql_query($query, dbConnect()) or die(mysql_error());
+		if ($result == false)
+		{
+			return -1;
+		}
+	}
+	else
+	{
+		$query = sprintf("UPDATE UserMovies
+						SET Available = '%d'
+						WHERE IdUser = '%d' AND IdMovie = '%d' AND Support = '%s'"
+						,($available+$UserMovies['Available']),$userId, $IdMovie, $support);
+		$result = mysql_query($query, dbConnect()) or die(mysql_error());
+		if ($result == false)
+		{
+			return -1;
+		}
 	}
 }
 
@@ -1745,5 +1779,59 @@ function deleteUserMovie($userId, $IdMovie, $support, $available)
 	{
 		return -1;
 	}
+}
+/*
+Permet de récuperer les infos d'un membre du staff. (général)
+$IdMovie (E) id du staff
+$S_data (S) info du staff
+
+Auteur : Ludovic Tresson
+*/
+function getStaff($idStaff)
+{
+	$S_query = ("SELECT * FROM Staffs WHERE IdStaff = '".$idStaff."'");
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
+	{
+		return -1;
+	}
+	return $S_data;
+}
+
+function checkMP($userId)
+{
+	$S_query = ("SELECT count(*) AS newPm FROM UserPMs WHERE IdUser = '".$userId."' AND ReadStatus ='0'");
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
+	{
+		return -1;
+	}
+	return $S_data['newPm'];
+}
+
+function checkFriends($userId)
+{
+	$S_query = ("SELECT count(*) AS newFriend FROM Friends WHERE IdFriend = '".$userId."' AND Status='0'");
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
+	{
+		return -1;
+	}
+	return $S_data['newFriend'];
+}
+
+function checkEvents($userId)
+{
+	$S_query = ("SELECT count(*) AS newEvent FROM EventsInvitations WHERE IdUser = '".$userId."' AND Status='0'");
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
+	$S_data = mysql_fetch_assoc($S_result);
+	if ($S_data == false)
+	{
+		return -1;
+	}
+	return $S_data['newEvent'];
 }
 ?>

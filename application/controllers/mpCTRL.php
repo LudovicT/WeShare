@@ -39,7 +39,6 @@ elseif(isset($_GET['do']))
 					$mpData['titre'] = "Sans objet";
 				}
 				$mpError = sendMp($mpData,$userId);
-				var_dump($mpError);
 				if(is_array($mpError))
 				{
 					$mpFlag = 1;

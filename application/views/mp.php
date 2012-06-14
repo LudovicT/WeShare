@@ -39,13 +39,31 @@
 					echo "<hr>";
 				}
 				$i++;
-				?>
-				<ol>
-					<div class='Titre'>Objet :
-					<a href='/weshare/profil/messagerie/lire/<?php echo $key['IdPM']?>'><?php echo $key['Titre']?></a></div>
+				?><div class='Titre'><!--Objet :-->
+				<?php
+			if(isset($key['ReadStatus']) && $key['ReadStatus'] == 0)
+			{
+				echo "<div class='NewMessage'>";
+			}
+			else
+			{
+				echo "<div class='Message'>";
+			}
+			?><a href='/weshare/profil/messagerie/lire/<?php echo $key['IdPM']?>'><?php echo $key['Titre']?></a></div>
+			<?php
+			if(isset($key['ReadStatus']) && $key['ReadStatus'] == 0)
+			{
+				echo "</div>";
+			}
+			else
+			{
+				echo "</div>";
+			}
+			?>
 					<div class='rightAlign'>
 					<a href='/weshare/profil/messagerie/supprimer/<?php echo $key['IdPM']?>'>Supprimer</a></div>
 					<br /><hr width='40%'>
+					<ol>
 					<li>
 					<?php
 					if(isset($key['mpUser'][0]['Pseudo']))

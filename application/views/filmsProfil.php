@@ -55,10 +55,21 @@ Les fichiers sont considérés comme étant tout le temps disponible.
 				<a href='/WeShare/Profil/Films/<?php echo $name['Name']?>/'><?php echo $name['Name']?></a>
 			</td>
 			<td>
-				<a href='/WeShare/Profil/Films/<?php echo $name['Name']?>/'><?php echo $name['Support']?></a>
+				<?php echo $name['Support']?>
 			</td>
 			<td>
-				<a href='/WeShare/Profil/Films/<?php echo $name['Name']?>/'><?php echo $name['Available']?></a>
+				<?php
+				if($name['Available'] != -1)
+				{
+					echo $name['Available'];
+				}
+				else
+				{
+				?>
+					Illimité
+				<?php
+				}
+				?>
 			</td>
 			<td>
 				<form method="post" action="/WeShare/Profil/Films/supprimer/">
