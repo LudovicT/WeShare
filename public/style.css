@@ -257,8 +257,11 @@ padding-right:50px;
 text-align:right;
 }
 #connexion input {
-margin-left:30px;
+margin-left:10px;
 width:150px;
+}
+#connexion .small input {
+width:45px;
 }
 #connexion #valider {
 width:155px;
@@ -312,6 +315,7 @@ padding-top: 200px;
 }
 #home
 {
+<<<<<<< HEAD
 	font-size: 30px;
 	font-weight: bold;
 	text-align:center;
@@ -323,5 +327,8 @@ padding-top: 200px;
 
 #add_films
 {
-	
+	font-size: 1.3em;
+	font-weight: bold;
+	text-align:center;
+	padding: 120px 10px 10px 10px;
 }
