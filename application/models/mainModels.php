@@ -1538,12 +1538,12 @@ function sendMp($data,$IdSender)
 }
 
 /*
-La fonction AddMovieToEvent permet l'utilisateur d'ajouter des films
+La fonction AddMovieToEvent permet à l'utilisateur d'ajouter des films
 à un événement qu'il a créé.
 
 $error
 
-$error (S): int§
+$error (S): int
 -1	:	erreur requête invalide/problème avec la BDD;
 0	:	OK
 1	:	l'utilisateur veut ajouter un film déjà ajouté
@@ -1766,7 +1766,7 @@ Auteur : Vincent Ricard
 function getFriendsEvent($IdEvent)
 {
 	// Requête qui récupère la liste des invités à un event
-	$query = sprintf("SELECT EI.IdUser, U.Pseudo FROM EventsInvitations AS EI
+	$query = sprintf("SELECT EI.IdUser, EI.Status, U.Pseudo FROM EventsInvitations AS EI
 					  LEFT JOIN Users AS U
 					  ON EI.IdUser = U.IdUser
 					  WHERE EI.IdEvent = '%d' AND Status != '2'"
@@ -1785,4 +1785,73 @@ function getFriendsEvent($IdEvent)
 	return ($ListFriendsEvent);
 }
 
+/*
+La fonction InviteFriendToEvent permet à l'utilisateur d'inviter des amis
+à un événement qu'il a créé.
+
+$error
+
+$error (S): int
+-1	:	erreur requête invalide/problème avec la BDD;
+0	:	OK
+1	:	l'utilisateur veut inviter un ami déjà invité
+
+Auteur : Vincent Ricard
+*/
+
+function inviteFriendToEvent($IdEvent, $IdUser)
+{
+	$error = 0;
+	
+	// Requête permettant de voir si l'ami n'a pas déjà été invité
+	$query = sprintf ("SELECT IdUser FROM EventsInvitations 
+					   WHERE IdEvent = '%d' AND IdUser = '%d'"
+					   ,$IdEvent, $IdUser);
+	$result = mysql_query($query, dbConnect());
+	$check = mysql_fetch_assoc($result); 
+	if ($check != false)
+	{
+		return (1);
+	}
+	// Requête insérant un ami invité à l'événement donné
+	$query = sprintf("INSERT INTO EventsInvitations 
+					(IdEvent, IdUser, Status)   
+					  VALUES ('%d', '%d', '%d')" 
+					  ,$IdEvent, $IdUser, '1');
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
+	 }
+	return ($error);
+}
+
+/*
+La fonction uninviteFriendFromEvent permet à l'utilisateur de désinviter
+un ami préalablement invité à un événement donné.
+
+$error
+
+$error (S): int
+-1	:	erreur requête invalide/problème avec la BDD;
+0 	:	OK
+
+Auteur : Vincent Ricard
+*/
+
+function uninviteFriendFromEvent($IdEvent, $IdUser)
+{
+	$error = 0;
+	
+	// Requête retirant un ami de l'événement donné
+	$query = sprintf("DELETE FROM EventsInvitations 
+					  WHERE IdEvent = '%d' AND IdUser = '%d'" 
+					 ,$IdEvent, $IdUser);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
+	 }
+	return ($error);
+}
 ?>

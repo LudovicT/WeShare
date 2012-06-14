@@ -27,7 +27,6 @@
 		</td>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
-				<input type="hidden" name="Cancel" value="<?php echo $event['IdEvent'] ?>">
 				<input type="submit" value="Annuler">
 			</form>
 		</td>

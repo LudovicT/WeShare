@@ -68,13 +68,28 @@ if ($friends != -1 && $friends != -2)
 	{
 	?>
 <table border='1'>
-	<th> Pseudo </th><th>Action</th>
+	<th> Pseudo </th><th>Status</th><th>Action</th>
 	<tr>
 		<td>
 <?php echo ($key['Pseudo'])?>
 		</td>
 		<td>
-		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/SupprimerInvitation/<?php echo $key['IdUser']; ?>/' > Désinviter </a>
+<?php if ($key['Status'] == 1)
+		{
+			echo ('a accepté de participer');
+		}
+	elseif ($key['Status'] == -1)
+		{
+			echo('a refusé de participer');
+		}
+	else
+		{
+			echo('ne s\'est pas encore décidé');
+		}
+?>
+		</td>
+		<td>
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/UninviteFriend/<?php echo $key['IdUser']; ?>/' > Désinviter </a>
 		</td>
 	</tr>
 </table>
@@ -82,6 +97,6 @@ if ($friends != -1 && $friends != -2)
 }
 else
 {?>
-<br /><br/>Vous n'avez aucun ami ajouté à cet événement.<br />
+<br /><br/>Vous n'avez invité aucun ami à cet événement.<br />
 <?php } ?>
-<br /> <a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/InviterAmi/' > Inviter un ami </a>
+<br /> <a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/InviteFriend/' > Inviter un ami </a>
