@@ -1,8 +1,9 @@
 	<!--Start of login page-->
 	<form id="demoForm" method="post" action="/WeShare/register/" class="bbq">
+		<div id="connexion">
 		<div id="fieldWrapper">
 			<span class="step" id="first">
-				<span class="font_normal_07em_black">Etape 1</span><br />
+				<h1>Obligatoire</h1><br />
 				<label for="pseudo">Pseudonyme : </label><br />
 				<input class="input_field_12em pseudo required" name="pseudo" id="pseudo" /><br />
 				<label for="password">Mot de passe : </label><br />
@@ -11,7 +12,7 @@
 				<input class="input_field_12em retypePassword required" name="retypePassword" id="retypePassword" type="password" /><br />
 				<label for="email">Email : </label><br />
 				<input class="input_field_12em email required" name="email" id="email" /><br />
-				<span class="font_normal_07em_black">Optionnel</span><br />
+				<h1>Optionnel</h1><br />
 				<label for="nom">Nom : </label><br />
 				<input class="input_field_12em" name="lastName" id="lastName" /><br />
 				<label for="prenom">Prenom : </label><br />
@@ -29,6 +30,7 @@
 				<label for="pays">Dans quel pays habitez-vous ?</label><br />
 				<input class="input_field_12em" name="country" id="country" /><br />
 			</span>
+		</div>
 		</div>
 		<div id="demoNavigation">
 			<input class="navigation_button" id="back" value="Mise à zéro" type="reset" />
