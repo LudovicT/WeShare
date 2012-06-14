@@ -104,7 +104,7 @@ if (isset($_GET["page"]))
 							$layout = "changeStatusEvent.php";
 						}
 						break;
-					case "viewEvent":
+					case "manageEvent":
 						if(isset($_POST['SuppMovie']) && !empty($_POST['SuppMovie']) &&
 							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
 						{
@@ -120,7 +120,8 @@ if (isset($_GET["page"]))
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
 							$movies = getMovieEvent($IdEvent);
-							$layout = "viewEvent.php";
+							$friends = getFriendsEvent($IdEvent);
+							$layout = "manageEvent.php";
 						}
 						if (isset($_GET['do']) && $_GET['do'] == 'removeMovieFromEvent')
 						{

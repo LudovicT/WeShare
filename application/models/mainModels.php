@@ -1746,4 +1746,43 @@ function deleteUserMovie($userId, $IdMovie, $support, $available)
 		return -1;
 	}
 }
+
+/*
+La fonction getFriendsEvent permet à l'organisateur d'un événement de
+récupérer la liste de ses amis qui participent à cet événement.
+
+$ListFriendsEvent
+$error
+
+$error (S): int
+-1	:	erreur requête invalide/problème avec la BDD;
+
+$ListFriendsEvent (S) : tableau associatif contenant les pseudos invités à 
+l'événement
+
+Auteur : Vincent Ricard
+*/
+
+function getFriendsEvent($IdEvent)
+{
+	// Requête qui récupère la liste des invités à un event
+	$query = sprintf("SELECT EI.IdUser, U.Pseudo FROM EventsInvitations AS EI
+					  LEFT JOIN Users AS U
+					  ON EI.IdUser = U.IdUser
+					  WHERE EI.IdEvent = '%d' AND Status != '2'"
+					  ,$IdEvent);
+	$result = mysql_query($query, dbConnect());
+	if ($result == false)
+	 {
+		return (-1);
+	 }
+	 while(($ListFriendsEvent[] = mysql_fetch_assoc($result)) 
+			|| array_pop($ListFriendsEvent));
+	if (empty($ListFriendsEvent))
+	 {
+		return (-2);
+	 }
+	return ($ListFriendsEvent);
+}
+
 ?>
