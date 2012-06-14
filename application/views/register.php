@@ -18,9 +18,10 @@
 				<label for="prenom">Prenom : </label><br />
 				<input class="input_field_12em" name="firstName" id="firstName" /><br />
 				<label for="day_fi">Date de naissance : </label><br />
-				<input class="input_field_25em" name="day" id="day_fi" value="" /> -
-				<input class="input_field_3em" name="month" id="month_fi" value="" /> - 
-				<input class="input_field_3em" name="year" id="year_fi" value="" /> (sous le format JJ-MM-AAAA)<br />
+				<div class="small">
+				<input class="small" name="day" id="day_fi" value="" /> -
+				<input class="small" name="month" id="month_fi" value="" /> - 
+				<input class="small" name="year" id="year_fi" value="" /></div><label>(sous le format JJ-MM-AAAA)</label><br />
 				<label for="countryPrefix_fi">Numero de telephone : </label><br />
 				<input class="input_field_12em digits" name="phoneNumber" id="phoneNumber_fi" /><br />
 				<label for="adresse">Adresse : </label><br />

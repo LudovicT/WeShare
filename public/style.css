@@ -257,8 +257,11 @@ padding-right:50px;
 text-align:right;
 }
 #connexion input {
-margin-left:30px;
+margin-left:10px;
 width:150px;
+}
+#connexion .small input {
+width:45px;
 }
 #connexion #valider {
 width:155px;

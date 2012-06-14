@@ -64,7 +64,6 @@
 			}
 
 			.step span {
-				float: right;
 				font-weight: bold;
 				padding-right: 0.8em;
 			}
