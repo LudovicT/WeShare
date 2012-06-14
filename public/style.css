@@ -235,7 +235,7 @@ body {
 background-color:#FFFFFF;
 }
 #connexion {
-width:380px;
+width:400px;
 background:#FFFFFF;
 margin:20px auto;
 font-family: Arial, Helvetica, sans-serif;
@@ -252,7 +252,7 @@ color:#FFFFFF;
 letter-spacing:0.05em;
 }
 #connexion p {
-padding-top:15px;
+padding-top:2px;
 padding-right:50px;
 text-align:right;
 }
