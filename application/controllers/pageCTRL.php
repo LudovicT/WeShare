@@ -105,6 +105,10 @@ if (isset($_GET["page"]))
 						}
 						break;
 					case "manageEvent":
+						if(isset($_POST['EditEvent']) && !empty($_POST['EditEvent']))
+						{
+							editEvent($_POST['EditEvent'], $_POST['modifiy_DateOfEvent'], $_POST['modify_Address'], $_POST['modify_City']);
+						}
 						if(isset($_POST['InviteFriend']) && !empty($_POST['InviteFriend']) &&
 							isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
 						{
@@ -174,6 +178,27 @@ if (isset($_GET["page"]))
 								}
 								$layout = "addMovieToEvent.php";
 							}
+						}
+						break;
+						case "editEvent":
+						if (isset($_GET['do']) && $_GET['do'] == 'EditEvent')
+						{
+							if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+							{
+								$IdEvent = $_GET['idEvent'];
+								$rawUserMovies = getUserMovies(getId($user));
+								foreach ($rawUserMovies as $key)
+								{
+									$UserMovies[] = getMovie($key['IdMovie']);
+								}
+								$layout = "addMovieToEvent.php";
+							}
+						}
+						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$layout = "editEvent.php";
 						}
 						break;
 					default:

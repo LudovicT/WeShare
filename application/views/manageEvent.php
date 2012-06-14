@@ -23,6 +23,10 @@
 		</td>
 	</tr>
 </table>
+<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Edit/<?php echo $IdEvent ?>/">
+	<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
+	<input type="submit" value="Modifier l'événement">
+</form>
 <br /> <br />
 <?php if (!($movies == -2))
 { ?>
