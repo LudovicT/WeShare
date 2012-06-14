@@ -201,24 +201,37 @@ if (isset($_GET["page"]))
 						}
 						break;
 						case "editEvent":
-						if (isset($_GET['do']) && $_GET['do'] == 'EditEvent')
-						{
-							if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
-							{
-								$IdEvent = $_GET['idEvent'];
-								$rawUserMovies = getUserMovies(getId($user));
-								foreach ($rawUserMovies as $key)
-								{
-									$UserMovies[] = getMovie($key['IdMovie']);
-								}
-								$layout = "addMovieToEvent.php";
-							}
-						}
 						if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 						{
 							$IdEvent = $_GET['idEvent'];
 							$event = getEvent($IdEvent);
 							$layout = "editEvent.php";
+						}
+						break;
+						case "viewEvent":
+						if (isset($_GET['do']) && $_GET['do'] == 'voteFilmEvent')
+						{
+							if(isset($_GET['IdMovie']) && !empty($_GET['IdMovie']))
+							{
+								$IdMovie = $_GET['IdMovie'];
+								$IdEvent = $_GET['idEvent'];
+								$movie = getMovie($IdMovie);
+								$layout = "voteFilmEvent.php";
+							}
+						}
+						elseif(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
+						{
+							$IdEvent = $_GET['idEvent'];
+							$event = getEvent($IdEvent);
+							$movies = getMovieEvent($IdEvent);
+							$i = 0;
+							foreach($movies as $key)
+							{
+								$movies[$i]['NbVote'] = getPollMovieEvent($IdEvent, $key['IdMovie']);
+								$i++;
+							}
+							$friends = getFriendsEvent($IdEvent);
+							$layout = "viewEvent.php";
 						}
 						break;
 					default:

@@ -4,7 +4,7 @@
 	<h5 id="status"></h5>
 	<form id="demoForm" method="post" action="index.php?page=register" class="bbq">
 		<input type="hidden" id="page" value="connection">
-		<div id="fieldWrapper">
+		<div id="connexion">
 			<span class="step" id="first">
 				<span class="font_normal_07em_black">Etape 1</span><br />
 				<label for="pseudo">Pseudo : </label><br />
@@ -16,6 +16,9 @@
 				<label for="email">Email : </label><br />
 				<input class="input_field_12em email required" name="email" id="email" /><br />
 			</span>
+			
+
+
 			<span id="finland" class="step">
 				<span class="font_normal_07em_black">Etape 2 - Optionnel</span><br />
 				<label for="nom">Nom : </label><br />
