@@ -60,7 +60,8 @@
 			<div class="field"><label>Mot de Passe :</label><input type="password" name="password" value="<?php echo $profil['Password'];?>"/></div><br />
 			<div class="field"><label>Confirmer mot de Passe :</label><input type="password" name="retypePassword" value="<?php echo $profil['Password'];?>"/></div><br />
 			<div class="field"><label>Votre Avatar :</label><input type="text" name ="avatar" value="<?php echo $profil['Avatar'];?>"/></div><br />
-			<div class="wrapper"><input type="submit" value="Enregistrer les modifications"></div>
+			<div class="wrapper"><input type="submit" value="Enregistrer les modifications"></div><br /><br /><br /><br /><br />
+			<a href='/weshare/profil/supprimer/'>Supprimer mon compte</a>
 		</fieldset>
 	</form>
 </div>

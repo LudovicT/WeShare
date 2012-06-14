@@ -10,6 +10,16 @@ if(isset($_GET['action'])){
 			$layout="profil.php";
 			$layoutAdd = 0;
 			break;
+		case "supprimer":
+			$layout="confirmer.php";
+			$layoutAdd = 1;
+			if(isset($_POST['confirmation']) && $_POST['confirmation'] == "Supprimer")
+			{
+				deleteUser($userId);
+				disconnect();
+				$layout = "home.php";
+			}
+			break;
 		case "edit":
 			if (isset($_GET['subaction']))
 			{

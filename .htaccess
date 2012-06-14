@@ -40,6 +40,7 @@ RewriteRule   ^Evenements/Status/([0-9]+)([./.]*)$   /WeShare/index.php?page=eve
 RewriteRule   ^Evenements([./.]*)$   /WeShare/index.php?page=evenements.php [NC]
 RewriteRule   ^Deconnexion([./.]*)$ /Weshare/index.php?page=deconnexion [NC]
 RewriteRule   ^Profil([./.]*)$   /WeShare/index.php?page=profil.php [NC]
+RewriteRule   ^Profil/Supprimer([./.]*)$   /WeShare/index.php?page=profil.php&action=supprimer [NC]
 RewriteRule   ^Profil/Edit([./.]*)$   /WeShare/index.php?page=profil.php&action=edit [NC]
 RewriteRule   ^Profil/Edit/ModifierProfil([./.]*)$   /WeShare/index.php?page=profil.php&action=edit&subaction=changeprofil [NC]
 RewriteRule   ^Profil/Amis([./.]*)$   /WeShare/index.php?page=profil.php&action=amis [NC]

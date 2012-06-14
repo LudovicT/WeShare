@@ -2094,4 +2094,16 @@ function addVoteMovieEvent($IdEvent, $IdMovie, $IdUser, $Vote)
 	 }
 	return ($error);
 }
+
+function deleteUser($userId)
+{
+	$query = sprintf("DELETE FROM USERS WHERE IdUser='%d'",
+					$userId);
+	$result = mysql_query($query, dbConnect()) or die (mysql_error());
+	if ($result == false)
+	{
+		return -1;
+	}
+	return 0;
+}
 ?>
