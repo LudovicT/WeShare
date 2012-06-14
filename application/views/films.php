@@ -1,5 +1,6 @@
 	<!--Start of home page-->
-		<div class="add_films"><a href="/WeShare/Films/addFilms/">Ajouter un film</a></div>
+		<div class="add_films"><a href="/WeShare/Films/addFilms/">Ajouter un film</a>
+	
 	<?php
 	if(isset($search[1]) && $search[1] == -1)
 	{
@@ -50,4 +51,5 @@
 			<?php
 		}
 	?>
+	</div>
 	<!--End of home page-->
