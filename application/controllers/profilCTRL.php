@@ -73,4 +73,5 @@ else
 	$layoutAdd = 0;
 }
 $profil = getProfil($user);
+list($day,$mounth,$year) = explode('/',$profil['BornDate']);
 ?>

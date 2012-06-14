@@ -6,7 +6,6 @@ profil de l'utilisateur.
 Auteur : Vincent Ricard
 Aide : Ludovic Tresson
 */
-
 if(isset($_POST["lastName"]) && !empty($_POST["lastName"]))
 {
 	$change_lastName = $_POST["lastName"];

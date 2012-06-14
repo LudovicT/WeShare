@@ -10,6 +10,9 @@ if (isset($_GET["action"]))
 		case "addFilms":
 			include_once("addMovieCTRL.php");
 			break;
+		case "addStaff":
+			include_once("addStaffCTRL.php");
+			break;
 		case "deleteMovie":
 			deleteMovie($_GET['idMovie']);
 			$search = searchData(0,"");

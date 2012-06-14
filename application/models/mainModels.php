@@ -113,7 +113,6 @@ function register($register_pseudo,
 	if ($S_result == false)
 	{
 		$error[3] = 1;
-		echo "coucou1";
 	}
 	
 	if (strlen($register_pseudo) > 33)
@@ -142,7 +141,6 @@ function register($register_pseudo,
 	if ($S_result == false)
 	{
 		$error[3] = 1;
-		echo "coucou2";
 	}
 	
 	if (strlen($register_email) > 211)
@@ -180,7 +178,6 @@ function register($register_pseudo,
 		if ($S_result == false)
 		{
 			$error[3] = 1;
-		echo "coucou3";
 		}
 	}
 	mysql_close();
@@ -1750,7 +1747,7 @@ function addUserMovie($userId, $IdMovie, $support, $available)
 			return -1;
 		}
 	}
-	else
+	elseif($support != 'fichier')
 	{
 		$query = sprintf("UPDATE UserMovies
 						SET Available = '%d'
@@ -1975,5 +1972,18 @@ function editEvent($IdEvent, $DateOfEvent, $Address, $City)
 		$error = 1;
 	 }
 return ($error);
+}
+
+function addStaff($last, $first, $bio, $BornDate, $picture)
+{
+	$query = sprintf("INSERT INTO Staffs
+					(LastName, FirstName, Bio, BornDate, Picture)   
+					VALUES ('%s', '%s', '%s', '%s', '%s')" 
+					,$last, $first, $bio, $BornDate, $picture);
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
+	if ($result == false)
+	{
+		return (-1);
+	}
 }
 ?>
