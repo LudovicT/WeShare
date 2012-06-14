@@ -310,30 +310,3 @@ padding-top: 200px;
 	position:relative;
 	padding: 10px 10px 10px 10px;
 }
-#home
-{
-	font-size: 13px;
-	padding: 20px 20px 20px 20px;
-	background-color: #ffffff;
-}
-#connexion
-{
-	background:url('images/bluec_30p.png');
-	width:65%;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	margin:auto;
-	padding:20px;
-	margin-top:20px;
-}
-.add_films
-{
-
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	margin:auto;
-	padding:20px;
-	margin-top:20px;
-}
