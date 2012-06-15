@@ -16,6 +16,7 @@
 	<script src="<?php echo DIR_PUBLICS; ?>/js/Myriad_Pro_400.font.js" type="text/javascript"></script>
 </head>
 <body id="page1">
+<div id='contenu'>
 <div id="taille">
 <div class="tail-bottom">
 <!-- HEADER -->

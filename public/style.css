@@ -336,3 +336,10 @@ padding-top: 200px;
 	text-align:center;
 	padding: 120px 10px 10px 10px;
 }
+#piedDePage {
+    position:fixed ;
+	bottom:0;
+	padding-bottom:10px;
+	left:48%;
+	font-size: 0.8em;
+}

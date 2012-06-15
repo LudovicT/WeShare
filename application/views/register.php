@@ -53,7 +53,8 @@
 				</p>
 			</span>
 			<input class="navigation_button" id="back" value="Mise à zéro" type="reset" />
-			<input class="navigation_button" id="next" value="Soumettre" type="submit"/>
+			<input class="navigation_button" id="next" value="Soumettre" type="submit"/><br />
+			<label>En vous inscrivant, vous acceptez les <a href='/weshare/CGU.html' target="_blank">Conditions Générales d'Utilisation</a></label>
 		</div>
 		</div>
 	</form>
