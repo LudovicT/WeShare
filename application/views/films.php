@@ -1,5 +1,6 @@
 	<!--Start of home page-->
-		<div class="add_films"><a href="/WeShare/Films/addFilms/">Ajouter un film</a> <a href="/WeShare/Films/addStaff/">Ajouter un membre de staff</a></div>
+	</br></br>
+		<div class="add_films"><a href="/WeShare/Films/addFilms/"><input type='submit' value='Ajouter un film'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/WeShare/Films/addStaff/"><input type='submit' value='Ajouter un membre de staff'></a></div></br></br>
 
 	<?php
 	if(isset($search[1]) && $search[1] == -1)
