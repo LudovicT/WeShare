@@ -9,7 +9,7 @@
 	elseif (isset($search[0][0]['IdMovie']))
 		{
 			?>
-			<table border='1' width="100%">
+			<table border='0' width="100%" rules='rows'>
 			<th> Jaquette </th><th> Titre </th><th> Synopsis </th><th> Date de sortie </th> <th> Edit Film </th> <th> Supprimer </th> 
 			<?php
 			foreach($search[0] as $key)
