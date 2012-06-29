@@ -26,6 +26,8 @@ if (isset($_GET["page"]) && $user == null && !isset($_SESSION['User']))
 	{
 		case "login.php":
 			$errorConnect = 0;
+			$pseudo = '';
+			$password = '';
 			$layout = "login.php";
 			break;
 		case "register.php":

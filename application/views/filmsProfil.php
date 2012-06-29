@@ -45,7 +45,7 @@ Les fichiers sont considérés comme étant tout le temps disponible.
 <br />
 <h3>Mes films mis en partage :</h3>
 <table border='0' rules='rows' width="100%">
-<th> Titre </th><th> Support </th><th> Nombre d'exemplaire </th> <th> Supprimer </th>
+<th> Titre </th><th> Support </th><th> Nombre d'exemplaires </th> <th> Supprimer </th>
 <?php
 	foreach($userMovie as $name)
 	{

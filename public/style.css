@@ -1,6 +1,6 @@
 /* TAGS */
 * {margin:0;padding:0}
-html {min-width:1000px} 
+html {min-width:1000px;height:100%;} 
 body {background:url(images/tail-top.gif) repeat-x center 0px #f7f4ea;font-family:Arial,Helvetica,sans-serif;font-size:100%;line-height:1em;color:#000;min-width:1000px}
 object {vertical-align:top;outline:none}
 input, textarea, select {font-family:Arial,Helvetica,sans-serif;font-size:1em;vertical-align:middle;font-weight:normal}
@@ -10,7 +10,6 @@ img {border:0;vertical-align:top;text-align:left}
 ul, ol {list-style:none}
 /* ALIGMENT */
 .fleft {float:left}
-.fright {float:right}
 .clear {clear:both}
 .alignright {text-align:right}
 .aligncenter {text-align:center}
@@ -76,10 +75,18 @@ h4 {font-size:.86em;margin-bottom:5px}
 #header .row-1 .fright ul li {font-size:21px;line-height:1.2em;float:left;margin-left:1px}
 #header .row-1 .fright ul li a {display:block;color:#fff;text-decoration:none}
 #header .row-1 .fright ul li a em {display:block}
-#header .row-1 .fright ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 50px 5px 50px}
+#header .row-1 .fright ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
 #header .row-1 .fright ul li a:hover, #header .row-1 .fright ul li a.active {background-color:#af3300}
 #header .row-1 .fright ul li a:hover em, #header .row-1 .fright ul li a.active em {background:url(images/nav-act-left.gif) no-repeat left top}
 #header .row-1 .fright ul li a:hover b, #header .row-1 .fright ul li a.active b {background:url(images/nav-act-right.gif) no-repeat right top}
+#header .row-1 .fright2 {padding-top:38px}
+#header .row-1 .fright2 ul li {font-size:21px;line-height:1.2em;float:left;margin-left:1px}
+#header .row-1 .fright2 ul li a {display:block;color:#fff;text-decoration:none}
+#header .row-1 .fright2 ul li a em {display:block}
+#header .row-1 .fright2 ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
+#header .row-1 .fright2 ul li a:hover, #header .row-1 .fright ul li a.active {background-color:#af3300}
+#header .row-1 .fright2 ul li a:hover em, #header .row-1 .fright ul li a.active em {background:url(images/nav-act-left.gif) no-repeat left top}
+#header .row-1 .fright2 ul li a:hover b, #header .row-1 .fright ul li a.active b {background:url(images/nav-act-right.gif) no-repeat right top}
 #header .row-2 { padding:42px 0 0 56px}
 #header .row-2 ul {width:100%}
 #header .row-2 ul li {padding:0 0 12px 19px;background:url(images/arrow.gif) no-repeat left 5px}
@@ -227,7 +234,7 @@ text-align: center;
 #homeSearch button:active {
     background-position: right bottom;
 }
-body, p, h1,form, input {
+p, h1,form, input {
 margin-top:0;
 padding:0;
 }
@@ -279,12 +286,12 @@ padding:10px 0 0 0;
 padding-top: 200px;
 }
 #header .row-4 {height:80px;width:100%;overflow:hidden}
-#header .row-4 .fright {padding-top:5px}
-#header .row-4 .fright ul li {font-size:20px;line-height:1.2em;float:left;margin-left:1px}
-#header .row-4 .fright ul li a {display:block;color:#af3300;text-decoration:none}
-#header .row-4 .fright ul li a em {display:block}
-#header .row-4 .fright ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
-#header .row-4 .fright ul li a:hover, #header .row-4 .fright ul li a.active {background-color:#d0e9f6}
+#header .row-4 .fright2 {padding-top:5px}
+#header .row-4 .fright2 ul li {font-size:20px;line-height:1.2em;float:left;margin-left:1px}
+#header .row-4 .fright2 ul li a {display:block;color:#af3300;text-decoration:none}
+#header .row-4 .fright2 ul li a em {display:block}
+#header .row-4 .fright2 ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
+#header .row-4 .fright2 ul li a:hover, #header .row-4 .fright ul li a.active {background-color:#d0e9f6}
 #PhotoProfil {max-width: 200px; max-height: 400px}
 #TableProfil td {background-color:#f7dbb6;}
 .TableAmisProfil {background-color:#f7dbb6}
@@ -327,3 +334,30 @@ padding-top: 200px;
 	left:48%;
 	font-size: 0.8em;
 }
+.fright2 
+{
+   float:left;
+   width:100%;
+   overflow:hidden;
+   position:relative;
+}
+.fright2 ul {
+   clear:left;
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   left:50%;
+   text-align:center;
+}
+.fright2 ul li {
+   display:block;
+   float:left;
+   list-style:none;
+   margin:0;
+   padding:0;
+   position:relative;
+   right:50%;
+}
+   

@@ -13,6 +13,8 @@ if (isset($_POST["pseudo"]) && isset($_POST["password"]))
 	}
 	else	//errorConnect = 1 dans ce cas
 	{
+		$pseudo = $_POST["pseudo"];
+		$password = '';
 		$layout = "login.php";
 	}
 }

@@ -109,6 +109,8 @@ if (isset($_POST["pseudo"]) && !empty($_POST["pseudo"]) &&
 	if ($error_register[0] == 0 && $error_register[1] == 0 && $error_register[2] == 0 && $error_register[3] == 0)
 	{
 		$layout = "login.php";
+		$pseudo = $register_pseudo;
+		$password = $register_password;
 	}
 	else
 	{

@@ -25,7 +25,7 @@ switch($layoutAdd)
 }
 		echo"
 			<div class='row-4'>
-				<div class='fright'>
+				<div class='fright2'>
 					<ul>
 						<li><a href='/WeShare/Profil/'".$active[0]."><em><b>Profil</b></em></a></li>
 						<li><a href='/WeShare/Profil/Edit/'".$active[1]."><em><b>Edition du profil</b></em></a></li>

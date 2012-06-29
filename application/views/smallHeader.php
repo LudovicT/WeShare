@@ -87,7 +87,7 @@
 	<!--<div id="header-inscription"> -->
 	<div id="header">
 		<div class="row-1">
-			<div class="fright">
+			<div class="fright2">
 				<ul>
 					<li><a href="/WeShare/" ><em><b>Accueil</b></em></a></li>
 					<li><a href="/WeShare/Connexion/" ><em><b>Connexion</b></em></a></li>

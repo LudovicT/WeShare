@@ -495,7 +495,7 @@ function searchData($type, $recherche)
 				while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			}
 			
-			$S_query = ("SELECT * FROM Staffs WHERE LastName LIKE '%".$recherche."%' OR FirstName LIKE 'LIKE".$recherche."LIKE'");
+			$S_query = ("SELECT * FROM Staffs WHERE LastName LIKE '%".$recherche."%' OR FirstName LIKE '%".$recherche."%'");
 			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
@@ -525,7 +525,7 @@ function searchData($type, $recherche)
 			while(($S_data[1][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[1]));
 			break;
 		case "3":
-			$S_query = ("SELECT * FROM Movies WHERE Name LIKE 'LIKE".$recherche."LIKE'");
+			$S_query = ("SELECT * FROM Movies WHERE Name LIKE '%".$recherche."%'");
 			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
@@ -534,7 +534,7 @@ function searchData($type, $recherche)
 			while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			break;
 		case "4":
-			$S_query = ("SELECT * FROM Staffs WHERE Name LIKE 'LIKE".$recherche."LIKE'");
+			$S_query = ("SELECT * FROM Staffs WHERE Name LIKE '%".$recherche."%'");
 			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{
@@ -1664,8 +1664,8 @@ function removeMovieFromEvent($IdEvent, $IdMovie)
 function deleteMP($IdPM,$IdSender)
 {
 	$error = 0;
-	$query = sprintf("DELETE FROM PMs
-					WHERE IdPM = '%d' AND IdSender = '%d'",
+	$query = sprintf("DELETE FROM UserPMs
+					WHERE IdPM = '%d' AND IdUser = '%d'",
 					$IdPM,
 					$IdSender);
 	$result = mysql_query($query, dbConnect()) or die(mysql_error());
@@ -2105,5 +2105,16 @@ function deleteUser($userId)
 		return -1;
 	}
 	return 0;
+}
+
+function changeDate($date)
+{
+
+	list($dd,$mm,$yyyy) = explode('/',$date);
+	if(checkdate($mm,$dd,$yyyy))
+	{
+		$newDate = $yyyy."-".$mm."-".$dd;
+	}
+	return $newDate;
 }
 ?>
