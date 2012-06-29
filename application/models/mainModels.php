@@ -1695,9 +1695,6 @@ function getUserMovies($IdUser)
 	$iterator = 0;
 	
 	// Requête récupérant les ID des films appartenants à l'utilisateur
-	// $query = sprintf("SELECT IdMovie FROM UserMovies WHERE IdUser = '%d'" 
-					// ,$IdUser);
-	// $result = mysql_query($query, dbConnect()) or die(mysql_error());
 	$query = sprintf("SELECT UM.IdMovie, UM.Support, UM.Available, M.Name 
 						FROM UserMovies AS UM
 						LEFT JOIN Movies AS M
@@ -1710,15 +1707,6 @@ function getUserMovies($IdUser)
 		return -1;
 	}
 	while(($UserMovies[] = mysql_fetch_assoc($result)) || array_pop($UserMovies));
-	// // while de parser permettant de récupéter toutes les données de chaque film
-	// while (isset($ListIDMovieUser[$iterator]) && !empty($ListIDMovieUser[$iterator]))
-	// {
-		 // foreach ($ListIDMovieUser[$iterator] as $key)
-		 // {
-			// $UserMovies[$iterator] = getMovie($key['IdMovie']);
-		 // }
-		// $iterator++;
-	// }
 	return ($UserMovies);
 }
 
@@ -1905,7 +1893,7 @@ function inviteFriendToEvent($IdEvent, $IdUser)
 	$query = sprintf("INSERT INTO EventsInvitations 
 					(IdEvent, IdUser, Status)   
 					  VALUES ('%d', '%d', '%d')" 
-					  ,$IdEvent, $IdUser, '1');
+					  ,$IdEvent, $IdUser, '0');
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
@@ -2034,6 +2022,7 @@ $error (S): int
 1	:	erreur requête invalide/problème avec la BDD;
 0	:	OK
 -1	:	l'utilisateur a déjà voté.
+-2	:	l'utilisateur n'a pas le droit de voter
 
 Auteur : Vincent Ricard
 */
@@ -2042,19 +2031,30 @@ function checkVoteMovieEvent($IdEvent, $IdMovie, $IdUser)
 {
 	$error = 0;
 
-	$query = sprintf("SELECT IdMovie FROM EventsVote
-					  WHERE IdMovie = '%d' AND IdEvent = '%d' AND IdUser = '%d'",
-					  $IdMovie, $IdEvent, $IdUser);
+	$query = sprintf("SELECT Status FROM EventsInvitations 
+					  WHERE IdUser = '%d' AND IdEvent = '%d'",
+					  $IdUser, $IdEvent);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
 		return (1);
 	 }
-	$check = mysql_fetch_assoc($result);
-	if (is_array($check))
-	{
-		return (-1);
-	}
+	 else
+	 {
+		$status = mysql_fetch_assoc($result);
+		if ($status['Status'] == -1 || $status['Status'] == 0)
+		{
+			return (-2);
+		}
+	 }
+	// $query = sprintf("SELECT IdEvent, IdMovie, IdUser FROM EventsVote
+					  // WHERE IdMovie = '%d' AND IdEvent = '%d' AND IdUser = '%d'",
+					  // $IdMovie, $IdEvent, $IdUser);
+	// $result = mysql_query($query, dbConnect());
+	// if ($result == false)
+	 // {
+		// return (1);
+	 // }
 	return ($error);
 }
 
