@@ -118,9 +118,16 @@ if (isset($_GET['action']) && !empty($_GET['action']))
 				{
 					$IdEvent = $_GET['idEvent'];
 					$rawUserMovies = getUserMovies(getId($user));
-					foreach ($rawUserMovies as $key)
+					if (!empty($rawUserMovies))
 					{
-						$UserMovies[] = getMovie($key['IdMovie']);
+						foreach ($rawUserMovies as $key)
+						{
+							$UserMovies[] = getMovie($key['IdMovie']);
+						}
+					}
+					else
+					{
+						$UserMovies = 0;
 					}
 					$layout = "addMovieToEvent.php";
 				}
@@ -137,11 +144,7 @@ if (isset($_GET['action']) && !empty($_GET['action']))
 			case "viewEvent":
 			if (isset($_POST['For']) && !empty($_POST['For']))
 			{
-				addVoteMovieEvent($_POST['IdEvent'], $_POST['For'], $userId, 1);
-			}
-			if (isset($_POST['Against']) && !empty($_POST['Against']))
-			{
-				addVoteMovieEvent($_POST['IdEvent'], $_POST['Against'], $userId, -1);
+				addVoteMovieEvent($_GET['idEvent'], $_POST['For'], $userId, $_POST['vote']);
 			}
 			if (isset($_GET['do']) && $_GET['do'] == 'voteFilmEvent')
 			{

@@ -9,16 +9,13 @@
 ?>
 	<table border='1'>
 	<p>  Événements dont vous êtes l'organisateur : </p>
-	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
+	<th> Date de l'événement </th><th> Adresse </th>
 	<th> Ville </th><th> Date de création </th><th> Action </th>
 <?php
 	foreach($events[0] as $key)
 	{ 
 ?>
 	<tr>
-		<td>
-<?php echo $key['IdEvent'] ?>
-		</td>
 		<td>
 <?php echo($key['DateOfEvent']); ?>	
 		</td>
@@ -43,7 +40,7 @@
 	</table>
 	<table border='1'> <br />
 	<p>  Événements auxquels vous participez : </p>
-	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
+	<th> Accéder à l'événement </th><th> Date de l'événement </th><th> Adresse </th>
 	<th> Ville </th><th> Status </th><th> Action </th>
 <?php
 	foreach($events[1] as $key)
@@ -51,7 +48,7 @@
 ?>
 		<tr>
 			<td>
-	<a href='/WeShare/Evenements/Voir/<?php echo $key['IdEvent'] ?>/' ><?php echo $key['IdEvent'] ?></a>
+	<a href='/WeShare/Evenements/Voir/<?php echo $key['IdEvent'] ?>/' >Cliquez ici</a>
 			</td>
 			<td>
 	<?php echo $key['DateOfEvent'];?>	

@@ -1,15 +1,12 @@
-<h3>Détails sur l'événement N° <?php echo $event['IdEvent'] ?></h3>
+<h3>Détails sur l'événement</h3>
 <p>Ici vous pourrez découvrir qui participent à cet événement et voter pour
 le ou les films proposés</p>
 <br />
 
 <table border='1'>
-	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
+	<th> Date de l'événement </th><th> Adresse </th>
 	<th> Ville </th><th> Date de création </th>
 	<tr>
-		<td>
-<?php echo $event['IdEvent'] ?>
-		</td>
 		<td>
 <?php echo($event['DateOfEvent']); ?>	
 		</td>
@@ -49,14 +46,18 @@ Voici la liste des films proposés pour cet événement : <br /><br />
 <?php echo($key['NbVote']); ?>	
 		</td>
 		<td>
-<?php if ($key['CheckVote'] == 0)
+<?php
+if ($key['CheckVote'] == 0)
 {?>
 		<a href='/WeShare/Evenements/Voir/<?php echo $event['IdEvent'] ?>/VoterFilm/<?php echo $key['IdMovie']; ?>/' > voter </a>
 <?php }
+	  else if ($key['CheckVote'] == -2)
+	  {?>
+	  Pour voter, vous devez accepter l'invitation
+	  <?php }
 	  else
 	  {?>
-	  A voté
-	  <?php }?>
+	  A voté <?php } ?>
 		</td>
 	</tr>
 </table>
@@ -103,5 +104,5 @@ if ($friends != -1 && $friends != -2)
 }
 else
 {?>
-<br /><br/>Personne d'autre que vous participe à cet événement.<br />
+<br /><br/>Personne d'autre que vous ne participe à cet événement.<br />
 <?php } ?>

@@ -30,8 +30,8 @@ function addMovieToEvent($IdEvent, $IdUser)
 	// Requête insérant un ami invité à l'événement donné
 	$query = sprintf("INSERT INTO EventsInvitations 
 					(IdEvent, IdUser, Status)   
-					  VALUES ('%d', '%d', '%d')" 
-					  ,$IdEvent, $IdUser, '1');
+					 VALUES ('%d', '%d', '%d')" 
+					 ,$IdEvent, $IdUser, '0');
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {

@@ -1,9 +1,11 @@
-<h3>Ajouter un film à l'événement N°<?php echo $IdEvent ?></h3>
-<p>Voici la liste des films que vous possédez : </p>
-
+<h3>Ajouter un film à l'événement</h3>
 <?php
-	foreach($UserMovies as $key)
-	{ 
+	if ($UserMovies != 0)
+	{ ?>
+<p>Voici la liste des films que vous possédez : </p>
+<?php
+		foreach($UserMovies as $key)
+		{ 
 ?>
 <table border='1'>
 	<th> Nom du film </th><th> Synopsis </th>
@@ -36,4 +38,6 @@
 		</td>
 	</tr>
 </table>
-<?php } ?>
+<?php }
+	}
+	else {?> <p> Vous n'avez aucun film. <?php } ?>
