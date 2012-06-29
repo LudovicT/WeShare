@@ -1,4 +1,4 @@
-<h3>Inviter des amis à l'événement N°<?php echo $IdEvent ?></h3>
+<h3>Inviter des amis à l'événement</h3>
 <p>Voici la liste de vos amis que vous pouvez inviter : </p>
 
 <?php

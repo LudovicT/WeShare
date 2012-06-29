@@ -1,9 +1,9 @@
-<h3>Vote du film "<?php echo $movie['Name'] ?>" de l'événement N°<?php echo $IdEvent ?></h3>
+<h3>Vote du film "<?php echo $movie['Name'] ?>" de l'événement</h3>
 <p>Vous pouvez voter pour ou contre </p>
 
 <table border='1'>
 	<th> Nom du film </th><th> Synopsis </th>
-	<th> Durée </th>
+	<th> Durée </th><th>Vote</th><th>Action</th>
 	<tr>
 		<td>
 <?php echo $movie['Name'] ?>
@@ -14,28 +14,26 @@
 		<td>
 <?php echo($movie['Runtime']); ?>	
 		</td>
-	</tr>
-</table>
-<table>
-	<tr>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Voir/<?php echo $IdEvent ?>/">
-				<input type="hidden" name="For" value="<?php echo $movie['IdMovie'] ?>">
-				<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-				<input type="submit" value="Voter POUR ce film">
-			</form>
+				<select name="vote">
+				<?php
+					for($i=0;$i<=10;$i++)
+					{
+						echo "<option value='$i'>$i</option>";
+					}
+				?>
+				</select>
 		</td>
 		<td>
-			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Voir/<?php echo $IdEvent ?>/">
-				<input type="hidden" name="Against" value="<?php echo $movie['IdMovie'] ?>">
-				<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-				<input type="submit" value="Voter CONTRE ce film">
+					<input type="hidden" name="For" value="<?php echo $movie['IdMovie'] ?>">
+					<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
+					<input type="submit" value="Voter">
+					ou 
+					<input type="submit" value="Annuler">
 			</form>
-		</td>
-		<td>
-			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
-				<input type="submit" value="Annuler">
-			</form>
-		</td>
 	</tr>
 </table>
+
+<p> <br />Pour voter pour ce film, choisissez un nombre en <b>0</b> et <b>10</b>,
+	<b>0</b> étant "Ne m'intéresse pas" et <b>10</b> étant "Hâte de le voir" </p>

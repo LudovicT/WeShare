@@ -11,7 +11,7 @@ define('DS', '/');
 define('ADDRESS', '/');
 include("../../config/config.php");
 
-$result = inviteFriendToEvent('6', '1');
+$result = inviteFriendToEvent('9', '1');
 
 if ($result == -1)
 {
