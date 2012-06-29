@@ -103,7 +103,7 @@
 	}
 ?>
 	</table> <br> <br />
-	<a href='/WeShare/Evenements/Ajouter/' > Cliquer ici pour créer un événement </a>
+	<a href="/WeShare/Evenements/Ajouter/" class="button2">Créer un événement</a>
 <?php
 }
 ?>

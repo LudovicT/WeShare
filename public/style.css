@@ -327,3 +327,140 @@ padding-top: 200px;
 	left:48%;
 	font-size: 0.8em;
 }
+
+
+
+
+		.buttonDelete {
+		   border-top: 1px solid #fc0000;
+		   background: #fc0000;
+		   background: -webkit-gradient(linear, left top, left bottom, from(#fc0000), to(#fc0000));
+		   background: -webkit-linear-gradient(top, #fc0000, #fc0000);
+		   background: -moz-linear-gradient(top, #fc0000, #fc0000);
+		   background: -ms-linear-gradient(top, #fc0000, #fc0000);
+		   background: -o-linear-gradient(top, #fc0000, #fc0000);
+		   padding: 5px 10px;
+		   -webkit-border-radius: 8px;
+		   -moz-border-radius: 8px;
+		   border-radius: 8px;
+		   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		   box-shadow: rgba(0,0,0,1) 0 1px 0;
+		   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+		   color: #ffffff;
+		   font-size: 14px;
+		   font-family: Georgia, serif;
+		   text-decoration: none;
+		   vertical-align: middle;
+		   }
+		.buttonDelete:hover {
+		   border-top-color: #fc0000;
+		   background: #fc0000;
+		   color: #969696;
+		   }
+		.buttonDelete:active {
+		   border-top-color: #fc0000;
+		   background: #fc0000;
+	   }
+   
+   .buttonEdit {
+   border-top: 1px solid #44bf1b;
+   background: #44bf1b;
+   background: -webkit-gradient(linear, left top, left bottom, from(#44bf1b), to(#44bf1b));
+   background: -webkit-linear-gradient(top, #44bf1b, #44bf1b);
+   background: -moz-linear-gradient(top, #44bf1b, #44bf1b);
+   background: -ms-linear-gradient(top, #44bf1b, #44bf1b);
+   background: -o-linear-gradient(top, #44bf1b, #44bf1b);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: #ffffff;
+   font-size: 14px;
+   font-family: Georgia, Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.buttonEdit:hover {
+   border-top-color: #44bf1b;
+   background: #44bf1b;
+   color: #969696;
+   }
+.buttonEdit:active {
+   border-top-color: #44bf1b;
+   background: #44bf1b;
+   }
+   
+
+
+
+
+  
+.button1 {
+   border-top: 1px solid #050405;
+   background: #634c43;
+   background: -webkit-gradient(linear, left top, left bottom, from(#9c4e2e), to(#634c43));
+   background: -webkit-linear-gradient(top, #9c4e2e);
+   background: -moz-linear-gradient(top, #9c4e2e);
+   background: -ms-linear-gradient(top, #9c4e2e);
+   background: -o-linear-gradient(top, #9c4e2e);
+   padding: 8px 16px;
+   -webkit-border-radius: 7px;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 20px;
+   font-family: Georgia, Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button1:hover {
+   background: -webkit-linear-gradient(top, #9c4e2e, #634c43);
+   color: #ccc;
+   }
+.button1:active {
+   background: -webkit-linear-gradient(top, #9c4e2e, #634c43);
+   }
+   
+.button2 {
+   border-top: 1px solid #050405;
+   background: #694d42;
+   background: -webkit-gradient(linear, left top, left bottom, from(#36170a), to(#694d42));
+   background: -webkit-linear-gradient(top, #36170a, #694d42);
+   background: -moz-linear-gradient(top, #36170a, #694d42);
+   background: -ms-linear-gradient(top, #36170a, #694d42);
+   background: -o-linear-gradient(top, #36170a, #694d42);
+   padding: 8px 16px;
+   -webkit-border-radius: 7px;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 20px;
+   font-family: Georgia, Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button2:hover {
+   border-top-color: #5e2711;
+   background: -webkit-linear-gradient(top, #9c4e2e);
+   color: #ccc;
+   }
+.button2:active {
+   border-top-color: #5e2711;
+   background: -webkit-linear-gradient(top, #9c4e2e);
+   }
+   
+
+
