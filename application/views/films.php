@@ -1,6 +1,6 @@
 	<!--Start of home page-->
 	</br></br>
-		<div class="add_films"><a href="/WeShare/Films/addFilms/"><input type='submit' value='Ajouter un film'></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/WeShare/Films/addStaff/"><input type='submit' value='Ajouter un membre de staff'></a></div></br></br>
+		<div class="add_films"><a href="/WeShare/Films/addFilms/" class="button2">Ajouter un Film</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/WeShare/Films/addStaff/" class="button2">Ajouter un membre au Casting</a></div></br></br>
 
 	<?php
 	if(isset($search[1]) && $search[1] == -1)
@@ -39,10 +39,10 @@
 						<?php echo $key['DateOfRelease'] ?>
 					</td>
 					<td width="10%">
-					<a href='/WeShare/Films/EditerFilm/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><em>Editer</em></a><br />
+					<a href='/WeShare/Films/EditerFilm/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/' class="buttonEdit"><em>Editer</em></a><br />
 					</td>
 					<td width="10%">
-					<a href='/WeShare/Films/Suppression/<?php echo ($key['IdMovie']); ?>/'><em>Supprimer</em></a><br />
+					<a href='/WeShare/Films/Suppression/<?php echo ($key['IdMovie']); ?>/' class="buttonDelete"><em>Supprimer</em></a><br />
 					</td>
 				</tr>
 			<?php

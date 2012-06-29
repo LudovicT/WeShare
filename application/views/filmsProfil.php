@@ -38,7 +38,7 @@ Les fichiers sont considérés comme étant tout le temps disponible.
 <br />
 <br />
 
-<input type='submit' value='Ajouter à mes films'>
+<input type='submit' class="button2" value='Ajouter à mes films'>
 </form>
 
 <br />
@@ -76,7 +76,7 @@ Les fichiers sont considérés comme étant tout le temps disponible.
 				<input type='hidden' name='IdMovie' value='<?php echo $name['IdMovie']?>'>
 				<input type='hidden' name='support' value='<?php echo $name['Support']?>'>
 				<input type='hidden' name='available' value='<?php echo $name['Available']?>'>
-				<input type='submit' value='Supprimer'>
+				<input type='submit' class="buttonDelete" value='Supprimer'>
 				</form>
 			</td>
 		</tr>

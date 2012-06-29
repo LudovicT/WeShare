@@ -114,7 +114,7 @@
 	{
 		?>
 		Vous n'avez pas encore de groupe d'amis.<br /><br />
-		<a href='/WeShare/Groupe/Creer/'><button>Creer un groupe</button></a>
+		</br><a href="/WeShare/Groupe/Creer/" class="button2">Créer un groupe d'amis</a>
 		<?php
 	}
 	?>
