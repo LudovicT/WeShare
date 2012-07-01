@@ -6,32 +6,32 @@ function blinkColor()
 {
   if(document.getElementById("GotNotif"))
   {
-	document.getElementById("GotNotif").style.color="lightgreen";
+	document.getElementById("GotNotif").style.color="red";
   }
   if(document.getElementById("GotNotifProfil"))
   {
-	document.getElementById("GotNotifProfil").style.color="lightgreen";
+	document.getElementById("GotNotifProfil").style.color="red";
   }
   if(document.getElementById("GotNotifPms"))
   {
-	document.getElementById("GotNotifPms").style.color="lightgreen";
+	document.getElementById("GotNotifPms").style.color="grey";
   }
   if(document.getElementById("GotNotifFriends"))
   {
-	document.getElementById("GotNotifFriends").style.color="green";
+	document.getElementById("GotNotifFriends").style.color="grey";
   }
-  setTimeout("setblinkColor()",1000)
+  setTimeout("setblinkColor()",3000)
 }
 
 function setblinkColor()
 {
   if(document.getElementById("GotNotif"))
   {
-	document.getElementById("GotNotif").style.color="";
+	document.getElementById("GotNotif").style.color="white";
   }
   if(document.getElementById("GotNotifProfil"))
   {
-	document.getElementById("GotNotifProfil").style.color="";
+	document.getElementById("GotNotifProfil").style.color="white";
   }
   if(document.getElementById("GotNotifPms"))
   {

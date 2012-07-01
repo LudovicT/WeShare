@@ -59,10 +59,13 @@
 			{
 				echo "</div>";
 			}
+			if(!(isset($mpInfo[0]['mpUser'][0]['Pseudo']))) //detection boite réception ou boite envoie
+			{
 			?>
 					<div class='rightAlign'>
 					<a href='/weshare/profil/messagerie/supprimer/<?php echo $key['IdPM']?>'>Supprimer</a></div>
-					<br /><hr width='40%'>
+					<br />
+					<?php } ?><hr width='40%'>
 					<ol>
 					<li>
 					<?php

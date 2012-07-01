@@ -59,7 +59,6 @@ else
 {
 	include_once("pageCTRL.php");
 }
-
 require_once("notifCTRL.php");
 /* affichage */
 if(($layout == "register.php" || $layout == "login.php" || $layout == "home.php") && !isset($_SESSION['User']))

@@ -6,8 +6,7 @@ $newNotifEventsEnd = "";
 $notifEvents = checkEvents($userId);
 if($notifEvents > 0)
 {
-	$newNotifEvents = "<div id='GotNotif'>";
-	$newNotifEventsEnd = "  (".$notifEvents.")</div>";
+	$newNotifEvents = "<div id='GotNotif'>  (".$notifEvents.")</div>";
 }
 
 //notifs profil
@@ -22,17 +21,14 @@ $notifFriends = checkFriends($userId);
 $totalNotif = $notifPms+$notifFriends;
 if($totalNotif > 0)
 {
-	$newNotifProfil = "<div id='GotNotifProfil'>";
-	$newNotifProfilEnd = "  (".$totalNotif.")</div>";
+	$newNotifProfil = "<div id='GotNotifProfil'>  (".$totalNotif.")</div>";
 	if($notifPms > 0)
 	{
-		$newNotifProfilPms = "<div id='GotNotifPms'>";
-		$newNotifProfilEndPms = "  (".$notifPms.")</div>";
+		$newNotifProfilPms = "<div id='GotNotifPms'>  (".$notifPms.")</div>";
 	}
 	if($notifFriends > 0)
 	{
-		$newNotifProfilFriends = "<div id='GotNotifFriends'>";
-		$newNotifProfilEndFriends = "  (".$notifFriends.")</div>";
+		$newNotifProfilFriends = "<div id='GotNotifFriends'>  (".$notifFriends.")</div>";
 	}
 }
 ?>
