@@ -105,11 +105,11 @@ elseif (!isset($_GET['page']))
 				<option value='3'>Films</option>
 				<option value='4'>Acteurs</option>
 				</select>
+				<input type='image' value='Rechercher' src="<?php echo DIR_PUBLICS; ?>/images/search_but.gif" alt='go'>
 			</form>
 			</div>
 			<div id="profil">
-				<ul><img class='miniprofilpic' src='
-				<?php
+				<ul><img class='miniprofilpic' src='<?php
 				if(!empty($profil['Avatar']))
 				{
 					echo $profil['Avatar'];
@@ -118,8 +118,7 @@ elseif (!isset($_GET['page']))
 				{
 					echo DIR_PUBLICS."/images/vide.gif"; 
 				}
-				?>
-				'>
+				?>'>
 				</ul>
 			</div>
 			<div id="profil">

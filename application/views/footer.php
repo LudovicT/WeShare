@@ -5,7 +5,7 @@
 </div>
 <div id="footer1">
 <div class="info">
-&copy; 2012 WeShare | DEVELOPPED BY Ludovic Tresson, Vincent Ricad and Alexandre Arnal.
+&copy; 2012 WeShare | DEVELOPPED BY Ludovic Tresson, Vincent Ricard and Alexandre Arnal.
 
 </div>
 <div class="infonav">
