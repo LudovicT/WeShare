@@ -1379,7 +1379,7 @@ function getMp($folder,$userId)
 		$S_query = sprintf("SELECT * FROM UserPMs AS UPM
 							LEFT JOIN PMs AS PM
 							ON UPM.IdPM = PM.IdPM
-							WHERE IdUser = '%d'",
+							WHERE IdUser = '%d' AND ReadStatus != 2",
 							$userId);
 		$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 		if ($S_result == false)
@@ -1664,12 +1664,13 @@ function removeMovieFromEvent($IdEvent, $IdMovie)
 function deleteMP($IdPM,$IdSender)
 {
 	$error = 0;
-	$query = sprintf("DELETE FROM UserPMs
-					WHERE IdPM = '%d' AND IdUser = '%d'",
-					$IdPM,
-					$IdSender);
-	$result = mysql_query($query, dbConnect()) or die(mysql_error());
-	if ($result == false)
+	$S_query = sprintf("UPDATE UserPMs
+						SET ReadStatus = '2'
+						WHERE IdPM='%d' AND IdUser='%d'",
+						$IdPM,
+						$IdSender);
+	$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
+	if ($S_result == false)
 	{
 		return (-1);
 	}

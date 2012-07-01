@@ -31,7 +31,6 @@ if (isset($_GET['page']))
 			$active[2]= "";
 			$active[3]= "";
 			$active[4]= "";
-			$active[5]= "";
 			break;
 		case "login":
 			$active[0]= " class='active'";
@@ -39,7 +38,6 @@ if (isset($_GET['page']))
 			$active[2]= "";
 			$active[3]= "";
 			$active[4]= "";
-			$active[5]= "";
 			break;
 		case "films.php":
 			$active[0]= "";
@@ -47,7 +45,6 @@ if (isset($_GET['page']))
 			$active[2]= "";
 			$active[3]= "";
 			$active[4]= "";
-			$active[5]= "";
 			break;
 		case "evenements.php":
 			$active[0]= "";
@@ -55,7 +52,6 @@ if (isset($_GET['page']))
 			$active[2]= " class='active'";
 			$active[3]= "";
 			$active[4]= "";
-			$active[5]= "";
 			break;
 		case "membres.php":
 			$active[0]= "";
@@ -63,7 +59,6 @@ if (isset($_GET['page']))
 			$active[2]= "";
 			$active[3]= " class='active'";
 			$active[4]= "";
-			$active[5]= "";
 			break;
 		case "profil.php":
 			$active[0]= "";
@@ -71,15 +66,7 @@ if (isset($_GET['page']))
 			$active[2]= "";
 			$active[3]= "";
 			$active[4]= " class='active'";
-			$active[5]= "";
 			break;
-		case "deconnexion":
-			$active[0]= "";
-			$active[1]= "";
-			$active[2]= "";
-			$active[3]= "";
-			$active[4]= "";
-			$active[5]= " class='active'";
 			break;
 		default:
 			$active[0]= " class='active'";
@@ -87,7 +74,6 @@ if (isset($_GET['page']))
 			$active[2]= "";
 			$active[3]= "";
 			$active[4]= "";
-			$active[5]= "";
 	}
 }
 elseif (!isset($_GET['page']))
@@ -97,20 +83,38 @@ elseif (!isset($_GET['page']))
 	$active[2]= "";
 	$active[3]= "";
 	$active[4]= "";
-	$active[5]= "";	
 }
 ?>
 	<div id="header">
 		<div class="row-1">
 			<div class="fright">
 				<ul>
-					<li><a href="/WeShare/Accueil/"><img src="<?php echo DIR_PUBLICS; ?>/images/logo.png" alt="" /></a></li>
+					<li><a href="/WeShare/Accueil/"><img id='logo' src="<?php echo DIR_PUBLICS; ?>/images/logo.png" alt="" /></a></li>
 					<li><a href="/WeShare/Accueil/"<?php echo $active[0];?>><em><b>Accueil</b></em></a></li>
 					<li><a href="/WeShare/Films/"<?php echo $active[1];?>><em><b>Films</b></em></a></li>
-					<li><a href="/WeShare/Evenements/"<?php echo $active[2];?>><em><b><?php echo $newNotifEvents;?>Evénements<?php echo $newNotifEventsEnd;?></b></em></a></li>
+					<li><a href="/WeShare/Evenements/"<?php echo $active[2];?>><em><b>Evénements<?php echo $newNotifEvents;?></b></em></a></li>
 					<li><a href="/WeShare/Membres/"<?php echo $active[3];?>><em><b>Membres</b></em></a></li>
-					<li><a href="/WeShare/Profil/"<?php echo $active[4];?>><em><b><?php echo $newNotifProfil;?>Profil<?php echo $newNotifProfilEnd;?></b></em></a></li>
-					<li><a href="/WeShare/Deconnexion/"<?php echo $active[5];?>><em><b>Déconnexion</b></em></a></li>
+				</ul>
+			</div>
+			<div id="profil">
+				<ul><img class='miniprofilpic' src='
+				<?php
+				if(!empty($profil['Avatar']))
+				{
+					echo $profil['Avatar'];
+				}
+				else
+				{
+					echo DIR_PUBLICS."/images/vide.gif"; 
+				}
+				?>
+				'>
+				</ul>
+			</div>
+			<div id="profil">
+				<ul>
+					<li><a href="/WeShare/Profil/"<?php echo $active[4];?> style="margin-top: 5px";><b>Profil<?php echo $newNotifProfil;?></b></a></li>
+					<li><a href="/WeShare/Deconnexion/" style="margin-top: 35px";><b>Déconnexion</b></a></li>
 				</ul>
 			</div>
 		</div>

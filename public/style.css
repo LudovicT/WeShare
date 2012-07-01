@@ -69,8 +69,8 @@ h3 b {font-weight:normal}
 h4 {font-size:.86em;margin-bottom:5px}
 .txt1 {color:#af3300}
 /* HEADER */
-#header .row-1 {height:112px;width:100%;overflow:hidden}
 #header .row-1 .fleft {padding-top:27px}
+#header .row-1 {height:112px;width:100%;overflow:hidden}
 #header .row-1 .fright {padding-top:38px}
 #header .row-1 .fright ul li {font-size:21px;line-height:1.2em;float:left;margin-left:1px}
 #header .row-1 .fright ul li a {display:block;color:#fff;text-decoration:none}
@@ -84,14 +84,13 @@ h4 {font-size:.86em;margin-bottom:5px}
 #header .row-1 .fright2 ul li a {display:block;color:#fff;text-decoration:none}
 #header .row-1 .fright2 ul li a em {display:block}
 #header .row-1 .fright2 ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
-#header .row-1 .fright2 ul li a:hover, #header .row-1 .fright ul li a.active {background-color:#af3300}
-#header .row-1 .fright2 ul li a:hover em, #header .row-1 .fright ul li a.active em {background:url(images/nav-act-left.gif) no-repeat left top}
-#header .row-1 .fright2 ul li a:hover b, #header .row-1 .fright ul li a.active b {background:url(images/nav-act-right.gif) no-repeat right top}
+#header .row-1 .fright2 ul li a:hover, #header .row-1 .fright2 ul li a.active {background-color:#af3300}
+#header .row-1 .fright2 ul li a:hover em, #header .row-1 .fright2 ul li a.active em {background:url(images/nav-act-left.gif) no-repeat left top}
+#header .row-1 .fright2 ul li a:hover b, #header .row-1 .fright2 ul li a.active b {background:url(images/nav-act-right.gif) no-repeat right top}
 #header .row-2 { padding:42px 0 0 56px}
 #header .row-2 ul {width:100%}
 #header .row-2 ul li {padding:0 0 12px 19px;background:url(images/arrow.gif) no-repeat left 5px}
 #header .extra {position:absolute;right:53px;top:90px}
-#header .profil {display:block;font-style:normal;font-weight:normal;padding:5px 70px 5px 70px}
 #header-inscription {padding-top:200px; padding-left:500px; padding-right:500px}
 /* CONTENT */
 #content .indent {padding:28px 55px 21px 56px}
@@ -331,7 +330,7 @@ padding-top: 200px;
     position:fixed ;
 	bottom:0;
 	padding-bottom:10px;
-	left:48%;
+	left:90%;
 	font-size: 0.8em;
 }
 .fright2 
@@ -361,37 +360,37 @@ padding-top: 200px;
    right:50%;
 }
 
-		.buttonDelete {
-		   border-top: 1px solid #fc0000;
-		   background: #fc0000;
-		   background: -webkit-gradient(linear, left top, left bottom, from(#fc0000), to(#fc0000));
-		   background: -webkit-linear-gradient(top, #fc0000, #fc0000);
-		   background: -moz-linear-gradient(top, #fc0000, #fc0000);
-		   background: -ms-linear-gradient(top, #fc0000, #fc0000);
-		   background: -o-linear-gradient(top, #fc0000, #fc0000);
-		   padding: 5px 10px;
-		   -webkit-border-radius: 8px;
-		   -moz-border-radius: 8px;
-		   border-radius: 8px;
-		   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-		   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-		   box-shadow: rgba(0,0,0,1) 0 1px 0;
-		   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-		   color: #ffffff;
-		   font-size: 14px;
-		   font-family: Georgia, serif;
-		   text-decoration: none;
-		   vertical-align: middle;
-		   }
-		.buttonDelete:hover {
-		   border-top-color: #fc0000;
-		   background: #fc0000;
-		   color: #969696;
-		   }
-		.buttonDelete:active {
-		   border-top-color: #fc0000;
-		   background: #fc0000;
-	   }
+.buttonDelete {
+   border-top: 1px solid #fc0000;
+   background: #fc0000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#fc0000), to(#fc0000));
+   background: -webkit-linear-gradient(top, #fc0000, #fc0000);
+   background: -moz-linear-gradient(top, #fc0000, #fc0000);
+   background: -ms-linear-gradient(top, #fc0000, #fc0000);
+   background: -o-linear-gradient(top, #fc0000, #fc0000);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: #ffffff;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.buttonDelete:hover {
+   border-top-color: #fc0000;
+   background: #fc0000;
+   color: #969696;
+   }
+.buttonDelete:active {
+   border-top-color: #fc0000;
+   background: #fc0000;
+}
    
    .buttonEdit {
    border-top: 1px solid #44bf1b;
@@ -485,6 +484,7 @@ padding-top: 200px;
    border-top-color: #5e2711;
    background: -webkit-linear-gradient(top, #9c4e2e);
    }
+
 #footer1 {
     background-image: url("../public/images/footer.png");
     background-repeat: no-repeat;
@@ -519,4 +519,65 @@ padding-top: 200px;
 }
 #footer1 a:hover {
     color: #D56528;
+	}
+
+#GotNotif
+{
+	display:inline;
+}
+#GotNotifProfil
+{
+	display:inline;
+}
+#GotNotifEvents
+{
+	display:inline;
+}
+#GotNotifFriends
+{
+	display:inline;
+}
+#profil ul li img
+{
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 15px;
+    padding: 2px 0 4px;
+    text-align: center;
+    position: absolute;
+    text-decoration: none;
+}
+.miniprofilpic
+{
+    float: left;
+	display:inline;
+    margin-left:245px;
+    margin-top:-34px;
+	padding:1px;
+	border:1px solid grey;
+    max-height: 100px;
+	max-width: 80px
+}
+#profil ul li a
+{
+	display:inline;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-size: 0.9em;
+    height: 15px;
+    margin-left:10px;
+    padding: 2px 0 4px;
+    text-align: center;
+    position: absolute;
+    text-decoration: none;
+    width: 90px;
+}
+#profil ul li a:hover, #profil ul li a.active {background-color:#af3300}
+#logo
+{
+    float: left;
+	display:inline;
+    margin-top:2px;
+    margin-left:-3px;
 }
