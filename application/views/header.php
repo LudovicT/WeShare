@@ -100,15 +100,15 @@ elseif (!isset($_GET['page']))
 				<div class="bloc">
 					<div id="homePage" tabindex="99998">
 					<center>
-						<form id="homeSearch" class="" action="/WeShare/Search/" method="POST">
-						<div id="searchBar">
-							<div class="searchBar_left"></div>
-							<div class="searchBar_inner"></div>
-							<div class="searchBar_right"></div>
-							<div class="searchBar_inner_left"></div>
-							<div class="searchBar_inner_inner"></div>
-							<div class="searchBar_inner_right"></div>
-							<div id="searchBar_input">
+						<form id="homeSearch2" class="" action="/WeShare/Search/" method="POST">
+						<div id="searchBar2">
+							<div class="searchBar2_left"></div>
+							<div class="searchBar2_inner"></div>
+							<div class="searchBar2_right"></div>
+							<div class="searchBar2_inner_left"></div>
+							<div class="searchBar2_inner_inner"></div>
+							<div class="searchBar2_inner_right"></div>
+							<div id="searchBar2_input">
 								<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Rechercher" size="18">
 							</div>
 						</div>

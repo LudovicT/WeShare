@@ -110,6 +110,80 @@ h4 {font-size:.86em;margin-bottom:5px}
 .vlinks {
 text-align: center;
 }
+#homeSearch2 {
+    position: relative;
+    width: 100%;
+	height: 100%;
+    z-index: 500;
+	display: table-cell;
+	text-align: center; 
+}
+#searchBar2 {
+    width: 235px;
+    position: absolute;
+	vertical-align: middle;
+	text-align: left;
+    z-index: 1;
+	margin-left:-290px;
+	margin-top:-20px;
+}
+#searchBar2 .searchBar2_left {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAABC1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACkpKSampqCgoJ9fX3S0tK2trbu7u7X19fv7+/g4OD7+/vp6ens7Oz7+/vu7u7+/v59fX2Pj4+QkJCYmJiZmZmioqKpqamqqqqrq6uvr6+1tbW3trbDw8PIyMjV1NTW1dXe3t7p6Ojq6urr6+vu7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+OEVrXAAAAM3RSTlMAAQIDBAUGBwoLDg8SExUWHB0fISYnLC80Njg9P0FCRE5UVWJodXiSnb7E0NHo7PPz/f0ZuCBAAAABeElEQVRo3u2Yz07CQBDGv/3TKkHQCB58AmI8+f4P4clnaIjSEIoF6u6OBw96WToDREmc37W7/TrfN9N0CyiKoiiKoii/gdlzaXDhDfM2FHYbOkDEX01K/8gUeQndYh3EIvbm7knkyfPrMuWeNyc+uh3KjB/GuMo45jJb3Hj8IBOZ1F0uFptzyxfSHiq8ldrlZgDw1kTG7d1oCmBWG6nI14bVwPV3McXV9McevghAAEBl1oNvUmhp7wLfY8Q1Yx4pNPsX9Dyn4cx876IeuwzrvWIMHVXJ0W9Ahshp6LGLC/19JWqXBq92aSXawhq8Bq/Ba/D/x67TfHD3HR2YIud/dLA1R6O2R9lVdhWnkPLAg2mq7gGUY45htI0AqiQVoRABIL7zGzUGEmZC3W4uG4b5riNhJaktnGjmsWnanF8uG2ZEu25HTIVqWTdNiNIOt4UfXHreOR5EYbsJH0k8RtY5Z9n/IFOMMR0wq8YagQglWYSKoiiKoijnwycUOYP/BUT/hAAAAABJRU5ErkJggg==") no-repeat scroll left top transparent;
+    height: 100px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50px;
+}
+#searchBar2 .searchBar2_right {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAABC1BMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACkpKSampqCgoJ9fX3S0tK2trbu7u7X19fv7+/g4OD7+/vp6ens7Oz7+/vu7u7+/v59fX2Pj4+QkJCYmJiZmZmioqKpqamqqqqrq6uvr6+1tbW3trbDw8PIyMjV1NTW1dXe3t7p6Ojq6urr6+vu7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+OEVrXAAAAM3RSTlMAAQIDBAUGBwoLDg8SExUWHB0fISYnLC80Njg9P0FCRE5UVWJodXiSnb7E0NHo7PPz/f0ZuCBAAAABeElEQVRo3u2Yz07CQBDGv/3TKkHQCB58AmI8+f4P4clnaIjSEIoF6u6OBw96WToDREmc37W7/TrfN9N0CyiKoiiKoii/gdlzaXDhDfM2FHYbOkDEX01K/8gUeQndYh3EIvbm7knkyfPrMuWeNyc+uh3KjB/GuMo45jJb3Hj8IBOZ1F0uFptzyxfSHiq8ldrlZgDw1kTG7d1oCmBWG6nI14bVwPV3McXV9McevghAAEBl1oNvUmhp7wLfY8Q1Yx4pNPsX9Dyn4cx876IeuwzrvWIMHVXJ0W9Ahshp6LGLC/19JWqXBq92aSXawhq8Bq/Ba/D/x67TfHD3HR2YIud/dLA1R6O2R9lVdhWnkPLAg2mq7gGUY45htI0AqiQVoRABIL7zGzUGEmZC3W4uG4b5riNhJaktnGjmsWnanF8uG2ZEu25HTIVqWTdNiNIOt4UfXHreOR5EYbsJH0k8RtY5Z9n/IFOMMR0wq8YagQglWYSKoiiKoijnwycUOYP/BUT/hAAAAABJRU5ErkJggg==") no-repeat scroll right top transparent;
+    height: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+}
+#searchBar2 .searchBar2_inner {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABkBAMAAAA2xn5oAAAAKlBMVEUAAAAAAAAAAAAAAAAAAAB9fX3Dw8PW1dXu7u7v7+/x8fH7+/v+/v7///8vBeA3AAAABXRSTlMABxUsVWdhkUYAAABFSURBVEjHY2HABVhGZUZlqC9jjFNmFVXteU+Gnk6cMkpk+Md4NLZHZUZlBr0M7lwfilPmHp1KpD1kuOA9VV0wKjMqAwQA+WgKkYxVbk4AAAAASUVORK5CYII=") repeat-x scroll center center transparent;
+    height: 100px;
+    left: 50px;
+    position: absolute;
+    right: 50px;
+    top: 0;
+}
+#searchBar2_input {
+    left: 40px;
+    position: absolute;
+    right: 75px;
+    top: 35px;
+    z-index: 1;
+}
+#searchBar2_input input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #999999;
+    font-family: "Lucida Grande",Verdana,Arial,sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+#searchBar2_input input[placeholder] {
+    color: #999999;
+}
+#searchBar2_input input:-moz-placeholder {
+    color: #999999;
+}
+#searchBar2_input input:focus {
+    color: #333333;
+}
 #homeSearch {
     position: relative;
     width: 100%;
@@ -391,8 +465,7 @@ padding-top: 200px;
    border-top-color: #fc0000;
    background: #fc0000;
 }
-   
-   .buttonEdit {
+.buttonEdit {
    border-top: 1px solid #44bf1b;
    background: #44bf1b;
    background: -webkit-gradient(linear, left top, left bottom, from(#44bf1b), to(#44bf1b));
