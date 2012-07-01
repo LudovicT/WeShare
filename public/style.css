@@ -485,3 +485,38 @@ padding-top: 200px;
    border-top-color: #5e2711;
    background: -webkit-linear-gradient(top, #9c4e2e);
    }
+#footer1 {
+    background-image: url("../public/images/footer.png");
+    background-repeat: no-repeat;
+    height: 50px;
+	margin-left:25%;
+	bottom:0;
+	padding-bottom:15px;
+	position:fixed ;
+    width: 940px;
+}
+#footer1 {
+    color: #959595;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    margin-top: 30px;
+	margin-left:25%;
+	bottom:0;
+	position:fixed ;
+	padding-bottom:23px;
+    text-transform: uppercase;
+}
+#footer1 .info {
+    float: left;
+    padding: 17px 0 0 60px;
+}
+#footer1 .infonav {
+    float: right;
+    padding: 17px 60px 0 0;
+}
+#footer1 a {
+    color: #959595;
+}
+#footer1 a:hover {
+    color: #D56528;
+}

@@ -19,12 +19,12 @@
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>/">
 				<input type="hidden" name="InviteFriend" value="<?php echo $key['IdUser'] ?>">
 				<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-				<input type="submit" value="Inviter l'ami">
+				<input type="submit" class="button2" value="Inviter l'ami">
 			</form>
 		</td>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
-				<input type="submit" value="Annuler">
+				<input type="submit" class="button2" value="Annuler">
 			</form>
 		</td>
 	</tr>

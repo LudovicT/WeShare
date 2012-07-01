@@ -30,7 +30,7 @@ Par défaut, les actuelles valeurs sont mises, donc ne changez que celles que vou
 					<div class="field"><label>Adresse Postale	 :</label><input type="text" name="modify_Address" value="<?php echo($event['Address']); ?>"/></div><br />
 					<div class="field"><label>Ville :</label><input type="text"  name="modify_City" value="<?php echo($event['City']); ?>"/></div><br />
 					<input type="hidden" name="EditEvent" value="<?php echo $event['IdEvent'] ?>">
-					<div class="wrapper"><input type="submit" value="Modifier l'événement"></div>
+					<div class="wrapper"><input type="submit" class="button2" value="Modifier l'événement"></div>
 				</fieldset>
 		</form>
 </div>
