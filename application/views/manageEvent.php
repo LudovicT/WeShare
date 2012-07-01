@@ -1,14 +1,11 @@
-<h3>Détails sur l'événement N° <?php echo $event['IdEvent'] ?></h3>
+<h3>Détails sur l'événement</h3>
 <p>Ici vous pouvez ajouter un ou plusieurs films et de même pour vos amis</p>
 <br />
 
 <table border='1'>
-	<th> N° de l'événement </th><th> Date de l'événement </th><th> Adresse </th>
+	<th> Date de l'événement </th><th> Adresse </th>
 	<th> Ville </th><th> Date de création </th>
 	<tr>
-		<td>
-<?php echo $event['IdEvent'] ?>
-		</td>
 		<td>
 <?php echo($event['DateOfEvent']); ?>	
 		</td>
