@@ -22,7 +22,7 @@
 </table>
 <form id="edit-profile-form" method="post" action="/WeShare/Evenements/Edit/<?php echo $IdEvent ?>/">
 	<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-	<input type="submit" value="Modifier l'événement">
+	<input type="submit" class="button2" value="Modifier l'événement">
 </form>
 <br /> 
 <?php if ($movies != -2)
@@ -46,7 +46,7 @@ Voici la liste des films que vous avez ajoutés à cet événement : <br /><br />
 <?php echo($key['Runtime']); ?>	
 		</td>
 		<td>
-		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/RetirerFilm/<?php echo $key['IdMovie']; ?>/' > Retirer le film </a>
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/RetirerFilm/<?php echo $key['IdMovie']; ?>/' class="button2" > Retirer le film </a>
 		</td>
 	</tr>
 </table>
@@ -57,7 +57,7 @@ Voici la liste des films que vous avez ajoutés à cet événement : <br /><br />
 		echo "<br />Vous n'avez prévu aucun film pour cet événement.<br />";
 	}?>
 		<br />
-		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/AjouterFilm/' > Ajouter un film </a>
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/AjouterFilm/' class="button2"> Ajouter un film </a>
 <br />
 <?php
 if ($friends != -1 && $friends != -2)
@@ -90,7 +90,7 @@ if ($friends != -1 && $friends != -2)
 ?>
 		</td>
 		<td>
-		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/UninviteFriend/<?php echo $key['IdUser']; ?>/' > Désinviter </a>
+		<a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/UninviteFriend/<?php echo $key['IdUser']; ?>/' class="button2" > Désinviter </a>
 		</td>
 	</tr>
 </table>
@@ -100,4 +100,4 @@ else
 {?>
 <br /><br/>Vous n'avez invité aucun ami à cet événement.<br />
 <?php } ?>
-<br /> <a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/InviteFriend/' > Inviter un ami </a>
+<br /> <a href='/WeShare/Evenements/Manage/<?php echo $event['IdEvent'] ?>/InviteFriend/' class="button2" > Inviter un ami </a>

@@ -15,12 +15,12 @@
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>/">
 				<input type="hidden" name="UninviteFriend" value="<?php echo $IdUser ?>">
 				<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-				<input type="submit" value="Désinviter l'ami">
+				<input type="submit" class="button2" value="Désinviter l'ami">
 			</form>
 		</td>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
-				<input type="submit" value="Annuler">
+				<input type="submit" class="button2" value="Annuler">
 			</form>
 		</td>
 	</tr>

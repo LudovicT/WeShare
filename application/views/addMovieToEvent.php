@@ -33,7 +33,7 @@
 		</td>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
-				<input type="submit" value="Annuler">
+				<input type="submit" class="button2" value="Annuler">
 			</form>
 		</td>
 	</tr>

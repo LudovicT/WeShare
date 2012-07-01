@@ -107,7 +107,7 @@
 		}
 		?></table>
 		<br /> <br />
-		<a href='/WeShare/Groupe/Creer/'><button>Creer un groupe</button></a>
+		<a href='/WeShare/Groupe/Creer/' class="button2">Créer un groupe</a>
 	<?php
 	}
 	else
