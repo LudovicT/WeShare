@@ -15,7 +15,7 @@
 					<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Taper votre recherche ..." size="18">
 					<span id="searchBar_precomplete" class="hint" style="display: inline;"></span>
 				</div>
-				<button id="searchButton" name="Submit" type="button"></button>
+				<button onclick="document.getElementById('homeSearch').submit()" id="searchButton" name="Submit" type="button"></button>
 			</div>
 			</form>
 			</center>
