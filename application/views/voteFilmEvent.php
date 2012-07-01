@@ -28,9 +28,9 @@
 		<td>
 					<input type="hidden" name="For" value="<?php echo $movie['IdMovie'] ?>">
 					<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-					<input type="submit" value="Voter">
+					<input type="submit" class="button2" value="Voter">
 					ou 
-					<input type="submit" value="Annuler">
+					<input type="submit" class="button2" value="Annuler">
 			</form>
 	</tr>
 </table>
