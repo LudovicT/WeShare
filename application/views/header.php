@@ -89,12 +89,33 @@ elseif (!isset($_GET['page']))
 		<div class="row-1">
 			<div class="fright">
 				<ul>
-					<li><a href="/WeShare/Accueil/"><img id='logo' src="<?php echo DIR_PUBLICS; ?>/images/logo.png" alt="" /></a></li>
+					<li><a href="/WeShare/Accueil/"><img id='logo' src="<?php echo DIR_PUBLICS; ?>/images/logo2.png" alt="" /></a></li>
 					<li><a href="/WeShare/Accueil/"<?php echo $active[0];?>><em><b>Accueil</b></em></a></li>
 					<li><a href="/WeShare/Films/"<?php echo $active[1];?>><em><b>Films</b></em></a></li>
 					<li><a href="/WeShare/Evenements/"<?php echo $active[2];?>><em><b>Evénements<?php echo $newNotifEvents;?></b></em></a></li>
 					<li><a href="/WeShare/Membres/"<?php echo $active[3];?>><em><b>Membres</b></em></a></li>
 				</ul>
+			</div>
+			<div class="conteneur">
+				<div class="bloc">
+					<div id="homePage" tabindex="99998">
+					<center>
+						<form id="homeSearch" class="" action="/WeShare/Search/" method="POST">
+						<div id="searchBar">
+							<div class="searchBar_left"></div>
+							<div class="searchBar_inner"></div>
+							<div class="searchBar_right"></div>
+							<div class="searchBar_inner_left"></div>
+							<div class="searchBar_inner_inner"></div>
+							<div class="searchBar_inner_right"></div>
+							<div id="searchBar_input">
+								<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Rechercher" size="18">
+							</div>
+						</div>
+						</form>
+						</center>
+					</div>
+				</div>
 			</div>
 			<div id="profil">
 				<ul><img class='miniprofilpic' src='

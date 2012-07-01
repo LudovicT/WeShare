@@ -533,6 +533,14 @@ padding-top: 200px;
 {
 	display:inline;
 }
+#GotNotifEvents
+{
+	display:inline;
+}
+#GotNotifPms
+{
+	display:inline;
+}
 #GotNotifFriends
 {
 	display:inline;
@@ -578,6 +586,7 @@ padding-top: 200px;
 {
     float: left;
 	display:inline;
-    margin-top:2px;
-    margin-left:-3px;
+    margin-top:-30px;
+    margin-left:350px;
+	position:absolute;
 }
