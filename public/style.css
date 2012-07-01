@@ -562,37 +562,39 @@ padding-top: 200px;
     background-image: url("../public/images/footer.png");
     background-repeat: no-repeat;
     height: 50px;
-	margin-left:25%;
-	bottom:0;
-	padding-bottom:15px;
+	margin-left:320px;
+	bottom:-40px;
 	position:fixed ;
     width: 940px;
-}
-#footer1 {
+    -moz-transition: all 0.5s ease-in 0s;
+	-webkit-transition: all 0.5s ease-in 0s;
+	-o-transition: all 0.5s ease-in 0s;
+    opacity: 0;
     color: #959595;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 10px;
     margin-top: 30px;
-	margin-left:25%;
-	bottom:0;
-	position:fixed ;
 	padding-bottom:23px;
     text-transform: uppercase;
 }
+#footer1:hover {
+    opacity: 1;
+	bottom:0;
+}
 #footer1 .info {
     float: left;
-    padding: 17px 0 0 60px;
+    padding: 17px 0 0 20px;
 }
 #footer1 .infonav {
     float: right;
-    padding: 17px 60px 0 0;
+    padding: 17px 20px 0 0;
 }
 #footer1 a {
     color: #959595;
 }
 #footer1 a:hover {
     color: #D56528;
-	}
+}
 
 #GotNotif
 {
@@ -633,7 +635,7 @@ padding-top: 200px;
     float: left;
 	display:inline;
     margin-left:245px;
-    margin-top:-34px;
+    margin-top:-62px;
 	padding:1px;
 	border:1px solid grey;
     max-height: 100px;
@@ -654,7 +656,10 @@ padding-top: 200px;
     text-decoration: none;
     width: 90px;
 }
-#profil ul li a:hover, #profil ul li a.active {background-color:#af3300}
+#profil ul li a:hover, #profil ul li a.active 
+{
+background-color:#af3300
+}
 #logo
 {
     float: left;
@@ -662,4 +667,18 @@ padding-top: 200px;
     margin-top:-30px;
     margin-left:350px;
 	position:absolute;
+}
+select.right {
+    text-align:center;
+}
+#HeadersearchBar
+{
+	padding-top:9px;
+	padding-left:6px;
+}
+
+#profil ul li 
+{
+	padding-top:-9px;
+	padding-left:-6px;
 }
