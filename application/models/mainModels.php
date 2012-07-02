@@ -548,7 +548,7 @@ function searchData($type, $recherche)
 						LEFT JOIN Movies AS M
 						ON UM.IdMovie = M.IdMovie
 						WHERE Support LIKE '%".$recherche."%'
-						GROUP BY Name");
+						GROUP BY Name,Support");
 			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{

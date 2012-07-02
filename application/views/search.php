@@ -14,7 +14,7 @@
 		{
 			if(isset($search[0][0]['Support']))
 			{
-				echo "<h3>Films disponible en ".$search[0][0]['Support']."</h3><br/>";
+				echo "<h3>Films disponible selon leur support recherché sur le terme ' ".$_POST['mot']." '</h3><br/>";
 			}
 			?>
 			<table border='1' width="100%">
@@ -43,9 +43,9 @@
 				</td>
 					<td width="15%">
 						<a href='/WeShare/Film/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><?php echo $key['Name'] ?></a><?php
-						if(isset($search[0][0]['Exemplaires']))
+						if(isset($key['Exemplaires']))
 						{
-							echo " (".$search[0][0]['Exemplaires'].")";
+							echo " ($key[Exemplaires] $key[Support])";
 						}
 						?>
 					</td>
