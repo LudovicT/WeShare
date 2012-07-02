@@ -96,46 +96,36 @@ elseif (!isset($_GET['page']))
 					<li><a href="/WeShare/Membres/"<?php echo $active[3];?>><em><b>Membres</b></em></a></li>
 				</ul>
 			</div>
-			<div class="conteneur">
-				<div class="bloc">
-					<div id="homePage" tabindex="99998">
-					<center>
-						<form id="homeSearch2" class="" action="/WeShare/Search/" method="POST">
-						<div id="searchBar2">
-							<div class="searchBar2_left"></div>
-							<div class="searchBar2_inner"></div>
-							<div class="searchBar2_right"></div>
-							<div class="searchBar2_inner_left"></div>
-							<div class="searchBar2_inner_inner"></div>
-							<div class="searchBar2_inner_right"></div>
-							<div id="searchBar2_input">
-								<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Rechercher" size="18">
-							</div>
-						</div>
-						</form>
-						</center>
-					</div>
-				</div>
+			<div id='HeadersearchBar' >
+			<form action="/WeShare/Search/" method="POST">
+				<input name="mot" type="text" class="formulaireBoite" id="srchval" placeholder="Rechercher" size="14">
+				<select name='type' class='right'>
+				<option value='0'>Catégorie</option>
+				<option value='0'>Tout</option>
+				<option value='3'>Films</option>
+				<option value='4'>Acteurs</option>
+				<option value='5'>Support</option>
+				</select>
+				<input type='image' value='Rechercher' src="<?php echo DIR_PUBLICS; ?>/images/search_but.gif" alt='go'>
+			</form>
 			</div>
 			<div id="profil">
-				<ul><img class='miniprofilpic' src='
-				<?php
-				if(!empty($profil['Avatar']))
+				<ul><img class='miniprofilpic' src='<?php
+				if(file_exists("./public/images/user_pic/".$user.".jpg"))
 				{
-					echo $profil['Avatar'];
+					echo DIR_PUBLICS."/images/user_pic/".$user.".jpg";
 				}
 				else
 				{
 					echo DIR_PUBLICS."/images/vide.gif"; 
 				}
-				?>
-				'>
+				?>'>
 				</ul>
 			</div>
 			<div id="profil">
 				<ul>
-					<li><a href="/WeShare/Profil/"<?php echo $active[4];?> style="margin-top: 5px";><b>Profil<?php echo $newNotifProfil;?></b></a></li>
-					<li><a href="/WeShare/Deconnexion/" style="margin-top: 35px";><b>Déconnexion</b></a></li>
+					<li><a href="/WeShare/Profil/"<?php echo $active[4];?> style="margin-top: -30px";><b>Profil<?php echo $newNotifProfil;?></b></a></li>
+					<li><a href="/WeShare/Deconnexion/" style="margin-top: 0px";><b>Déconnexion</b></a></li>
 				</ul>
 			</div>
 		</div>

@@ -12,9 +12,18 @@
 	{
 		if (isset($search[0][0]['IdMovie']))
 		{
+			if(isset($search[0][0]['Support']))
+			{
+				echo "<h3>Films disponible selon leur support recherché sur le terme ' ".$_POST['mot']." '</h3><br/>";
+			}
 			?>
 			<table border='1' width="100%">
-			<th> Jaquette </th><th> Titre </th><th> Synopsie </th><th> Date de sortie </th>
+			<th> Jaquette </th><th> Titre <?php
+			if(isset($search[0][0]['Exemplaires']))
+			{
+				echo "(exemplaires)";
+			}
+			?></th><th> Synopsie </th><th> Date de sortie </th>
 			<?php
 			foreach($search[0] as $key)
 			{
@@ -24,7 +33,7 @@
 				<img id='PhotoProfil' src='<?php
 					if(!empty($key['Poster']))
 					{
-						echo $key['Poster'];
+						echo DIR_PUBLICS."/images/movie_pic/".$key['Poster'];
 					}
 					else
 					{
@@ -33,7 +42,12 @@
 					?>'>
 				</td>
 					<td width="15%">
-						<a href='/WeShare/Film/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><?php echo $key['Name'] ?></a>
+						<a href='/WeShare/Film/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><?php echo $key['Name'] ?></a><?php
+						if(isset($key['Exemplaires']))
+						{
+							echo " ($key[Exemplaires] $key[Support])";
+						}
+						?>
 					</td>
 					<td width="55%">
 						<?php echo $key['Synopsis'] ?>
@@ -62,7 +76,7 @@
 				<img id='PhotoProfil' src='<?php
 					if(!empty($key['Picture']))
 					{
-						echo $key['Picture'];
+						echo DIR_PUBLICS."/images/staff_pic/".$key['Picture'];
 					}
 					else
 					{

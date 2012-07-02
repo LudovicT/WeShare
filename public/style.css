@@ -71,7 +71,7 @@ h4 {font-size:.86em;margin-bottom:5px}
 /* HEADER */
 #header .row-1 .fleft {padding-top:27px}
 #header .row-1 {height:112px;width:100%;overflow:hidden}
-#header .row-1 .fright {padding-top:38px}
+#header .row-1 .fright {padding-top:48px}
 #header .row-1 .fright ul li {font-size:21px;line-height:1.2em;float:left;margin-left:1px}
 #header .row-1 .fright ul li a {display:block;color:#fff;text-decoration:none}
 #header .row-1 .fright ul li a em {display:block}
@@ -558,17 +558,22 @@ padding-top: 200px;
    background: -webkit-linear-gradient(top, #9c4e2e);
    }
 
-#footer1 {
+#footer1 
+{
     background-image: url("../public/images/footer.png");
     background-repeat: no-repeat;
     height: 50px;
 	margin-left:25%;
 	bottom:0;
 	padding-bottom:5px;
+	margin-left:320px;
+	bottom:-40px;
 	position:fixed ;
     width: 940px;
-}
-#footer1 {
+    -moz-transition: all 0.5s ease-in 0s;
+	-webkit-transition: all 0.5s ease-in 0s;
+	-o-transition: all 0.5s ease-in 0s;
+    opacity: 0;
     color: #959595;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 10px;
@@ -577,23 +582,29 @@ padding-top: 200px;
 	bottom:0;
 	position:fixed ;
 	padding-bottom:5px;
+	padding-bottom:23px;
     text-transform: uppercase;
 	-moz-transition: all 0.2s ease-in 0s
 }
+
+#footer1:hover {
+    opacity: 1;
+	bottom:0;
+}
 #footer1 .info {
     float: left;
-    padding: 17px 0 0 60px;
+    padding: 17px 0 0 20px;
 }
 #footer1 .infonav {
     float: right;
-    padding: 17px 60px 0 0;
+    padding: 17px 20px 0 0;
 }
 #footer1 a {
     color: #959595;
 }
 #footer1 a:hover {
     color: #D56528;
-	}
+}
 
 #GotNotif
 {
@@ -633,8 +644,8 @@ padding-top: 200px;
 {
     float: left;
 	display:inline;
-    margin-left:245px;
-    margin-top:-34px;
+    margin-left:325px;
+    margin-top:-72px;
 	padding:1px;
 	border:1px solid grey;
     max-height: 100px;
@@ -649,18 +660,37 @@ padding-top: 200px;
     font-size: 0.9em;
     height: 15px;
     margin-left:10px;
-    padding: 2px 0 4px;
+    padding: 1px 0 4px;
     text-align: center;
-    position: absolute;
     text-decoration: none;
     width: 90px;
 }
-#profil ul li a:hover, #profil ul li a.active {background-color:#af3300}
+#profil ul li a:hover, #profil ul li a.active 
+{
+background-color:#af3300
+}
 #logo
 {
     float: left;
 	display:inline;
-    margin-top:-30px;
+    margin-top:-40px;
     margin-left:350px;
 	position:absolute;
+}
+select.right {
+    text-align:center;
+}
+#HeadersearchBar
+{
+	padding-top:9px;
+}
+#HeadersearchBar form
+{
+	margin-left:550px;
+}
+
+#profil ul li 
+{
+	padding-top:-19px;
+	padding-left:-6px;
 }

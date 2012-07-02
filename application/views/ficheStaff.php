@@ -7,7 +7,7 @@
 		<br /><br />
 	</div>
 	<div> <!-- css affiche film -->
-		<img src="<?php echo $staffInfo['Picture']; ?>"/>
+		<img src="<?php echo DIR_PUBLICS."/images/staff_pic/".$staffInfo['Picture']; ?>"/>
 		<br /><br />
 	</div>
 		<div id="tab_infos">

@@ -17,7 +17,14 @@ if (isset($_GET["page"]))
 		case "search":
 			if(isset($_POST['mot']) && !empty($_POST['mot']))
 			{
-				$search = searchData(0,$_POST['mot']);
+				if(isset($_POST['type']) && is_numeric($_POST['type']))
+				{
+					$search = searchData($_POST['type'],$_POST['mot']);
+				}
+				else
+				{
+					$search = searchData(0,$_POST['mot']);
+				}
 			}
 			elseif(isset($_POST['mot']) && empty($_POST['mot']))
 			{

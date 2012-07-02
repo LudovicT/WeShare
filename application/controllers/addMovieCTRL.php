@@ -10,13 +10,44 @@ if (isset($_POST["Name"]) && !empty($_POST["Name"]) &&
 	$addMovie_Synopsis = $_POST["Synopsis"];
 	$addMovie_DateOfRelease = $_POST["DateOfRelease"];
 	settype($addMovie_DateOfRelease, "integer");
-	if(isset($_POST["Poster"]) && !empty($_POST["Poster"]))
+	if(isset($_FILES['userfile']['name']))
 	{
-		$addMovie_Poster = $_POST["Poster"];
-	}
-	else
-	{
-		$addMovie_Poster = null;
+		$uploaddir = realpath($_SERVER['DOCUMENT_ROOT'])."/WeShare/public/images/movie_pic/";
+		$file_parts = pathinfo('dir/' . $_FILES['userfile']['name']);
+		$file_extension = strtolower($file_parts['extension']);
+		if ($file_extension == 'jpg') {
+			$srcImg = imagecreatefromjpeg($_FILES['userfile']['tmp_name']);
+		} 
+		elseif ($file_extension == 'jpeg') {
+			$srcImg = imagecreatefromjpeg($_FILES['userfile']['tmp_name']);
+		} 
+		elseif ($file_extension == 'png') {
+			$srcImg = imagecreatefrompng($_FILES['userfile']['tmp_name']);
+		} 
+		elseif ($file_extension == 'gif') {
+			$srcImg = imagecreatefromgif($_FILES['userfile']['tmp_name']);
+		}
+		if ($file_extension == 'jpg') {
+			imagejpeg($srcImg, $_FILES['userfile']['tmp_name']);
+		} 
+		elseif ($file_extension == 'jpeg') {
+			imagejpeg($srcImg, $_FILES['userfile']['tmp_name']);
+		} 
+		elseif ($file_extension == 'png') {
+			imagepng($srcImg, $_FILES['userfile']['tmp_name']);
+		} 
+		elseif ($file_extension == 'gif') {
+			imagegif($srcImg, $_FILES['userfile']['tmp_name']);
+		}
+		$uploadfile = $uploaddir . basename($_POST["Name"]."-".$_POST["DateOfRelease"].".jpg");
+		if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+		{
+			$addMovie_Poster = $_POST["Name"]."-".$_POST["DateOfRelease"].".jpg";
+		}
+		else
+		{
+			$addMovie_Poster = null;
+		}
 	}
 	
 	$error_addMovie = addMovie($addMovie_Name,

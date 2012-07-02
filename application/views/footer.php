@@ -5,7 +5,7 @@
 </div>
 <div id="footer1">
 <div class="info">
-&copy; 2012 WeShare | DEVELOPPED BY Ludovic, Vincent et Alexandre.
+&copy; 2012 WeShare | DEVELOPPED BY Ludovic Tresson, Vincent Ricard and Alexandre Arnal.
 
 </div>
 <div class="infonav">
@@ -18,10 +18,11 @@
 <a href="/WeShare/Membres/">Membres</a>
 |
 <a href="/WeShare/Profil/">Profil</a>
+|
+<a href='/weshare/CGU.html' target="_blank">C.G.U.</a>
 </div>
 </div>
 </div>
-<div id="piedDePage"><a href='/weshare/CGU.html' target="_blank">C.G.U.</a></div>
 <script type="text/javascript"> Cufon.now();
 blinkColor();</script>
 </body>

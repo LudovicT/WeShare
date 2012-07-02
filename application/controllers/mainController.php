@@ -17,9 +17,15 @@ requiert au minimum les fichiers suivants pour fonctionner:
 require_once(".".DS."config".DS."config.php");
 require_once(DIR_MODELS.DS."mainModels.php");
 
+/* dégagement de tout les éléments problématique pour les requète sql */
+$patterns = array("/'/",'/"/');
+$replacements = array('&#39;','&#34;');
+$_POST = preg_replace($patterns,$replacements,$_POST);
+
 /* traitement des informations */
 $user = getUser();
 $userId = getId($user);
+
 if (isset($_GET["page"]) && $user == null && !isset($_SESSION['User']))
 {
 	switch($_GET["page"])

@@ -21,7 +21,7 @@
 					<img id='PhotoProfil' src='<?php
 						if(!empty($key['Poster']))
 						{
-							echo $key['Poster'];
+							echo DIR_PUBLICS."/images/movie_pic/".$key['Poster'];
 						}
 						else
 						{

@@ -6,7 +6,7 @@
 				<td rowspan='7'><img id='PhotoProfil' src='<?php
 				if(!empty($profil['Avatar']))
 				{
-					echo $profil['Avatar'];
+					echo DIR_PUBLICS."/images/user_pic/".$profil['Avatar'];
 				}
 				else
 				{
