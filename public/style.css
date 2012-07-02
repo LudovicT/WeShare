@@ -71,7 +71,7 @@ h4 {font-size:.86em;margin-bottom:5px}
 /* HEADER */
 #header .row-1 .fleft {padding-top:27px}
 #header .row-1 {height:112px;width:100%;overflow:hidden}
-#header .row-1 .fright {padding-top:38px}
+#header .row-1 .fright {padding-top:48px}
 #header .row-1 .fright ul li {font-size:21px;line-height:1.2em;float:left;margin-left:1px}
 #header .row-1 .fright ul li a {display:block;color:#fff;text-decoration:none}
 #header .row-1 .fright ul li a em {display:block}
@@ -634,8 +634,8 @@ padding-top: 200px;
 {
     float: left;
 	display:inline;
-    margin-left:245px;
-    margin-top:-62px;
+    margin-left:325px;
+    margin-top:-72px;
 	padding:1px;
 	border:1px solid grey;
     max-height: 100px;
@@ -650,9 +650,8 @@ padding-top: 200px;
     font-size: 0.9em;
     height: 15px;
     margin-left:10px;
-    padding: 2px 0 4px;
+    padding: 1px 0 4px;
     text-align: center;
-    position: absolute;
     text-decoration: none;
     width: 90px;
 }
@@ -664,7 +663,7 @@ background-color:#af3300
 {
     float: left;
 	display:inline;
-    margin-top:-30px;
+    margin-top:-40px;
     margin-left:350px;
 	position:absolute;
 }
@@ -674,11 +673,14 @@ select.right {
 #HeadersearchBar
 {
 	padding-top:9px;
-	padding-left:6px;
+}
+#HeadersearchBar form
+{
+	margin-left:550px;
 }
 
 #profil ul li 
 {
-	padding-top:-9px;
+	padding-top:-19px;
 	padding-left:-6px;
 }

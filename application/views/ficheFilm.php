@@ -6,7 +6,7 @@
 		</span><br /><br />
 	</div>
 	<div> <!-- css affiche film -->
-		<img src="<?php echo $movieInfo['Poster']; ?>" width="300" height="400" />
+		<img src="<?php echo DIR_PUBLICS."/images/movie_pic/".$movieInfo['Poster']; ?>" width="300" height="400" />
 		<br /><br />
 	</div>
 		<div id="tab_infos">

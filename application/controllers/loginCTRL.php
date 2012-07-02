@@ -10,7 +10,8 @@ if (isset($_POST["pseudo"]) && isset($_POST["password"]))
 	if ($errorConnect == 0)
 	{
 		$layout = "accueil.php";
-		$userId = getId($_SESSION['User']);
+		$user = @getUser();
+		$userId = getId($user);
 	}
 	else	//errorConnect = 1 dans ce cas
 	{

@@ -349,7 +349,6 @@ function requestFriendship($userId, $newFriend)
 		return 1;
 	}
 	$S_exist = mysql_fetch_assoc($S_result);
-	var_dump($S_exist);
 	//si il existe deja alors $S_exist[0] existe 
 							//mais $S_exist[0]['Status'] n'existe pas
 	if((isset($S_exist) && $S_exist['Status'] == null))
@@ -478,6 +477,7 @@ $type (E) : type de la requete, 0 = tout,
 								2 = tout le staff ,
 								3 = film en particulier, 
 								4 = staff en particulier
+								5 = support de film
 */
 function searchData($type, $recherche)
 {
@@ -541,6 +541,20 @@ function searchData($type, $recherche)
 				return -1;
 			}
 			while(($S_data[1][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[1]));
+			break;
+		case "5":
+			$S_query = ("SELECT *, count(*) AS Exemplaires
+						FROM UserMovies AS UM
+						LEFT JOIN Movies AS M
+						ON UM.IdMovie = M.IdMovie
+						WHERE Support LIKE '%".$recherche."%'
+						GROUP BY Name");
+			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
+			if ($S_result== false)
+			{
+				return -1;
+			}
+			while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			break;
 	}
 	return $S_data;
@@ -1527,8 +1541,6 @@ function sendMp($data,$IdSender)
 	$insertId = mysql_insert_id();
 	foreach($users as $key)
 	{
-	var_dump($key);
-	var_dump($insertId);
 		$S_query = sprintf("INSERT INTO UserPMs
 							(IdUser, IdPM, ReadStatus)
 							VALUES ('%d','%d','0')",

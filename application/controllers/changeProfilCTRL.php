@@ -86,13 +86,44 @@ else
 {
 	$change_country = null;
 }
-if(isset($_POST["avatar"]) && !empty($_POST["avatar"]))
+if(isset($_FILES['userfile']['name']))
 {
-	$change_avatar = $_POST["avatar"];
-}
-else
-{
-	$change_avatar = null;
+	$uploaddir = realpath($_SERVER['DOCUMENT_ROOT'])."/WeShare/public/images/user_pic/";
+	$file_parts = pathinfo('dir/' . $_FILES['userfile']['name']);
+	$file_extension = strtolower($file_parts['extension']);
+	if ($file_extension == 'jpg') {
+		$srcImg = imagecreatefromjpeg($_FILES['userfile']['tmp_name']);
+	} 
+	elseif ($file_extension == 'jpeg') {
+		$srcImg = imagecreatefromjpeg($_FILES['userfile']['tmp_name']);
+	} 
+	elseif ($file_extension == 'png') {
+		$srcImg = imagecreatefrompng($_FILES['userfile']['tmp_name']);
+	} 
+	elseif ($file_extension == 'gif') {
+		$srcImg = imagecreatefromgif($_FILES['userfile']['tmp_name']);
+	}
+	if ($file_extension == 'jpg') {
+		imagejpeg($srcImg, $_FILES['userfile']['tmp_name']);
+	} 
+	elseif ($file_extension == 'jpeg') {
+		imagejpeg($srcImg, $_FILES['userfile']['tmp_name']);
+	} 
+	elseif ($file_extension == 'png') {
+		imagepng($srcImg, $_FILES['userfile']['tmp_name']);
+	} 
+	elseif ($file_extension == 'gif') {
+		imagegif($srcImg, $_FILES['userfile']['tmp_name']);
+	}
+	$uploadfile = $uploaddir . basename($user.".jpg");
+	if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile))
+	{
+		$change_avatar = $user.".jpg";
+	}
+	else
+	{
+		$change_avatar = null;
+	}
 }
 
 if(isset($_POST["password"]) && !empty($_POST["password"]))

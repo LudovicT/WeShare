@@ -104,15 +104,16 @@ elseif (!isset($_GET['page']))
 				<option value='0'>Tout</option>
 				<option value='3'>Films</option>
 				<option value='4'>Acteurs</option>
+				<option value='5'>Support</option>
 				</select>
 				<input type='image' value='Rechercher' src="<?php echo DIR_PUBLICS; ?>/images/search_but.gif" alt='go'>
 			</form>
 			</div>
 			<div id="profil">
 				<ul><img class='miniprofilpic' src='<?php
-				if(!empty($profil['Avatar']))
+				if(file_exists("./public/images/user_pic/".$user.".jpg"))
 				{
-					echo $profil['Avatar'];
+					echo DIR_PUBLICS."/images/user_pic/".$user.".jpg";
 				}
 				else
 				{
@@ -123,8 +124,8 @@ elseif (!isset($_GET['page']))
 			</div>
 			<div id="profil">
 				<ul>
-					<li><a href="/WeShare/Profil/"<?php echo $active[4];?> style="margin-top: -20px";><b>Profil<?php echo $newNotifProfil;?></b></a></li>
-					<li><a href="/WeShare/Deconnexion/" style="margin-top: 10px";><b>Déconnexion</b></a></li>
+					<li><a href="/WeShare/Profil/"<?php echo $active[4];?> style="margin-top: -30px";><b>Profil<?php echo $newNotifProfil;?></b></a></li>
+					<li><a href="/WeShare/Deconnexion/" style="margin-top: 0px";><b>Déconnexion</b></a></li>
 				</ul>
 			</div>
 		</div>

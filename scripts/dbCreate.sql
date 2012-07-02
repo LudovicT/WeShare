@@ -114,7 +114,7 @@ PRIMARY KEY(IdMovie));
 CREATE TABLE IF NOT EXISTS UserMovies
 (IdUser				INT 			NOT NULL,
 IdMovie				INT 			NOT NULL,
-Support				enum("cd","divx","blue-ray","dvd","mp3","mp4","avi","mkv","VHS")	NOT NULL,
+Support				enum("CD","DivX","Blu-ray","HD-DVD","DVD","Fichier","VHS")	NOT NULL,
 Available			INT				DEFAULT 1,
 FOREIGN KEY (IdUser)
 	REFERENCES Users(IdUser) ON DELETE CASCADE,
