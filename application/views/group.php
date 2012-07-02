@@ -1,8 +1,10 @@
 	<!--Start of home page-->
+	<div id="connexion">
+	<h1> Fiche du groupe </h1>
 	</br>
-	<strong>Identifiant du groupe : </strong><?php echo $group['IdGroup'];?><br /></br>
-	<strong>Nom du groupe : </strong><?php echo $group['Name'];?><br /></br>
-	<strong>Membres du groupe :</strong>
+	<strong>&nbsp;&nbsp;Identifiant du groupe : </strong><?php echo $group['IdGroup'];?><br /></br>
+	<strong>&nbsp;&nbsp;Nom du groupe : </strong><?php echo $group['Name'];?><br /></br>
+	<strong>&nbsp;&nbsp;Membres du groupe :</strong>
 	<table>
 	<tr><th></th></tr></br></br>
 	<?php
@@ -21,7 +23,7 @@
 	}
 	?>
 	</table><br />
-	<strong>Ajouter un membre : </strong></br></br>
+	<strong>&nbsp;&nbsp;Ajouter un membre : </strong></br></br>
 	<form method="post" action="/WeShare/Groupe/Ajouter/<?php echo $group['IdGroup']?>/">
 	<select name='membre' onchange='this.form.submit()'>
 	<?php
@@ -45,7 +47,7 @@
 	</select>
 	<input type='submit' class="button2" value='Ajouter'>
 	</form>
-	<strong></br>Retirer un membre :</strong></br></br>
+	<strong></br>&nbsp;&nbsp;Retirer un membre :</strong></br></br>
 	<form method="post" action="/WeShare/Groupe/Retirer/<?php echo $group['IdGroup']?>/">
 	<select name='membre' onchange='this.form.submit()'>
 	<?php
@@ -67,8 +69,9 @@
 	<input type='submit' class="button2" value='Retirer'>
 	</form>
 	<br />
-	<form method="post" action="/WeShare/Groupe/Supprimer/<?php echo $group['IdGroup']?>/">
-	<input type='submit' class="button2" value='Supprimer le groupe'> Attention, cette action est définitive !
-	</form>
+	</br>
+	<a href="/WeShare/Groupe/Supprimer/<?php echo $group['IdGroup']?>/" class="button2">Supprimer le groupe</a> </br></br></br>Attention, cette action est définitive !
+	
+	</div>
 	<!--End of home page-->
 	
