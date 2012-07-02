@@ -564,7 +564,7 @@ padding-top: 200px;
     height: 50px;
 	margin-left:25%;
 	bottom:0;
-	padding-bottom:15px;
+	padding-bottom:5px;
 	position:fixed ;
     width: 940px;
 }
@@ -576,8 +576,9 @@ padding-top: 200px;
 	margin-left:25%;
 	bottom:0;
 	position:fixed ;
-	padding-bottom:23px;
+	padding-bottom:5px;
     text-transform: uppercase;
+	-moz-transition: all 0.2s ease-in 0s
 }
 #footer1 .info {
     float: left;
