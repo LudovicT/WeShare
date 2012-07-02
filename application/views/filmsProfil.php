@@ -1,45 +1,53 @@
 <h3>Ajouter un film : </h3>
-</br>
-<br />
-<form method="post" action="/WeShare/Profil/Films/Ajouter/">
-<SELECT name='IdMovie'>
-    <OPTION value=''></option>
-<?php
-	foreach($movies[0] as $key)
-	{
-		if(isset($key))
-		{
-		?>
-			<option value='<?php echo $key['IdMovie'];?>'>
-			<?php echo $key['Name'];?>
-			</option>
-		<?php 
-		}
-	} ?>
-<br /><br />
-</SELECT>
-
-
-Support : 
-<SELECT name="support" size="1">
-    <OPTION value=''></option>
-    <OPTION value='fichier'>fichier</option>
-    <OPTION value='cd'>cd</option>
-    <OPTION value='dvd'>dvd</option>
-    <OPTION value='blue-ray'>blue-ray</option>
-    <OPTION value='hd-dvd'>hd-dvd</option>
-    <OPTION value='divx'>divx</option>
-    <OPTION value='VHS'>VHS</option>
-</SELECT>
-Nombre d'exemplaire :
-<input type='text' name='available' value='1'>
-<br />
-Les fichiers sont considérés comme étant tout le temps disponible.
-<br />
-<br />
-
-<input type='submit' class="button2" value='Ajouter à mes films'>
-</form>
+<a href="#" onclick="toggle_visibility('connexion');">Click here to toggle visibility of element #connexion</a><br/>
+<div id='connexion' style="display: block;">
+	<form method="post" action="/WeShare/Profil/Films/Ajouter/">
+		<h1>Film à ajouter</h1>
+		<p>
+			<strong>Film :</strong>
+			<SELECT name='IdMovie'>
+				<OPTION value=''></option>
+			<?php
+				foreach($movies[0] as $key)
+				{
+					if(isset($key))
+					{
+					?>
+						<option value='<?php echo $key['IdMovie'];?>'>
+						<?php echo $key['Name'];?>
+						</option>
+					<?php 
+					}
+				} ?>
+			</SELECT>
+		</p>
+		<h1>Support du film</h1>
+		<p>
+			<strong>Support :</strong>
+			<SELECT name="support" size="1">
+				<OPTION value=''></option>
+				<OPTION value='fichier'>fichier</option>
+				<OPTION value='cd'>cd</option>
+				<OPTION value='dvd'>dvd</option>
+				<OPTION value='blue-ray'>blue-ray</option>
+				<OPTION value='hd-dvd'>hd-dvd</option>
+				<OPTION value='divx'>divx</option>
+				<OPTION value='VHS'>VHS</option>
+			</SELECT>
+		</p>
+		<h1>Nombre d'exemplaires</h1>
+		<p>
+			<strong>Exemplaires disponible :</strong>
+			<input type='text' name='available' value='1'>
+		</p>
+		<p id="message">
+			Les fichiers sont considérés comme étant tout le temps disponible.
+		</p>
+		<p>
+		<input type='submit' value='Ajouter'>
+		</p>
+	</form>
+</div>
 
 <br />
 <br />

@@ -23,8 +23,34 @@
 </div>
 </div>
 </div>
-<script type="text/javascript"> Cufon.now();
-blinkColor();</script>
+<script type="text/javascript">
+<!--
+	Cufon.now();
+	blinkColor();
+-->
+</script>
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+	   {
+          $('#connexion').fadeTo(0.5, 0);
+		  setTimeout('toggle_none("connexion")',500);
+	   }
+       else
+	   {
+          $('#connexion').fadeTo(0.5, 1);
+          e.style.display = 'block';
+	   }
+    }
+	function toggle_none(id)
+	{
+       var e = document.getElementById(id);
+	   e.style.display = 'none';
+	}
+//-->
+</script>
 </body>
 </html>
 <!--End of footer -->
