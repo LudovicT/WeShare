@@ -332,6 +332,7 @@ background-color:#FFFFFF;
 	font-size:1.2em;
 	background:#333333;
 	padding-bottom:5px;
+	padding-top:3px;
 	margin-bottom:15px;
 	color:#FFFFFF;
 	letter-spacing:0.05em;
@@ -353,7 +354,7 @@ background-color:#FFFFFF;
 	margin-left:10px;
 	width:255px;
 }
-#connexion .small input {
+#connexion .small, #connexion .small{
 width:45px;
 }
 #connexion #valider {
@@ -583,12 +584,9 @@ padding-top: 200px;
     background-image: url("../public/images/footer.png");
     background-repeat: no-repeat;
     height: 50px;
-	margin-left:25%;
 	bottom:0;
-	padding-bottom:5px;
 	margin-left:320px;
-	bottom:-40px;
-	position:fixed ;
+	bottom:-20px;
     width: 940px;
     -moz-transition: all 0.5s ease-in 0s;
 	-webkit-transition: all 0.5s ease-in 0s;
@@ -600,11 +598,8 @@ padding-top: 200px;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 10px;
     margin-top: 30px;
-	margin-left:25%;
-	bottom:0;
 	position:fixed ;
-	padding-bottom:5px;
-	padding-bottom:23px;
+	padding-bottom:7px;
     text-transform: uppercase;
 }
 

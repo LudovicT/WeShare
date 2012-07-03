@@ -1,7 +1,7 @@
 	<!--Start of home page-->
 	<h3>Profil</h3>
 	<center>
-		<table id='TableProfil'>
+		<table id='TableProfil' cellspacing='4'>
 			<tr>
 				<td rowspan='7'><img id='PhotoProfil' src='<?php
 				if(!empty($profil['Avatar']))

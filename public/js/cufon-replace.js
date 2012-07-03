@@ -14,13 +14,13 @@ function blinkColor()
   }
   if(document.getElementById("GotNotifPms"))
   {
-	document.getElementById("GotNotifPms").style.color="grey";
+	document.getElementById("GotNotifPms").style.color="blue";
   }
   if(document.getElementById("GotNotifFriends"))
   {
-	document.getElementById("GotNotifFriends").style.color="grey";
+	document.getElementById("GotNotifFriends").style.color="blue";
   }
-  setTimeout("setblinkColor()",3000)
+  setTimeout("setblinkColor()",1500)
 }
 
 function setblinkColor()
@@ -41,5 +41,5 @@ function setblinkColor()
   {
 	document.getElementById("GotNotifFriends").style.color="";
   }
-  setTimeout("blinkColor()",1000)
+  setTimeout("blinkColor()",750)
 }

@@ -2,14 +2,16 @@
 <!--Start of header-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>WeShare</title>
-<meta http-equiv="Content-Type" content="text/html; charset=ANSI" />
-<meta name="description" content="Place your description here" />
-<meta name="keywords" content="put, your, keyword, here" />
-<meta name="author" content="Team Weshare" />
-<link href="<?php echo DIR_PUBLICS; ?>/css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css" />  
-<link href="<?php echo DIR_PUBLICS; ?>/style.css" rel="stylesheet" type="text/css" />
-<link href="<?php echo DIR_PUBLICS; ?>/layout.css" rel="stylesheet" type="text/css" />
+	<title>WeShare</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ANSI" />
+	<meta name="description" content="Place your description here" />
+	<meta name="keywords" content="put, your, keyword, here" />
+	<meta name="author" content="Team Weshare" />
+	<link href="<?php echo DIR_PUBLICS; ?>/css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css" />  
+	<link href="<?php echo DIR_PUBLICS; ?>/style.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo DIR_PUBLICS; ?>/layout.css" rel="stylesheet" type="text/css" />
+	<script src="<?php echo DIR_PUBLICS; ?>/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+	<script src="<?php echo DIR_PUBLICS; ?>/js/validate.js" type="text/javascript"></script>
 	<script src="<?php echo DIR_PUBLICS; ?>/js/cufon-yui.js" type="text/javascript"></script>
 	<script src="<?php echo DIR_PUBLICS; ?>/js/cufon-replace.js" type="text/javascript"></script>
 	<script src="<?php echo DIR_PUBLICS; ?>/js/Myriad_Pro_300.font.js" type="text/javascript"></script>

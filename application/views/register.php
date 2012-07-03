@@ -1,4 +1,6 @@
 	<!--Start of login page-->
+	<?php
+	?>
 	<form id="demoForm" method="post" action="/WeShare/register/" class="bbq">
 		<div id="connexion">
 		<div id="fieldWrapper">
@@ -6,55 +8,61 @@
 				<h1>Obligatoire</h1>
 				<p>
 				<label for="pseudo">Pseudonyme : </label>
-				<input class="input_field_12em pseudo required" name="pseudo" id="pseudo" />
+				<input onkeyup='validate(this,0)' class="input_field_12em pseudo required" name="pseudo" id="pseudo" />
 				</p>
 				<p>
 				<label for="password">Mot de passe : </label>
-				<input class="input_field_12em password required" name="password" id="password" type="password" />
+				<input onkeyup='validate(this,0)' class="input_field_12em password required" name="password" id="password" type="password" />
 				</p>
 				<p>
 				<label for="retypePassword">Confirmer mot de passe : </label>
-				<input class="input_field_12em retypePassword required" name="retypePassword" id="retypePassword" type="password" />
+				<input onkeyup='validate(this,password.value)' class="input_field_12em retypePassword required" name="retypePassword" id="retypePassword" type="password" />
 				</p>
 				<p>
 				<label for="email">Email : </label>
-				<input class="input_field_12em email required" name="email" id="email" />
+				<input onkeyup='validate(this,0)' class="input_field_12em email required" name="email" id="email" />
 				</p>
 				<h1>Optionnel</h1>
 				<p>
 				<label for="nom">Nom : </label>
-				<input class="input_field_12em" name="lastName" id="lastName" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="lastName" id="lastName" />
 				</p>
 				<p>
 				<label for="prenom">Prenom : </label>
-				<input class="input_field_12em" name="firstName" id="firstName" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="firstName" id="firstName" />
 				</p>
-				<p class = 'small'>
+				<p>
 				<label for="day_fi">Date de naissance : </label>
-				<input class="small" name="day" id="day_fi" value="" /> -
-				<input class="small" name="month" id="month_fi" value="" /> - 
-				<input class="small" name="year" id="year_fi" value="" /><label><br />(sous le format JJ-MM-AAAA)</label>
+				<input onkeyup='validate(this,0)' class="small" name="day" id="day" value="" /> -
+				<input onkeyup='validate(this,0)' class="small" name="month" id="month" value="" /> - 
+				<input onkeyup='validate(this,0)' class="small" name="year" id="year" value="" /><label><br />(sous le format JJ-MM-AAAA)</label>
 				</p>
 				<p>
 				<label for="countryPrefix_fi">Numero de telephone : </label>
-				<input class="input_field_12em digits" name="phoneNumber" id="phoneNumber_fi" />
+				<input onkeyup='validate(this,0)' class="input_field_12em digits" name="phoneNumber" id="phoneNumber" />
 				</p>
 				<p>
 				<label for="adresse">Adresse : </label>
-				<input class="input_field_12em" name="address" id="address" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="address" id="address" />
 				</p>
 				<p>
 				<label for="ville">Ville : </label>
-				<input class="input_field_12em" name="city" id="city" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="city" id="city" />
 				</p>
 				<p>
 				<label for="pays">Dans quel pays habitez-vous ?</label>
-				<input class="input_field_12em" name="country" id="country" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="country" id="country" />
 				</p>
 			</span>
+				<p>
 			<input class="navigation_button" id="back" value="Mise à zéro" type="reset" />
 			<input class="navigation_button" id="next" value="Soumettre" type="submit"/><br />
-			<label>En vous inscrivant, vous acceptez les <a href='/weshare/CGU.html' target="_blank">Conditions Générales d'Utilisation</a></label>
+				</p>
+				<p id='message'>
+					En vous inscrivant, vous acceptez les <a href='/weshare/CGU.html' target="_blank">Conditions Générales d'Utilisation</a>
+				</p>
+				<p>
+				</p>
 		</div>
 		</div>
 	</form>

@@ -6,7 +6,7 @@
 		<p><label for = "password">Mot de passe : </label><input type="password" name="password" id="password" value='<?php echo $password;?>'/></p>
 		<p><input type="submit" value="Se connecter" id = "valider" /></p>
 		</form>
-		<p id = "message"><?php if(isset($errorConnect) && $errorConnect == 1) echo "Votre combinaison pseudo/mot de pass est incorrecte" ?></p>
+		<p id = "message"><?php if(isset($errorConnect) && $errorConnect == 1) echo "Votre combinaison pseudo/mot de passe est incorrecte" ?></p>
 	</div>
 	<!--End of connection page-->
 	

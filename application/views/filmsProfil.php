@@ -1,6 +1,6 @@
 <h3>Ajouter un film : </h3>
-<a href="#" onclick="toggle_visibility('connexion');">Click here to toggle visibility of element #connexion</a><br/>
-<div id='connexion' style="display: block;">
+<center><a href="#" onclick="toggle_visibility('connexion');">Afficher le formulaire</a></center>
+<div id='connexion' style="display: none; opacity: 0;">
 	<form method="post" action="/WeShare/Profil/Films/Ajouter/">
 		<h1>Film à ajouter</h1>
 		<p>

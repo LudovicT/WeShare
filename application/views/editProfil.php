@@ -6,7 +6,7 @@
 			<p><label>Prénom :</label><input type="text" name="firstName" id="firstName" value="<?php echo $profil['FirstName'];?>"/></p>
 			<!--<label>Date de Naissace:</label><input type="text" value=""/><br />-->
 			<p><label>Date de Naissance:</label>
-				<select name="day">
+				<select class='small' name="day">
 					<?php
 						for($i=1;$i<32;$i++)
 						{
@@ -21,7 +21,7 @@
 						}
 					?>
 				</select>
-				<select name="month">
+				<select class='small' name="month">
 					<?php
 						for($i=1;$i<13;$i++)
 						{
@@ -36,7 +36,7 @@
 						}
 					?>
 				</select>
-				<select name="year">
+				<select class='small' name="year">
 					<?php
 						for($i=1901;$i<2013;$i++)
 						{
