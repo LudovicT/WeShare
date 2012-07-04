@@ -1,7 +1,9 @@
 <h3>Inviter des amis à l'événement</h3>
-<p>Voici la liste de vos amis que vous pouvez inviter : </p>
 
 <?php
+if ($UserFriends != -1)
+{
+?> <p>Voici la liste de vos amis que vous pouvez inviter : </p> <?php
 	foreach($UserFriends as $key)
 	{ 
 ?>
@@ -29,4 +31,5 @@
 		</td>
 	</tr>
 </table>
-<?php } ?>
+<?php } 
+} else {?> <p> Vous n'avez aucun ami. <?php } ?>
