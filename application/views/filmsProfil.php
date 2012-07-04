@@ -1,6 +1,12 @@
 <h3>Ajouter un film : </h3>
-<center><a href="#" onclick="toggle_visibility('connexion');">Afficher le formulaire</a></center>
-<div id='connexion' style="display: none; opacity: 0;">
+<div class='row-4'>
+	<div class='fright2'>
+		<ul>
+			<li><a href="#" onclick="toggle_visibility('connexion');"><em><b>Afficher le formulaire</b></em></a></li>
+		</ul>
+	</div>
+</div>
+<div id='connexion' class='fade' style="display: none; opacity: 0;">
 	<form method="post" action="/WeShare/Profil/Films/Ajouter/">
 		<h1>Film à ajouter</h1>
 		<p>
@@ -21,6 +27,8 @@
 				} ?>
 			</SELECT>
 		</p>
+		<p id='message'>
+		Votre film n'est pas dans la liste ? <a href="#" onclick="newPopup('/WeShare/Films/addFilms/')">Ajouter un film</a>
 		<h1>Support du film</h1>
 		<p>
 			<strong>Support :</strong>
@@ -55,8 +63,10 @@
 <table border='0' rules='rows' width="100%">
 <th> Titre </th><th> Support </th><th> Nombre d'exemplaires </th> <th> Supprimer </th>
 <?php
+	$i = 0;
 	foreach($userMovie as $name)
 	{
+	$i++;
 	?>
 		<tr>
 			<td>
@@ -80,12 +90,18 @@
 				?>
 			</td>
 			<td>
-				<form method="post" action="/WeShare/Profil/Films/supprimer/">
+				<form name='form<?php echo $i; ?>' method="post" action="/WeShare/Profil/Films/supprimer/">
 				<input type='hidden' name='IdMovie' value='<?php echo $name['IdMovie']?>'>
 				<input type='hidden' name='support' value='<?php echo $name['Support']?>'>
 				<input type='hidden' name='available' value='<?php echo $name['Available']?>'>
-				<input type='submit' class="buttonDelete" value='Supprimer'>
 				</form>
+				<div class='row-5'>
+					<div class='fright3'>
+						<ul>
+							<li><a href='javascript:document.form<?php echo $i; ?>.submit();'><em><b>Supprimer</b></em></a></li>
+						</ul>
+					</div>
+				</div>
 			</td>
 		</tr>
 	<?php

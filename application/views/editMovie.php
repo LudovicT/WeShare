@@ -1,10 +1,17 @@
-<div id="new_film">
+<div id="connexion">
+	<div id="new_film">
 		<form method="post" action="/WeShare/Films/Editer/<?php echo (generateUrl($infoMovie['Name'])."/".$infoMovie['IdMovie']); ?>/">
-		<span><label>Titre du film :</label><input type="text" value="" id="Name" name="Name" class="recherche"  value="<?php echo $infoMovie['Name']; ?>" /></span><br /><br />
-		<span><label>Date Realisation :</label><input type="text" value="" id="DateOfRelease" name="DateOfRelease"  value="<?php echo $infoMovie['DateOfRelease']; ?>"/></span><br /><br />
-		<span style="text-align:left;"><label>Synopsis :</label><br/><textarea id="Synopsis" name="Synopsis" style="width:480px;" rows="15"><?php echo $infoMovie['Synopsis']; ?></textarea></span><br /><br />
-		<span  style="text-align:left;"><label>Durée :</label><input type="text" value=""  id="Runtime" name="Runtime" style="width:23px;" size="1"  value="<?php echo $infoMovie['Runtime']; ?>"/> min</span><br /><br />
-		<span><label>Poster du film :</label><input type="text" value="" id="Poster" name="Poster"  value="<?php echo $infoMovie['Poster']; ?>"/></span><br /><br /><br />
-		<div class="button_submit"><input type="submit" value="Ajouter le film" /></div>
-	</form>
+			<h1> Editer le film </h1>
+			<p><span><label><strong>Titre du film :</strong></label><input onkeyup='validate(this,0)' type="text" id="Name" name="Name" class="recherche" value="<?php echo $infoMovie['Name']; ?>" /></span></p>
+			<p><span><label><strong>Date Realisation :</strong></label><input onkeyup='validate(this,0)' type="text" id="DateOfRelease" name="DateOfRelease" value="<?php echo $infoMovie['DateOfRelease']; ?>"/></span></p>
+			<p><span><label><strong>Synopsis :</strong></label><textarea onkeyup='validate(this,0)' class='textarea4' id="Synopsis" name="Synopsis" rows="8"><?php echo $infoMovie['Synopsis']; ?></textarea></span></p>
+			<p><span><label><strong>Durée :</strong></label><input onkeyup='validate(this,0)' type="text" id="Runtime" name="Runtime"  size="1" value="<?php echo $infoMovie['Runtime']; ?>"/></span>
+			<br /><strong><em><small>Sous le format hh:mm:ss</small></em></strong>
+			</p>
+			<p><span><label><strong>Jaquette du film :</strong>
+			<input type="hidden" name="MAX_FILE_SIZE" value="400000" />
+			<input name="userfile" type="file" size='13' /></br>(maximum 400ko)</label></span></p>
+			<p><input type="submit" value="Ajouter le film" /></p>
+		</form>
+	</div>
 </div>

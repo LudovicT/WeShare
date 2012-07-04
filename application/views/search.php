@@ -14,7 +14,7 @@
 		{
 			if(isset($search[0][0]['Support']))
 			{
-				echo "<h3>Films disponible selon leur support recherché sur le terme ' ".$_POST['mot']." '</h3><br/>";
+				echo "<h3>Films disponibles selon leur support recherché sur le terme ' ".$_POST['mot']." '</h3><br/>";
 			}
 			?>
 			<table border='1' width="100%">

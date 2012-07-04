@@ -1,5 +1,13 @@
 	<h3>Mes amis</h3>	
 
+		<div class='row-4'>
+			<div class='fright2'>
+				<ul>
+					<li><a href="#" onclick="toggle_visibility('friends');"><em><b>Afficher les amis</b></em></a></li>
+				</ul>
+			</div>
+		</div>
+		<div id='friends' class='fade' style="display: none; opacity: 0;">
 	<?php
 	if($friend != -1)
 	{
@@ -38,8 +46,17 @@
 		echo "Vous n'avez pas encore d'amis\n";
 	}
 	?>
+	</div>
 	<br /><br /><br /><br />
-	<h3>Mes demandes d'amis</h3>	
+	<h3>Mes demandes d'amis</h3>
+		<div class='row-4'>
+			<div class='fright2'>
+				<ul>
+					<li><a href="#" onclick="toggle_visibility('friendsR');"><em><b>Afficher les demandes d'amis</b></em></a></li>
+				</ul>
+			</div>
+		</div>
+		<div id='friendsR' class='fade' style="display: none; opacity: 0;">
 	<?php
 	if($friendRequest != -1)
 	{
@@ -84,37 +101,54 @@
 		<?php
 	}
 	?>
+	</div>
 	<br /><br /><br /><br />
 	<h3>Mes groupes d'amis</h3>	
 	<?php
 	if(isset($group) && !empty($group) && $group != -1)
 	{
 		?>
+		<div class='row-4'>
+			<div class='fright2'>
+				<ul>
+					<li><a href="#" onclick="toggle_visibility('group');"><em><b>Afficher les groupes d'amis</b></em></a></li>
+					<li><a href='/WeShare/Groupe/Creer/' ><em><b>Créer un groupe d'amis</b></em></a></li>
+				</ul>
+			</div>
+		</div>
+		<div id='group' class='fade' style="display: none; opacity: 0;">
 		<p>
 			Voici vos groupes d'amis :
 		</p>
-		<table>
-		<?php
-		foreach($group as $key3)
-		{?>
-			<tr>
-			<td  class='TableAmisProfil'>
-				<center>
-				<a href='/WeShare/Groupe/<?php echo generateUrl($key3['Name'])."/".$key3['IdGroup']?>/'><?php echo $key3['Name']?></a>
-				</center>
-			</td>
-			</tr><?php
-		}
-		?></table>
+			<table>
+			<?php
+			foreach($group as $key3)
+			{?>
+				<tr>
+				<td  class='TableAmisProfil'>
+					<center>
+					<a href='/WeShare/Groupe/<?php echo generateUrl($key3['Name'])."/".$key3['IdGroup']?>/'><?php echo $key3['Name']?></a>
+					</center>
+				</td>
+				</tr><?php
+			}
+			?></table>
+		</div>
 		<br /> <br />
-		<a href='/WeShare/Groupe/Creer/' class="button2">Créer un groupe</a>
 	<?php
 	}
 	else
 	{
 		?>
+		<div class='row-4'>
+			<div class='fright2'>
+				<ul>
+					<li><a href='/WeShare/Groupe/Creer/' ><em><b>Créer un groupe d'amis</b></em></a></li>
+				</ul>
+			</div>
+		</div>
 		Vous n'avez pas encore de groupe d'amis.<br /><br />
-		</br><a href="/WeShare/Groupe/Creer/" class="button2">Créer un groupe d'amis</a>
+		</br>
 		<?php
 	}
 	?>

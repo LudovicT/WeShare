@@ -125,7 +125,7 @@ function register($register_pseudo,
 	}
 	
 	//verif pass
-	if (strlen($register_password) > 61)
+	if (strlen($register_password) > 61 && strlen($register_password) < 6)
 	{
 		$error[1] = 1;
 	}
@@ -152,9 +152,16 @@ function register($register_pseudo,
 		$error[2] = 2;
 	}
 	
+	$register_bornDate = '1901-01-01';
+	if(is_numeric($register_day) && is_numeric($register_month) && is_numeric($register_year))
+	{
+		$register_bornDate = $register_year."-".$register_month."-".$register_day;
+	}
+	if(!is_numeric($register_phoneNumber))
+	{
+		$register_phoneNumber = '0000000000';
+	}
 	
-	$register_bornDate = '';
-	$register_bornDate = $register_year."-".$register_month."-".$register_day;
 	//enregistrement dans la bdd
 	if($error[0] == 0 && $error[1] == 0 && $error[2] == 0)
 	{
@@ -534,7 +541,7 @@ function searchData($type, $recherche)
 			while(($S_data[0][] = mysql_fetch_assoc($S_result)) || array_pop($S_data[0]));
 			break;
 		case "4":
-			$S_query = ("SELECT * FROM Staffs WHERE Name LIKE '%".$recherche."%'");
+			$S_query = ("SELECT * FROM Staffs WHERE LastName LIKE '%".$recherche."%' OR FirstName LIKE '%".$recherche."%'");
 			$S_result = mysql_query($S_query, dbConnect()) or die(mysql_error());
 			if ($S_result== false)
 			{

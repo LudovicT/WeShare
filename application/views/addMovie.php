@@ -1,6 +1,6 @@
 <div id="connexion">
 	<form method="post" enctype="multipart/form-data" action="/WeShare/Films/addFilms/">
-	<h1> Nouveau Film </h1>
+	<h1> Nouveau film </h1>
 		<p><span><label><strong>Titre du film :</strong></label><input onkeyup='validate(this,0)' type="text" value="" id="Name" name="Name" class="recherche" /></span></p>
 		<p><span><label><strong>Année de réalisation :</strong></label><input onkeyup='validate(this,0)' type="text" value="" id="DateOfRelease" name="DateOfRelease" /></span></p>
 		<p><span><label><strong>Synopsis :</strong></label></span><textarea class='textarea4' onkeyup='validate(this,0)' id="Synopsis" name="Synopsis" rows="8"></textarea></p>

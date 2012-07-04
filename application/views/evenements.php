@@ -2,7 +2,7 @@
 <?php
 	if($events == -1 || $events == -2)
 	{
-		echo "Il n'y a pas d'événements	OU ERREUR !!! AHHHH";
+		echo "Il n'y a pas d'événements ";
 	}
 	else
 	{
@@ -17,7 +17,7 @@
 ?>
 	<tr>
 		<td>
-<?php echo($key['DateOfEvent']); ?>	
+<?php echo(formateDate($key['DateOfEvent'])); ?>	
 		</td>
 		<td>
 <?php echo($key['Address']); ?>	
@@ -26,7 +26,7 @@
 <?php echo($key['City']); ?>	
 		</td>
 		<td>
-<?php echo($key['CreationDate']); ?>	
+<?php echo(formateDate($key['CreationDate'])); ?>	
 		</td>
 		<td>	
 		<a href='/WeShare/Evenements/Supprimer/<?php echo $key['IdEvent'] ?>/' > Supprimer l'événement</a>
@@ -51,13 +51,13 @@
 	<a href='/WeShare/Evenements/Voir/<?php echo $key['IdEvent'] ?>/' >Cliquez ici</a>
 			</td>
 			<td>
-	<?php echo $key['DateOfEvent'];?>	
+	<?php echo formateDate($key['DateOfEvent']);?>	
 			</td>
 			<td>
-	<?php echo $key['Address'] ?>
+	<?php echo $key['Address']; ?>
 			</td>
 			<td>
-	<?php echo $key['City'] ?>
+	<?php echo $key['City']; ?>
 			</td>
 			<td>
 	<?php 

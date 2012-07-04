@@ -119,6 +119,6 @@ if (isset($_POST["pseudo"]) && !empty($_POST["pseudo"]) &&
 }
 else
 {
-	$layout = "home.php";
+	$layout = "register.php";
 }
 ?>

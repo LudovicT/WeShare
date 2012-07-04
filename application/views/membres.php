@@ -7,12 +7,12 @@
 	else
 	{
 	?>
-		<table cellspacing='7'>
-		<th> Pseudo </th><th> Date d'inscription </th><th> Ajouter un ami </th>
+		<table cellspacing='7' width='100%'>
+		<th width='33%'><h2> Pseudo </h2></th><th width='33%'><h2> Date d'inscription </h2></th><th width='33%'><h2> Ajouter un ami </h2></th>
 		<?php
 		foreach($membres as $key)
 		{ ?>
-			<tr>
+			<tr height='25px'>
 				<td>
 					<a href='/WeShare/Membres/<?php echo generateUrl($key['Pseudo']); ?>/'><?php echo $key['Pseudo'] ?></a>
 				</td>
@@ -36,11 +36,11 @@
 				}
 				elseif($key['Status'] == 0 || $key['Status'] == 2 || $key['Status'] == 3)
 				{
-					echo "Demande envoyé";
+					echo "<strong>Demande envoyé</strong>";
 				}
 				elseif($key['Status'] == 1)
 				{
-					echo "Déjà ami";
+					echo "<strong>Déjà ami</strong>";
 				}
 				?>
 				

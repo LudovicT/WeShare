@@ -4,7 +4,7 @@ if (isset($_POST['create_DateOfEvent']) && !empty($_POST['create_DateOfEvent']) 
 	isset($_POST['create_City']) && !empty($_POST['create_City']))
 {
 	createEvent(getId($user),
-				$_POST['create_DateOfEvent'], 
+				changeDate($_POST['create_DateOfEvent']),
 				$_POST['create_Address'],
 				$_POST['create_City'],
 				2);

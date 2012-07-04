@@ -321,6 +321,9 @@ background-color:#FFFFFF;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:1em;
 	border:2px solid #333333;
+}
+.fade
+{
 	-moz-transition: all 0.5s ease-in 0s;
 	-webkit-transition: all 0.5s ease-in 0s;
 	-o-transition: all 0.5s ease-in 0s;
@@ -355,7 +358,7 @@ background-color:#FFFFFF;
 	width:255px;
 }
 #connexion .small, #connexion .small{
-width:45px;
+width:55px;
 }
 #connexion #valider {
 width:155px;
@@ -372,15 +375,22 @@ padding:10px 0 0 0;
 {
 padding-top: 200px;
 }
-#header .row-4 {height:80px;width:100%;overflow:hidden}
+#header .row-4 {height:64px;width:100%;overflow:hidden}
 #header .row-4 .fright2 {padding-top:5px}
 #header .row-4 .fright2 ul li {font-size:20px;line-height:1.2em;float:left;margin-left:1px}
 #header .row-4 .fright2 ul li a {display:block;color:#af3300;text-decoration:none}
 #header .row-4 .fright2 ul li a em {display:block}
 #header .row-4 .fright2 ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
-#header .row-4 .fright2 ul li a:hover, #header .row-4 .fright ul li a.active {background-color:#d0e9f6}
+#header .row-4 .fright2 ul li a:hover, #header .row-4 .fright2 ul li a.active {background-color:#d0e9f6}
+#header .row-5 {height:44px;overflow:hidden}
+#header .row-5 .fright3 {padding-top:5px}
+#header .row-5 .fright3 ul li {font-size:20px;line-height:1.2em;float:left;margin-left:1px}
+#header .row-5 .fright3 ul li a {display:block;color:#af3300;text-decoration:none}
+#header .row-5 .fright3 ul li a em {display:block}
+#header .row-5 .fright3 ul li a b {display:block;font-style:normal;font-weight:normal;padding:5px 20px 5px 20px}
+#header .row-5 .fright3 ul li a:hover, #header .row-5 .fright3 ul li a.active {background-color:#d0e9f6}
 #PhotoProfil {max-width: 200px; max-height: 400px}
-#TableProfil td {background-color:#f7dbb6;}
+#TableProfil td {background-color:#f7dbb6;padding: 5px 5px 5px 5px;}
 .TableAmisProfil {background-color:#f7dbb6}
 .Titre
 {background-color:#e0e0e0}
@@ -454,6 +464,13 @@ padding-top: 200px;
    position:relative;
    right:50%;
 }
+.fright3
+{
+   float:left;
+   overflow:hidden;
+   position:relative;
+}
+
 
 .buttonDelete {
    border-top: 1px solid #fc0000;
@@ -550,11 +567,11 @@ padding-top: 200px;
 .button2 {
    border-top: 1px solid #050405;
    background: #694d42;
-   background: -webkit-gradient(linear, left top, left bottom, from(#36170a), to(#694d42));
-   background: -webkit-linear-gradient(top, #36170a, #694d42);
-   background: -moz-linear-gradient(top, #36170a, #694d42);
-   background: -ms-linear-gradient(top, #36170a, #694d42);
-   background: -o-linear-gradient(top, #36170a, #694d42);
+   background: -webkit-gradient(linear, left top, left bottom, from(#694d42), to(#303030));
+   background: -webkit-linear-gradient(top, #694d42, #303030);
+   background: -moz-linear-gradient(top, #694d42, #303030);
+   background: -ms-linear-gradient(top, #694d42, #303030);
+   background: -o-linear-gradient(top, #694d42, #303030);
    padding: 8px 16px;
    -webkit-border-radius: 7px;
    -moz-border-radius: 7px;
@@ -584,9 +601,8 @@ padding-top: 200px;
     background-image: url("../public/images/footer.png");
     background-repeat: no-repeat;
     height: 50px;
-	bottom:0;
-	margin-left:320px;
-	bottom:-20px;
+	margin-left:13%;
+	bottom:-35px;
     width: 940px;
     -moz-transition: all 0.5s ease-in 0s;
 	-webkit-transition: all 0.5s ease-in 0s;
@@ -598,7 +614,7 @@ padding-top: 200px;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 10px;
     margin-top: 30px;
-	position:fixed ;
+	position:fixed;
 	padding-bottom:7px;
     text-transform: uppercase;
 }

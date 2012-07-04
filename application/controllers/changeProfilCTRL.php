@@ -86,7 +86,7 @@ else
 {
 	$change_country = null;
 }
-if(isset($_FILES['userfile']['name']))
+if(isset($_FILES['userfile']['name']) && !empty($_FILES['userfile']['name']))
 {
 	$uploaddir = realpath($_SERVER['DOCUMENT_ROOT'])."/WeShare/public/images/user_pic/";
 	$file_parts = pathinfo('dir/' . $_FILES['userfile']['name']);
@@ -124,6 +124,10 @@ if(isset($_FILES['userfile']['name']))
 	{
 		$change_avatar = null;
 	}
+}
+else
+{
+	$change_avatar = null;
 }
 
 if(isset($_POST["password"]) && !empty($_POST["password"]))

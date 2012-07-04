@@ -8,7 +8,7 @@
 				<h1>Obligatoire</h1>
 				<p>
 				<label for="pseudo">Pseudonyme : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em pseudo required" name="pseudo" id="pseudo" />
+				<input onkeyup='validate(this,0)' class="input_field_12em pseudo required" name="pseudo" id="pseudo" value="<?php if(isset($_POST['pseudo'])){echo $_POST['pseudo'];} ?>"/>
 				</p>
 				<p>
 				<label for="password">Mot de passe : </label>
@@ -20,38 +20,38 @@
 				</p>
 				<p>
 				<label for="email">Email : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em email required" name="email" id="email" />
+				<input onkeyup='validate(this,0)' class="input_field_12em email required" name="email" id="email"  value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>"/>
 				</p>
 				<h1>Optionnel</h1>
 				<p>
 				<label for="nom">Nom : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em" name="lastName" id="lastName" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="lastName" id="lastName"  value="<?php if(isset($_POST['lastName'])){echo $_POST['lastName'];} ?>"/>
 				</p>
 				<p>
 				<label for="prenom">Prenom : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em" name="firstName" id="firstName" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="firstName" id="firstName"  value="<?php if(isset($_POST['firstName'])){echo $_POST['firstName'];} ?>"/>
 				</p>
 				<p>
 				<label for="day_fi">Date de naissance : </label>
-				<input onkeyup='validate(this,0)' class="small" name="day" id="day" value="" /> -
-				<input onkeyup='validate(this,0)' class="small" name="month" id="month" value="" /> - 
-				<input onkeyup='validate(this,0)' class="small" name="year" id="year" value="" /><label><br />(sous le format JJ-MM-AAAA)</label>
+				<input onkeyup='validate(this,0)' class="small" name="day" id="day"  value="<?php if(isset($_POST['day'])){echo $_POST['day'];} ?>" /> -
+				<input onkeyup='validate(this,0)' class="small" name="month" id="month" value="<?php if(isset($_POST['month'])){echo $_POST['month'];} ?>" /> - 
+				<input onkeyup='validate(this,0)' class="small" name="year" id="year" value="<?php if(isset($_POST['year'])){echo $_POST['year'];} ?>" /><label><br />(sous le format JJ-MM-AAAA)</label>
 				</p>
 				<p>
 				<label for="countryPrefix_fi">Numero de telephone : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em digits" name="phoneNumber" id="phoneNumber" />
+				<input onkeyup='validate(this,0)' class="input_field_12em digits" name="phoneNumber" id="phoneNumber" value="<?php if(isset($_POST['phoneNumber'])){echo $_POST['phoneNumber'];} ?>" />
 				</p>
 				<p>
 				<label for="adresse">Adresse : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em" name="address" id="address" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="address" id="address" value="<?php if(isset($_POST['address'])){echo $_POST['address'];} ?>" />
 				</p>
 				<p>
 				<label for="ville">Ville : </label>
-				<input onkeyup='validate(this,0)' class="input_field_12em" name="city" id="city" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="city" id="city" value="<?php if(isset($_POST['city'])){echo $_POST['city'];} ?>" />
 				</p>
 				<p>
 				<label for="pays">Dans quel pays habitez-vous ?</label>
-				<input onkeyup='validate(this,0)' class="input_field_12em" name="country" id="country" />
+				<input onkeyup='validate(this,0)' class="input_field_12em" name="country" id="country" value="<?php if(isset($_POST['country'])){echo $_POST['country'];} ?>" />
 				</p>
 			</span>
 				<p>

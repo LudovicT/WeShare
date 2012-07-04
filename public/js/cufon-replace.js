@@ -43,3 +43,27 @@ function setblinkColor()
   }
   setTimeout("blinkColor()",750)
 }
+
+function newPopup(url) {
+	popupWindow = window.open(
+		url,'popUpWindow','height=700,width=1000,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=no')
+}
+
+function toggle_visibility(id) {
+   var e = document.getElementById(id);
+   if(e.style.display == 'block')
+   {
+	  $('#'+id).fadeTo(0.5, 0);
+	  setTimeout('toggle_none("'+id+'")',500);
+   }
+   else
+   {
+	  $('#'+id).fadeTo(0.5, 1);
+	  e.style.display = 'block';
+   }
+}
+function toggle_none(id)
+{
+   var e = document.getElementById(id);
+   e.style.display = 'none';
+}
