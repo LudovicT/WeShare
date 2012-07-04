@@ -59,9 +59,9 @@
 
 <br />
 <br />
-<h3>Mes films mis en partage :</h3>
+<h3>Mes films mis en partage :</h3><br />
 <table border='0' rules='rows' width="100%">
-<th> Titre </th><th> Support </th><th> Nombre d'exemplaires </th> <th> Supprimer </th>
+<th><h2> Titre </h2></th><th><h2> Support </h2></th><th><h2> Nombre d'exemplaires </h2></th> <th> </th>
 <?php
 	$i = 0;
 	foreach($userMovie as $name)
@@ -99,6 +99,22 @@
 					<div class='fright3'>
 						<ul>
 							<li><a href='javascript:document.form<?php echo $i; ?>.submit();'><em><b>Supprimer</b></em></a></li>
+						</ul>
+					</div>
+				</div>
+			</td>
+			<td>
+				<form name='form-<?php echo $i; ?>' method="post" action="/WeShare/Profil/Films/supprimer/">
+				<input type='hidden' name='IdMovie' value='<?php echo $name['IdMovie']?>'>
+				<input type='text' name='support' value=''>
+				<input type='hidden' name='available' value='<?php echo $name['Available']?>'>
+				</form>
+			</td>
+			<td>
+				<div class='row-5'>
+					<div class='fright3'>
+						<ul>
+							<li><a href='javascript:document.form-<?php echo $i; ?>.submit();'><em><b>Modifier</b></em></a></li>
 						</ul>
 					</div>
 				</div>

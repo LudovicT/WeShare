@@ -93,7 +93,7 @@ elseif (!isset($_GET['page']))
 					<li><a href="/WeShare/Accueil/"><img id='logo' src="<?php echo DIR_PUBLICS; ?>/images/logo2.png" alt="" /></a></li>
 					<li><a href="/WeShare/Accueil/"<?php echo $active[0];?>><em><b>Accueil</b></em></a></li>
 					<li><a href="/WeShare/Films/"<?php echo $active[1];?>><em><b>Films</b></em></a></li>
-					<li><a href="/WeShare/Evenements/"<?php echo $active[2];?>><em><b>Evénements<?php echo $newNotifEvents;?></b></em></a></li>
+					<li><a href="/WeShare/Evenements/"<?php echo $active[2];?>><em><b>Événements<?php echo $newNotifEvents;?></b></em></a></li>
 					<li><a href="/WeShare/Membres/"<?php echo $active[3];?>><em><b>Membres</b></em></a></li>
 				</ul>
 			</div>
@@ -111,7 +111,7 @@ elseif (!isset($_GET['page']))
 			</form>
 			</div>
 			<div id="profil">
-				<ul><img class='miniprofilpic' src='<?php
+				<ul><a href='/WeShare/Profil/'><img class='miniprofilpic' src='<?php
 				if(file_exists("./public/images/user_pic/".$user.".jpg"))
 				{
 					echo DIR_PUBLICS."/images/user_pic/".$user.".jpg";
@@ -120,13 +120,13 @@ elseif (!isset($_GET['page']))
 				{
 					echo DIR_PUBLICS."/images/vide.gif"; 
 				}
-				?>'>
+				?>' ></a>
 				</ul>
 			</div>
 			<div id="profil">
 				<ul>
-					<li><a href="/WeShare/Profil/"<?php echo $active[4];?> style="margin-top: -30px";><b>Profil<?php echo $newNotifProfil;?></b></a></li>
-					<li><a href="/WeShare/Deconnexion/" style="margin-top: 0px";><b>Déconnexion</b></a></li>
+					<li><a href="/WeShare/Profil/" <?php echo $active[4];?> style="margin-top: -15px"><b>Profil<?php echo $newNotifProfil;?></b></a></li>
+					<li><a href="/WeShare/Deconnexion/" style="margin-top: 5px";><b>Déconnexion</b></a></li>
 				</ul>
 			</div>
 		</div>

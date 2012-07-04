@@ -12,7 +12,7 @@
 |
 <a href="/WeShare/Films/">Films</a>
 |
-<a href="/WeShare/Evenements/">Evénements</a>
+<a href="/WeShare/Evenements/">Événements</a>
 |
 <a href="/WeShare/Membres/">Membres</a>
 |
