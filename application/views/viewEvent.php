@@ -3,21 +3,37 @@
 le ou les films proposés</p>
 <br />
 
-<table border='1'>
-	<th> Date de l'événement </th><th> Adresse </th>
-	<th> Ville </th><th> Date de création </th>
+<table width='60%' border='1' rules='none' cellspacing='12' style='margin-left:200px'>
+	<tr>
+		<td width='35%'>
+		<h2>Date de l'événement : 
+		</td>
+		<td>
+		<?php echo formateDate($event['DateOfEvent']); ?>
+		</td>
+	</tr>
 	<tr>
 		<td>
-<?php echo($event['DateOfEvent']); ?>	
+		<h2>Adresse : 
 		</td>
 		<td>
-<?php echo($event['Address']); ?>	
+		<?php echo($event['Address']); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<h2>Ville : 
 		</td>
 		<td>
-<?php echo($event['City']); ?>	
+		<?php echo($event['City']); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<h2>Date de création : 
 		</td>
 		<td>
-<?php echo($event['CreationDate']); ?>	
+		<?php echo(formateDate($event['CreationDate'])); ?>
 		</td>
 	</tr>
 </table>
@@ -25,14 +41,14 @@ le ou les films proposés</p>
 <?php if ($movies != -2)
 { ?>
 Voici la liste des films proposés pour cet événement : <br /><br />
+<table border='0' rules='rows' width='100%'>
+	<th> <h2>Nom du film</h2> </th><th> <h2>Date de sortie</h2> </th>
+	<th> <h2>Durée</h2> </th><th><h2>Total des votes</h2></th>
 <?php
 	foreach($movies as $key)
 	{ 
 ?>
-<table border='1'>
-	<th> Nom du film </th><th> Date de sortie </th>
-	<th> Durée </th><th>Vote</th><th>Action</th>
-	<tr>
+	<tr height='35px'>
 		<td>
 <?php echo ($key['Name']) ?>
 		</td>
@@ -49,7 +65,13 @@ Voici la liste des films proposés pour cet événement : <br /><br />
 <?php
 if ($key['CheckVote'] == 0)
 {?>
-		<a href='/WeShare/Evenements/Voir/<?php echo $event['IdEvent'] ?>/VoterFilm/<?php echo $key['IdMovie']; ?>/' > voter </a>
+<div class='row-5'>
+	<div class='fright3'>
+		<ul>
+			<li><a href='/WeShare/Evenements/Voir/<?php echo $event['IdEvent'] ?>/VoterFilm/<?php echo $key['IdMovie']; ?>/'><em><b>Voter</b></em></a></li>
+		</ul>
+	</div>
+</div>
 <?php }
 	  else if ($key['CheckVote'] == -2)
 	  {?>
@@ -73,12 +95,12 @@ if ($friends != -1 && $friends != -2)
 {
 ?>
 <br /><br /><p>Liste des membres participants à cet événement :</p>
+<table border='0' rules='rows' width='100%'>
+	<th> <h2>Pseudo</h2> </th><th><h2>Status</h2></th>
 <?php 
 	foreach ($friends as $key)
 	{
 	?>
-<table border='1'>
-	<th> Pseudo </th><th>Status</th>
 	<tr>
 		<td>
 <?php echo ($key['Pseudo'])?>

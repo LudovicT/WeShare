@@ -15,6 +15,7 @@ if (isset($_GET["page"]))
 			$layout = "accueil.php";
 			break;
 		case "search":
+			$layout = "search.php";
 			if(isset($_POST['mot']) && !empty($_POST['mot']))
 			{
 				if(isset($_POST['type']) && is_numeric($_POST['type']))
@@ -34,7 +35,6 @@ if (isset($_GET["page"]))
 			{
 				$layout = "erreur.php";
 			}
-			$layout = "search.php";
 			break;
 		case "films.php":
 			include_once("filmCTRL.php");
@@ -56,6 +56,14 @@ if (isset($_GET["page"]))
 			else
 			{
 				$layout = "erreur.php";
+			}
+			break;
+		case "delStaff.php":
+			if(isset($_GET['idStaff']) && !empty($_GET['idStaff']))
+			{
+				deleteStaff($_GET['idStaff']);
+				$search = searchData(2,"");
+				$layout = "search.php";
 			}
 			break;
 		case "ficheFilm.php":
@@ -95,6 +103,13 @@ if (isset($_GET["page"]))
 					$membres = getMember($user);
 					$layout = "membres.php";
 				}
+			}
+			elseif(isset($_GET['supprimer']))
+			{
+				$userIdSuppr = getId($_GET['supprimer']);
+				deleteUser($userIdSuppr);
+				$membres = getMember($user);
+				$layout = "membres.php";
 			}
 			else
 			{

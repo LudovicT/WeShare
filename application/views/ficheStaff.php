@@ -23,7 +23,10 @@
 						<p>
 						<b>Biographie :</b><br />
 						<?php echo $staffInfo['Bio']; ?>
-						</p>
+						</p><?php
+						if ($user == SUPERUSER)
+						{ ?><a onclick='confirmation("/WeShare/Personne/Suppression/<?php echo $staffInfo['IdStaff']; ?>")' href='#'>Supprimer</a> <?php
+						} ?>
 					</td> 
 				</tr>
 			</table>

@@ -1,9 +1,7 @@
-<h3>Vote du film "<?php echo $movie['Name'] ?>" de l'événement</h3>
-<p>Vous pouvez voter pour ou contre </p>
-
+<h3>Voter pour le film "<?php echo $movie['Name'] ?>" de l'événement</h3>
+<br /><br />
 <table border='0' rules='rows' width='100%'>
-	<th> Nom du film </th><th> Synopsis </th>
-	<th> Durée </th><th>Vote</th><th>Action</th>
+	<th> <h2>Nom du film</h2> </th><th> <h2>Synopsis</h2> </th><th> <h2>Durée</h2> </th><th colspan='2'><h2>Vote</h2></th>
 	<tr>
 		<td>
 <?php echo $movie['Name'] ?>

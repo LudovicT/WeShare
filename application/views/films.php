@@ -18,7 +18,10 @@
 		{
 			?>
 			<table border='0' width="100%" rules='rows'>
-			<th> Jaquette </th><th> Titre </th><th> Synopsis </th><th> Date de sortie </th> <th> Editer un film </th> <th> Supprimer </th> 
+			<th> <h2>Jaquette</h2> </th><th> <h2>Titre</h2> </th><th> <h2>Synopsis</h2> </th><th> <h2>Date de sortie</h2> </th><th> <h2>Editer un film</h2> </th><?php
+					if ($user == SUPERUSER)
+					{ ?><th> <h2>Supprimer</h2> </th> <?php
+					} ?>
 			<?php
 			foreach($search[0] as $key)
 			{
@@ -45,7 +48,7 @@
 					<td width="10%">
 						<?php echo $key['DateOfRelease'] ?>
 					</td>
-					<td width="10%">
+					<td width="15%">
 					<div class='row-4'>
 						<div class='fright2'>
 							<ul>
@@ -53,8 +56,10 @@
 							</ul>
 						</div>
 					</div>
-					</td>
-					<td width="10%">
+					</td><?php
+					if ($user == SUPERUSER)
+					{ ?>
+					<td width="5%">
 					<div class='row-4'>
 						<div class='fright2'>
 							<ul>
@@ -62,7 +67,8 @@
 							</ul>
 						</div>
 					</div>
-					</td>
+					</td><?php
+					} ?>
 				</tr>
 			<?php
 			}

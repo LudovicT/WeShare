@@ -77,3 +77,13 @@ xmlhttp.open("POST","/weshare/application/views/info.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send('q='+obj.value);
 }
+
+function confirmation(url) {
+	var answer = confirm("Voulez vous vraiment effectuer cette action ?")
+	if (answer){
+		alert("Action effectuée")
+		window.location = url;
+	}
+	else{
+	}
+}

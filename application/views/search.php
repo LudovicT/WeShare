@@ -1,11 +1,13 @@
 	<!--Start of home page-->
 	<?php
-	if(isset($search[1]) && $search[1] == -1 && isset($search[3]) && $search[3] == -1)
+	if(isset($search[0]) && empty($search[0]) && isset($search[1]) && empty($search[1]))
 	{
 	?>
-		<div id='NoResult'>
+	<div id='home'>
+		<h2>
 			Votre recherche n'a retourné aucun résultat.
-		</div>
+		</h2>
+	</div>
 	<?php
 	}
 	else
@@ -16,14 +18,29 @@
 			{
 				echo "<h3>Films disponibles selon leur support recherché sur le terme ' ".$_POST['mot']." '</h3><br/>";
 			}
+			else
+			{
+				if(isset($_POST['mot']) && $_POST['mot'])
+					echo "<h3> Films qui correspondent à votre recherche ' ".$_POST['mot']." '</h3>";
+				else
+					echo "<h3> Films qui correspondent à votre recherche </h3>";
+			}
 			?>
-			<table border='1' width="100%">
-			<th> Jaquette </th><th> Titre <?php
+			<div class='row-4'>
+				<div class='fright2'>
+					<ul>
+						<li><a href="#" onclick="toggle_visibility('movieList');"><em><b>Cacher/afficher les films</b></em></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id='movieList' class='fade' style="display: block; opacity: 1;">
+			<table border='0' rules='rows' width='100%'>
+			<th> <h2>Jaquette</h2> </th><th width='1%'></th><th> <h2>Titre <?php
 			if(isset($search[0][0]['Exemplaires']))
 			{
 				echo "(exemplaires)";
 			}
-			?></th><th> Synopsie </th><th> Date de sortie </th>
+			?></h2></th><th width='1%'></th><th> <h2>Synopsie</h2> </th><th width='1%'></th><th> <h2>Date de sortie</h2> </th>
 			<?php
 			foreach($search[0] as $key)
 			{
@@ -41,6 +58,8 @@
 					}
 					?>'>
 				</td>
+				<td width="1%">
+				</td>
 					<td width="15%">
 						<a href='/WeShare/Film/<?php echo (generateUrl($key['Name'])."/".$key['IdMovie']); ?>/'><?php echo $key['Name'] ?></a><?php
 						if(isset($key['Exemplaires']))
@@ -49,9 +68,13 @@
 						}
 						?>
 					</td>
+				<td width="1%">
+				</td>
 					<td width="55%">
 						<?php echo $key['Synopsis'] ?>
 					</td>
+				<td width="1%">
+				</td>
 					<td width="15%">
 						<?php echo $key['DateOfRelease'] ?>
 					</td>
@@ -60,13 +83,26 @@
 			}
 			?>
 		</table>
+		</div><br /><br /><br /><br />
 			<?php
 		}
 		if (isset($search[1][0]['IdStaff']))
-		{
-			?>
-			<table border='1' width="100%">
-			<th> Photographie </th><th> Nom </th><th> Description </th><th> Date de naissance </th>
+		{?><?php
+				if(isset($_POST['mot']) && $_POST['mot'])
+					echo "<h3> Acteurs/Réalisateurs qui correspondent à votre recherche ' ".$_POST['mot']." '</h3>";
+				else
+					echo "<h3> Acteurs/Réalisateurs qui correspondent à votre recherche </h3>";
+					?>
+			<div class='row-4'>
+				<div class='fright2'>
+					<ul>
+						<li><a href="#" onclick="toggle_visibility('staff');"><em><b>Cacher/afficher le casting des films</b></em></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id='staff' class='fade' style="display: block; opacity: 1;">
+			<table border='0' rules='rows' width='100%'>
+			<th> <h2>Photographie</h2> </th><th width='1%'></th><th> <h2>Nom</h2> </th><th width='1%'></th><th> <h2>Biographie</h2> </th><th width='1%'></th><th> <h2>Date de naissance</h2> </th>
 			<?php
 			foreach($search[1] as $key)
 			{
@@ -84,12 +120,18 @@
 					}
 					?>'>
 				</td>
+				<td width="1%">
+				</td>
 					<td width="15%">
 						<a href='/WeShare/Personne/<?php echo generateUrl($key['FirstName']." ".$key['LastName'])."/".$key['IdStaff']; ?>/'><?php echo $key['FirstName']." ".$key['LastName'] ?></a>
 					</td>
+				<td width="1%">
+				</td>
 					<td width="55%">
 						<?php echo $key['Bio'] ?>
 					</td>
+				<td width="1%">
+				</td>
 					<td width="15%">
 						<?php echo formateDate($key['BornDate']) ?>
 					</td>
@@ -98,6 +140,7 @@
 			}
 			?>
 			</table>
+			</div><br/><br/><br/><br/>
 			<?php
 		}
 	}

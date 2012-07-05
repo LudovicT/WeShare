@@ -2018,6 +2018,19 @@ function addStaff($last, $first, $bio, $BornDate, $picture)
 	}
 }
 
+function deleteStaff($IdStaff)
+{
+	$error = 0;
+
+// Requête qui supprime enfin l'événement dans la table "Staffs"
+	$query = sprintf("DELETE FROM Staffs WHERE IdStaff = '%d'", $IdStaff);
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
+	if ($result == false)
+	 {
+		$error = 1;
+	 }
+return ($error);
+}
 /*
 La fonction getPollMovieEvent permet de récupérer l'état du vote
 pour un film donné.
@@ -2071,7 +2084,7 @@ function checkVoteMovieEvent($IdEvent, $IdMovie, $IdUser)
 {
 	$error = 0;
 
-	$query = sprintf("SELECT Status FROM EventsInvitations 
+	$query = sprintf("SELECT * FROM EventsVote 
 					  WHERE IdUser = '%d' AND IdMovie = '%d' AND IdEvent = '%d'",
 					  $IdUser, $IdMovie, $IdEvent);
 	$result = mysql_query($query, dbConnect());
@@ -2082,9 +2095,13 @@ function checkVoteMovieEvent($IdEvent, $IdMovie, $IdUser)
 	 else
 	 {
 		$status = mysql_fetch_assoc($result);
-		if ($status['Status'] == -1 || $status['Status'] == 0)
+		if (isset($status['IdUser']))
 		{
-			return (-2);
+			return (-1);
+		}
+		else
+		{
+			return 0;
 		}
 	 }
 	return ($error);

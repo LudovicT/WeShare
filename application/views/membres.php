@@ -44,7 +44,12 @@
 				}
 				?>
 				
-				</td>
+				</td><?php
+					if ($user == SUPERUSER)
+					{ ?><td>
+					<a onclick='confirmation("/WeShare/Membres/Supprimer/<?php echo generateUrl($key['Pseudo']); ?>/")' href='#'>Supprimer</a>
+					</td><?php
+					} ?>
 			</tr>
 			<?php
 		}?>

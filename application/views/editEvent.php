@@ -1,41 +1,41 @@
 <h3>Modifier l'événement</h3>
 <p>Ici vous pouvez modifier l'événement : </p>
 
-	<table width='60%' border='1' rules='none' cellspacing='12' style='margin-left:200px'>
-		<tr>
-			<td width='35%'>
-			<h2>Date de l'événement : 
-			</td>
-			<td>
-			<?php echo formateDate($event['DateOfEvent']); ?>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<h2>Adresse : 
-			</td>
-			<td>
-			<?php echo($event['Address']); ?>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<h2>Ville : 
-			</td>
-			<td>
-			<?php echo($event['City']); ?>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<h2>Date de création : 
-			</td>
-			<td>
-			<?php echo(formateDate($event['CreationDate'])); ?>
-			</td>
-		</tr>
-	</table>
-<br /><br />	
+<table width='60%' border='1' rules='none' cellspacing='12' style='margin-left:200px'>
+	<tr>
+		<td width='35%'>
+		<h2>Date de l'événement : 
+		</td>
+		<td>
+		<?php echo formateDate($event['DateOfEvent']); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<h2>Adresse : 
+		</td>
+		<td>
+		<?php echo($event['Address']); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<h2>Ville : 
+		</td>
+		<td>
+		<?php echo($event['City']); ?>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<h2>Date de création : 
+		</td>
+		<td>
+		<?php echo(formateDate($event['CreationDate'])); ?>
+		</td>
+	</tr>
+</table>
+<br /><br />
 <strong>Pour modifier l'événement ci-dessus, veuillez insérer les nouvelles informations :</strong><br />
 <br /><br />
 <div id="connexion">
