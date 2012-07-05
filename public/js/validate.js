@@ -75,5 +75,5 @@ xmlhttp.onreadystatechange=function()
 }
 xmlhttp.open("POST","/weshare/application/views/info.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send('q='+obj.id);
+xmlhttp.send('q='+obj.value);
 }

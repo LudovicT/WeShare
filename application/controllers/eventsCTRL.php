@@ -53,7 +53,7 @@ if (isset($_GET['action']) && !empty($_GET['action']))
 		case "manageEvent":
 			if(isset($_POST['EditEvent']) && !empty($_POST['EditEvent']))
 			{
-				editEvent($_POST['EditEvent'], $_POST['modifiy_DateOfEvent'], $_POST['modify_Address'], $_POST['modify_City']);
+				editEvent($_POST['EditEvent'], changeDate($_POST['modifiy_DateOfEvent']), $_POST['modify_Address'], $_POST['modify_City']);
 			}
 			if(isset($_POST['InviteFriend']) && !empty($_POST['InviteFriend']) &&
 				isset($_POST['IdEvent']) && !empty($_POST['IdEvent']))
@@ -117,7 +117,7 @@ if (isset($_GET['action']) && !empty($_GET['action']))
 				if(isset($_GET['idEvent']) && !empty($_GET['idEvent']))
 				{
 					$IdEvent = $_GET['idEvent'];
-					$rawUserMovies = getUserMovies(getId($user));
+					$rawUserMovies = getUserMoviesRaw(getId($user));
 					if (!empty($rawUserMovies))
 					{
 						foreach ($rawUserMovies as $key)

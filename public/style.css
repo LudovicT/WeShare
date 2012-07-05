@@ -732,3 +732,8 @@ select.right {
 background:red;
 background-color:red;
 }
+#erreur
+{
+	text-align:center;
+	margin-top:60px;
+}

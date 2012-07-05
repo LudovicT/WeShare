@@ -122,8 +122,6 @@ elseif (!isset($_GET['page']))
 				}
 				?>' ></a>
 				</ul>
-			</div>
-			<div id="profil">
 				<ul>
 					<li><a href="/WeShare/Profil/" <?php echo $active[4];?> style="margin-top: -15px"><b>Profil<?php echo $newNotifProfil;?></b></a></li>
 					<li><a href="/WeShare/Deconnexion/" style="margin-top: 5px";><b>Déconnexion</b></a></li>

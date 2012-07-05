@@ -3,13 +3,12 @@
 	if ($UserMovies != 0)
 	{ ?>
 <p>Voici la liste des films que vous possédez : </p>
+<table border='0' rules='rows' width='100%'>
+	<th> <h2>Nom du film</h2> </th><th> <h2>Synopsis</h2> </th><th> <h2>Durée</h2> </th>
 <?php
 		foreach($UserMovies as $key)
 		{ 
 ?>
-<table border='1'>
-	<th> Nom du film </th><th> Synopsis </th>
-	<th> Durée </th>
 	<tr>
 		<td>
 <?php echo ($key['Name']) ?>
@@ -20,10 +19,6 @@
 		<td>
 <?php echo($key['Runtime']); ?>	
 		</td>
-	</tr>
-</table>
-<table>
-	<tr>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>/">
 				<input type="hidden" name="AddMovie" value="<?php echo $key['IdMovie'] ?>">
@@ -33,11 +28,14 @@
 		</td>
 		<td>
 			<form id="edit-profile-form" method="post" action="/WeShare/Evenements/Manage/<?php echo $IdEvent ?>">
-				<input type="submit" class="button2" value="Annuler">
+				<input type="submit" value="Annuler">
 			</form>
 		</td>
 	</tr>
+<?php }?>
+
 </table>
-<?php }
+<?php
 	}
-	else {?> <p> Vous n'avez aucun film. <?php } ?>
+	else {?>
+	<p> Vous n'avez aucun film. <?php } ?>

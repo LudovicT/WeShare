@@ -1,7 +1,7 @@
 <h3>Vote du film "<?php echo $movie['Name'] ?>" de l'événement</h3>
 <p>Vous pouvez voter pour ou contre </p>
 
-<table border='1'>
+<table border='0' rules='rows' width='100%'>
 	<th> Nom du film </th><th> Synopsis </th>
 	<th> Durée </th><th>Vote</th><th>Action</th>
 	<tr>
@@ -28,9 +28,9 @@
 		<td>
 					<input type="hidden" name="For" value="<?php echo $movie['IdMovie'] ?>">
 					<input type="hidden" name="IdEvent" value="<?php echo $IdEvent ?>">
-					<input type="submit" class="button2" value="Voter">
+					<input type="submit" value="Voter">
 					ou 
-					<input type="submit" class="button2" value="Annuler">
+					<input type="submit" value="Annuler">
 			</form>
 	</tr>
 </table>

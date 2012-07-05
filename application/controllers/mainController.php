@@ -53,6 +53,9 @@ if (isset($_GET["page"]) && $user == null && !isset($_SESSION['User']))
 			disconnect();
 			$layout = "home.php";
 			break;
+		case "erreur.php":
+			$layout = "erreur.php";
+			break;
 		default:
 			$layout = "home.php";
 	}

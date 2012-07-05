@@ -86,7 +86,15 @@ if (isset($_GET["page"]))
 			if(isset($_GET['profil']))
 			{
 				$profil = getProfil($_GET['profil']);
-				$layout = "profil.php";
+				if(isset($profil['Pseudo']))
+				{
+					$layout = "profil.php";
+				}
+				else
+				{
+					$membres = getMember($user);
+					$layout = "membres.php";
+				}
 			}
 			else
 			{

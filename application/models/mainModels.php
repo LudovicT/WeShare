@@ -1730,6 +1730,26 @@ function getUserMovies($IdUser)
 	return ($UserMovies);
 }
 
+function getUserMoviesRaw($IdUser)
+{
+	$iterator = 0;
+	
+	// Requête récupérant les ID des films appartenants à l'utilisateur
+	$query = sprintf("SELECT DISTINCT UM.IdMovie 
+						FROM UserMovies AS UM
+						LEFT JOIN Movies AS M
+						ON UM.IdMovie = M.IdMovie
+						WHERE UM.IdUser = '%d'" 
+					 ,$IdUser);
+	$result = mysql_query($query, dbConnect()) or die(mysql_error());
+	if ($result == false)
+	{
+		return -1;
+	}
+	while(($UserMovies[] = mysql_fetch_assoc($result)) || array_pop($UserMovies));
+	return ($UserMovies);
+}
+
 function addUserMovie($userId, $IdMovie, $support, $available)
 {
 	if($support == 'fichier')
@@ -2052,8 +2072,8 @@ function checkVoteMovieEvent($IdEvent, $IdMovie, $IdUser)
 	$error = 0;
 
 	$query = sprintf("SELECT Status FROM EventsInvitations 
-					  WHERE IdUser = '%d' AND IdEvent = '%d'",
-					  $IdUser, $IdEvent);
+					  WHERE IdUser = '%d' AND IdMovie = '%d' AND IdEvent = '%d'",
+					  $IdUser, $IdMovie, $IdEvent);
 	$result = mysql_query($query, dbConnect());
 	if ($result == false)
 	 {
@@ -2067,14 +2087,6 @@ function checkVoteMovieEvent($IdEvent, $IdMovie, $IdUser)
 			return (-2);
 		}
 	 }
-	// $query = sprintf("SELECT IdEvent, IdMovie, IdUser FROM EventsVote
-					  // WHERE IdMovie = '%d' AND IdEvent = '%d' AND IdUser = '%d'",
-					  // $IdMovie, $IdEvent, $IdUser);
-	// $result = mysql_query($query, dbConnect());
-	// if ($result == false)
-	 // {
-		// return (1);
-	 // }
 	return ($error);
 }
 

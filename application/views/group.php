@@ -70,7 +70,14 @@
 	</form>
 	<br />
 	</br>
-	<a href="/WeShare/Groupe/Supprimer/<?php echo $group['IdGroup']?>/" class="button2">Supprimer le groupe</a> </br></br></br>Attention, cette action est définitive !
+		<div class='row-4'>
+			<div class='fright2'>
+				<ul>
+					<li><a href="/WeShare/Groupe/Supprimer/<?php echo $group['IdGroup']?>/" ><em><b> Supprimer le groupe </b></em></a></li>
+				</ul>
+			</div>
+		</div>
+	</br></br></br>Attention, cette action est définitive !
 	
 	</div>
 	<!--End of home page-->

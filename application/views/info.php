@@ -13,7 +13,18 @@ if (strlen($q) > 0)
 	$user = getUser();
 	if(isset($user) && !empty($user))
 	{
-		$profil = getProfil($user);
+			$profil = getProfil($user);
+		
+		switch($q)
+		{
+			case "address":
+				echo $profil['Address'];
+				break;
+			case "city":
+				echo $profil['City'];
+				break;
+			
+		}
 	}
 }
 
@@ -21,5 +32,4 @@ if (strlen($q) > 0)
 // or to the correct values
 
 //output the response
-echo $profil['Address'];
 ?>

@@ -1,4 +1,11 @@
 	<!--Start of home page-->
+	<div class='row-4'>
+		<div class='fright2'>
+			<ul>
+				<li><a href="/WeShare/Evenements/Ajouter/" ><em><b>Créer un événement</b></em></a></li>
+			</ul>
+		</div>
+	</div>
 <?php
 	if($events == -1 || $events == -2)
 	{
@@ -7,15 +14,14 @@
 	else
 	{
 ?>
-	<table border='1'>
-	<p>  Événements dont vous êtes l'organisateur : </p>
-	<th> Date de l'événement </th><th> Adresse </th>
-	<th> Ville </th><th> Date de création </th><th> Action </th>
+	<table border='0' rules='rows' width='100%'>
+	<h3> Événements dont vous êtes l'organisateur : </h3>
+	<th> <h2>Date de l'événement </h2></th><th> <h2>Adresse</h2> </th><th> <h2>Ville</h2> </th><th> <h2>Date de création</h2> </th><th> <h2>Action</h2> </th>
 <?php
 	foreach($events[0] as $key)
 	{ 
 ?>
-	<tr>
+	<tr style='height:35px'>
 		<td>
 <?php echo(formateDate($key['DateOfEvent'])); ?>	
 		</td>
@@ -37,16 +43,17 @@
 <?php
 	} ?>
 	
+	</table><br /><br /><br />
+	<h3>  Événements auxquels vous participez : </h3>
 	</table>
-	<table border='1'> <br />
-	<p>  Événements auxquels vous participez : </p>
+	<table border='0' rules='rows' width='100%'> 
 	<th> Accéder à l'événement </th><th> Date de l'événement </th><th> Adresse </th>
 	<th> Ville </th><th> Status </th><th> Action </th>
 <?php
 	foreach($events[1] as $key)
 	{
 ?>
-		<tr>
+		<tr style='height:35px'>
 			<td>
 	<a href='/WeShare/Evenements/Voir/<?php echo $key['IdEvent'] ?>/' >Cliquez ici</a>
 			</td>
@@ -99,8 +106,6 @@
 		}
 	}
 ?>
-	</table> <br> <br />
-	<a href="/WeShare/Evenements/Ajouter/" class="button2">Créer un événement</a>
 <?php
 }
 ?>

@@ -61,7 +61,7 @@
 <br />
 <h3>Mes films mis en partage :</h3><br />
 <table border='0' rules='rows' width="100%">
-<th><h2> Titre </h2></th><th><h2> Support </h2></th><th><h2> Nombre d'exemplaires </h2></th> <th> </th>
+<th><h2> Titre </h2></th><th><h2> Support </h2></th><th><h2> Nombre d'exemplaires </h2></th> <th><h2> Supprimer le film </h2></th><th colspan='2'><h2> Modifier le nombre d'exemplaires</h2></th>
 <?php
 	$i = 0;
 	foreach($userMovie as $name)
@@ -104,7 +104,7 @@
 				</div>
 			</td>
 			<td>
-				<form name='form-<?php echo $i; ?>' method="post" action="/WeShare/Profil/Films/supprimer/">
+				<form name='form-<?php echo $i; ?>' method="post" action="/WeShare/Profil/Films/modifier/">
 				<input type='hidden' name='IdMovie' value='<?php echo $name['IdMovie']?>'>
 				<input type='text' name='support' value=''>
 				<input type='hidden' name='available' value='<?php echo $name['Available']?>'>
